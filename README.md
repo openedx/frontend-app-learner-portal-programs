@@ -6,7 +6,7 @@ The learner portal allows a customized experience of learner-facing micro-fronte
 ## How to set up the dev environment
  Clone this repo:
 
-  ```$ git clone https://github.com/edx/edx-portal.git```
+  ```$ git clone https://github.com/edx/frontend-app-learner-portal.git```
 
 To run the project, first install dependencies
 
