@@ -21,8 +21,6 @@ The project itself will run on  ```http://localhost:8734```
 
 you can test your graphql queries with the playground, found here:  ```http://localhost:8734/___graphql```
 
-Netlify-cms admin portal is found at: ```http://localhost:8734/admin```
-
 
 ## Testing
 
