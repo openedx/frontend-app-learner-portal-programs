@@ -52,6 +52,7 @@
     "start": "gatsby develop -p 8734 --host 0.0.0.0",
     "serve": "gatsby serve -p 8735",
     "test": "jest --verbose --coverage",
+    "lint": "eslint --ext .js --ext .jsx .",
     "clean": "gatsby clean",
     "shell": "gatsby repl"
   },
