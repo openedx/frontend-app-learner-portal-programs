@@ -4,6 +4,10 @@ node_js:
 cache:
   directories:
   - "~/.npm"
+before_script:
+  - npm i -g gatsby
 script:
 - npm run lint
 - npm run test
+after_success:
+- npm run build
