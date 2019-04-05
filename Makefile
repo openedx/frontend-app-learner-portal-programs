@@ -17,7 +17,7 @@ down: ## stop and remove learner-portal container
 	docker-compose down
 
 npm-install-%: ## install specified % npm package on the learner-portal container
-	docker exec npm install $* --save-dev
+	docker exec frontend-app-learner-portal_web_1 npm install $* --save-dev
 	git add package.json
 
 restart:
