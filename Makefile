@@ -1,5 +1,5 @@
 shell: ## run a shell on the learner-portal container
-	docker exec -it /bin/bash
+	docker exec -it openedx.devstack.learner_portal /bin/bash
 
 build:
 	docker-compose build
