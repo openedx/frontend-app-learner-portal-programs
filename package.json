@@ -53,6 +53,7 @@
   "license": "GNU",
   "scripts": {
     "build": "gatsby build",
+    "postbuild": "rm -r ./dist > /dev/null; mv public dist",
     "start": "gatsby develop -p 8734 --host 0.0.0.0",
     "serve": "gatsby serve -p 8735",
     "test": "jest --verbose --coverage",
