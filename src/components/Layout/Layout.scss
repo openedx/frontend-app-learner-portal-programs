@@ -3,3 +3,12 @@
 $fa-font-path: "~font-awesome/fonts";
 @import "~font-awesome/scss/font-awesome";
 @import "~@edx/frontend-component-footer/src/lib/scss/site-footer";
+@import "~@edx/frontend-component-site-header/src/index";
+
+header a.logo img{
+    max-height: 50px;
+}
+
+footer a img {
+    max-height: 50px;
+}
