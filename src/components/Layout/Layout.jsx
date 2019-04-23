@@ -5,6 +5,7 @@ import SiteHeader from '@edx/frontend-component-site-header';
 import SiteFooter from '@edx/frontend-component-footer';
 
 import './Layout.scss';
+import Hero from '../Hero';
 
 const LayoutQuery = graphql`
   query {
@@ -69,6 +70,12 @@ const Layout = ({ children }) => (
           ]}
         />
         <>{children}</>
+        <Hero
+          name="Georgia Tech Institute of Technology"
+          courseTitle="Data Science Master's Degree"
+          logo="https://picsum.photos/260/80"
+          cover="https://picsum.photos/1280/360"
+        />
         <SiteFooter
           siteName={data.site.siteMetadata.siteName}
           siteLogo={data.site.siteMetadata.logo}
