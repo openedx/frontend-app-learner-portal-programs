@@ -5,7 +5,7 @@
   "version": "0.1.0",
   "author": "",
   "dependencies": {
-    "@edx/edx-bootstrap": "^1.0.4",
+    "@edx/edx-bootstrap": "^2.0.1",
     "@edx/frontend-auth": "^1.3.2",
     "@edx/frontend-component-footer": "^3.0.4",
     "@edx/frontend-component-site-header": "^2.1.6",
