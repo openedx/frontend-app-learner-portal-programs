@@ -13,6 +13,7 @@ const BaseCourseCard = (props) => {
     endDate,
     buttonLink,
     linkToCourse,
+    hasEmailSettings,
   } = props;
   return (
     <div className="card mb-3">
@@ -38,15 +39,17 @@ const BaseCourseCard = (props) => {
           </div>
         </div>
         {children && children}
-        <div className="row no-gutters">
-          <button
-            className="btn btn-link p-0"
-            onClick={() => { /* open course settings modal here */ }}
-          >
-            <FontAwesomeIcon className="mr-2" icon={['fas', 'cog']} />
-            Email settings
-          </button>
-        </div>
+        {hasEmailSettings && (
+          <div className="row no-gutters">
+            <button
+              className="btn btn-link p-0"
+              onClick={() => { /* open course settings modal here */ }}
+            >
+              <FontAwesomeIcon className="mr-2" icon={['fas', 'cog']} />
+              Email settings
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
@@ -59,12 +62,14 @@ BaseCourseCard.propTypes = {
   children: PropTypes.node,
   startDate: PropTypes.string,
   endDate: PropTypes.string,
+  hasEmailSettings: PropTypes.bool,
 };
 
 BaseCourseCard.defaultProps = {
   children: null,
   startDate: null,
   endDate: null,
+  hasEmailSettings: true,
 };
 
 export default BaseCourseCard;

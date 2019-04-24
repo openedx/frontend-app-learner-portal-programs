@@ -21,19 +21,23 @@ const CompletedCourseCard = (props) => {
     return (
       <span>
         {percentGrade}%
-        {hasPassed && ' - Passed '}
+        {hasPassed && ' - Passed'}
       </span>
     );
   };
 
   return (
-    <BaseCourseCard buttonLink={renderButtonLink()} {...props}>
+    <BaseCourseCard
+      buttonLink={renderButtonLink()}
+      hasEmailSettings={false}
+      {...props}
+    >
       <div className="completed row no-gutters">
         <div className="col-6">
           <p className="card-text font-weight-bold">
             Final Grade: {getFinalGrade()}
           </p>
-          <button className="btn btn-sm btn-block btn-light text-left text-muted px-2 py-2 border mb-3">
+          <button className="btn btn-sm btn-block btn-light text-left text-muted px-2 py-2 border">
             <FontAwesomeIcon className="mr-2" icon="file" />
             Download Certifcate
           </button>
