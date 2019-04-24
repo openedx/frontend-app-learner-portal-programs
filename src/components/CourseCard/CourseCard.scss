@@ -1,0 +1,15 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/utilities/_spacing";
+@import "~bootstrap/scss/utilities/_text";
+
+.card {
+  &:last-child {
+    @extend .mb-0;
+  }
+  .card-title > a {
+    @extend .text-dark;
+    text-decoration: none;
+  }
+}
