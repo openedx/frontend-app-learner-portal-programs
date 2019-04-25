@@ -6,6 +6,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import './CourseCard.scss';
 
+import EmailSettingsModal from './EmailSettingsModal';
+
 const BaseCourseCard = (props) => {
   const {
     children,
@@ -58,6 +60,7 @@ const BaseCourseCard = (props) => {
               <FontAwesomeIcon className="mr-2" icon={['fas', 'cog']} />
               Email settings
             </button>
+            <EmailSettingsModal title={`Email Settings for '${title}'`} submitting={false} />
           </div>
         )}
       </div>
