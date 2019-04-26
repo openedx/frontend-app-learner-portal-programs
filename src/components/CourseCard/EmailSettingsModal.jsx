@@ -7,7 +7,9 @@ import './EmailSettingsModal.scss';
 
 const EmailSettingsModal = (props) => {
   const modalRef = React.createRef();
-  const { title, submitting } = props;
+  const {
+    title, submitting, onClose, onEmailSettingsChange,
+  } = props;
 
   return (
     <React.Fragment>
@@ -20,11 +22,11 @@ const EmailSettingsModal = (props) => {
               name="email_settings"
               label="Receive course emails such as reminders, schedule updates, and other critical announcements."
               disabled={submitting}
-              onChange={() => console.log('Changing email preference.')}
+              onChange={onEmailSettingsChange}
             />
           </React.Fragment>
         }
-        onClose={() => { console.log('Modal Closed.'); }}
+        onClose={onClose}
         closeText={submitting ? <Icon className={['fa', 'fa-spinner', 'fa-spin', 'mr-2']} /> : 'Save Settings'}
         open
       />
@@ -39,6 +41,8 @@ EmailSettingsModal.defaultProps = {
 EmailSettingsModal.propTypes = {
   title: PropTypes.string.isRequired,
   submitting: PropTypes.bool,
+  onClose: PropTypes.func.isRequired,
+  onEmailSettingsChange: PropTypes.func.isRequired,
 };
 
 
