@@ -20,7 +20,16 @@ const EmailSettingsModal = (props) => {
           <React.Fragment>
             <CheckBox
               name="email_settings"
-              label="Receive course emails such as reminders, schedule updates, and other critical announcements."
+              label={
+                <React.Fragment>
+                  <span>
+                    Receive course emails such as reminders, schedule updates,
+                    and other critical announcements.
+                  </span>
+                  &nbsp; &nbsp;
+                  {submitting && <Icon className={['fa', 'fa-spinner', 'fa-spin', 'mr-2']} />}
+                </React.Fragment>
+              }
               disabled={submitting}
               onChange={onEmailSettingsChange}
             />
