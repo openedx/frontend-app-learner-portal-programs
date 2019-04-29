@@ -1,29 +1,153 @@
-.hero {
-    .logo {
-        max-width: 330px;
-        max-height: 100px;
+@import "../../sass/_variables.scss";
+
+.hero-wrap {
+    height: 100%;
+    position: relative;
+    color: $faded-black;
+
+    .hero-flex {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      min-height: 400px;
+      position: absolute;
     }
 
-    .course-title {
-        font-family: Georgia;
-        font-size: 40px;
-        font-weight: bold;
-        font-style: normal;
-        font-stretch: normal;
-        line-height: 1.25;
-        letter-spacing: normal;
-        color: #ffffff;
-        margin-top: 25px;
+    .hero-texture {
+      flex: 0;
+      background-color: #fff;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
     }
 
-    .enterprise-name {
-        font-family: Roboto;
-        font-size: 20px;
+    .hero-img {
+      flex: 2;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .hero-lrg-display {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .hero-box {
+      position:relative;
+      display: inline-block;
+      background-color: #fff;
+      margin: 0 0 200px 0;
+      border-width: 0 0 0 20px;
+      border-style: solid;
+      padding: 40px 40px 40px 10px;
+
+      .hero-heading {
+        color: $faded-black;
+        font-family: $georgia;
+        font-weight: 700;
+        font-size: 2.5em;
+        margin: 0 0 16px;
+      }
+
+      .hero-subheading {
+        color: $faded-black;
+        font-size: 24px;
+        font-style: italic;
+      }
+
+      .hero-rank {
+        font-family: $georgia;
+        color: $faded-black;
+        font-size: 24px;
         font-weight: bold;
-        font-style: normal;
-        font-stretch: normal;
-        line-height: normal;
-        letter-spacing: normal;
-        color: #ffffff;
+        margin: 0;
+      }
+    }
+
+    .hero-logo {
+      position: absolute;
+      height: 100px;
+      width: 200px;
+      background-color: #fff;
+      bottom: 0;
+      right: 0;
+      margin: 10px;
+    }
+
+    .hero-lrg-display {
+      &:before {
+        content: '';
+        position: absolute;
+        background-color: #fff;
+        height: 120px;
+        width: 220px;
+        bottom: 0;
+        right: 0;
+      }
+    }
+
+    @media only screen and (min-width: $bp-tablet-min) {
+      .hero-box {
+        max-width: 70%;
+      }
+
+      .hero-img {
+        border-style: solid;
+        border-width: 0 20px 0 0;
+      }
+    }
+
+    @media only screen and (min-width: $bp-dtop-min) {
+      .hero-texture {
+        flex: 1;
+      }
+
+      .hero-box {
+        max-width: 960px;
+      }
+
+      .hero-img {
+        border-style: solid;
+        border-width: 0 20px;
+      }
+
+      .hero-lrg-display {
+        &:before {
+          right: -20px;
+        }
+      }
+
+      .hero-logo {
+        right: -20px;
+      }
+    }
+
+    @media only screen and (min-width: 1205px) {
+      .hero-lrg-display {
+        width: 1180px;
+        margin: 0 auto;
+      }
+
+      .hero-box {
+        left: -25px;
+        padding: 40px 40px 40px 20px;
+      }
+
+      .hero-logo {
+        right: 0;
+        z-index: 1;
+      }
+
+      &:after {
+        content: '';
+        position: absolute;
+        background-color: #fff;
+        height: 120px;
+        width: calc(((100% - 1180px) / 2) + 220px);
+        bottom: 0;
+        right: 0;
+      }
     }
 }

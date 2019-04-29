@@ -71,10 +71,15 @@ const Layout = ({ children }) => (
         />
         <>{children}</>
         <Hero
-          name="Georgia Tech Institute of Technology"
+          organizationName="Georgia Tech Institute of Technology"
           courseTitle="Data Science Master's Degree"
-          logo="https://picsum.photos/260/80"
-          cover="https://picsum.photos/1280/360"
+          organizationLogo={{
+            url: 'https://www.edx.org/sites/default/files/school/image/logo/gtx-logo-200x101.png',
+            alt: 'Organization Logo',
+          }}
+          textureImage="https://prod-discovery.edx-cdn.org/media/degree_marketing/campus_images/gt-cyber-title_bg_img_440x400.jpg"
+          coverImage="https://prod-discovery.edx-cdn.org/media/degree_marketing/campus_images/gt_cyber_campus_image_1000x400.jpg"
+          overallRanking="Top 10-ranked program"
         />
         <SiteFooter
           siteName={data.site.siteMetadata.siteName}

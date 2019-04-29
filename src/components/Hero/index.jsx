@@ -4,20 +4,42 @@ import PropTypes from 'prop-types';
 import './Hero.scss';
 
 const Hero = props => (
-  <div className="jumbotron jumbotron-fluid hero" style={{ backgroundImage: `url(${props.cover})` }}>
-    <img className="logo" src={props.logo} alt="Enterprise logo" />
-    <div className="offset-md-1">
-      <p className="course-title">{props.courseTitle}</p>
-      <p className="enterprise-name">by {props.name}</p>
+  <div className="hero-wrap">
+    <div className="hero-flex">
+      <div className="hero-texture" style={{ backgroundImage: `url(${props.textureImage})` }} />
+      <div className="hero-img" style={{ borderColor: `#${props.bannerBorderColor}`, backgroundImage: `url(${props.coverImage})` }} />
+    </div>
+    <div className="hero-lrg-display">
+      <div className="hero-box" style={{ borderColor: `#${props.bannerBorderColor}` }}>
+        <h1 className="hero-heading">{props.courseTitle}</h1>
+        <p className="hero-subheading">{props.organizationName}</p>
+        <p className="hero-rank">{props.overallRanking}</p>
+      </div>
+      <img
+        className="hero-logo"
+        src={props.organizationLogo.url}
+        alt={props.organizationLogo.alt}
+      />
     </div>
   </div>
 );
 
+Hero.defaultProps = {
+  bannerBorderColor: 'cc9900',
+  overallRanking: null,
+};
+
 Hero.propTypes = {
   courseTitle: PropTypes.string.isRequired,
-  cover: PropTypes.string.isRequired,
-  logo: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
+  coverImage: PropTypes.string.isRequired,
+  textureImage: PropTypes.string.isRequired,
+  organizationLogo: PropTypes.shape({
+    url: PropTypes.string.isRequired,
+    alt: PropTypes.string,
+  }).isRequired,
+  organizationName: PropTypes.string.isRequired,
+  bannerBorderColor: PropTypes.string,
+  overallRanking: PropTypes.string,
 };
 
 export default Hero;
