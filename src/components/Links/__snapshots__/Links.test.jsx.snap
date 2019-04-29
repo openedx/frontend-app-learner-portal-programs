@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Links /> renders correctly 1`] = `
+<section
+  className="links"
+>
+  <h3
+    className="mb-3"
+  >
+    examples
+  </h3>
+  <nav>
+    <ul
+      className="list-unstyled"
+    >
+      <li>
+        <span
+          aria-hidden={true}
+          className="fa fa-file mr-2 text-primary"
+          id="Icon1"
+        />
+        <a
+          href="https://example1.com"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          I am first
+        </a>
+      </li>
+      <li>
+        <span
+          aria-hidden={true}
+          className="fa fa-file mr-2 text-primary"
+          id="Icon1"
+        />
+        <a
+          href="https://example2.com"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          I am second
+        </a>
+      </li>
+      <li>
+        <span
+          aria-hidden={true}
+          className="fa fa-file mr-2 text-primary"
+          id="Icon1"
+        />
+        <a
+          href="https://example3.com"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          I am third
+        </a>
+      </li>
+    </ul>
+  </nav>
+</section>
+`;
