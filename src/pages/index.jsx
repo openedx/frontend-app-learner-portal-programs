@@ -28,7 +28,7 @@ const IndexPage = () => (
         <div className="row">
           <div className="col-xs-12 col-lg-8">
             <div className="mb-5">
-              <h2 className="mb-3">My Courses In Progress</h2>
+              <h2 className="mb-4">My Courses In Progress</h2>
               <InProgressCourseCard
                 title="Advanced Analytics Thinking"
                 endDate="2019-11-03"
@@ -38,10 +38,11 @@ const IndexPage = () => (
                 title="Statistics for Analyics"
                 endDate="2019-07-23"
                 linkToCourse="https://edx.org"
+                microMastersTitle="MicroMasters&reg; Program in Analytics: Essential Tools and Methods"
               />
             </div>
             <div className="mb-5">
-              <h2 className="mb-3">Upcoming Courses</h2>
+              <h2 className="mb-4">Upcoming Courses</h2>
               <UpcomingCourseCard
                 title="Predictive Analytics with Spark"
                 startDate="2019-04-29"
@@ -49,7 +50,7 @@ const IndexPage = () => (
               />
             </div>
             <div>
-              <h2 className="mb-3">Completed Courses</h2>
+              <h2 className="mb-4">Completed Courses</h2>
               <CompletedCourseCard
                 title="Big Data and How To Use It"
                 endDate="2019-03-08"

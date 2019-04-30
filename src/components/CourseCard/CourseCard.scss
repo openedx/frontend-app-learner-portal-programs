@@ -5,11 +5,35 @@
 @import "~bootstrap/scss/utilities/_text";
 
 .card {
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.3);
+
+  &.is-micromasters {
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background: url('../../images/mm-badge.svg') right center no-repeat;
+      opacity: 0.05;
+    }
+  }
+
   &:last-child {
     @extend .mb-0;
   }
+
   .card-title > a {
     @extend .text-dark;
     text-decoration: none;
+  }
+
+  .btn-course-link {
+    background-color: $white;
+    
+    &:hover {
+      background-color: #23419f;
+    }
   }
 }

@@ -5,8 +5,6 @@ import { StatefulButton } from '@edx/paragon';
 
 import BaseCourseCard from './BaseCourseCard';
 
-import './CompletedCourseCard.scss';
-
 class CompletedCourseCard extends Component {
   state = {
     downloadCertificateState: 'default',
@@ -23,21 +21,11 @@ class CompletedCourseCard extends Component {
     );
   };
 
-  renderButtonLink = () => (
-    <a href={this.props.linkToCourse} className="btn btn-outline-dark">
-      View Course
-    </a>
-  );
-
   render() {
     return (
-      <BaseCourseCard
-        buttonLink={this.renderButtonLink()}
-        hasEmailSettings={false}
-        {...this.props}
-      >
+      <BaseCourseCard hasEmailSettings={false} {...this.props}>
         <div className="completed row no-gutters">
-          <div className="col-6">
+          <div className="col-12">
             <p className="card-text font-weight-bold">
               Final Grade: {this.getFinalGrade()}
             </p>
@@ -46,15 +34,15 @@ class CompletedCourseCard extends Component {
               labels={{
                 default: 'Download Certificate',
                 pending: 'Downloading...',
-                complete: 'Download complete!',
+                complete: 'Downloaded',
               }}
               icons={{
-                default: <FontAwesomeIcon className="mr-2" icon="file" />,
+                default: <FontAwesomeIcon className="mr-2" icon="download" />,
                 pending: <FontAwesomeIcon className="mr-2" icon="spinner" spin />,
-                complete: <FontAwesomeIcon className="mr-2" icon="check" />,
+                complete: <FontAwesomeIcon className="mr-2" icon="check-circle" />,
               }}
               disabledStates={['pending']}
-              className="btn-sm btn-block btn-light text-muted px-2 py-2 border"
+              className="btn-primary"
               onClick={() => {
                 this.setState({ downloadCertificateState: 'pending' });
                 setTimeout(() => {
@@ -65,6 +53,7 @@ class CompletedCourseCard extends Component {
                 }, 2000);
               }}
             />
+            <a className="btn btn-outline-primary ml-2" href="/">View Course</a>
           </div>
         </div>
       </BaseCourseCard>

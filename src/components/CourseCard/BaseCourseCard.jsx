@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import moment from 'moment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -14,12 +15,19 @@ const BaseCourseCard = (props) => {
     buttonLink,
     linkToCourse,
     hasEmailSettings,
+    microMastersTitle,
   } = props;
+
   return (
-    <div className="card mb-3">
+    <div className={classNames('card mb-4', { 'is-micromasters': !!microMastersTitle })}>
       <div className="card-body">
         <div className="row no-gutters mb-3">
-          <div className="col-8">
+          <div className="col-xs-12 col-md-8">
+            {microMastersTitle && (
+              <p className="font-weight-bold w-75 mb-2">
+                {microMastersTitle}
+              </p>
+            )}
             <h3 className="card-title mb-1 font-weight-normal">
               <a href={linkToCourse}>{title}</a>
             </h3>
@@ -34,9 +42,11 @@ const BaseCourseCard = (props) => {
               </p>
             )}
           </div>
-          <div className="col-4 text-right">
-            {buttonLink}
-          </div>
+          {buttonLink && (
+            <div className="col-xs-12 col-md-4 text-md-right mt-3 mt-md-0">
+              {buttonLink}
+            </div>
+          )}
         </div>
         {children && children}
         {hasEmailSettings && (
@@ -57,19 +67,22 @@ const BaseCourseCard = (props) => {
 
 BaseCourseCard.propTypes = {
   title: PropTypes.string.isRequired,
-  buttonLink: PropTypes.element.isRequired,
   linkToCourse: PropTypes.string.isRequired,
+  buttonLink: PropTypes.element,
   children: PropTypes.node,
   startDate: PropTypes.string,
   endDate: PropTypes.string,
   hasEmailSettings: PropTypes.bool,
+  microMastersTitle: PropTypes.string,
 };
 
 BaseCourseCard.defaultProps = {
+  buttonLink: null,
   children: null,
   startDate: null,
   endDate: null,
   hasEmailSettings: true,
+  microMastersTitle: null,
 };
 
 export default BaseCourseCard;

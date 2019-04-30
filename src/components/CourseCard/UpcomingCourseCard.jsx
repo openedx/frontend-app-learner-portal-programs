@@ -9,7 +9,7 @@ const UpcomingCourseCard = (props) => {
 
   const renderButtonLink = () => (
     <button className="btn btn-light" disabled>
-      Available on {moment(startDate).format('MMMM D')}
+      Available on {moment(startDate).format('MMM D')}
     </button>
   );
 

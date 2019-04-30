@@ -5,7 +5,7 @@ import BaseCourseCard from './BaseCourseCard';
 
 const InProgressCourseCard = (props) => {
   const renderButtonLink = () => (
-    <a className="btn btn-outline-primary" href={props.linkToCourse}>Continue Learning</a>
+    <a className="btn btn-outline-primary btn-course-link" href={props.linkToCourse}>Continue Learning</a>
   );
 
   return (
