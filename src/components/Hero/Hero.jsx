@@ -48,27 +48,6 @@ const Hero = props => (
   </div>
 );
 
-// const Hero2 = props => (
-//   <div className="hero-wrap">
-//     <div className="hero-flex">
-//       <div className="hero-texture" style={{ backgroundImage: `url(${props.textureImage})` }} />
-//       <div className="hero-img" style={{ borderColor: `#${props.bannerBorderColor}`, backgroundImage: `url(${props.coverImage})` }} />
-//     </div>
-//     <div className="hero-lrg-display">
-//       <div className="hero-box" style={{ borderColor: `#${props.bannerBorderColor}` }}>
-//         <h1 className="hero-heading">{props.courseTitle}</h1>
-//         <p className="hero-subheading">{props.organizationName}</p>
-//         <p className="hero-rank">{props.overallRanking}</p>
-//       </div>
-//       <img
-//         className="hero-logo"
-//         src={props.organizationLogo.url}
-//         alt={props.organizationLogo.alt}
-//       />
-//     </div>
-//   </div>
-// );
-
 Hero.defaultProps = {
   bannerBorderColor: 'b2a369',
 };
