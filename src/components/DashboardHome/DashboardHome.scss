@@ -1,0 +1,12 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/utilities/_spacing";
+
+.course-section {
+  @extend .mb-5;
+
+  &:last-child {
+    @extend .mb-0;
+  }
+}
