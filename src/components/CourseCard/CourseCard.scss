@@ -12,16 +12,21 @@
       content: '';
       position: absolute;
       top: 0;
-      right: 0;
-      bottom: 0;
+      right: 16px;
+      bottom: 8px;
       left: 0;
-      background: url('../../images/mm-badge.svg') right center no-repeat;
+      background: url('../../images/mm-badge.svg') right bottom no-repeat;
       opacity: 0.05;
+      z-index: 0;
     }
   }
 
   &:last-child {
     @extend .mb-0;
+  }
+
+  .card-body {
+    z-index: 1;
   }
 
   .card-title > a {
@@ -33,7 +38,7 @@
     background-color: $white;
     
     &:hover {
-      background-color: #23419f;
+      background: #f1f3f8;
     }
   }
 }

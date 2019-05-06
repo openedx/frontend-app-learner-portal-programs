@@ -8,12 +8,10 @@
 
   .container {
     padding-left: 0;
-    padding-right: 0;
 
     @include media-breakpoint-up(sm) {
       & {
         padding-left: 2rem;
-        padding-right: 2rem;
       }
     }
   }
@@ -50,21 +48,19 @@
   }
 
   .hero-logo-wrapper {
-    @include media-breakpoint-up(xs) {
+    @include media-breakpoint-between(sm, lg) {
       & {
-        margin-top: 40px;
-      }
-    }
-
-    @include media-breakpoint-up(lg) {
-      & {
-        margin-top: 135px;
+        margin-top: 20px;
       }
     }
 
     .hero-logo {
       border-left-width: 20px;
       border-left-style: solid;
+
+      img {
+        max-width: 130px;
+      }
     }
   }
 }

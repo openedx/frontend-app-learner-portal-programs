@@ -30,9 +30,9 @@ const Hero = props => (
         </div>
       </div>
       <div className="row hero-logo-wrapper">
-        <div className="col-4 offset-lg-8 text-lg-right">
+        <div className="col-12 col-lg-4 offset-lg-8 text-lg-right">
           <div
-            className="hero-logo bg-white pl-3 pr-2 d-inline-block"
+            className="hero-logo bg-white pl-3 pr-5 d-sm-inline-block text-left"
             style={{
               borderColor: `#${props.bannerBorderColor}`,
             }}

@@ -55,10 +55,10 @@ exports[`<Hero /> renders correctly 1`] = `
       className="row hero-logo-wrapper"
     >
       <div
-        className="col-4 offset-lg-8 text-lg-right"
+        className="col-12 col-lg-4 offset-lg-8 text-lg-right"
       >
         <div
-          className="hero-logo bg-white pl-3 pr-2 d-inline-block"
+          className="hero-logo bg-white pl-3 pr-5 d-sm-inline-block text-left"
           style={
             Object {
               "borderColor": "#cc9900",
