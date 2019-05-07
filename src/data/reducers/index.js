@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 import { userAccount } from '@edx/frontend-auth';
-import { profileReducer } from '../../profile/profile';
+import { profileReducer } from '../../components/profile/profile';
 
 const identityReducer = (state) => {
   const newState = { ...state };

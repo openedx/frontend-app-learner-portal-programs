@@ -3,7 +3,10 @@ exports.onCreateWebpackConfig = ({ actions }) => {
   actions.setWebpackConfig({
     resolve: {
       alias: {
-        '@edx/frontend-i18n': path.resolve(__dirname, 'src/profile/i18n'),
+        '@edx/frontend-i18n': path.resolve(
+          __dirname,
+          'src/components/profile/i18n',
+        ),
       },
     },
   });

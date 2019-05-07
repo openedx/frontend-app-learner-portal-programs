@@ -8,8 +8,8 @@ import PropTypes from 'prop-types';
 import Layout from '../components/Layout/Layout';
 import history from '../data/history';
 import apiClient from '../data/apiClient';
-import { ConnectedProfilePage } from '../profile/profile';
-import { fetchUserAccount as _fetchUserAccount } from '../profile/common';
+import { ConnectedProfilePage } from '../components/profile/profile';
+import { fetchUserAccount as _fetchUserAccount } from '../components/profile/common';
 
 class Profile extends React.Component {
   state = { loading: true };

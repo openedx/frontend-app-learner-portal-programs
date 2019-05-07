@@ -7,10 +7,10 @@ import createSagaMiddleware from 'redux-saga';
 import apiClient from './apiClient';
 import history from './history';
 import reducers from './reducers';
-import rootSaga from '../profile/sagas';
-import { configuration } from '../profile/environment';
-import { configureProfileApiService } from '../profile/profile';
-import { configureUserAccountApiService } from '../profile/common';
+import rootSaga from '../components/profile/sagas';
+import { configuration } from '../components/profile/environment';
+import { configureProfileApiService } from '../components/profile/profile';
+import { configureUserAccountApiService } from '../components/profile/common';
 
 const loggerMiddleware = createLogger();
 const routerHistoryMiddleware = routerMiddleware(history);

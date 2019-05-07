@@ -13,6 +13,5 @@ services:
       - "8734:8734"
     environment:
       - NODE_ENV=development
-
 volumes:
   notused:
