@@ -8,7 +8,7 @@ const UpcomingCourseCard = (props) => {
   const { startDate } = props;
 
   const renderButtonLink = () => (
-    <button className="btn btn-light" disabled>
+    <button className="btn btn-light btn-xs-block" disabled>
       Available on {moment(startDate).format('MMM D')}
     </button>
   );

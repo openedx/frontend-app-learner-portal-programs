@@ -16,7 +16,7 @@ const IndexPage = () => (
   <IntlProvider locale="en">
     <Layout>
       <Hero
-        programTitle="Data Science Master's Degree"
+        programTitle="Master's Degree in Analytics"
         organizationLogo={{
           url: 'https://www.edx.org/sites/default/files/school/image/logo/gtx-logo-200x101.png',
           alt: 'Georgia Tech Institute of Technology logo',
