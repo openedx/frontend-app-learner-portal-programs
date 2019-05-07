@@ -1,5 +1,5 @@
 /*
- * The `DashboardHome` component will likely handle the fetching of
+ * The `MainContent` component will likely handle the fetching of
  * the program course enrollments data for the logged in learner. This
  * endpoint is still in development. For the time being, we are including
  * a sample API response here.
