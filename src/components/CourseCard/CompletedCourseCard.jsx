@@ -20,10 +20,6 @@ const CompletedCourseCard = props => (
 
 CompletedCourseCard.propTypes = {
   linkToCourse: PropTypes.string.isRequired,
-  grade: PropTypes.shape({
-    numericGrade: PropTypes.number.isRequired,
-    hasPassed: PropTypes.bool.isRequired,
-  }).isRequired,
 };
 
 export default CompletedCourseCard;
