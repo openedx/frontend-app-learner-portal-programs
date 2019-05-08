@@ -33,11 +33,13 @@ const IndexPage = () => (
                 title="Advanced Analytics Thinking"
                 endDate="2019-11-03"
                 linkToCourse="https://edx.org"
+                hasEmailsEnabled
               />
               <InProgressCourseCard
-                title="Statistics for Analyics"
+                title="Statistics for Analytics"
                 endDate="2019-07-23"
                 linkToCourse="https://edx.org"
+                hasEmailsEnabled={false}
                 microMastersTitle="MicroMasters&reg; Program in Analytics: Essential Tools and Methods"
               />
             </div>
@@ -46,6 +48,7 @@ const IndexPage = () => (
               <UpcomingCourseCard
                 title="Predictive Analytics with Spark"
                 startDate="2019-04-29"
+                hasEmailsEnabled
                 linkToCourse="https://edx.org"
               />
             </div>
@@ -55,6 +58,7 @@ const IndexPage = () => (
                 title="Big Data and How To Use It"
                 endDate="2019-03-08"
                 linkToCourse="https://edx.org"
+                hasEmailsEnabled
                 grade={{ hasPassed: true, numericGrade: 0.97 }}
               />
             </div>

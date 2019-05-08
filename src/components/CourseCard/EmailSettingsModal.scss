@@ -1,11 +1,6 @@
 .modal {
-  .modal-content {
-    .modal-footer{
-      .js-close-modal-on-click {
-        margin: auto;
-        width: 100%;
-        border-radius: 0.5rem;
-      }
-    }
+  .modal-title {
+    font-size: 1.5rem;
+    line-height: 1.5;
   }
 }

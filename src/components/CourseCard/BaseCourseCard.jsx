@@ -3,53 +3,55 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import moment from 'moment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
-import './CourseCard.scss';
+import { StatusAlert } from '@edx/paragon';
 
 import EmailSettingsModal from './EmailSettingsModal';
+
+import './CourseCard.scss';
 
 class BaseCourseCard extends Component {
   state = {
     modals: {
-      email_settings: null,
+      emailSettings: null,
     },
+    hasEmailsEnabled: this.props.hasEmailSettings || false,
+    hasNewEmailSettings: false,
   };
 
   setModalState = ({ key, options }) => {
-    this.setState({
+    this.setState(state => ({
       modals: {
-        ...this.state.modals,
+        ...state.modals,
         [key]: options,
       },
-    });
+    }));
+  };
+
+  handleEmailSettingsModalOnClose = (hasEmailsEnabled) => {
+    this.resetModals();
+
+    if (hasEmailsEnabled !== undefined) {
+      this.setState({
+        hasNewEmailSettings: true,
+        hasEmailsEnabled,
+      });
+    }
   };
 
   resetModals = () => {
     this.setState({
       modals: {
-        email_settings: null,
+        emailSettings: null,
       },
     });
-  };
-
-  handleEmailSettingsChange = () => {
-    this.setModalState({
-      key: 'email_settings',
-      options: {
-        ...this.state.modals.email_settings,
-        submitting: true,
-      },
-    });
-
-    // Dispatch email settings change action here.
-    console.log('Changing Email settings.', this.state);
   };
 
   render() {
     const {
       modals,
+      hasEmailsEnabled,
+      hasNewEmailSettings,
     } = this.state;
-
     const {
       children,
       title,
@@ -93,32 +95,57 @@ class BaseCourseCard extends Component {
           </div>
           {children && children}
           {hasEmailSettings && (
-            <div className="row no-gutters">
-              <button
-                className="btn btn-link p-0"
-                onClick={() => this.setModalState({
-                  key: 'email_settings',
-                  options: {
-                    title: `Email Settings for '${title}'`,
-                    submitting: false,
-                    data: {
-                      course: linkToCourse,
-                    },
-                  },
-                  })}
-              >
-                <FontAwesomeIcon className="mr-2" icon={['fas', 'cog']} />
-                Email settings
-              </button>
-              {
-                modals.email_settings &&
-                <EmailSettingsModal
-                  {...modals.email_settings}
-                  onEmailSettingsChange={this.handleEmailSettingsChange}
-                  onClose={this.resetModals}
-                />
+            <>
+              {hasNewEmailSettings &&
+                <div className="row no-gutters">
+                  <div className="col-xs-12 col-sm-10 col-md-8">
+                    <StatusAlert
+                      alertType="success"
+                      dialog={
+                        <>
+                          <FontAwesomeIcon className="mr-2" icon={['fas', 'check-circle']} />
+                          Your email settings have been saved.
+                        </>
+                      }
+                      onClose={() => {
+                        this.setState({
+                          hasNewEmailSettings: false,
+                        });
+                      }}
+                      open
+                    />
+                  </div>
+                </div>
               }
-            </div>
+              <div className="row no-gutters">
+                <div className="col">
+                  <button
+                    className="btn btn-link p-0"
+                    onClick={() => {
+                      this.setModalState({
+                        key: 'emailSettings',
+                        options: {
+                          title,
+                          hasEmailsEnabled,
+                        },
+                      });
+                      this.setState({
+                        hasNewEmailSettings: false,
+                      });
+                    }}
+                  >
+                    <FontAwesomeIcon className="mr-2" icon={['fas', 'cog']} />
+                    Email settings
+                  </button>
+                  {modals.emailSettings &&
+                    <EmailSettingsModal
+                      {...modals.emailSettings}
+                      onClose={this.handleEmailSettingsModalOnClose}
+                    />
+                  }
+                </div>
+              </div>
+            </>
           )}
         </div>
       </div>
@@ -133,6 +160,7 @@ BaseCourseCard.propTypes = {
   children: PropTypes.node,
   startDate: PropTypes.string,
   endDate: PropTypes.string,
+  hasEmailsEnabled: PropTypes.bool,
   hasEmailSettings: PropTypes.bool,
   microMastersTitle: PropTypes.string,
 };
@@ -142,6 +170,7 @@ BaseCourseCard.defaultProps = {
   children: null,
   startDate: null,
   endDate: null,
+  hasEmailsEnabled: false,
   hasEmailSettings: true,
   microMastersTitle: null,
 };
