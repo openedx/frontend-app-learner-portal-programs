@@ -1,6 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import InProgressCourseCard from '../CourseCard/InProgressCourseCard';
+import UpcomingCourseCard from '../CourseCard/UpcomingCourseCard';
+import CompletedCourseCard from '../CourseCard/CompletedCourseCard';
+
 const CourseSection = (props) => {
   const { component: Component, enrollments, title } = props;
 
@@ -11,6 +15,7 @@ const CourseSection = (props) => {
         {enrollments.map((courseData) => {
           const { status } = courseData;
           const defaultCardProps = {
+            key: courseData.course_run_id,
             title: courseData.display_name,
             microMastersTitle: courseData.micromasters_title,
           };
@@ -41,7 +46,11 @@ const CourseSection = (props) => {
 };
 
 CourseSection.propTypes = {
-  component: PropTypes.element.isRequired,
+  component: PropTypes.oneOf([
+    InProgressCourseCard,
+    UpcomingCourseCard,
+    CompletedCourseCard,
+  ]).isRequired,
   enrollments: PropTypes.arrayOf(PropTypes.shape({
     display_name: PropTypes.string.isRequired,
     micromasters_title: PropTypes.string,
