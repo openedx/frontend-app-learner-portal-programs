@@ -56,12 +56,15 @@ exports[`<ProfilePage /> Renders correctly in various states viewing other profi
             <div
               className="profile-avatar rounded-circle bg-light"
             >
-              <IconMock
-                aria-hidden={true}
-                className="text-muted"
-                focusable="false"
-                role="img"
-                viewBox="0 0 24 24"
+              <img
+                alt="profile avatar"
+                className="w-100 h-100 d-block rounded-circle overflow-hidden"
+                src="http://localhost:18000/static/images/profiles/default_500.png"
+                style={
+                  Object {
+                    "objectFit": "cover",
+                  }
+                }
               />
             </div>
             <form

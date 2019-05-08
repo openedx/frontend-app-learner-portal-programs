@@ -11,6 +11,19 @@ import apiClient from '../data/apiClient';
 import { ConnectedProfilePage } from '../components/profile/profile';
 import { fetchUserAccount as _fetchUserAccount } from '../components/profile/common';
 
+const Routes = () => (
+  <ConnectedRouter history={history}>
+    <>
+      <PrivateRoute
+        path="/u/:username"
+        authenticatedAPIClient={apiClient}
+        redirect={process.env.BASE_URL}
+        component={ConnectedProfilePage}
+      />
+    </>
+  </ConnectedRouter>
+);
+
 class Profile extends React.Component {
   state = { loading: true };
 
@@ -28,25 +41,12 @@ class Profile extends React.Component {
     );
   }
 
+  // TODO: add an actual skeleton component for loading so there isn't a big transiton
   render() {
-    if (this.state.loading) {
-      // TODO: Set up an actual spinner for this
-      return <>Loading...</>;
-    }
+    const { loading } = this.state;
     return (
       <IntlProvider locale="en">
-        <Layout>
-          <ConnectedRouter history={history}>
-            <>
-              <PrivateRoute
-                path="/u/:username"
-                authenticatedAPIClient={apiClient}
-                redirect={process.env.BASE_URL}
-                component={ConnectedProfilePage}
-              />
-            </>
-          </ConnectedRouter>
-        </Layout>
+        <Layout>{loading ? 'loading...' : <Routes />}</Layout>
       </IntlProvider>
     );
   }

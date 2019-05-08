@@ -1,7 +1,7 @@
 module.exports = {
   authentication: {
     userId: 9,
-    username: 'staff'
+    username: 'staff',
   },
   configuration: {
     VIEW_MY_RECORDS_URL: 'http://localhost:18150/records',
@@ -18,19 +18,23 @@ module.exports = {
     socialLinks: [
       {
         platform: 'facebook',
-        socialLink: 'https://www.facebook.com/aloha'
+        socialLink: 'https://www.facebook.com/aloha',
       },
       {
         platform: 'twitter',
-        socialLink: 'https://www.twitter.com/ALOHA'
-      }
+        socialLink: 'https://www.twitter.com/ALOHA',
+      },
     ],
     profileImage: {
-      imageUrlFull: 'http://localhost:18000/media/profile-images/d2a9bdc2ba165dcefc73265c54bf9a20_500.jpg?v=1552495012',
-      imageUrlLarge: 'http://localhost:18000/media/profile-images/d2a9bdc2ba165dcefc73265c54bf9a20_120.jpg?v=1552495012',
-      imageUrlMedium: 'http://localhost:18000/media/profile-images/d2a9bdc2ba165dcefc73265c54bf9a20_50.jpg?v=1552495012',
-      imageUrlSmall: 'http://localhost:18000/media/profile-images/d2a9bdc2ba165dcefc73265c54bf9a20_30.jpg?v=1552495012',
-      hasImage: true
+      imageUrlFull:
+        'http://localhost:18000/media/profile-images/d2a9bdc2ba165dcefc73265c54bf9a20_500.jpg?v=1552495012',
+      imageUrlLarge:
+        'http://localhost:18000/media/profile-images/d2a9bdc2ba165dcefc73265c54bf9a20_120.jpg?v=1552495012',
+      imageUrlMedium:
+        'http://localhost:18000/media/profile-images/d2a9bdc2ba165dcefc73265c54bf9a20_50.jpg?v=1552495012',
+      imageUrlSmall:
+        'http://localhost:18000/media/profile-images/d2a9bdc2ba165dcefc73265c54bf9a20_30.jpg?v=1552495012',
+      hasImage: true,
     },
     levelOfEducation: 'el',
     mailingAddress: null,
@@ -42,15 +46,15 @@ module.exports = {
     goals: null,
     languageProficiencies: [
       {
-        code: 'yo'
-      }
+        code: 'yo',
+      },
     ],
     courseCertificates: null,
     requiresParentalConsent: false,
     secondaryEmail: null,
     timeZone: null,
     gender: null,
-    accountPrivacy: 'custom'
+    accountPrivacy: 'custom',
   },
   profilePage: {
     errors: {},
@@ -60,11 +64,15 @@ module.exports = {
     account: {
       mailingAddress: null,
       profileImage: {
-        imageUrlFull: 'http://localhost:18000/static/images/profiles/default_500.png',
-        imageUrlLarge: 'http://localhost:18000/static/images/profiles/default_120.png',
-        imageUrlMedium: 'http://localhost:18000/static/images/profiles/default_50.png',
-        imageUrlSmall: 'http://localhost:18000/static/images/profiles/default_30.png',
-        hasImage: false
+        imageUrlFull:
+          'http://localhost:18000/static/images/profiles/default_500.png',
+        imageUrlLarge:
+          'http://localhost:18000/static/images/profiles/default_120.png',
+        imageUrlMedium:
+          'http://localhost:18000/static/images/profiles/default_50.png',
+        imageUrlSmall:
+          'http://localhost:18000/static/images/profiles/default_30.png',
+        hasImage: true,
       },
       extendedProfile: [],
       dateJoined: '2017-06-07T00:44:19Z',
@@ -85,19 +93,19 @@ module.exports = {
       timeZone: null,
       levelOfEducation: null,
       gender: null,
-      accountPrivacy: 'private'
+      accountPrivacy: 'private',
     },
     preferences: {},
     courseCertificates: [],
     drafts: {},
-    isLoadingProfile: false
+    isLoadingProfile: false,
   },
   router: {
     location: {
       pathname: '/u/verified',
       search: '',
-      hash: ''
+      hash: '',
     },
-    action: 'POP'
-  }
+    action: 'POP',
+  },
 };
