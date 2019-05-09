@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Sidebar /> renders correctly 1`] = `
+<section
+  className="links"
+>
+  <h3
+    className="mb-3"
+  >
+    Program Documents
+  </h3>
+  <nav>
+    <ul
+      className="list-unstyled"
+    >
+      <li>
+        <span
+          aria-hidden={true}
+          className="fa fa-file mr-2 text-primary"
+          id="Icon1"
+        />
+        <a
+          href="https://edx.org"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          Degree Requirements
+        </a>
+      </li>
+      <li>
+        <span
+          aria-hidden={true}
+          className="fa fa-file mr-2 text-primary"
+          id="Icon1"
+        />
+        <a
+          href="https://edx.org"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          Student Record
+        </a>
+      </li>
+    </ul>
+  </nav>
+</section>
+`;
