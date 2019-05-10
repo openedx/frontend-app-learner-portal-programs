@@ -5,6 +5,12 @@ module.exports = {
   },
   plugins: [
     {
+      resolve: "gatsby-source-wagtail",
+      options: {
+        blah: "TACOS"
+      },
+    },
+    {
       resolve: 'gatsby-plugin-sass',
       options: {
         includePaths: [
@@ -12,5 +18,11 @@ module.exports = {
         ],
       },
     },
+    // {
+    //   resolve: 'gatsby-plugin-netlify-cms',
+    //   options: {
+    //     modulePath: `${__dirname}/src/cms/cms.js`,
+    //   },
+    // },
   ],
 };
