@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
+import MediaQuery from 'react-responsive';
+import { breakpoints } from '@edx/paragon';
 
 import CourseSection from '../CourseSection/CourseSection';
 import InProgressCourseCard from '../CourseCard/InProgressCourseCard';
 import UpcomingCourseCard from '../CourseCard/UpcomingCourseCard';
 import CompletedCourseCard from '../CourseCard/CompletedCourseCard';
+import Sidebar from './Sidebar';
 
 import sampleApiResponse from './sampleApiResponse';
 
@@ -62,6 +65,13 @@ class MainContent extends Component {
               component={InProgressCourseCard}
               enrollments={courses['in-progress']}
             />
+            <MediaQuery minWidth={breakpoints.large.minWidth}>
+              {matches => !matches && (
+                <div className="mb-5">
+                  <Sidebar />
+                </div>
+              )}
+            </MediaQuery>
             <CourseSection
               title="Upcoming Courses"
               component={UpcomingCourseCard}
