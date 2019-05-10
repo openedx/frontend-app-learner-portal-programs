@@ -11,6 +11,12 @@ module.exports = {
   },
   plugins: [
     {
+      resolve: "gatsby-source-wagtail",
+      options: {
+        blah: "TACOS"
+      },
+    },
+    {
       resolve: 'gatsby-plugin-sass',
       options: {
         includePaths: [
