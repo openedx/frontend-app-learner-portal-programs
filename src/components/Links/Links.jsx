@@ -1,14 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Icon } from '@edx/paragon';
+import { faFile } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function Links(props) {
   const { title, links, className } = props;
 
   const linkItems = links.map(link => (
     <li key={link.href}>
-      <Icon className={['fa', 'fa-file', 'mr-2', 'text-primary']} />
+      <FontAwesomeIcon className="mr-2 text-primary" icon={faFile} />
       <a href={link.href} target="_blank" rel="noopener noreferrer">{link.title}</a>
     </li>
   ));
