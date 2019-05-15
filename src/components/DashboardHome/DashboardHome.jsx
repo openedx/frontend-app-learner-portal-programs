@@ -1,4 +1,6 @@
 import React from 'react';
+import MediaQuery from 'react-responsive';
+import { breakpoints } from '@edx/paragon';
 
 import Hero from '../Hero/Hero';
 import MainContent from './MainContent';
@@ -22,9 +24,13 @@ const DashboardHome = () => (
         <div className="col-xs-12 col-lg-8">
           <MainContent />
         </div>
-        <div className="col">
-          <Sidebar />
-        </div>
+        <MediaQuery minWidth={breakpoints.large.minWidth}>
+          {matches => matches && (
+            <div className="col">
+              <Sidebar />
+            </div>
+          )}
+        </MediaQuery>
       </div>
     </div>
   </>
