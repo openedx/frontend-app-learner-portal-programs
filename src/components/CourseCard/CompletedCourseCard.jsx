@@ -1,23 +1,34 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { faDownload } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import BaseCourseCard from './BaseCourseCard';
 
-const CompletedCourseCard = props => (
-  <BaseCourseCard hasEmailSettings={false} {...props}>
-    <div className="completed row no-gutters">
-      <div className="col-12">
-        <a className="btn btn-primary btn-xs-block mr-2 mb-2 mb-sm-0" href="/">
-          <FontAwesomeIcon className="mr-2" icon={faDownload} />
-          Download Certificate
-        </a>
-        <a className="btn btn-outline-primary btn-xs-block" href="/">View Course</a>
-      </div>
-    </div>
-  </BaseCourseCard>
-);
+const CompletedCourseCard = (props) => {
+  const renderButtons = () => (
+    <>
+      <a
+        className="btn btn-block btn-outline-primary btn-course-link mb-2"
+        href={props.linkToCourse}
+      >
+        View Course
+      </a>
+      <a
+        className="btn btn-block btn-outline-primary btn-course-link"
+        href={props.linkToCourse}
+      >
+        View Certificate
+      </a>
+    </>
+  );
+
+  return (
+    <BaseCourseCard
+      buttons={renderButtons()}
+      hasEmailSettings={false}
+      {...props}
+    />
+  );
+};
 
 CompletedCourseCard.propTypes = {
   linkToCourse: PropTypes.string.isRequired,

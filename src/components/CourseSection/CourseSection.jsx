@@ -24,6 +24,7 @@ const CourseSection = (props) => {
             case 'in-progress':
               cardProps.endDate = courseData.end_date;
               cardProps.linkToCourse = courseData.resume_course_run_url;
+              cardProps.notifications = courseData.due_dates;
               break;
             case 'upcoming':
               cardProps.startDate = courseData.start_date;

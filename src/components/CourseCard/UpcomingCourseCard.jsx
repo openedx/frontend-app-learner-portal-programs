@@ -5,16 +5,14 @@ import moment from 'moment';
 import BaseCourseCard from './BaseCourseCard';
 
 const UpcomingCourseCard = (props) => {
-  const { startDate } = props;
-
-  const renderButtonLink = () => (
-    <button className="btn btn-light btn-xs-block" disabled>
-      Available on {moment(startDate).format('MMM D')}
+  const renderButtons = () => (
+    <button className="btn btn-light btn-block" disabled>
+      Available on {moment(props.startDate).format('MMM D')}
     </button>
   );
 
   return (
-    <BaseCourseCard buttonLink={renderButtonLink()} {...props} />
+    <BaseCourseCard buttons={renderButtons()} {...props} />
   );
 };
 
