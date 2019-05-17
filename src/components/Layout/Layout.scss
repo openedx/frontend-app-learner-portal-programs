@@ -8,8 +8,12 @@ $fa-font-path: "~font-awesome/fonts";
 
 @import "~@edx/paragon/src/Collapsible/Collapsible";
 
-header a.logo img{
-    max-height: 50px;
+header {
+    background: $white;
+
+    a.logo img{
+        max-height: 50px;
+    }
 }
 
 footer a img {

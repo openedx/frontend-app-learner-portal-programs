@@ -8,47 +8,74 @@ import CompletedCourseCard from '../CourseCard/CompletedCourseCard';
 
 import './CourseSection.scss';
 
-const CourseSection = (props) => {
-  const { component: Component, enrollments, title } = props;
+class CourseSection extends React.Component {
+  state = {
+    isOpen: true,
+  };
 
-  if (enrollments.length > 0) {
-    return (
-      <div className="course-section mb-3">
-        <Collapsible title={title} isOpen>
-          {enrollments.map((courseData) => {
-            const { status } = courseData;
-            const defaultCardProps = {
-              key: courseData.course_run_id,
-              title: courseData.display_name,
-              microMastersTitle: courseData.micromasters_title,
-            };
-            const cardProps = {};
-            switch (status) {
-              case 'in-progress':
-                cardProps.endDate = courseData.end_date;
-                cardProps.linkToCourse = courseData.resume_course_run_url;
-                cardProps.notifications = courseData.due_dates;
-                break;
-              case 'upcoming':
-                cardProps.startDate = courseData.start_date;
-                cardProps.linkToCourse = courseData.course_run_url;
-                break;
-              case 'completed':
-                cardProps.endDate = courseData.end_date;
-                cardProps.linkToCourse = courseData.course_run_url;
-                break;
-              default:
-                break;
-            }
-            return <Component {...defaultCardProps} {...cardProps} />;
-          })}
-        </Collapsible>
-      </div>
-    );
+  getFormattedTitle = () => {
+    const { isOpen } = this.state;
+    const { enrollments, title } = this.props;
+
+    if (!isOpen) {
+      return `${title} (${enrollments.length})`;
+    }
+
+    return title;
+  };
+
+  handleCollapsibleToggle = (isOpen) => {
+    this.setState({
+      isOpen,
+    });
+  };
+
+  render() {
+    const { component: Component, enrollments } = this.props;
+
+    if (enrollments.length > 0) {
+      return (
+        <div className="course-section mb-5">
+          <Collapsible
+            title={this.getFormattedTitle()}
+            onToggle={this.handleCollapsibleToggle}
+            isOpen
+          >
+            {enrollments.map((courseData) => {
+              const { status } = courseData;
+              const defaultCardProps = {
+                key: courseData.course_run_id,
+                title: courseData.display_name,
+                microMastersTitle: courseData.micromasters_title,
+              };
+              const cardProps = {};
+              switch (status) {
+                case 'in-progress':
+                  cardProps.endDate = courseData.end_date;
+                  cardProps.linkToCourse = courseData.resume_course_run_url;
+                  cardProps.notifications = courseData.due_dates;
+                  break;
+                case 'upcoming':
+                  cardProps.startDate = courseData.start_date;
+                  cardProps.linkToCourse = courseData.course_run_url;
+                  break;
+                case 'completed':
+                  cardProps.endDate = courseData.end_date;
+                  cardProps.linkToCourse = courseData.course_run_url;
+                  break;
+                default:
+                  break;
+              }
+              return <Component {...defaultCardProps} {...cardProps} />;
+            })}
+          </Collapsible>
+        </div>
+      );
+    }
+
+    return null;
   }
-
-  return null;
-};
+}
 
 CourseSection.propTypes = {
   component: PropTypes.oneOf([
