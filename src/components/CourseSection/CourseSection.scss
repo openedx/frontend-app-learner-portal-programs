@@ -1,0 +1,56 @@
+@import "~@edx/edx-bootstrap/scss/edx/theme";
+
+.collapsible {
+  border: 0;
+
+  &.open {
+    border: 0;
+    
+    .collapsible-body {
+      padding: 0;
+    }
+  }
+
+  .collapsible-title {
+    @extend .h2;
+  }
+
+  .btn-collapsible {
+    background: $white;
+    border-radius: 0;
+    border: 0;
+    @extend .mb-2;
+
+    &.open {
+      border: 0;
+
+      .collapsible-icon {
+        padding-top: 0;
+      }
+    }
+
+    &:hover {
+      background: $white;
+    }
+
+    &:focus {
+      box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    }
+  }
+
+  .btn-collapsible,
+  .collapsible-body {
+    padding: 0;
+  }
+
+  .collapsible-icon {
+    @extend .btn-primary;
+    font-weight: bold;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    text-align: center;
+    margin-top: 6px;
+    padding-top: 2px;
+  }
+}
