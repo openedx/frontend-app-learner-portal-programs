@@ -1,44 +1,48 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Collapsible } from '@edx/paragon';
 
 import InProgressCourseCard from '../CourseCard/InProgressCourseCard';
 import UpcomingCourseCard from '../CourseCard/UpcomingCourseCard';
 import CompletedCourseCard from '../CourseCard/CompletedCourseCard';
+
+import './CourseSection.scss';
 
 const CourseSection = (props) => {
   const { component: Component, enrollments, title } = props;
 
   if (enrollments.length > 0) {
     return (
-      <div className="course-section">
-        <h2 className="mb-4">{title}</h2>
-        {enrollments.map((courseData) => {
-          const { status } = courseData;
-          const defaultCardProps = {
-            key: courseData.course_run_id,
-            title: courseData.display_name,
-            microMastersTitle: courseData.micromasters_title,
-          };
-          const cardProps = {};
-          switch (status) {
-            case 'in-progress':
-              cardProps.endDate = courseData.end_date;
-              cardProps.linkToCourse = courseData.resume_course_run_url;
-              cardProps.notifications = courseData.due_dates;
-              break;
-            case 'upcoming':
-              cardProps.startDate = courseData.start_date;
-              cardProps.linkToCourse = courseData.course_run_url;
-              break;
-            case 'completed':
-              cardProps.endDate = courseData.end_date;
-              cardProps.linkToCourse = courseData.course_run_url;
-              break;
-            default:
-              break;
-          }
-          return <Component {...defaultCardProps} {...cardProps} />;
-        })}
+      <div className="course-section mb-3">
+        <Collapsible title={title} isOpen>
+          {enrollments.map((courseData) => {
+            const { status } = courseData;
+            const defaultCardProps = {
+              key: courseData.course_run_id,
+              title: courseData.display_name,
+              microMastersTitle: courseData.micromasters_title,
+            };
+            const cardProps = {};
+            switch (status) {
+              case 'in-progress':
+                cardProps.endDate = courseData.end_date;
+                cardProps.linkToCourse = courseData.resume_course_run_url;
+                cardProps.notifications = courseData.due_dates;
+                break;
+              case 'upcoming':
+                cardProps.startDate = courseData.start_date;
+                cardProps.linkToCourse = courseData.course_run_url;
+                break;
+              case 'completed':
+                cardProps.endDate = courseData.end_date;
+                cardProps.linkToCourse = courseData.course_run_url;
+                break;
+              default:
+                break;
+            }
+            return <Component {...defaultCardProps} {...cardProps} />;
+          })}
+        </Collapsible>
       </div>
     );
   }
