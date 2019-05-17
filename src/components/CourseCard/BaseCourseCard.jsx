@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import moment from 'moment';
+import { faCog, faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { StatusAlert } from '@edx/paragon';
 
@@ -103,7 +104,7 @@ class BaseCourseCard extends Component {
                       alertType="success"
                       dialog={
                         <>
-                          <FontAwesomeIcon className="mr-2" icon={['fas', 'check-circle']} />
+                          <FontAwesomeIcon className="mr-2" icon={faCheckCircle} />
                           Your email settings have been saved.
                         </>
                       }
@@ -134,7 +135,7 @@ class BaseCourseCard extends Component {
                       });
                     }}
                   >
-                    <FontAwesomeIcon className="mr-2" icon={['fas', 'cog']} />
+                    <FontAwesomeIcon className="mr-2" icon={faCog} />
                     Email settings
                   </button>
                   {modals.emailSettings &&

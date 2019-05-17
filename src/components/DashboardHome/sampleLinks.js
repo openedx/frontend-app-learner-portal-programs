@@ -10,11 +10,11 @@ const linksData = {
   links: [
     {
       title: 'Degree Requirements',
-      href: 'https://edx.org',
+      href: 'https://edx.org/degree-requirements',
     },
     {
       title: 'Student Record',
-      href: 'https://edx.org',
+      href: 'https://edx.org/student-record',
     },
   ],
 };

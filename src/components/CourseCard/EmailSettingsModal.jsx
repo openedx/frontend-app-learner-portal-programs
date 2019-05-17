@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Input, Modal, StatusAlert } from '@edx/paragon';
+import { faExclamationTriangle, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import './EmailSettingsModal.scss';
@@ -78,7 +79,7 @@ class EmailSettingsModal extends Component {
                   dialog={
                     <div className="d-flex">
                       <div>
-                        <FontAwesomeIcon className="mr-3" icon={['fas', 'exclamation-triangle']} />
+                        <FontAwesomeIcon className="mr-3" icon={faExclamationTriangle} />
                       </div>
                       <div>
                         An error occurred while saving your email settings. Please try again.
@@ -110,7 +111,7 @@ class EmailSettingsModal extends Component {
               label: (
                 <>
                   {isSubmitting &&
-                    <FontAwesomeIcon className="mr-2" icon={['fas', 'spinner']} spin />
+                    <FontAwesomeIcon className="mr-2" icon={faSpinner} spin />
                   }
                   {isSubmitting ? 'Saving' : 'Save'}
                   {' changes'}
