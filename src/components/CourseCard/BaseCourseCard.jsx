@@ -58,7 +58,7 @@ class BaseCourseCard extends Component {
       title,
       startDate,
       endDate,
-      buttonLink,
+      buttons,
       linkToCourse,
       hasEmailSettings,
       microMastersTitle,
@@ -88,13 +88,13 @@ class BaseCourseCard extends Component {
                 </p>
               )}
             </div>
-            {buttonLink && (
+            {buttons && (
               <div className="col-xs-12 col-md-4 text-md-right mt-3 mt-md-0">
-                {buttonLink}
+                {buttons}
               </div>
             )}
           </div>
-          {children && children}
+          {children}
           {hasEmailSettings && (
             <>
               {hasNewEmailSettings &&
@@ -157,7 +157,7 @@ class BaseCourseCard extends Component {
 BaseCourseCard.propTypes = {
   title: PropTypes.string.isRequired,
   linkToCourse: PropTypes.string.isRequired,
-  buttonLink: PropTypes.element,
+  buttons: PropTypes.element,
   children: PropTypes.node,
   startDate: PropTypes.string,
   endDate: PropTypes.string,
@@ -167,7 +167,7 @@ BaseCourseCard.propTypes = {
 };
 
 BaseCourseCard.defaultProps = {
-  buttonLink: null,
+  buttons: null,
   children: null,
   startDate: null,
   endDate: null,

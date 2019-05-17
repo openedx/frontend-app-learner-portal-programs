@@ -13,11 +13,19 @@
       position: absolute;
       top: 0;
       right: 16px;
-      bottom: 8px;
+      bottom: 0;
       left: 0;
-      background: url('../../images/mm-badge.svg') right bottom no-repeat;
+      background-image: url('../../images/mm-badge.svg');
+      background-position: right center;
+      background-repeat: no-repeat;
       opacity: 0.05;
       z-index: 0;
+    }
+
+    @include media-breakpoint-down(sm) {
+      &::before {
+        background-position: right bottom;
+      }
     }
   }
 
@@ -42,12 +50,8 @@
     }
   }
 
-  .btn-xs-block {
-    @include media-breakpoint-down(xs) {
-      & {
-        width: 100%;
-        display: block;
-      }
-    }
+  .notification {
+    background: #f4f7ff;
+    border-color: #d3daf0;
   }
 }
