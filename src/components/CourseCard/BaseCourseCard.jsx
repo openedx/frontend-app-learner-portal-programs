@@ -4,7 +4,6 @@ import classNames from 'classnames';
 import moment from 'moment';
 import { faCog, faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { StatusAlert } from '@edx/paragon';
 
 import EmailSettingsModal from './EmailSettingsModal';
 
@@ -18,6 +17,18 @@ class BaseCourseCard extends Component {
     hasEmailsEnabled: this.props.hasEmailSettings || false,
     hasNewEmailSettings: false,
   };
+
+  componentDidUpdate(prevProps, prevState) {
+    const { hasNewEmailSettings } = this.state;
+
+    if (hasNewEmailSettings && hasNewEmailSettings !== prevState.hasNewEmailSettings) {
+      setTimeout(() => {
+        this.setState({
+          hasNewEmailSettings: false,
+        });
+      }, 6000);
+    }
+  }
 
   setModalState = ({ key, options }) => {
     this.setState(state => ({
@@ -96,57 +107,40 @@ class BaseCourseCard extends Component {
           </div>
           {children}
           {hasEmailSettings && (
-            <>
-              {hasNewEmailSettings &&
-                <div className="row no-gutters">
-                  <div className="col-xs-12 col-sm-10 col-md-8">
-                    <StatusAlert
-                      alertType="success"
-                      dialog={
-                        <>
-                          <FontAwesomeIcon className="mr-2" icon={faCheckCircle} />
-                          Your email settings have been saved.
-                        </>
-                      }
-                      onClose={() => {
-                        this.setState({
-                          hasNewEmailSettings: false,
-                        });
-                      }}
-                      open
-                    />
-                  </div>
-                </div>
-              }
-              <div className="row no-gutters">
-                <div className="col">
-                  <button
-                    className="btn btn-link p-0"
-                    onClick={() => {
-                      this.setModalState({
-                        key: 'emailSettings',
-                        options: {
-                          title,
-                          hasEmailsEnabled,
-                        },
-                      });
-                      this.setState({
-                        hasNewEmailSettings: false,
-                      });
-                    }}
-                  >
-                    <FontAwesomeIcon className="mr-2" icon={faCog} />
-                    Email settings
-                  </button>
-                  {modals.emailSettings &&
-                    <EmailSettingsModal
-                      {...modals.emailSettings}
-                      onClose={this.handleEmailSettingsModalOnClose}
-                    />
-                  }
-                </div>
+            <div className="row no-gutters">
+              <div className="col">
+                <button
+                  className="btn btn-link p-0 mr-3"
+                  onClick={() => {
+                    this.setModalState({
+                      key: 'emailSettings',
+                      options: {
+                        title,
+                        hasEmailsEnabled,
+                      },
+                    });
+                    this.setState({
+                      hasNewEmailSettings: false,
+                    });
+                  }}
+                >
+                  <FontAwesomeIcon className="mr-2" icon={faCog} />
+                  Email settings
+                </button>
+                {hasNewEmailSettings &&
+                  <span className="text-success">
+                    <FontAwesomeIcon className="mr-2" icon={faCheckCircle} />
+                    Saved
+                  </span>
+                }
+                {modals.emailSettings &&
+                  <EmailSettingsModal
+                    {...modals.emailSettings}
+                    onClose={this.handleEmailSettingsModalOnClose}
+                  />
+                }
               </div>
-            </>
+            </div>
           )}
         </div>
       </div>
