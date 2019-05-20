@@ -2,9 +2,9 @@
   "name": "gatsby-source-wagtail",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "gatsby-node.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --verbose --passWithNoTests"
   },
   "keywords": [],
   "author": "",
@@ -12,5 +12,8 @@
   "dependencies": {
     "node-fetch": "^2.4.0",
     "query-string": "^6.4.2"
+  },
+  "devDependencies": {
+    "jest": "^24.8.0"
   }
 }

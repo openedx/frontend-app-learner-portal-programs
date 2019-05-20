@@ -1,43 +1,36 @@
-const fetch = require("node-fetch")
+const fetch = require('node-fetch');
 
-exports.sourceNodes = (
+exports.sourceNodes = async (
   { actions, createNodeId, createContentDigest },
-  configOptions
+  configOptions,
 ) => {
-  const { createNode } = actions
-
+  const { createNode } = actions;
   // Gatsby adds a configOption that's not needed for this plugin, delete it
-  delete configOptions.plugins
-
-  console.log("Testing my plugin", configOptions)
-  const apiUrl = `http://localhost:18606/api/v1/content/pages/`
-
-    const processPage = page => {
-      const nodeId = createNodeId(`wagtail-page-${page.id}`)
-      const nodeContent = JSON.stringify(page)
-      const nodeData = Object.assign({}, page, {
-        id: nodeId,
-        parent: null,
-        children: [],
-        internal: {
-          type: `WagtailPage`,
-          content: nodeContent,
-          contentDigest: createContentDigest(page),
-        },
-      })
-      return nodeData
+  delete configOptions.plugins; // eslint-disable-line
+  const fetchBrandingData = async () => {
+    try {
+      const response = await fetch(configOptions.pagesApiUrl);
+      return await response.json();
+    } catch (e) {
+      return console.error(`${e.name}: ${e.message}`); // eslint-disable-line
     }
+  };
 
-  // Need to handle auth
-  return (
-    fetch(apiUrl)
-    .then(response => response.json())
-    .then(data => {
-      // For each query result (or 'hit')
-      data.items.forEach(page => {
-        const nodeData = processPage(page)
-        createNode(nodeData)
-      })
-    })
-  )
-}
+  // the gatsby node shape will be the exact same as what the api returns.
+  const processNode = (node, nodeType) => createNode({
+    ...node,
+    id: createNodeId(`wagtail-node-${node.id}`),
+    internal: {
+      type: nodeType,
+      contentDigest: createContentDigest(node),
+    },
+  });
+
+  const data = await fetchBrandingData();
+  if (data && data.length) {
+    data.map(page => processNode(page, 'page'));
+  } else {
+    // no branding data was found
+    console.error(`No branding data was returned from ${process.env.HOSTNAME}`); // eslint-disable-line
+  }
+};

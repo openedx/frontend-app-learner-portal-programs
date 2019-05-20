@@ -2,6 +2,8 @@ require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
 });
 
+const pagesApiUrl = `${process.env.DESIGNER_BASE_URL}/api/v1/pages/?hostname=${process.env.HOSTNAME}`;
+
 module.exports = {
   siteMetadata: {
     logo: 'https://www.edx.org/sites/default/files/open-edx-logo-with-reg.png',
@@ -11,9 +13,9 @@ module.exports = {
   },
   plugins: [
     {
-      resolve: "gatsby-source-wagtail",
+      resolve: 'gatsby-source-wagtail',
       options: {
-        blah: "TACOS"
+        pagesApiUrl,
       },
     },
     {
