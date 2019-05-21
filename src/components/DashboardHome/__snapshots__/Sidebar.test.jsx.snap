@@ -182,7 +182,9 @@ exports[`<Sidebar /> renders correctly 1`] = `
         style={Object {}}
       />
     </svg>
-    show all 8
+    <span>
+      show all 8
+    </span>
   </button>
 </section>
 `;

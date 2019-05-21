@@ -62,7 +62,7 @@ class Links extends Component {
               className="mr-2"
               icon={isExpanded ? faChevronCircleUp : faChevronCircleDown}
             />
-            {isExpanded ? 'show less' : `show all ${links.length}`}
+            <span>{isExpanded ? 'show less' : `show all ${links.length}`}</span>
           </Button>
         )}
       </section>
