@@ -5,7 +5,7 @@ import linksData from './sampleLinks';
 
 const Sidebar = () => (
   <>
-    <Links title={linksData.title} links={linksData.links} />
+    <Links id={linksData.id} title={linksData.title} links={linksData.links} />
   </>
 );
 

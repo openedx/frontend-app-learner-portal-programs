@@ -21,7 +21,7 @@ const DashboardHome = () => (
     />
     <div className="container py-5">
       <div className="row">
-        <div className="col-xs-12 col-lg-7">
+        <div className="col-xs-12 col-lg-8">
           <MainContent />
         </div>
         <MediaQuery minWidth={breakpoints.large.minWidth}>
