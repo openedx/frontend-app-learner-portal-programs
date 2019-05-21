@@ -21,15 +21,13 @@ const DashboardHome = () => (
     />
     <div className="container py-5">
       <div className="row">
-        <div className="col-xs-12 col-lg-8">
+        <div className="col-xs-12 col-lg-7">
           <MainContent />
         </div>
         <MediaQuery minWidth={breakpoints.large.minWidth}>
           {matches => matches && (
             <div className="col offset-lg-1">
-              <div className="position-sticky" style={{ top: 20 }}>
-                <Sidebar />
-              </div>
+              <Sidebar />
             </div>
           )}
         </MediaQuery>
