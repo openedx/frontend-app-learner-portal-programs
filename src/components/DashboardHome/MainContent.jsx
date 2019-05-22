@@ -24,14 +24,6 @@ class MainContent extends Component {
   };
 
   componentDidMount() {
-    console.log(process.env.BASE_URL);
-    console.log(process.env.LMS_BASE_URL);
-    console.log(process.env.LOGIN_URL);
-    console.log(process.env.LOGOUT_URL);
-    console.log(process.env.CSRF_TOKEN_API_PATH);
-    console.log(process.env.REFRESH_ACCESS_TOKEN_ENDPOINT);
-    console.log(process.env.ACCESS_TOKEN_COOKIE_NAME);
-    console.log(process.env.USER_INFO_COOKIE_NAME);
     this.groupCourseEnrollmentsByStatus();
 
     // Temporarily simulate loading by resetting `isProgramEnrollmentsLoading` to false
