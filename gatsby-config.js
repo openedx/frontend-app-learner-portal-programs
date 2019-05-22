@@ -16,5 +16,20 @@ module.exports = {
         ],
       },
     },
+    {
+      resolve: 'gatsby-plugin-env-variables',
+      options: {
+        whitelist: [
+          'BASE_URL',
+          'LMS_BASE_URL',
+          'LOGIN_URL',
+          'LOGOUT_URL',
+          'CSRF_TOKEN_API_PATH',
+          'REFRESH_ACCESS_TOKEN_ENDPOINT',
+          'ACCESS_TOKEN_COOKIE_NAME',
+          'USER_INFO_COOKIE_NAME',
+        ],
+      },
+    },
   ],
 };
