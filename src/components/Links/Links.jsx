@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import { faFile, faChevronCircleDown, faChevronCircleUp } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Button } from '@edx/paragon';
@@ -37,14 +36,11 @@ class Links extends Component {
     const { isExpanded, defaultNumLinksDisplayed } = this.state;
     const {
       id,
-      title,
       links,
-      className,
     } = this.props;
 
     return (
-      <section className={classNames('links', className)}>
-        <h3 className="mb-3">{title}</h3>
+      <>
         <nav>
           <ul id={id} className="list-unstyled mb-2">
             {this.getLinkItems()}
@@ -65,23 +61,17 @@ class Links extends Component {
             <span>{isExpanded ? 'show less' : `show all ${links.length}`}</span>
           </Button>
         )}
-      </section>
+      </>
     );
   }
 }
 
 Links.propTypes = {
   id: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
   links: PropTypes.arrayOf(PropTypes.shape({
     title: PropTypes.string.isRequired,
     href: PropTypes.string.isRequired,
   })).isRequired,
-  className: PropTypes.string,
-};
-
-Links.defaultProps = {
-  className: undefined,
 };
 
 export default Links;
