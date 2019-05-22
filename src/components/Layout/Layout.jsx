@@ -22,7 +22,6 @@ const Layout = ({ children }) => (
     query={LayoutQuery}
     render={data => (
       <>
-        {console.log({ ...process.env }) }
         <SiteHeader
           logo={data.site.siteMetadata.logo}
           logoDestination="http://example.com"
