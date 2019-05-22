@@ -21,6 +21,14 @@ The project itself will run on  ```http://localhost:8734```
 
 you can test your graphql queries with the playground, found here:  ```http://localhost:8734/___graphql```
 
+## How to run/serve a production build locally
+
+```
+npm run build   # Builds to dist folder
+rm -rf public   # If you already have a public folder there
+mv dist public  # Rename dist folder
+npm run serve   # Run server. This command will automatically look at public/ directory
+```
 
 ## Testing
 
