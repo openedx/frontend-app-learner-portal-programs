@@ -39,7 +39,7 @@ const Layout = ({ children, authentication }) => (
               content: 'Progress',
             },
           ]}
-          loggedIn={authentication.userId}
+          loggedIn={!!authentication.userId}
           username={authentication.username}
           avatar={null}
           userMenu={[
