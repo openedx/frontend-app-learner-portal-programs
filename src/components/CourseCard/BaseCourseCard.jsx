@@ -128,9 +128,10 @@ class BaseCourseCard extends Component {
                   Email settings
                 </button>
                 {hasNewEmailSettings &&
-                  <span className="text-success">
+                  <span className="text-success" role="alert">
                     <FontAwesomeIcon className="mr-2" icon={faCheckCircle} />
                     Saved
+                    <span className="sr-only">your email settings for {title}</span>
                   </span>
                 }
                 {modals.emailSettings &&

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import { Input, Modal, StatusAlert } from '@edx/paragon';
 import { faExclamationTriangle, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -118,6 +119,7 @@ class EmailSettingsModal extends Component {
                   {isSubmitting && '...'}
                 </>
               ),
+              className: classNames('save-email-settings-btn', { 'is-form-changed': isFormChanged }),
               buttonType: 'primary',
               disabled: isSubmitting || !isFormChanged,
               onClick: this.handleSaveButtonClick,
