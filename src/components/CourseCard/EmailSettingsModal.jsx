@@ -98,7 +98,7 @@ class EmailSettingsModal extends Component {
                   disabled={isSubmitting}
                   onChange={this.handleEmailSettingsChange}
                 />
-                <label className="form-check-label ml-2" htmlFor="email-settings">
+                <label className="form-check-label font-weight-normal ml-2" htmlFor="email-settings">
                   Receive course emails such as reminders, schedule updates, and
                   other critical announcements.
                 </label>
