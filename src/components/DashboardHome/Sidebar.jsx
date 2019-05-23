@@ -8,10 +8,10 @@ import SidebarBlock from './SidebarBlock';
 
 const Sidebar = () => (
   <>
-    <SidebarBlock title="Program Documents" className="mb-4">
+    <SidebarBlock title="Program Documents" className="mb-5">
       <Links id={linksData.id} links={linksData.links} />
     </SidebarBlock>
-    <SidebarBlock title="Manage Your Degree" className="mb-4">
+    <SidebarBlock title="Manage Your Degree" className="mb-5">
       <p>Go to Georgia Tech portal to</p>
       <ul>
         <li>Add or drop courses</li>
@@ -24,7 +24,7 @@ const Sidebar = () => (
       <p>
         <a href="https://www.edx.org/" target="_blank" rel="noopener noreferrer">
           Go to Georgia Tech portal
-          <FontAwesomeIcon className="ml-2 text-primary" icon={faExternalLinkAlt} />
+          <FontAwesomeIcon className="ml-2 text-primary" icon={faExternalLinkAlt} size="sm" />
         </a>
       </p>
     </SidebarBlock>
@@ -32,7 +32,7 @@ const Sidebar = () => (
       <p>
         <a href="https://www.edx.org/" target="_blank" rel="noopener noreferrer">
           Go to edX help center
-          <FontAwesomeIcon className="ml-2 text-primary" icon={faExternalLinkAlt} />
+          <FontAwesomeIcon className="ml-2 text-primary" icon={faExternalLinkAlt} size="sm" />
         </a>
       </p>
     </SidebarBlock>
