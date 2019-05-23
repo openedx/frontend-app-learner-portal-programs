@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Collapsible } from '@edx/paragon';
+import { faChevronCircleUp, faChevronCircleDown } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import InProgressCourseCard from '../CourseCard/InProgressCourseCard';
 import UpcomingCourseCard from '../CourseCard/UpcomingCourseCard';
@@ -39,6 +41,10 @@ class CourseSection extends React.Component {
           <Collapsible
             title={this.getFormattedTitle()}
             onToggle={this.handleCollapsibleToggle}
+            icons={{
+              expanded: <FontAwesomeIcon className="text-primary" icon={faChevronCircleUp} />,
+              collapsed: <FontAwesomeIcon className="text-primary" icon={faChevronCircleDown} />,
+            }}
             isOpen
           >
             {enrollments.map((courseData) => {

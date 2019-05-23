@@ -24,7 +24,7 @@ const Sidebar = () => (
       <p>
         <a href="https://www.edx.org/" target="_blank" rel="noopener noreferrer">
           Go to Georgia Tech portal
-          <FontAwesomeIcon className="text-primary" icon={faExternalLinkAlt} />
+          <FontAwesomeIcon className="ml-2 text-primary" icon={faExternalLinkAlt} />
         </a>
       </p>
     </SidebarBlock>
@@ -32,7 +32,7 @@ const Sidebar = () => (
       <p>
         <a href="https://www.edx.org/" target="_blank" rel="noopener noreferrer">
           Go to edX help center
-          <FontAwesomeIcon className="text-primary" icon={faExternalLinkAlt} />
+          <FontAwesomeIcon className="ml-2 text-primary" icon={faExternalLinkAlt} />
         </a>
       </p>
     </SidebarBlock>
