@@ -31,7 +31,7 @@ const sampleApiResponse = {
     },
     {
       course_run_id: 'edX+DemoX+Demo_Course_2',
-      display_name: 'edX Demonstration Course 2',
+      display_name: 'This Is A Course With A Really Long Name That Should Wrap On Multiple Lines',
       resume_course_run_url: 'https://edx.org/',
       course_run_url: 'https://edx.org/',
       start_date: '2017-02-05T05:00:00Z',
