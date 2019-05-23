@@ -24,10 +24,6 @@
 
     &.open {
       border: 0;
-
-      .collapsible-icon {
-        padding-top: 0;
-      }
     }
 
     &:hover {
@@ -42,16 +38,5 @@
   .btn-collapsible,
   .collapsible-body {
     padding: 0;
-  }
-
-  .collapsible-icon {
-    @extend .btn-primary;
-    font-weight: bold;
-    border-radius: 50%;
-    width: 32px;
-    height: 32px;
-    text-align: center;
-    margin-top: 6px;
-    padding-top: 2px;
   }
 }
