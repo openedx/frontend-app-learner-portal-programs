@@ -68,7 +68,7 @@ class BaseCourseCard extends Component {
       <div className={classNames('card mb-4', { 'is-micromasters': !!microMastersTitle })}>
         <div className="card-body">
           <div className="row no-gutters mb-3">
-            <div className="col-xs-12 col-md-8">
+            <div className="col-lg-12 col-xl-8">
               {microMastersTitle && (
                 <p className="font-weight-bold w-75 mb-2">
                   {microMastersTitle}
@@ -89,7 +89,7 @@ class BaseCourseCard extends Component {
               )}
             </div>
             {buttons && (
-              <div className="col-xs-12 col-md-4 text-md-right mt-3 mt-md-0">
+              <div className="col-lg-12 col-xl-4 text-xl-right mt-3 mt-xl-0">
                 {buttons}
               </div>
             )}

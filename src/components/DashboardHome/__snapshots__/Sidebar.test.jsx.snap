@@ -3,7 +3,7 @@
 exports[`<Sidebar /> renders correctly 1`] = `
 Array [
   <section
-    className="mb-4"
+    className="mb-5"
   >
     <h2
       className="mb-2"
@@ -189,7 +189,7 @@ Array [
     </button>
   </section>,
   <section
-    className="mb-4"
+    className="mb-5"
   >
     <h2
       className="mb-2"
@@ -228,7 +228,7 @@ Array [
         Go to Georgia Tech portal
         <svg
           aria-hidden="true"
-          className="svg-inline--fa fa-external-link-alt fa-w-18 ml-2 text-primary"
+          className="svg-inline--fa fa-external-link-alt fa-w-18 fa-sm ml-2 text-primary"
           data-icon="external-link-alt"
           data-prefix="fas"
           focusable="false"
@@ -261,7 +261,7 @@ Array [
         Go to edX help center
         <svg
           aria-hidden="true"
-          className="svg-inline--fa fa-external-link-alt fa-w-18 ml-2 text-primary"
+          className="svg-inline--fa fa-external-link-alt fa-w-18 fa-sm ml-2 text-primary"
           data-icon="external-link-alt"
           data-prefix="fas"
           focusable="false"
