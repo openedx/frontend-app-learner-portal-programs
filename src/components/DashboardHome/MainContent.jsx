@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import MediaQuery from 'react-responsive';
-import { breakpoints } from '@edx/paragon';
+import { useStaticQuery, graphql } from 'gatsby';
+import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { breakpoints, StatusAlert } from '@edx/paragon';
 
 import CourseSection from '../CourseSection/CourseSection';
 import InProgressCourseCard from '../CourseCard/InProgressCourseCard';
@@ -8,51 +12,67 @@ import UpcomingCourseCard from '../CourseCard/UpcomingCourseCard';
 import CompletedCourseCard from '../CourseCard/CompletedCourseCard';
 import Sidebar from './Sidebar';
 
-import sampleApiResponse from './sampleApiResponse';
+const useSiteMetadata = () => {
+  const { site } = useStaticQuery(graphql`
+    query {
+      site {
+        siteMetadata {
+          programUUID
+        }
+      }
+    }
+  `);
+  return site.siteMetadata;
+};
 
-class MainContent extends Component {
-  state = {
-    courses: {
-      'in-progress': [],
-      upcoming: [],
-      completed: [],
-    },
-    // Temporarily adds `isProgramEnrollmentsLoading` to state to simulate loading
-    // state. Once we are actually calling the API and have Redux set up, this should
-    // come from props instead of state.
-    isProgramEnrollmentsLoading: true,
-  };
-
+export class PureMainContent extends Component {
   componentDidMount() {
-    this.groupCourseEnrollmentsByStatus();
+    const { programUUID } = this.props;
+    this.props.fetchProgramEnrollmentOverview(programUUID);
+  }
 
-    // Temporarily simulate loading by resetting `isProgramEnrollmentsLoading` to false
-    // after 2 seconds.
-    setTimeout(() => {
-      this.setState({
-        isProgramEnrollmentsLoading: false,
-      });
-    }, 2000);
+  componentWillUnmount() {
+    this.props.clearProgramEnrollmentOverview();
   }
 
   groupCourseEnrollmentsByStatus = () => {
-    const { course_runs: courseRuns } = sampleApiResponse;
+    const { courseRuns } = this.props;
+    return {
+      'in-progress': courseRuns.filter(courseRun => courseRun.status === 'in-progress'),
+      upcoming: courseRuns.filter(courseRun => courseRun.status === 'upcoming'),
+      completed: courseRuns.filter(courseRun => courseRun.status === 'completed'),
+    };
+  }
 
-    this.setState({
-      courses: {
-        'in-progress': courseRuns.filter(courseRun => courseRun.status === 'in-progress'),
-        upcoming: courseRuns.filter(courseRun => courseRun.status === 'upcoming'),
-        completed: courseRuns.filter(courseRun => courseRun.status === 'completed'),
-      },
-    });
+  renderError() {
+    return (<StatusAlert
+      alertType="danger"
+      dialog={
+        <div className="d-flex">
+          <div>
+            <FontAwesomeIcon className="mr-3" icon={faExclamationTriangle} />
+          </div>
+          <div>
+            An error occurred while retrieving program enrolments data. Please try again.
+          </div>
+        </div>
+      }
+      dismissible={false}
+      open
+    />);
   }
 
   render() {
-    const { courses, isProgramEnrollmentsLoading } = this.state;
+    const { error, loading } = this.props;
+    const courses = this.groupCourseEnrollmentsByStatus();
+
+    if (error) {
+      return this.renderError();
+    }
 
     return (
       <>
-        {isProgramEnrollmentsLoading ? (
+        {loading ? (
           <div className="d-flex justify-content-center align-items-center">
             <div className="spinner-border text-primary" role="status">
               <div className="sr-only">Loading program enrollments...</div>
@@ -89,4 +109,22 @@ class MainContent extends Component {
   }
 }
 
-export default MainContent;
+PureMainContent.defaultProps = {
+  courseRuns: [],
+  loading: false,
+  error: null,
+};
+
+PureMainContent.propTypes = {
+  fetchProgramEnrollmentOverview: PropTypes.func.isRequired,
+  clearProgramEnrollmentOverview: PropTypes.func.isRequired,
+  programUUID: PropTypes.string.isRequired,
+  courseRuns: PropTypes.arrayOf(PropTypes.shape({})),
+  loading: PropTypes.bool,
+  error: PropTypes.instanceOf(Error),
+};
+
+export default (props) => {
+  const { programUUID } = useSiteMetadata();
+  return <PureMainContent programUUID={programUUID} {...props} />;
+};

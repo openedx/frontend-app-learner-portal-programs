@@ -3,6 +3,8 @@ import qs from 'query-string';
 import apiClient from '../apiClient';
 
 class LmsApiService {
+  static baseUrl = process.env.LMS_BASE_URL;
+
   static updateEmailSettings(courseRunId, hasEmailsEnabled) {
     const queryParams = {
       course_id: courseRunId,
