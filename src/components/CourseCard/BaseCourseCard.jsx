@@ -14,7 +14,7 @@ class BaseCourseCard extends Component {
     modals: {
       emailSettings: null,
     },
-    hasEmailsEnabled: this.props.hasEmailSettings || false,
+    hasEmailsEnabled: this.props.hasEmailsEnabled,
     hasNewEmailSettings: false,
   };
 

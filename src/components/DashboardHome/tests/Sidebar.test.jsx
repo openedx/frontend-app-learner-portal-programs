@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import Sidebar from './Sidebar';
+import Sidebar from '../Sidebar';
 
 describe('<Sidebar />', () => {
   it('renders correctly', () => {

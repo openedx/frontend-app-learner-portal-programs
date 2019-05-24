@@ -9,7 +9,7 @@ import './EmailSettingsModal.scss';
 
 class EmailSettingsModal extends Component {
   state = {
-    hasEmailsEnabled: this.props.hasEmailsEnabled || false,
+    hasEmailsEnabled: this.props.hasEmailsEnabled,
     isSubmitting: false,
     isFormChanged: false,
     error: null,
