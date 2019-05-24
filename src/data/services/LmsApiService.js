@@ -3,6 +3,11 @@ import qs from 'query-string';
 import apiClient from '../apiClient';
 
 class LmsApiService {
+  static fetchProgramEnrollmentOverview(programUUID) {
+    const programEnrollmentOverviewUrl = `${process.env.LMS_BASE_URL}/api/program_enrollments/v1/programs/${programUUID}/overview`;
+    return apiClient.get(programEnrollmentOverviewUrl);
+  }
+
   static updateEmailSettings(courseRunId, hasEmailsEnabled) {
     const queryParams = {
       course_id: courseRunId,

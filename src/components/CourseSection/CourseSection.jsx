@@ -35,7 +35,7 @@ class CourseSection extends React.Component {
   render() {
     const { component: Component, enrollments } = this.props;
 
-    if (enrollments.length > 0) {
+    if (enrollments && enrollments.length > 0) {
       return (
         <div className="course-section mb-5">
           <Collapsible
