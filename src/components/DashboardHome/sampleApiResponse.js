@@ -19,7 +19,7 @@ const sampleApiResponse = {
       due_dates: [{
         name: 'Assignment 1',
         url: 'https://edx.org',
-        date: '2019-05-28T07:50:00Z',
+        date: '2019-05-31T07:50:00Z',
       }, {
         name: 'Assignment 2',
         url: 'https://edx.org',
@@ -31,7 +31,7 @@ const sampleApiResponse = {
     },
     {
       course_run_id: 'edX+DemoX+Demo_Course_2',
-      display_name: 'edX Demonstration Course 2',
+      display_name: 'This Is A Course With A Really Long Name That Should Wrap On Multiple Lines',
       resume_course_run_url: 'https://edx.org/',
       course_run_url: 'https://edx.org/',
       start_date: '2017-02-05T05:00:00Z',

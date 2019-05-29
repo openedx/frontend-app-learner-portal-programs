@@ -1,6 +1,26 @@
+@import "~@edx/edx-bootstrap/scss/edx/theme";
+
 .modal {
   .modal-title {
     font-size: 1.5rem;
     line-height: 1.5;
+  }
+
+  .save-email-settings-btn {
+    &:not(.is-form-changed):disabled {
+      @extend .btn-light;
+    }
+  }
+
+  .modal-footer {
+    .js-close-modal-on-click {
+      @extend .btn-link;
+      @extend .border-0;
+      background: $white;
+
+      &::before {
+        @extend .d-none;
+      }
+    }
   }
 }
