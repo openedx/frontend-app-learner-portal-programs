@@ -91,7 +91,7 @@ exports[`<CourseSection /> renders section if there are enrollments 1`] = `
               className="col"
             >
               <button
-                className="email-settings-btn btn btn-link p-0"
+                className="email-settings-btn btn btn-link p-0 mr-3"
                 onClick={[Function]}
               >
                 <svg
@@ -165,7 +165,7 @@ exports[`<CourseSection /> renders section if there are enrollments 1`] = `
               className="col"
             >
               <button
-                className="email-settings-btn btn btn-link p-0"
+                className="email-settings-btn btn btn-link p-0 mr-3"
                 onClick={[Function]}
               >
                 <svg
