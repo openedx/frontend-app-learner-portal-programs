@@ -53,6 +53,7 @@ class CourseSection extends React.Component {
                 key: courseData.course_run_id,
                 title: courseData.display_name,
                 microMastersTitle: courseData.micromasters_title,
+                hasEmailsEnabled: courseData.emails_enabled,
               };
               const cardProps = {};
               switch (status) {

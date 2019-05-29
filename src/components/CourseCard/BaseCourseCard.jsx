@@ -14,7 +14,7 @@ class BaseCourseCard extends Component {
     modals: {
       emailSettings: null,
     },
-    hasEmailsEnabled: this.props.hasEmailSettings || false,
+    hasEmailsEnabled: this.props.hasEmailsEnabled,
     hasNewEmailSettings: false,
   };
 
@@ -110,7 +110,7 @@ class BaseCourseCard extends Component {
             <div className="row no-gutters">
               <div className="col">
                 <button
-                  className="btn btn-link p-0 mr-3"
+                  className="email-settings-btn btn btn-link p-0 mr-3"
                   onClick={() => {
                     this.setModalState({
                       key: 'emailSettings',

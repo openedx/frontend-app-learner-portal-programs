@@ -9,7 +9,7 @@ import './EmailSettingsModal.scss';
 
 class EmailSettingsModal extends Component {
   state = {
-    hasEmailsEnabled: this.props.hasEmailsEnabled || false,
+    hasEmailsEnabled: this.props.hasEmailsEnabled,
     isSubmitting: false,
     isFormChanged: false,
     error: null,
@@ -69,65 +69,63 @@ class EmailSettingsModal extends Component {
     const { title } = this.props;
 
     return (
-      <>
-        <Modal
-          title={`Email Settings for ${title}`}
-          body={
-            <>
-              {error && (
-                <StatusAlert
-                  alertType="danger"
-                  dialog={
-                    <div className="d-flex">
-                      <div>
-                        <FontAwesomeIcon className="mr-3" icon={faExclamationTriangle} />
-                      </div>
-                      <div>
-                        An error occurred while saving your email settings. Please try again.
-                      </div>
+      <Modal
+        title={`Email Settings for ${title}`}
+        body={
+          <>
+            {error && (
+              <StatusAlert
+                alertType="danger"
+                dialog={
+                  <div className="d-flex">
+                    <div>
+                      <FontAwesomeIcon className="mr-3" icon={faExclamationTriangle} />
                     </div>
-                  }
-                  dismissible={false}
-                  open
-                />
-              )}
-              <div className="form-check">
-                <Input
-                  type="checkbox"
-                  id="email-settings"
-                  checked={hasEmailsEnabled}
-                  disabled={isSubmitting}
-                  onChange={this.handleEmailSettingsChange}
-                />
-                <label className="form-check-label font-weight-normal ml-2" htmlFor="email-settings">
-                  Receive course emails such as reminders, schedule updates, and
-                  other critical announcements.
-                </label>
-              </div>
-            </>
-          }
-          onClose={this.handleOnClose}
-          buttons={[
-            {
-              label: (
-                <>
-                  {isSubmitting &&
-                    <FontAwesomeIcon className="mr-2" icon={faSpinner} spin />
-                  }
-                  {isSubmitting ? 'Saving' : 'Save'}
-                  {' changes'}
-                  {isSubmitting && '...'}
-                </>
-              ),
-              className: classNames('save-email-settings-btn', { 'is-form-changed': isFormChanged }),
-              buttonType: 'primary',
-              disabled: isSubmitting || !isFormChanged,
-              onClick: this.handleSaveButtonClick,
-            },
-          ]}
-          open
-        />
-      </>
+                    <div>
+                      An error occurred while saving your email settings. Please try again.
+                    </div>
+                  </div>
+                }
+                dismissible={false}
+                open
+              />
+            )}
+            <div className="form-check">
+              <Input
+                type="checkbox"
+                id="email-settings"
+                checked={hasEmailsEnabled}
+                disabled={isSubmitting}
+                onChange={this.handleEmailSettingsChange}
+              />
+              <label className="form-check-label ml-2" htmlFor="email-settings">
+                Receive course emails such as reminders, schedule updates, and
+                other critical announcements.
+              </label>
+            </div>
+          </>
+        }
+        onClose={this.handleOnClose}
+        buttons={[
+          {
+            label: (
+              <>
+                {isSubmitting &&
+                  <FontAwesomeIcon className="mr-2" icon={faSpinner} spin />
+                }
+                {isSubmitting ? 'Saving' : 'Save'}
+                {' changes'}
+                {isSubmitting && '...'}
+              </>
+            ),
+            className: classNames('save-email-settings-btn', { 'is-form-changed': isFormChanged }),
+            buttonType: 'primary',
+            disabled: isSubmitting || !isFormChanged,
+            onClick: this.handleSaveButtonClick,
+          },
+        ]}
+        open
+      />
     );
   }
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import Hero from './Hero';
+import Hero from '../Hero';
 
 const heroData = {
   programTitle: 'Avengers: Basic Training',

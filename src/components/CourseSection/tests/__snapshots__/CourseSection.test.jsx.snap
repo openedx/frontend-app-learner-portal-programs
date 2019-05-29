@@ -1,0 +1,197 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CourseSection /> does not render section if there are no enrollments 1`] = `null`;
+
+exports[`<CourseSection /> renders section if there are enrollments 1`] = `
+<div
+  className="course-section mb-5"
+>
+  <div
+    className="collapsible open"
+  >
+    <button
+      aria-expanded={true}
+      className="btn btn-block text-left btn-collapsible open"
+      onBlur={[Function]}
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      type="button"
+    >
+      <div
+        className="collapsible-title d-flex align-items-center justify-content-between"
+      >
+        Example Title
+        <svg
+          aria-hidden="true"
+          className="svg-inline--fa fa-chevron-circle-up fa-w-16 text-primary"
+          data-icon="chevron-circle-up"
+          data-prefix="fas"
+          focusable="false"
+          role="img"
+          style={Object {}}
+          viewBox="0 0 512 512"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M8 256C8 119 119 8 256 8s248 111 248 248-111 248-248 248S8 393 8 256zm231-113.9L103.5 277.6c-9.4 9.4-9.4 24.6 0 33.9l17 17c9.4 9.4 24.6 9.4 33.9 0L256 226.9l101.6 101.6c9.4 9.4 24.6 9.4 33.9 0l17-17c9.4-9.4 9.4-24.6 0-33.9L273 142.1c-9.4-9.4-24.6-9.4-34 0z"
+            fill="currentColor"
+            style={Object {}}
+          />
+        </svg>
+      </div>
+    </button>
+    <div
+      className="collapsible-body open"
+    >
+      <div
+        className="card mb-4"
+      >
+        <div
+          className="card-body"
+        >
+          <div
+            className="row no-gutters mb-3"
+          >
+            <div
+              className="col-lg-12 col-xl-8"
+            >
+              <h3
+                className="card-title mb-1 font-weight-normal"
+              >
+                <a
+                  href="https://edx.org/"
+                >
+                  edX Demonstration Course
+                </a>
+              </h3>
+              <p
+                className="card-text"
+              >
+                Course 
+                ends
+                 on 
+                August 18, 2019
+              </p>
+            </div>
+            <div
+              className="col-lg-12 col-xl-4 text-xl-right mt-3 mt-xl-0"
+            >
+              <a
+                className="btn btn-primary btn-block"
+                href="https://edx.org/"
+              >
+                Continue Learning
+              </a>
+            </div>
+          </div>
+          <div
+            className="row no-gutters"
+          >
+            <div
+              className="col"
+            >
+              <button
+                className="email-settings-btn btn btn-link p-0 mr-3"
+                onClick={[Function]}
+              >
+                <svg
+                  aria-hidden="true"
+                  className="svg-inline--fa fa-cog fa-w-16 mr-2"
+                  data-icon="cog"
+                  data-prefix="fas"
+                  focusable="false"
+                  role="img"
+                  style={Object {}}
+                  viewBox="0 0 512 512"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M487.4 315.7l-42.6-24.6c4.3-23.2 4.3-47 0-70.2l42.6-24.6c4.9-2.8 7.1-8.6 5.5-14-11.1-35.6-30-67.8-54.7-94.6-3.8-4.1-10-5.1-14.8-2.3L380.8 110c-17.9-15.4-38.5-27.3-60.8-35.1V25.8c0-5.6-3.9-10.5-9.4-11.7-36.7-8.2-74.3-7.8-109.2 0-5.5 1.2-9.4 6.1-9.4 11.7V75c-22.2 7.9-42.8 19.8-60.8 35.1L88.7 85.5c-4.9-2.8-11-1.9-14.8 2.3-24.7 26.7-43.6 58.9-54.7 94.6-1.7 5.4.6 11.2 5.5 14L67.3 221c-4.3 23.2-4.3 47 0 70.2l-42.6 24.6c-4.9 2.8-7.1 8.6-5.5 14 11.1 35.6 30 67.8 54.7 94.6 3.8 4.1 10 5.1 14.8 2.3l42.6-24.6c17.9 15.4 38.5 27.3 60.8 35.1v49.2c0 5.6 3.9 10.5 9.4 11.7 36.7 8.2 74.3 7.8 109.2 0 5.5-1.2 9.4-6.1 9.4-11.7v-49.2c22.2-7.9 42.8-19.8 60.8-35.1l42.6 24.6c4.9 2.8 11 1.9 14.8-2.3 24.7-26.7 43.6-58.9 54.7-94.6 1.5-5.5-.7-11.3-5.6-14.1zM256 336c-44.1 0-80-35.9-80-80s35.9-80 80-80 80 35.9 80 80-35.9 80-80 80z"
+                    fill="currentColor"
+                    style={Object {}}
+                  />
+                </svg>
+                Email settings
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="card mb-4"
+      >
+        <div
+          className="card-body"
+        >
+          <div
+            className="row no-gutters mb-3"
+          >
+            <div
+              className="col-lg-12 col-xl-8"
+            >
+              <h3
+                className="card-title mb-1 font-weight-normal"
+              >
+                <a
+                  href="https://edx.org/"
+                >
+                  edX Demonstration Course 2
+                </a>
+              </h3>
+              <p
+                className="card-text"
+              >
+                Course 
+                ends
+                 on 
+                August 18, 2019
+              </p>
+            </div>
+            <div
+              className="col-lg-12 col-xl-4 text-xl-right mt-3 mt-xl-0"
+            >
+              <a
+                className="btn btn-primary btn-block"
+                href="https://edx.org/"
+              >
+                Continue Learning
+              </a>
+            </div>
+          </div>
+          <div
+            className="row no-gutters"
+          >
+            <div
+              className="col"
+            >
+              <button
+                className="email-settings-btn btn btn-link p-0 mr-3"
+                onClick={[Function]}
+              >
+                <svg
+                  aria-hidden="true"
+                  className="svg-inline--fa fa-cog fa-w-16 mr-2"
+                  data-icon="cog"
+                  data-prefix="fas"
+                  focusable="false"
+                  role="img"
+                  style={Object {}}
+                  viewBox="0 0 512 512"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M487.4 315.7l-42.6-24.6c4.3-23.2 4.3-47 0-70.2l42.6-24.6c4.9-2.8 7.1-8.6 5.5-14-11.1-35.6-30-67.8-54.7-94.6-3.8-4.1-10-5.1-14.8-2.3L380.8 110c-17.9-15.4-38.5-27.3-60.8-35.1V25.8c0-5.6-3.9-10.5-9.4-11.7-36.7-8.2-74.3-7.8-109.2 0-5.5 1.2-9.4 6.1-9.4 11.7V75c-22.2 7.9-42.8 19.8-60.8 35.1L88.7 85.5c-4.9-2.8-11-1.9-14.8 2.3-24.7 26.7-43.6 58.9-54.7 94.6-1.7 5.4.6 11.2 5.5 14L67.3 221c-4.3 23.2-4.3 47 0 70.2l-42.6 24.6c-4.9 2.8-7.1 8.6-5.5 14 11.1 35.6 30 67.8 54.7 94.6 3.8 4.1 10 5.1 14.8 2.3l42.6-24.6c17.9 15.4 38.5 27.3 60.8 35.1v49.2c0 5.6 3.9 10.5 9.4 11.7 36.7 8.2 74.3 7.8 109.2 0 5.5-1.2 9.4-6.1 9.4-11.7v-49.2c22.2-7.9 42.8-19.8 60.8-35.1l42.6 24.6c4.9 2.8 11 1.9 14.8-2.3 24.7-26.7 43.6-58.9 54.7-94.6 1.5-5.5-.7-11.3-5.6-14.1zM256 336c-44.1 0-80-35.9-80-80s35.9-80 80-80 80 35.9 80 80-35.9 80-80 80z"
+                    fill="currentColor"
+                    style={Object {}}
+                  />
+                </svg>
+                Email settings
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
