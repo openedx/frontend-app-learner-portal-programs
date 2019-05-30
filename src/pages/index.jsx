@@ -12,7 +12,7 @@ library.add(fas);
 
 const IndexPage = () => (
   <IntlProvider locale="en">
-    <Layout>
+    <Layout slug="page2">
       <DashboardHome />
     </Layout>
   </IntlProvider>

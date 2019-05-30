@@ -4,8 +4,25 @@ require('dotenv').config({
 
 module.exports = {
   siteMetadata: {
-    logo: 'https://www.edx.org/sites/default/files/open-edx-logo-with-reg.png',
-    siteName: 'Open Edx',
+    branding: {
+      logo: "https://via.placeholder.com/150/0000FF",
+      siteName: "HomeSite"
+    },
+    subpages: [
+      {
+        slug: "page1",
+        branding: {
+          logo: "https://via.placeholder.com/150/FF00FF",
+        }
+      },
+      {
+        slug: "page2",
+        branding: {
+          logo: "https://via.placeholder.com/150/FF00",
+          siteName: "Page2Site"
+        },
+      },
+    ]
   },
   plugins: [
     {
