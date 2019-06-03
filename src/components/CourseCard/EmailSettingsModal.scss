@@ -21,6 +21,11 @@
       &::before {
         @extend .d-none;
       }
+
+      &.btn-secondary:active {
+        @extend .btn-link;
+        background: $white;
+      }
     }
   }
 }

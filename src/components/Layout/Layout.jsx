@@ -3,6 +3,7 @@ import { StaticQuery, graphql } from 'gatsby';
 import PropTypes from 'prop-types';
 import SiteHeader from '@edx/frontend-component-site-header';
 import SiteFooter from '@edx/frontend-component-footer';
+import { connect } from 'react-redux';
 
 import './Layout.scss';
 
@@ -17,7 +18,7 @@ const LayoutQuery = graphql`
   }
 `;
 
-const Layout = ({ children }) => (
+const Layout = ({ children, username, avatar }) => (
   <StaticQuery
     query={LayoutQuery}
     render={data => (
@@ -38,9 +39,9 @@ const Layout = ({ children }) => (
               content: 'Progress',
             },
           ]}
-          loggedIn={false}
-          username="user"
-          avatar={null}
+          loggedIn={!!username}
+          username={username}
+          avatar={avatar}
           userMenu={[
             {
               type: 'item',
@@ -59,7 +60,7 @@ const Layout = ({ children }) => (
             },
             {
               type: 'item',
-              href: '#',
+              href: process.env.LOGOUT_URL,
               content: 'Logout',
             },
           ]}
@@ -95,10 +96,19 @@ const Layout = ({ children }) => (
 
 Layout.defaultProps = {
   children: [],
+  username: null,
+  avatar: null,
 };
 
 Layout.propTypes = {
   children: PropTypes.node,
+  username: PropTypes.string,
+  avatar: PropTypes.string,
 };
 
-export default Layout;
+const ConnectedLayout = connect(state => ({
+  username: state.authentication.username,
+  avatar: state.userAccount.profileImage.imageUrlMedium,
+}))(Layout);
+
+export default ConnectedLayout;

@@ -19,7 +19,7 @@ const sampleApiResponse = {
       due_dates: [{
         name: 'Assignment 1',
         url: 'https://edx.org',
-        date: '2019-05-31T07:50:00Z',
+        date: '2019-06-05T07:50:00Z',
       }, {
         name: 'Assignment 2',
         url: 'https://edx.org',

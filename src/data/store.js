@@ -12,7 +12,6 @@ import reducers from './reducers';
 const loggerMiddleware = createLogger();
 const routerHistoryMiddleware = routerMiddleware(history);
 
-
 const middleware = [thunkMiddleware, loggerMiddleware, routerHistoryMiddleware];
 
 const initialState = apiClient.getAuthenticationState();
