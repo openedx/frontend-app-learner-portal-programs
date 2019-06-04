@@ -1,6 +1,7 @@
 import React from 'react';
 import { IntlProvider } from 'react-intl';
 
+import withAuthentication from '../components/withAuthentication';
 import Layout from '../components/Layout/Layout';
 import DashboardHome from '../components/DashboardHome/DashboardHome';
 
@@ -12,4 +13,4 @@ const IndexPage = () => (
   </IntlProvider>
 );
 
-export default IndexPage;
+export default withAuthentication(IndexPage);
