@@ -2,7 +2,7 @@
 
 exports[`<Sidebar /> renders correctly 1`] = `
 Array [
-  <section
+  <div
     className="mb-5"
   >
     <h2
@@ -187,8 +187,8 @@ Array [
         show all 8
       </span>
     </button>
-  </section>,
-  <section
+  </div>,
+  <div
     className="mb-5"
   >
     <h2
@@ -245,8 +245,8 @@ Array [
         </svg>
       </a>
     </p>
-  </section>,
-  <section>
+  </div>,
+  <div>
     <h2
       className="mb-2"
     >
@@ -278,6 +278,6 @@ Array [
         </svg>
       </a>
     </p>
-  </section>,
+  </div>,
 ]
 `;
