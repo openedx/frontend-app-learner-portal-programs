@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const SidebarBlock = props => (
-  <section className={props.className}>
+  <div className={props.className}>
     <h2 className="mb-2">{props.title}</h2>
     {props.children}
-  </section>
+  </div>
 );
 
 SidebarBlock.propTypes = {

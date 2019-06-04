@@ -17,10 +17,9 @@ const Notification = props => (
           */}
           <div className="col-12">
             <a href={props.url}>{props.name}</a>
-            {' is due in '}
+            {' is due '}
             <span className="font-weight-bold">
-              {moment(props.date).diff(moment(), 'days')}
-              {' days'}
+              {moment(props.date).fromNow()}
             </span>
             {' on '}
             {moment(props.date).format('ddd MMMM D, YYYY')}
