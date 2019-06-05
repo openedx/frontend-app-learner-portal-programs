@@ -73,6 +73,7 @@ class BaseCourseCard extends Component {
       linkToCourse,
       hasEmailSettings,
       microMastersTitle,
+      courseRunId,
     } = this.props;
 
     return (
@@ -137,6 +138,7 @@ class BaseCourseCard extends Component {
                 {modals.emailSettings &&
                   <EmailSettingsModal
                     {...modals.emailSettings}
+                    courseRunId={courseRunId}
                     onClose={this.handleEmailSettingsModalOnClose}
                   />
                 }
@@ -152,6 +154,7 @@ class BaseCourseCard extends Component {
 BaseCourseCard.propTypes = {
   title: PropTypes.string.isRequired,
   linkToCourse: PropTypes.string.isRequired,
+  courseRunId: PropTypes.string.isRequired,
   buttons: PropTypes.element,
   children: PropTypes.node,
   startDate: PropTypes.string,
