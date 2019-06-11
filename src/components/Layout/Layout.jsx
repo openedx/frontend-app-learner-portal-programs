@@ -13,6 +13,7 @@ const LayoutQuery = graphql`
       siteMetadata {
         logo
         siteName
+        siteUrl
       }
     }
   }
@@ -25,7 +26,7 @@ const Layout = ({ children, username, avatar }) => (
       <>
         <SiteHeader
           logo={data.site.siteMetadata.logo}
-          logoDestination={`${data.site.siteMetadata.siteUrl}`}
+          logoDestination={data.site.siteMetadata.siteUrl}
           logoAltText={data.site.siteMetadata.siteName}
           loggedIn={!!username}
           username={username}
