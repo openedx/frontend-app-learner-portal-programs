@@ -25,7 +25,7 @@ const Layout = ({ children, username, avatar }) => (
       <>
         <SiteHeader
           logo={data.site.siteMetadata.logo}
-          logoDestination="https://www.edx.org/"
+          logoDestination={`${data.site.siteMetadata.siteUrl}`}
           logoAltText={data.site.siteMetadata.siteName}
           loggedIn={!!username}
           username={username}
@@ -48,7 +48,7 @@ const Layout = ({ children, username, avatar }) => (
             },
             {
               type: 'item',
-              href: `${process.env.LMS_BASE_URL}/account/settings`,
+              href: `${process.env.LMS_BASE_URL}/`,
               content: 'Account Settings',
             },
             {
