@@ -51,6 +51,7 @@ class CourseSection extends React.Component {
               const { status } = courseData;
               const defaultCardProps = {
                 key: courseData.course_run_id,
+                courseRunId: courseData.course_run_id,
                 title: courseData.display_name,
                 microMastersTitle: courseData.micromasters_title,
                 hasEmailsEnabled: courseData.emails_enabled,

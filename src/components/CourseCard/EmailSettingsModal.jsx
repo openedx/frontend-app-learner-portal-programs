@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Input, Modal, StatusAlert } from '@edx/paragon';
 import { faExclamationTriangle, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import updateEmailSettings from '../../data/actions/emailSettings';
 import './EmailSettingsModal.scss';
 
 class EmailSettingsModal extends Component {
@@ -26,21 +28,12 @@ class EmailSettingsModal extends Component {
 
   handleSaveButtonClick = () => {
     const { hasEmailsEnabled } = this.state;
-    // TODO: Make API POST request to set the new email settings.
+    const { courseRunId, updateEmailSettings } = this.props; // eslint-disable-line no-shadow
+
     this.setState({
       isSubmitting: true,
     }, () => {
-      /* This callback function simulates an API call to save the
-       * new email settings. There are lines below to either
-       * resolve (200 response) or reject the promise (error response). To
-       * see what happens when the promise is rejected, switch the comments.
-       */
-
-      // eslint-disable-next-line no-unused-vars
-      new Promise((resolve, reject) => {
-        setTimeout(resolve, 2000);
-        // setTimeout(() => reject(new Error('Network Error')), 2000);
-      })
+      updateEmailSettings(courseRunId, hasEmailsEnabled)
         .then(() => {
           this.props.onClose(hasEmailsEnabled);
         })
@@ -134,7 +127,19 @@ EmailSettingsModal.propTypes = {
   title: PropTypes.string.isRequired,
   hasEmailsEnabled: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
+  updateEmailSettings: PropTypes.func.isRequired,
+  courseRunId: PropTypes.string.isRequired,
 };
 
+const mapDispatchToProps = dispatch => ({
+  updateEmailSettings: (courseRunId, hasEmailsEnabled) => new Promise((resolve, reject) => {
+    dispatch(updateEmailSettings({
+      courseRunId,
+      hasEmailsEnabled,
+      onSuccess: (response) => { resolve(response); },
+      onError: (error) => { reject(error); },
+    }));
+  }),
+});
 
-export default EmailSettingsModal;
+export default connect(null, mapDispatchToProps)(EmailSettingsModal);
