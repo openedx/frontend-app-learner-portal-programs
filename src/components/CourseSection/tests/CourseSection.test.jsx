@@ -2,6 +2,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import { mount } from 'enzyme';
 
+import * as analytics from '@edx/frontend-analytics';
 import CourseSection from '../CourseSection';
 import InProgressCourseCard from '../../CourseCard/InProgressCourseCard';
 
@@ -54,6 +55,7 @@ describe('<CourseSection />', () => {
   it('properly handles collapsible behavior', () => {
     const sectionTitle = 'Example Title';
     const enrollments = [sampleEnrollmentData];
+    analytics.sendTrackEvent = jest.fn();
     const wrapper = mount((
       <CourseSection
         title={sectionTitle}
@@ -66,6 +68,7 @@ describe('<CourseSection />', () => {
 
     wrapper.find('.btn-collapsible').first().simulate('click');
 
+    expect(analytics.sendTrackEvent).toHaveBeenCalled();
     expect(wrapper.state('isOpen')).toBeFalsy();
     expect(wrapper.find('.collapsible-title').text()).toEqual(`${sectionTitle} (${enrollments.length})`);
   });

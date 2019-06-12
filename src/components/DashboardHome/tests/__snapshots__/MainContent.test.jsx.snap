@@ -141,6 +141,7 @@ Array [
                 <a
                   className="btn btn-primary btn-block"
                   href="https://edx.org/"
+                  onClick={[Function]}
                 >
                   Continue Learning
                 </a>
@@ -258,6 +259,7 @@ Array [
                 <a
                   className="btn btn-block btn-outline-primary btn-course-link mb-2"
                   href="https://edx.org/"
+                  onClick={[Function]}
                 >
                   View Course
                 </a>

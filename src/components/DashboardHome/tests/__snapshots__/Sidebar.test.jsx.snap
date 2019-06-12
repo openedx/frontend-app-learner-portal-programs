@@ -37,6 +37,7 @@ Array [
           </svg>
           <a
             href="https://edx.org/degree-requirements"
+            onClick={[Function]}
             rel="noopener noreferrer"
             target="_blank"
           >
@@ -65,6 +66,7 @@ Array [
           </svg>
           <a
             href="https://edx.org/student-record"
+            onClick={[Function]}
             rel="noopener noreferrer"
             target="_blank"
           >
@@ -93,6 +95,7 @@ Array [
           </svg>
           <a
             href="https://edx.org/test-1"
+            onClick={[Function]}
             rel="noopener noreferrer"
             target="_blank"
           >
@@ -121,6 +124,7 @@ Array [
           </svg>
           <a
             href="https://edx.org/test-2"
+            onClick={[Function]}
             rel="noopener noreferrer"
             target="_blank"
           >
@@ -149,6 +153,7 @@ Array [
           </svg>
           <a
             href="https://edx.org/test-3"
+            onClick={[Function]}
             rel="noopener noreferrer"
             target="_blank"
           >
@@ -222,6 +227,7 @@ Array [
     <p>
       <a
         href="https://www.edx.org/"
+        onClick={[Function]}
         rel="noopener noreferrer"
         target="_blank"
       >
@@ -255,6 +261,7 @@ Array [
     <p>
       <a
         href="https://www.edx.org/"
+        onClick={[Function]}
         rel="noopener noreferrer"
         target="_blank"
       >

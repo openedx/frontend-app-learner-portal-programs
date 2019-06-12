@@ -1,4 +1,5 @@
 import React from 'react';
+import { sendTrackEvent } from '@edx/frontend-analytics';
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -22,7 +23,12 @@ const Sidebar = () => (
         <li>and more</li>
       </ul>
       <p>
-        <a href="https://www.edx.org/" target="_blank" rel="noopener noreferrer">
+        <a
+          href="https://www.edx.org/"
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={() => { sendTrackEvent('edx.learner_portal.school_portal_link.clicked'); }}
+        >
           Go to Georgia Tech portal
           <FontAwesomeIcon className="ml-2 text-primary" icon={faExternalLinkAlt} size="sm" />
         </a>
@@ -30,7 +36,12 @@ const Sidebar = () => (
     </SidebarBlock>
     <SidebarBlock title="Get Technical Support">
       <p>
-        <a href="https://www.edx.org/" target="_blank" rel="noopener noreferrer">
+        <a
+          href="https://www.edx.org/"
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={() => { sendTrackEvent('edx.learner_portal.support_link.clicked'); }}
+        >
           Go to edX help center
           <FontAwesomeIcon className="ml-2 text-primary" icon={faExternalLinkAlt} size="sm" />
         </a>

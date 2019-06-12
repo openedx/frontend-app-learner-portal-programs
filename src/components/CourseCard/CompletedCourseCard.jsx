@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { sendTrackEvent } from '@edx/frontend-analytics';
 
 import BaseCourseCard from './BaseCourseCard';
 
@@ -9,6 +10,7 @@ const CompletedCourseCard = (props) => {
       <a
         className="btn btn-block btn-outline-primary btn-course-link mb-2"
         href={props.linkToCourse}
+        onClick={() => { sendTrackEvent('edx.learner_portal.completed_course.viewed', { course_run_id: props.courseRunId }); }}
       >
         View Course
       </a>
@@ -16,6 +18,7 @@ const CompletedCourseCard = (props) => {
         <a
           className="btn btn-block btn-outline-primary btn-course-link"
           href={props.linkToCertificate}
+          onClick={() => { sendTrackEvent('edx.learner_portal.certificate.viewed', { course_run_id: props.courseRunId }); }}
         >
           View Certificate
         </a>
@@ -35,6 +38,7 @@ const CompletedCourseCard = (props) => {
 CompletedCourseCard.propTypes = {
   linkToCourse: PropTypes.string.isRequired,
   linkToCertificate: PropTypes.string,
+  courseRunId: PropTypes.string.isRequired,
 };
 
 CompletedCourseCard.defaultProps = {

@@ -2,6 +2,15 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchUserAccount as _fetchUserAccount, UserAccountApiService } from '@edx/frontend-auth';
+import {
+  configureAnalytics,
+  identifyAuthenticatedUser,
+  identifyAnonymousUser,
+  initializeSegment,
+  sendPageEvent,
+} from '@edx/frontend-analytics';
+
+import { configureLoggingService, NewRelicLoggingService } from '@edx/frontend-logging';
 
 import apiClient from '../../data/apiClient';
 
@@ -26,12 +35,26 @@ const withAuthentication = (WrappedComponent) => {
     componentDidMount() {
       const { username, location, fetchUserAccount } = this.props;
 
-      apiClient.ensurePublicOrAuthenticationAndCookies(location.pathname, async () => {
+      apiClient.ensurePublicOrAuthenticationAndCookies(location.pathname, async (accessToken) => {
+        configureLoggingService(NewRelicLoggingService);
+        initializeSegment(process.env.SEGMENT_KEY);
+        configureAnalytics({
+          loggingService: NewRelicLoggingService,
+          authApiClient: apiClient,
+          analyticsApiBaseUrl: process.env.LMS_BASE_URL,
+        });
+
         const userAccountApiService = new UserAccountApiService(
           apiClient,
           process.env.LMS_BASE_URL,
         );
         await fetchUserAccount(userAccountApiService, username);
+        if (accessToken) {
+          identifyAuthenticatedUser(accessToken.user_id);
+        } else {
+          identifyAnonymousUser();
+        }
+        sendPageEvent();
         this.setState({ isLoading: false });
       });
     }

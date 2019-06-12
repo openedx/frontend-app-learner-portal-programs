@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
+import { sendTrackEvent } from '@edx/frontend-analytics';
 import { StatusAlert } from '@edx/paragon';
 
 const Notification = props => (
@@ -16,7 +17,12 @@ const Notification = props => (
             and use `.col-10` here instead.
           */}
           <div className="col-12">
-            <a href={props.url}>{props.name}</a>
+            <a
+              href={props.url}
+              onClick={() => { sendTrackEvent('edx.learner_portal.notification.clicked', { course_run_id: props.courseRunId, name: props.name }); }}
+            >
+              {props.name}
+            </a>
             {' is due '}
             <span className="font-weight-bold">
               {moment(props.date).fromNow()}
@@ -35,6 +41,7 @@ Notification.propTypes = {
   name: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
+  courseRunId: PropTypes.string.isRequired,
 };
 
 export default Notification;
