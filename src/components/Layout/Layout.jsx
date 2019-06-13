@@ -49,7 +49,7 @@ const Layout = ({ children, username, avatar }) => (
             },
             {
               type: 'item',
-              href: `${process.env.LMS_BASE_URL}/`,
+              href: `${process.env.LMS_BASE_URL}/account/settings`,
               content: 'Account Settings',
             },
             {
