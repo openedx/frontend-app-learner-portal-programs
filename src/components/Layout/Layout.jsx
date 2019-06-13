@@ -13,6 +13,7 @@ const LayoutQuery = graphql`
       siteMetadata {
         logo
         siteName
+        siteUrl
       }
     }
   }
@@ -25,43 +26,36 @@ const Layout = ({ children, username, avatar }) => (
       <>
         <SiteHeader
           logo={data.site.siteMetadata.logo}
-          logoDestination="http://example.com"
+          logoDestination={data.site.siteMetadata.siteUrl}
           logoAltText={data.site.siteMetadata.siteName}
-          mainMenu={[
-            {
-              type: 'item',
-              href: '#',
-              content: 'Courses',
-            },
-            {
-              type: 'item',
-              href: '#',
-              content: 'Progress',
-            },
-          ]}
           loggedIn={!!username}
           username={username}
           avatar={avatar}
           userMenu={[
             {
               type: 'item',
-              href: '#',
+              href: process.env.LMS_BASE_URL,
               content: 'Dashboard',
             },
             {
               type: 'item',
-              href: '#',
+              href: '/',
+              content: 'My Masters Degree',
+            },
+            {
+              type: 'item',
+              href: `${process.env.LMS_BASE_URL}/u/${username}`,
               content: 'Profile',
             },
             {
               type: 'item',
-              href: '#',
+              href: `${process.env.LMS_BASE_URL}/account/settings`,
               content: 'Account Settings',
             },
             {
               type: 'item',
               href: process.env.LOGOUT_URL,
-              content: 'Logout',
+              content: 'Sign out',
             },
           ]}
           loggedOutItems={[

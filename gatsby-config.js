@@ -6,6 +6,7 @@ module.exports = {
   siteMetadata: {
     logo: 'https://www.edx.org/sites/default/files/open-edx-logo-with-reg.png',
     siteName: 'Open Edx',
+    siteUrl: 'https://www.edx.org/',
   },
   plugins: [
     {
