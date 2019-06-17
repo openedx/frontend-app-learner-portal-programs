@@ -48,7 +48,7 @@ class CourseSection extends React.Component {
             isOpen
           >
             {enrollments.map((courseData) => {
-              const { status } = courseData;
+              const { course_run_status: status } = courseData;
               const defaultCardProps = {
                 key: courseData.course_run_id,
                 courseRunId: courseData.course_run_id,
@@ -58,9 +58,13 @@ class CourseSection extends React.Component {
               };
               const cardProps = {};
               switch (status) {
-                case 'in-progress':
+                case 'in_progress':
                   cardProps.endDate = courseData.end_date;
-                  cardProps.linkToCourse = courseData.resume_course_run_url;
+                  // The link to course here gives precedence to the resume course link, which is
+                  // present if the learner has made progress. If the learner has not made progress,
+                  // we should link to the main course run URL.
+                  cardProps.linkToCourse = courseData.resume_course_run_url ||
+                    courseData.course_run_url;
                   cardProps.notifications = courseData.due_dates;
                   break;
                 case 'upcoming':
@@ -70,6 +74,7 @@ class CourseSection extends React.Component {
                 case 'completed':
                   cardProps.endDate = courseData.end_date;
                   cardProps.linkToCourse = courseData.course_run_url;
+                  cardProps.linkToCertificate = courseData.certificate_download_url;
                   break;
                 default:
                   break;

@@ -3,7 +3,7 @@ import MediaQuery from 'react-responsive';
 import { breakpoints } from '@edx/paragon';
 
 import Hero from '../Hero/Hero';
-import MainContent from '../../containers/DashboardHome/MainContent';
+import MainContent from './MainContent';
 import Sidebar from './Sidebar';
 
 import './DashboardHome.scss';

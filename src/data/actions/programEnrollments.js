@@ -1,31 +1,30 @@
 import {
-  PROGRAMS_REQUEST,
-  PROGRAMS_SUCCESS,
-  PROGRAMS_FAILURE,
-  CLEAR_PROGRAMS,
+  PROGRAM_ENROLLMENTS_REQUEST,
+  PROGRAM_ENROLLMENTS_SUCCESS,
+  PROGRAM_ENROLLMENTS_FAILURE,
+  CLEAR_PROGRAM_ENROLLMENTS,
 } from '../constants/programEnrollments';
 import LmsApiService from '../services/LmsApiService';
 
 const fetchProgramEnrollmentOverviewRequest = () => ({
-  type: PROGRAMS_REQUEST,
+  type: PROGRAM_ENROLLMENTS_REQUEST,
 });
 
 const fetchProgramEnrollmentOverviewSuccess = data => ({
-  type: PROGRAMS_SUCCESS,
+  type: PROGRAM_ENROLLMENTS_SUCCESS,
   payload: {
     data,
   },
 });
 
 const fetchProgramEnrollmentOverviewFailure = error => ({
-  type: PROGRAMS_FAILURE,
+  type: PROGRAM_ENROLLMENTS_FAILURE,
   payload: {
     error,
   },
 });
 
-
-const clearProgramEnrollmentOverviewEvent = () => ({ type: CLEAR_PROGRAMS });
+const clearProgramEnrollmentOverviewEvent = () => ({ type: CLEAR_PROGRAM_ENROLLMENTS });
 
 const fetchProgramEnrollmentOverview = options => (
   (dispatch) => {
@@ -35,17 +34,10 @@ const fetchProgramEnrollmentOverview = options => (
         dispatch(fetchProgramEnrollmentOverviewSuccess(response.data));
       })
       .catch((error) => {
-        // This endpoint returns a 404 if no data exists,
-        // so we convert it to an empty response here.
-        if (error.response.status === 404) {
-          dispatch(fetchProgramEnrollmentOverviewSuccess({ results: [] }));
-          return;
-        }
         dispatch(fetchProgramEnrollmentOverviewFailure(error));
       });
   }
 );
-
 
 const clearProgramEnrollmentOverview = () => (
   (dispatch) => {

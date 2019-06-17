@@ -1,8 +1,8 @@
 import {
-  PROGRAMS_REQUEST,
-  PROGRAMS_SUCCESS,
-  PROGRAMS_FAILURE,
-  CLEAR_PROGRAMS,
+  PROGRAM_ENROLLMENTS_REQUEST,
+  PROGRAM_ENROLLMENTS_SUCCESS,
+  PROGRAM_ENROLLMENTS_FAILURE,
+  CLEAR_PROGRAM_ENROLLMENTS,
 } from '../constants/programEnrollments';
 
 const initialState = {
@@ -15,32 +15,30 @@ const initialState = {
 
 const programEnrollmentsReducer = (state = initialState, action) => {
   switch (action.type) {
-    case PROGRAMS_REQUEST:
+    case PROGRAM_ENROLLMENTS_REQUEST:
       return {
         ...state,
         loading: true,
         error: null,
       };
-    case PROGRAMS_SUCCESS:
+    case PROGRAM_ENROLLMENTS_SUCCESS:
       return {
         ...state,
         loading: false,
         error: null,
-        data: action.payload.data,
+        courseRuns: action.payload.data.course_runs,
       };
-    case PROGRAMS_FAILURE:
+    case PROGRAM_ENROLLMENTS_FAILURE:
       return {
         ...state,
         loading: false,
         error: action.payload.error,
       };
-    case CLEAR_PROGRAMS:
+    case CLEAR_PROGRAM_ENROLLMENTS:
       return {
         loading: false,
         error: null,
-        data: {
-          course_runs: [],
-        },
+        courseRuns: [],
       };
     default:
       return state;

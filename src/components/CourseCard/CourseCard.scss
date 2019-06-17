@@ -8,6 +8,8 @@
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.3);
 
   &.is-micromasters {
+    min-height: 170px;
+
     &::before {
       content: '';
       position: absolute;
