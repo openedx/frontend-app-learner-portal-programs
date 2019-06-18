@@ -15,7 +15,7 @@ const CompletedCourseCard = (props) => {
       {props.linkToCertificate && (
         <a
           className="btn btn-block btn-outline-primary btn-course-link"
-          href={props.linkToCourse}
+          href={props.linkToCertificate}
         >
           View Certificate
         </a>
