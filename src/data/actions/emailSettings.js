@@ -30,17 +30,18 @@ const updateEmailSettings = ({
   onSuccess = () => {},
   onError = () => {},
 }) => (
-  (dispatch) => {
+  async (dispatch) => {
     dispatch(updateEmailSettingsRequest());
-    return LmsApiService.updateEmailSettings(courseRunId, hasEmailsEnabled)
-      .then((response) => {
-        dispatch(updateEmailSettingsSuccess(response.data));
-        onSuccess(hasEmailsEnabled);
-      })
-      .catch((error) => {
-        dispatch(updateEmailSettingsFailure(error));
-        onError(error);
-      });
+    let response;
+    try {
+      response = await LmsApiService.updateEmailSettings(courseRunId, hasEmailsEnabled);
+      dispatch(updateEmailSettingsSuccess(response.data));
+      onSuccess(hasEmailsEnabled);
+    } catch (error) {
+      dispatch(updateEmailSettingsFailure(error));
+      onError(error);
+    }
+    return response;
   }
 );
 

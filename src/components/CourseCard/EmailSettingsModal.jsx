@@ -32,17 +32,16 @@ class EmailSettingsModal extends Component {
 
     this.setState({
       isSubmitting: true,
-    }, () => {
-      updateEmailSettings(courseRunId, hasEmailsEnabled)
-        .then(() => {
-          this.props.onClose(hasEmailsEnabled);
-        })
-        .catch((error) => {
-          this.setState({
-            isSubmitting: false,
-            error,
-          });
+    }, async () => {
+      try {
+        await updateEmailSettings(courseRunId, hasEmailsEnabled);
+        this.props.onClose(hasEmailsEnabled);
+      } catch (error) {
+        this.setState({
+          isSubmitting: false,
+          error,
         });
+      }
     });
   };
 
