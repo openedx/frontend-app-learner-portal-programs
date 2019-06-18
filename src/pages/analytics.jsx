@@ -2,14 +2,14 @@ import React from 'react';
 import { IntlProvider } from 'react-intl';
 
 import Layout from '../components/Layout/Layout';
-import MastersTable from '../components/MastersTable/MastersTable';
+import DashboardHome from '../components/DashboardHome/DashboardHome';
 
 
-const MastersList = () => (
+const LearnersPortal = () => (
   <IntlProvider locale="en">
     <Layout>
-      <MastersTable />
+      <DashboardHome />
     </Layout>
   </IntlProvider>
 );
-export default MastersList;
+export default LearnersPortal;

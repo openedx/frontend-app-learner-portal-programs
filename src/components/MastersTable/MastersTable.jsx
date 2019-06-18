@@ -8,13 +8,8 @@ class MastersTable extends Component {
     this.state = {
       masters: [{
         university: 'Georgia Tech',
-        url: '/',
+        url: '/analytics',
         programName: 'Analytics Program',
-      },
-      {
-        university: 'Georgia Tech',
-        url: '/',
-        programName: 'Computer Science Program',
       }],
     };
   }
@@ -25,38 +20,32 @@ class MastersTable extends Component {
 
   render() {
     return (
-      <div>
-        <MastersTableItems masters={this.state.masters} />
+      <div className="container">
+        <h1> Master Degree List </h1>
+        <div className="table-responsive">
+          <table className={classNames('table', 'table-sm', 'table-striped')}>
+            <thead>
+              <tr>
+                <th>University</th>
+                <th>Program Name</th>
+              </tr>
+            </thead>
+            <tbody>
+              {
+                this.state.masters.map(program => (
+                  <tr key={program.programName}>
+                    <td>{program.university}</td>
+                    <td><a href={`${program.url}`}>{program.programName}</a></td>
+                  </tr>
+                    ))
+            }
+            </tbody>
+          </table>
+        </div>
       </div>
+
     );
   }
 }
 
 export default MastersTable;
-
-const MastersTableItems = props => (
-  <div className="container">
-    <h1> Master Degree List </h1>
-    <div className="table-responsive">
-      <table className={classNames('table', 'table-sm', 'table-striped')}>
-        <thead>
-          <tr>
-            <th>University</th>
-            <th>Program Name</th>
-          </tr>
-        </thead>
-        <tbody>
-          {
-              props.masters.map(program => (
-                <tr key={program.programName}>
-                  <td>{program.university}</td>
-                  <td><a href={`${program.url}`}>{program.programName}</a></td>
-                </tr>
-                  ))
-          }
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-);
