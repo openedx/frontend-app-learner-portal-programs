@@ -64,5 +64,3 @@ public
 # Cookie cutter
 dist/
 .idea
-
-.vscode
