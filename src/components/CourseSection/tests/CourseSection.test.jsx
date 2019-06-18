@@ -6,17 +6,18 @@ import CourseSection from '../CourseSection';
 import InProgressCourseCard from '../../CourseCard/InProgressCourseCard';
 
 const sampleEnrollmentData = {
-  course_run_id: 'edX+DemoX+Demo_Course',
-  display_name: 'edX Demonstration Course',
-  resume_course_run_url: 'https://edx.org/',
+  course_run_id: 'course-v1:edX+DemoX+Demo_Course',
+  course_run_status: 'in_progress',
   course_run_url: 'https://edx.org/',
+  display_name: 'edX Demonstration Course',
+  due_dates: [{
+    name: 'Assignment 1',
+    url: 'https://edx.org/',
+    date: '2019-05-31T07:50:00Z',
+  }],
   start_date: '2017-02-05T05:00:00Z',
   end_date: '2019-08-18T05:00:00Z',
-  emails_enabled: true,
-  due_dates: [],
   micromasters_title: null,
-  certificate_generation_url: null,
-  status: 'in-progress',
 };
 
 describe('<CourseSection />', () => {
@@ -41,7 +42,7 @@ describe('<CourseSection />', () => {
           component={InProgressCourseCard}
           enrollments={[sampleEnrollmentData, {
             ...sampleEnrollmentData,
-            course_run_id: 'edX+DemoX+Demo_Course_2',
+            course_run_id: 'course-v1:edX+DemoX+Demo_Course_2',
             display_name: 'edX Demonstration Course 2',
           }]}
         />

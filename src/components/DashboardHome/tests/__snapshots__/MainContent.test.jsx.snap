@@ -1,0 +1,272 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<MainContent /> renders correctly with error state 1`] = `
+<div
+  className="alert fade alert-danger show"
+  hidden={false}
+  role="alert"
+>
+  <div
+    className="alert-dialog"
+  >
+    <div
+      className="d-flex"
+    >
+      <div>
+        <svg
+          aria-hidden="true"
+          className="svg-inline--fa fa-exclamation-triangle fa-w-18 mr-2"
+          data-icon="exclamation-triangle"
+          data-prefix="fas"
+          focusable="false"
+          role="img"
+          style={Object {}}
+          viewBox="0 0 576 512"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M569.517 440.013C587.975 472.007 564.806 512 527.94 512H48.054c-36.937 0-59.999-40.055-41.577-71.987L246.423 23.985c18.467-32.009 64.72-31.951 83.154 0l239.94 416.028zM288 354c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"
+            fill="currentColor"
+            style={Object {}}
+          />
+        </svg>
+      </div>
+      <div>
+        An error occurred while retrieving your program enrollments. Please try again.
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<MainContent /> renders correctly with loading state 1`] = `
+<div
+  className="d-flex justify-content-center align-items-center"
+>
+  <div
+    className="spinner-border text-primary"
+    role="status"
+  >
+    <div
+      className="sr-only"
+    >
+      Loading program enrollments...
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<MainContent /> renders correctly with no program enrollments course runs data 1`] = `null`;
+
+exports[`<MainContent /> renders correctly with program enrollments course runs data 1`] = `
+Array [
+  <div
+    className="course-section mb-5"
+  >
+    <div
+      className="collapsible open"
+    >
+      <button
+        aria-expanded={true}
+        className="btn btn-block text-left btn-collapsible open"
+        onBlur={[Function]}
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        type="button"
+      >
+        <div
+          className="collapsible-title d-flex align-items-center justify-content-between"
+        >
+          My Courses In Progress
+          <svg
+            aria-hidden="true"
+            className="svg-inline--fa fa-chevron-circle-up fa-w-16 text-primary"
+            data-icon="chevron-circle-up"
+            data-prefix="fas"
+            focusable="false"
+            role="img"
+            style={Object {}}
+            viewBox="0 0 512 512"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M8 256C8 119 119 8 256 8s248 111 248 248-111 248-248 248S8 393 8 256zm231-113.9L103.5 277.6c-9.4 9.4-9.4 24.6 0 33.9l17 17c9.4 9.4 24.6 9.4 33.9 0L256 226.9l101.6 101.6c9.4 9.4 24.6 9.4 33.9 0l17-17c9.4-9.4 9.4-24.6 0-33.9L273 142.1c-9.4-9.4-24.6-9.4-34 0z"
+              fill="currentColor"
+              style={Object {}}
+            />
+          </svg>
+        </div>
+      </button>
+      <div
+        className="collapsible-body open"
+      >
+        <div
+          className="card mb-4 is-micromasters"
+        >
+          <div
+            className="card-body"
+          >
+            <div
+              className="row no-gutters mb-3"
+            >
+              <div
+                className="col-lg-12 col-xl-8"
+              >
+                <p
+                  className="font-weight-bold w-75 mb-2"
+                >
+                  Example MicroMasters Program
+                </p>
+                <h3
+                  className="card-title mb-1 font-weight-normal"
+                >
+                  <a
+                    href="https://edx.org/"
+                  >
+                    edX Demonstration Course 2
+                  </a>
+                </h3>
+                <p
+                  className="card-text"
+                >
+                  Course 
+                  ended
+                   on 
+                  August 18, 2018
+                </p>
+              </div>
+              <div
+                className="col-lg-12 col-xl-4 text-xl-right mt-3 mt-xl-0"
+              >
+                <a
+                  className="btn btn-primary btn-block"
+                  href="https://edx.org/"
+                >
+                  Continue Learning
+                </a>
+              </div>
+            </div>
+            <div
+              className="row no-gutters"
+            >
+              <div
+                className="col"
+              >
+                <button
+                  className="email-settings-btn btn btn-link p-0 mr-3"
+                  onClick={[Function]}
+                >
+                  <svg
+                    aria-hidden="true"
+                    className="svg-inline--fa fa-cog fa-w-16 mr-2"
+                    data-icon="cog"
+                    data-prefix="fas"
+                    focusable="false"
+                    role="img"
+                    style={Object {}}
+                    viewBox="0 0 512 512"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M487.4 315.7l-42.6-24.6c4.3-23.2 4.3-47 0-70.2l42.6-24.6c4.9-2.8 7.1-8.6 5.5-14-11.1-35.6-30-67.8-54.7-94.6-3.8-4.1-10-5.1-14.8-2.3L380.8 110c-17.9-15.4-38.5-27.3-60.8-35.1V25.8c0-5.6-3.9-10.5-9.4-11.7-36.7-8.2-74.3-7.8-109.2 0-5.5 1.2-9.4 6.1-9.4 11.7V75c-22.2 7.9-42.8 19.8-60.8 35.1L88.7 85.5c-4.9-2.8-11-1.9-14.8 2.3-24.7 26.7-43.6 58.9-54.7 94.6-1.7 5.4.6 11.2 5.5 14L67.3 221c-4.3 23.2-4.3 47 0 70.2l-42.6 24.6c-4.9 2.8-7.1 8.6-5.5 14 11.1 35.6 30 67.8 54.7 94.6 3.8 4.1 10 5.1 14.8 2.3l42.6-24.6c17.9 15.4 38.5 27.3 60.8 35.1v49.2c0 5.6 3.9 10.5 9.4 11.7 36.7 8.2 74.3 7.8 109.2 0 5.5-1.2 9.4-6.1 9.4-11.7v-49.2c22.2-7.9 42.8-19.8 60.8-35.1l42.6 24.6c4.9 2.8 11 1.9 14.8-2.3 24.7-26.7 43.6-58.9 54.7-94.6 1.5-5.5-.7-11.3-5.6-14.1zM256 336c-44.1 0-80-35.9-80-80s35.9-80 80-80 80 35.9 80 80-35.9 80-80 80z"
+                      fill="currentColor"
+                      style={Object {}}
+                    />
+                  </svg>
+                  Email settings
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>,
+  <div
+    className="course-section mb-5"
+  >
+    <div
+      className="collapsible open"
+    >
+      <button
+        aria-expanded={true}
+        className="btn btn-block text-left btn-collapsible open"
+        onBlur={[Function]}
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        type="button"
+      >
+        <div
+          className="collapsible-title d-flex align-items-center justify-content-between"
+        >
+          Completed Courses
+          <svg
+            aria-hidden="true"
+            className="svg-inline--fa fa-chevron-circle-up fa-w-16 text-primary"
+            data-icon="chevron-circle-up"
+            data-prefix="fas"
+            focusable="false"
+            role="img"
+            style={Object {}}
+            viewBox="0 0 512 512"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M8 256C8 119 119 8 256 8s248 111 248 248-111 248-248 248S8 393 8 256zm231-113.9L103.5 277.6c-9.4 9.4-9.4 24.6 0 33.9l17 17c9.4 9.4 24.6 9.4 33.9 0L256 226.9l101.6 101.6c9.4 9.4 24.6 9.4 33.9 0l17-17c9.4-9.4 9.4-24.6 0-33.9L273 142.1c-9.4-9.4-24.6-9.4-34 0z"
+              fill="currentColor"
+              style={Object {}}
+            />
+          </svg>
+        </div>
+      </button>
+      <div
+        className="collapsible-body open"
+      >
+        <div
+          className="card mb-4"
+        >
+          <div
+            className="card-body"
+          >
+            <div
+              className="row no-gutters mb-3"
+            >
+              <div
+                className="col-lg-12 col-xl-8"
+              >
+                <h3
+                  className="card-title mb-1 font-weight-normal"
+                >
+                  <a
+                    href="https://edx.org/"
+                  >
+                    edX Demonstration Course
+                  </a>
+                </h3>
+                <p
+                  className="card-text"
+                >
+                  Course 
+                  ended
+                   on 
+                  August 18, 2018
+                </p>
+              </div>
+              <div
+                className="col-lg-12 col-xl-4 text-xl-right mt-3 mt-xl-0"
+              >
+                <a
+                  className="btn btn-block btn-outline-primary btn-course-link mb-2"
+                  href="https://edx.org/"
+                >
+                  View Course
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>,
+]
+`;

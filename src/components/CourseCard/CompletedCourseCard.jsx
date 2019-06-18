@@ -12,12 +12,14 @@ const CompletedCourseCard = (props) => {
       >
         View Course
       </a>
-      <a
-        className="btn btn-block btn-outline-primary btn-course-link"
-        href={props.linkToCourse}
-      >
-        View Certificate
-      </a>
+      {props.linkToCertificate && (
+        <a
+          className="btn btn-block btn-outline-primary btn-course-link"
+          href={props.linkToCertificate}
+        >
+          View Certificate
+        </a>
+      )}
     </>
   );
 
@@ -32,6 +34,11 @@ const CompletedCourseCard = (props) => {
 
 CompletedCourseCard.propTypes = {
   linkToCourse: PropTypes.string.isRequired,
+  linkToCertificate: PropTypes.string,
+};
+
+CompletedCourseCard.defaultProps = {
+  linkToCertificate: null,
 };
 
 export default CompletedCourseCard;

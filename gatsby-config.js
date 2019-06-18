@@ -7,6 +7,7 @@ module.exports = {
     logo: 'https://www.edx.org/sites/default/files/open-edx-logo-with-reg.png',
     siteName: 'Open Edx',
     siteUrl: 'https://www.edx.org/',
+    programUUID: '6eefc008-db50-46f0-8746-667f55533a5d',
   },
   plugins: [
     {
