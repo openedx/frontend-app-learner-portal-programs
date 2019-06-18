@@ -26,7 +26,7 @@ class MastersTable extends Component {
   render() {
     return (
       <div className="container">
-        <h1> Master Degree List </h1>
+        <h1> Masters Degree List </h1>
         <div className="table-responsive">
           <table className={classNames('table', 'table-sm', 'table-striped')}>
             <thead>
