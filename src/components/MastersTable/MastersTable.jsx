@@ -1,37 +1,41 @@
-import React from 'react';
+import React, { Component } from 'react';
 import classNames from 'classnames';
-import { graphql, StaticQuery } from 'gatsby';
+import { navigate } from 'gatsby';
 
-const MastersQuery = graphql`
-  query {
-    site {
-      siteMetadata {
-        masters {
-            university
-            url
-            programName
-        }
-      }
-    }
+class MastersTable extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      masters: [{
+        university: 'Georgia Tech',
+        url: '/',
+        programName: 'Analytics Program',
+      },
+      {
+        university: 'Georgia Tech',
+        url: '/',
+        programName: 'Computer Science Program',
+      }],
+    };
   }
-`;
 
-const MastersTable = ({ children }) => (
-  <StaticQuery
-    query={MastersQuery}
-    render={data => (
+  componentDidMount() {
+    if (this.state.masters.length < 2) navigate(`${this.state.masters[0].url}`);
+  }
+
+  render() {
+    return (
       <div>
-        <MastersTableItems masters={data.site.siteMetadata.masters} />
+        <MastersTableItems masters={this.state.masters} />
       </div>
-
-      )}
-  />
-);
+    );
+  }
+}
 
 export default MastersTable;
 
 const MastersTableItems = props => (
-  <>
+  <div className="container">
     <h1> Master Degree List </h1>
     <div className="table-responsive">
       <table className={classNames('table', 'table-sm', 'table-striped')}>
@@ -53,6 +57,6 @@ const MastersTableItems = props => (
         </tbody>
       </table>
     </div>
-  </>
+  </div>
 
 );
