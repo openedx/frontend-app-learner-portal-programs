@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
-import { Redirect } from 'react-router-dom';
 
 class MastersTable extends Component {
   constructor(props) {
@@ -10,7 +9,6 @@ class MastersTable extends Component {
     };
   }
   render() {
-    const master = ['hello'];
     const masters = [{
       university: 'Georgia Tech',
       url: 'https://www.edx.org/',
@@ -20,34 +18,37 @@ class MastersTable extends Component {
       url: 'https://www.edx.org/',
       programName: 'Analytics Program',
     }];
+
     return (
       <div>
-        {
-                master.length < 2 ? <Redirect to="/" /> : 'Hello'
-            }
+        <MastersTableItems masters={masters} />
       </div>
-
-    //   master.length < 2 ? navigate('/') : null
     );
   }
 }
 
 export default MastersTable;
 
-const MastersTableItems = () => (
+const MastersTableItems = props => (
   <>
     <h1> Master Degree List </h1>
     <div className="table-responsive">
       <table className={classNames('table', 'table-sm', 'table-striped')}>
+        <thead>
+          <tr>
+            <th>University</th>
+            <th>Program Name</th>
+          </tr>
+        </thead>
         <tbody>
-          <tr>
-            <td>
-                Hello
-            </td>
-          </tr>
-          <tr>
-            <td> GoodBye </td>
-          </tr>
+          {
+              props.masters.map(program => (
+                <tr key={program.programName}>
+                  <td>{program.university}</td>
+                  <td><a href={`${program.url}`}>{program.programName}</a></td>
+                </tr>
+                  ))
+          }
         </tbody>
       </table>
     </div>
