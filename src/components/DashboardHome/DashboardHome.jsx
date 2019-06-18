@@ -26,9 +26,9 @@ const DashboardHome = () => (
         </div>
         <MediaQuery minWidth={breakpoints.large.minWidth}>
           {matches => matches && (
-            <div className="col offset-lg-1">
+            <aside className="col offset-lg-1">
               <Sidebar />
-            </div>
+            </aside>
           )}
         </MediaQuery>
       </div>

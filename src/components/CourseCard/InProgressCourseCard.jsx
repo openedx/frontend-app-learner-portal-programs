@@ -11,7 +11,8 @@ const InProgressCourseCard = (props) => {
   );
 
   const filteredNotifications = props.notifications.filter((notification) => {
-    if (moment(notification.date).diff(moment(), 'days') <= 7) {
+    const now = moment();
+    if (moment(notification.date).isBetween(now, moment(now).add('1', 'w'))) {
       return notification;
     }
     return false;
