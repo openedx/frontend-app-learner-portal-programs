@@ -21,25 +21,6 @@ const initialStore = mockStore({
 });
 
 describe('<MainContent />', () => {
-  const baseProps = {
-    courseRuns: [
-      {
-        course_run_id: 'course-v1:edX+DemoX+Demo_Course',
-        course_run_status: 'completed',
-        course_run_url: 'https://edx.org/',
-        display_name: 'edX Demonstration Course',
-        due_dates: [{
-          name: 'Assignment 1',
-          url: 'https://edx.org/',
-          date: '2019-05-31T07:50:00Z',
-        }],
-        start_date: '2017-02-05T05:00:00Z',
-        end_date: '2019-08-18T05:00:00Z',
-        micromasters_title: null,
-      },
-    ],
-  };
-
   let store = initialStore;
 
   beforeEach(() => {
@@ -77,7 +58,6 @@ describe('<MainContent />', () => {
         due_dates: [],
         start_date: '2017-02-05T05:00:00Z',
         end_date: '2018-08-18T05:00:00Z',
-        micromasters_title: null,
       };
 
       store = mockStore({
@@ -85,6 +65,7 @@ describe('<MainContent />', () => {
           courseRuns: [sampleProgramEnrollment, {
             ...sampleProgramEnrollment,
             course_run_id: 'course-v1:edX+DemoX+Demo_Course_2',
+            display_name: 'edX Demonstration Course 2',
             course_run_status: 'in_progress',
             due_dates: [{
               name: 'Assignment 1',
@@ -97,7 +78,7 @@ describe('<MainContent />', () => {
       });
       const tree = renderer
         .create((
-          <MainContent store={store} {...baseProps} />
+          <MainContent store={store} />
         ))
         .toJSON();
       expect(tree).toMatchSnapshot();
@@ -143,13 +124,13 @@ describe('<MainContent />', () => {
 
     it('is not shown at screen widths greater than or equal to large breakpoint', () => {
       global.innerWidth = breakpoints.large.minWidth;
-      wrapper = mount(<MainContent store={store} {...baseProps} />);
+      wrapper = mount(<MainContent store={store} />);
       expect(wrapper.find('Sidebar').exists()).toBeFalsy();
     });
 
     it('is shown at screen widths less than large breakpoint', () => {
       global.innerWidth = breakpoints.small.minWidth;
-      wrapper = mount(<MainContent store={store} {...baseProps} />);
+      wrapper = mount(<MainContent store={store} />);
       expect(wrapper.find('Sidebar').exists()).toBeTruthy();
     });
   });

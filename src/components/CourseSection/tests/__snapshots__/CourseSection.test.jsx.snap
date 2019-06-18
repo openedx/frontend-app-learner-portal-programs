@@ -85,48 +85,6 @@ exports[`<CourseSection /> renders section if there are enrollments 1`] = `
             </div>
           </div>
           <div
-            className="notifications"
-          >
-            <ul
-              className="list-unstyled"
-            >
-              <li>
-                <div
-                  className="notification p-2 mb-2 border alert fade alert-warning show"
-                  hidden={false}
-                  role="alert"
-                >
-                  <div
-                    className="alert-dialog"
-                  >
-                    <div
-                      className="row no-gutters"
-                    >
-                      <div
-                        className="col-12"
-                      >
-                        <a
-                          href="https://edx.org/"
-                        >
-                          Assignment 1
-                        </a>
-                         is due in 
-                        <span
-                          className="font-weight-bold"
-                        >
-                          -18
-                           days
-                        </span>
-                         on 
-                        Fri May 31, 2019
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </li>
-            </ul>
-          </div>
-          <div
             className="row no-gutters"
           >
             <div
@@ -199,48 +157,6 @@ exports[`<CourseSection /> renders section if there are enrollments 1`] = `
                 Continue Learning
               </a>
             </div>
-          </div>
-          <div
-            className="notifications"
-          >
-            <ul
-              className="list-unstyled"
-            >
-              <li>
-                <div
-                  className="notification p-2 mb-2 border alert fade alert-warning show"
-                  hidden={false}
-                  role="alert"
-                >
-                  <div
-                    className="alert-dialog"
-                  >
-                    <div
-                      className="row no-gutters"
-                    >
-                      <div
-                        className="col-12"
-                      >
-                        <a
-                          href="https://edx.org/"
-                        >
-                          Assignment 1
-                        </a>
-                         is due in 
-                        <span
-                          className="font-weight-bold"
-                        >
-                          -18
-                           days
-                        </span>
-                         on 
-                        Fri May 31, 2019
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </li>
-            </ul>
           </div>
           <div
             className="row no-gutters"
