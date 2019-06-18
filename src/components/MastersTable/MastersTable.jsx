@@ -10,6 +10,11 @@ class MastersTable extends Component {
         university: 'Georgia Tech',
         url: '/analytics',
         programName: 'Analytics Program',
+      },
+      {
+        university: 'Georgia Tech',
+        url: '/analytics',
+        programName: 'Computer Science',
       }],
     };
   }
@@ -33,7 +38,7 @@ class MastersTable extends Component {
             <tbody>
               {
                 this.state.masters.map(program => (
-                  <tr key={program.programName}>
+                  <tr key={program.university.concat(program.programName)}>
                     <td>{program.university}</td>
                     <td><a href={`${program.url}`}>{program.programName}</a></td>
                   </tr>
