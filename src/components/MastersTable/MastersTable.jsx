@@ -1,31 +1,32 @@
-import React, { Component } from 'react';
+import React from 'react';
 import classNames from 'classnames';
+import { graphql, StaticQuery } from 'gatsby';
 
-class MastersTable extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      someinfo: 0,
-    };
+const MastersQuery = graphql`
+  query {
+    site {
+      siteMetadata {
+        masters {
+            university
+            url
+            programName
+        }
+      }
+    }
   }
-  render() {
-    const masters = [{
-      university: 'Georgia Tech',
-      url: 'https://www.edx.org/',
-      programName: 'Computer Science Program',
-    }, {
-      university: 'Georgia Tech',
-      url: 'https://www.edx.org/',
-      programName: 'Analytics Program',
-    }];
+`;
 
-    return (
+const MastersTable = ({ children }) => (
+  <StaticQuery
+    query={MastersQuery}
+    render={data => (
       <div>
-        <MastersTableItems masters={masters} />
+        <MastersTableItems masters={data.site.siteMetadata.masters} />
       </div>
-    );
-  }
-}
+
+      )}
+  />
+);
 
 export default MastersTable;
 

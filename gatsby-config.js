@@ -7,6 +7,15 @@ module.exports = {
     logo: 'https://www.edx.org/sites/default/files/open-edx-logo-with-reg.png',
     siteName: 'Open Edx',
     siteUrl: 'https://www.edx.org/',
+    masters: [{
+      university: 'Georgia Tech',
+      url: 'https://www.edx.org/',
+      programName: 'Computer Science Program',
+    }, {
+      university: 'Georgia Tech',
+      url: 'https://www.edx.org/',
+      programName: 'Analytics Program',
+    }],
   },
   plugins: [
     {
