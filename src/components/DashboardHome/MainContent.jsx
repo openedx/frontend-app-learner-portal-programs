@@ -42,13 +42,13 @@ class MainContent extends Component {
     const { courseRuns } = this.props;
 
     const enrollments = {
-      'in-progress': [],
+      in_progress: [],
       upcoming: [],
       completed: [],
     };
 
     if (courseRuns && courseRuns.length > 0) {
-      enrollments['in-progress'] = courseRuns.filter(courseRun => courseRun.course_run_status === 'in_progress');
+      enrollments.in_progress = courseRuns.filter(courseRun => courseRun.course_run_status === 'in_progress');
       enrollments.upcoming = courseRuns.filter(courseRun => courseRun.course_run_status === 'upcoming');
       enrollments.completed = courseRuns.filter(courseRun => courseRun.course_run_status === 'completed');
     }
@@ -98,7 +98,7 @@ class MainContent extends Component {
             <CourseSection
               title="My Courses In Progress"
               component={InProgressCourseCard}
-              enrollments={courses['in-progress']}
+              enrollments={courses.in_progress}
             />
             <MediaQuery minWidth={breakpoints.large.minWidth}>
               {matches => !matches && (

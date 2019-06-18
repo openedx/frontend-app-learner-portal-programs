@@ -48,7 +48,7 @@ class CourseSection extends React.Component {
             isOpen
           >
             {enrollments.map((courseData) => {
-              const { course_run_status: status } = courseData;
+              const { course_run_status: courseRunStatus } = courseData;
               const defaultCardProps = {
                 key: courseData.course_run_id,
                 courseRunId: courseData.course_run_id,
@@ -57,7 +57,7 @@ class CourseSection extends React.Component {
                 hasEmailsEnabled: courseData.emails_enabled,
               };
               const cardProps = {};
-              switch (status) {
+              switch (courseRunStatus) {
                 case 'in_progress':
                   cardProps.endDate = courseData.end_date;
                   // The link to course here gives precedence to the resume course link, which is
