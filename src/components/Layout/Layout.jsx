@@ -39,7 +39,7 @@ const Layout = ({ children, username, avatar }) => (
             },
             {
               type: 'item',
-              href: '/masters-list',
+              href: '/',
               content: 'My Masters Degree',
             },
             {
