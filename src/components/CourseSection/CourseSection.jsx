@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { sendTrackEvent } from '@edx/frontend-analytics';
 import { Collapsible } from '@edx/paragon';
 import { faChevronCircleUp, faChevronCircleDown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -30,6 +31,7 @@ class CourseSection extends React.Component {
     this.setState({
       isOpen,
     });
+    sendTrackEvent('edx.learner_portal.section.toggled', { is_open: isOpen, section_title: this.props.title });
   };
 
   render() {

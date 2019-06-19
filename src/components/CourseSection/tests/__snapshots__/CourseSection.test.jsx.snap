@@ -79,6 +79,7 @@ exports[`<CourseSection /> renders section if there are enrollments 1`] = `
               <a
                 className="btn btn-primary btn-block"
                 href="https://edx.org/"
+                onClick={[Function]}
               >
                 Continue Learning
               </a>
@@ -153,6 +154,7 @@ exports[`<CourseSection /> renders section if there are enrollments 1`] = `
               <a
                 className="btn btn-primary btn-block"
                 href="https://edx.org/"
+                onClick={[Function]}
               >
                 Continue Learning
               </a>

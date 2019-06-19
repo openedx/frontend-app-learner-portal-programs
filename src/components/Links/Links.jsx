@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { sendTrackEvent } from '@edx/frontend-analytics';
 import { faFile, faChevronCircleDown, faChevronCircleUp } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Button } from '@edx/paragon';
@@ -21,7 +22,14 @@ class Links extends Component {
     return links.map(link => (
       <li key={link.href} className="mb-1">
         <FontAwesomeIcon className="mr-2 text-primary" icon={faFile} />
-        <a href={link.href} target="_blank" rel="noopener noreferrer">{link.title}</a>
+        <a
+          href={link.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={() => { sendTrackEvent('edx.learner_portal.program_link.clicked', { title: link.title }); }}
+        >
+          {link.title}
+        </a>
       </li>
     ));
   };

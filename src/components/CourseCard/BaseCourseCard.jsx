@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import moment from 'moment';
+import { sendTrackEvent } from '@edx/frontend-analytics';
 import { faCog, faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -123,6 +124,7 @@ class BaseCourseCard extends Component {
                     this.setState({
                       hasNewEmailSettings: false,
                     });
+                    sendTrackEvent('edx.learner_portal.email_settings_modal.opened', { course_run_id: courseRunId });
                   }}
                 >
                   <FontAwesomeIcon className="mr-2" icon={faCog} />

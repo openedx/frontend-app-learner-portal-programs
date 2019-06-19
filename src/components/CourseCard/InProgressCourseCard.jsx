@@ -1,13 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
+import { sendTrackEvent } from '@edx/frontend-analytics';
 
 import BaseCourseCard from './BaseCourseCard';
 import Notification from './Notification';
 
 const InProgressCourseCard = (props) => {
   const renderButtons = () => (
-    <a className="btn btn-primary btn-block" href={props.linkToCourse}>Continue Learning</a>
+    <a
+      className="btn btn-primary btn-block"
+      href={props.linkToCourse}
+      onClick={() => { sendTrackEvent('edx.learner_portal.course.continued', { course_run_id: props.courseRunId }); }}
+    >
+      Continue Learning
+    </a>
   );
 
   const filteredNotifications = props.notifications.filter((notification) => {
@@ -24,7 +31,11 @@ const InProgressCourseCard = (props) => {
         <div className="notifications">
           <ul className="list-unstyled">
             {filteredNotifications.map(notificationProps => (
-              <Notification key={notificationProps} {...notificationProps} />
+              <Notification
+                key={notificationProps}
+                courseRunId={props.courseRunId}
+                {...notificationProps}
+              />
             ))}
           </ul>
         </div>
@@ -35,6 +46,7 @@ const InProgressCourseCard = (props) => {
 
 InProgressCourseCard.propTypes = {
   linkToCourse: PropTypes.string.isRequired,
+  courseRunId: PropTypes.string.isRequired,
   notifications: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string.isRequired,
     url: PropTypes.string.isRequired,

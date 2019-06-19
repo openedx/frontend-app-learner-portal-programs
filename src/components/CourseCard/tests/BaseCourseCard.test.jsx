@@ -3,6 +3,7 @@ import { mount } from 'enzyme';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import configureMockStore from 'redux-mock-store';
+import * as analytics from '@edx/frontend-analytics';
 
 
 import BaseCourseCard from '../BaseCourseCard';
@@ -21,6 +22,7 @@ const store = mockStore({
 describe('<BaseCourseCard />', () => {
   describe('email settings modal', () => {
     let wrapper;
+    analytics.sendTrackEvent = jest.fn();
 
     beforeEach(() => {
       wrapper = mount((
@@ -35,6 +37,7 @@ describe('<BaseCourseCard />', () => {
       // open email settings modal
       expect(wrapper.find('.email-settings-btn').exists()).toBeTruthy();
       wrapper.find('.email-settings-btn').simulate('click');
+      expect(analytics.sendTrackEvent).toHaveBeenCalled();
       expect(wrapper.find('EmailSettingsModal').exists()).toBeTruthy();
     });
 
