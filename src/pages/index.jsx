@@ -3,13 +3,13 @@ import { IntlProvider } from 'react-intl';
 
 import withAuthentication from '../components/withAuthentication';
 import Layout from '../components/Layout/Layout';
-import MastersTable from '../components/MastersTable/MastersTable';
+import ProgramsTable from '../components/ProgramsTable/ProgramsTable';
 
 
 const IndexPage = () => (
   <IntlProvider locale="en">
     <Layout>
-      <MastersTable />
+      <ProgramsTable />
     </Layout>
   </IntlProvider>
 );
