@@ -30,6 +30,7 @@ module.exports = {
           'REFRESH_ACCESS_TOKEN_ENDPOINT',
           'ACCESS_TOKEN_COOKIE_NAME',
           'USER_INFO_COOKIE_NAME',
+          'SEGMENT_KEY',
         ],
       },
     },
