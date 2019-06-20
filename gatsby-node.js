@@ -3,6 +3,9 @@
  *
  * See: https://www.gatsbyjs.org/docs/node-apis/
  */
+const path = require('path');
+
+const DashboardHome = path.resolve('./src/components/DashboardHome/DashboardHome.jsx');
 
 exports.onCreatePage = async ({ page, actions }) => {
   const { createPage } = actions;
@@ -16,4 +19,34 @@ exports.onCreatePage = async ({ page, actions }) => {
     // Update the page.
     createPage(page);
   }
+};
+exports.createPages = ({ graphql, actions }) => {
+  const { createPage } = actions;
+
+  const programs = graphql(`
+  query {
+    site {
+      siteMetadata {
+        programs {
+          uuid,
+          name,
+          slug
+        }
+      }
+    }
+  }
+  `);
+
+  programs.forEach((program) => {
+    const { slug, uuid, name } = program;
+    createPage({
+      path: slug,
+      component: DashboardHome,
+      context: {
+        programSlug: slug,
+        programUUID: uuid,
+        programName: name,
+      },
+    });
+  });
 };
