@@ -21,6 +21,7 @@ const withAuthentication = (WrappedComponent) => {
         pathname: PropTypes.string.isRequired,
       }).isRequired,
       fetchUserAccount: PropTypes.func.isRequired,
+      providerSlug: PropTypes.string.isRequired,
       username: PropTypes.string,
     };
 
@@ -33,8 +34,10 @@ const withAuthentication = (WrappedComponent) => {
     };
 
     componentDidMount() {
-      const { username, location, fetchUserAccount } = this.props;
-
+      const {
+        username, location, fetchUserAccount, providerSlug,
+      } = this.props;
+      apiClient.loginUrl = `${process.env.LMS_BASE_URL}/auth/idp_redirect/${providerSlug}`;
       apiClient.ensurePublicOrAuthenticationAndCookies(location.pathname, async (accessToken) => {
         configureLoggingService(NewRelicLoggingService);
         initializeSegment(process.env.SEGMENT_KEY);
@@ -76,6 +79,7 @@ const withAuthentication = (WrappedComponent) => {
 
 withAuthentication.propTypes = {
   location: PropTypes.string.isRequired,
+  providerSlug: PropTypes.string.isRequired,
 };
 
 export default withAuthentication;

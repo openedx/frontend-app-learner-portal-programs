@@ -25,7 +25,7 @@ describe('<withAuthentication />', () => {
     const AuthenticatedComponent = withAuthentication(MyComponent);
     const wrapper = mount((
       <Provider store={store}>
-        <AuthenticatedComponent location={{ pathname: '/' }} />
+        <AuthenticatedComponent location={{ pathname: '/' }} providerSlug="test-saml" />
       </Provider>
     ));
     expect(wrapper.html()).toBeNull();
