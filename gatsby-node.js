@@ -20,22 +20,22 @@ exports.onCreatePage = async ({ page, actions }) => {
     createPage(page);
   }
 };
-exports.createPages = ({ graphql, actions }) => {
+
+exports.createPages = async ({ actions }) => {
   const { createPage } = actions;
 
-  const programs = graphql(`
-  query {
-    site {
-      siteMetadata {
-        programs {
-          uuid,
-          name,
-          slug
-        }
-      }
-    }
-  }
-  `);
+  const programs = [
+    {
+      uuid: '6eefc008-db50-46f0-8746-667f55533a5d',
+      name: 'Example Program',
+      slug: 'exampleprogram',
+    },
+    {
+      uuid: '6eefc008-db50-46f0-8746-667f55533a5d',
+      name: 'Another Program',
+      slug: 'another-program',
+    },
+  ];
 
   programs.forEach((program) => {
     const { slug, uuid, name } = program;
