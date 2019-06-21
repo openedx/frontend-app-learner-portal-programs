@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import classNames from 'classnames';
 import { navigate } from 'gatsby';
 
+import Layout from '../Layout/Layout';
 
 class ProgramsTable extends Component {
   constructor(props) {
@@ -28,27 +29,29 @@ class ProgramsTable extends Component {
 
   render() {
     return (
-      <div className="container">
-        <h1>Program List</h1>
-        <div className="table-responsive">
-          <table className={classNames('table', 'table-sm', 'table-striped')}>
-            <thead>
-              <tr>
-                <th>Program Name</th>
-              </tr>
-            </thead>
-            <tbody>
-              {
+      <Layout>
+        <div className="container">
+          <h1>Program List</h1>
+          <div className="table-responsive">
+            <table className={classNames('table', 'table-sm', 'table-striped')}>
+              <thead>
+                <tr>
+                  <th>Program</th>
+                </tr>
+              </thead>
+              <tbody>
+                {
               this.state.programs.map(program => (
                 <tr key={program.uuid}>
                   <td><a href={`${program.slug}`}>{program.name}</a></td>
                 </tr>
                   ))
           }
-            </tbody>
-          </table>
+              </tbody>
+            </table>
+          </div>
         </div>
-      </div>
+      </Layout>
     );
   }
 }
