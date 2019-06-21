@@ -1,7 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import thunk from 'redux-thunk';
-import { Provider } from 'react-redux';
 import configureMockStore from 'redux-mock-store';
 
 import EmailSettingsModal from '../EmailSettingsModal';
@@ -9,26 +8,20 @@ import EmailSettingsModal from '../EmailSettingsModal';
 jest.useFakeTimers();
 
 const mockStore = configureMockStore([thunk]);
-const store = mockStore({
-  hasEmailsEnabled: true,
-  isSubmitting: false,
-  isFormChanged: false,
-  error: null,
-});
+const store = mockStore({});
 
 describe('<EmailSettingsModal />', () => {
   let wrapper;
 
   beforeEach(() => {
     wrapper = mount((
-      <Provider store={store}>
-        <EmailSettingsModal
-          title="Example Title"
-          onClose={() => {}}
-          hasEmailsEnabled
-          courseRunId="my+course+key"
-        />
-      </Provider>
+      <EmailSettingsModal
+        store={store}
+        title="Example Title"
+        onClose={() => {}}
+        hasEmailsEnabled
+        courseRunId="my+course+key"
+      />
     ));
   });
 

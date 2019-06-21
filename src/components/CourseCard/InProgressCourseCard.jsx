@@ -14,6 +14,7 @@ const InProgressCourseCard = (props) => {
       onClick={() => { sendTrackEvent('edx.learner_portal.course.continued', { course_run_id: props.courseRunId }); }}
     >
       Continue Learning
+      <span className="sr-only">for {props.title}</span>
     </a>
   );
 
@@ -29,7 +30,7 @@ const InProgressCourseCard = (props) => {
     <BaseCourseCard buttons={renderButtons()} {...props}>
       {filteredNotifications.length > 0 && (
         <div className="notifications">
-          <ul className="list-unstyled">
+          <ul className="list-unstyled" aria-label="course due dates" role="alert">
             {filteredNotifications.map(notificationProps => (
               <Notification
                 key={notificationProps}
@@ -52,6 +53,7 @@ InProgressCourseCard.propTypes = {
     url: PropTypes.string.isRequired,
     date: PropTypes.string.isRequired,
   })).isRequired,
+  title: PropTypes.string.isRequired,
 };
 
 export default InProgressCourseCard;

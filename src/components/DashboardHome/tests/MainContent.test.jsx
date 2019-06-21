@@ -1,5 +1,6 @@
 import React from 'react';
 import { StaticQuery } from 'gatsby';
+import { Provider } from 'react-redux';
 import renderer from 'react-test-renderer';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
@@ -41,12 +42,12 @@ describe('<MainContent />', () => {
 
   describe('renders correctly', () => {
     it('with no program enrollments course runs data', () => {
-      const tree = renderer
-        .create((
-          <MainContent store={store} />
-        ))
-        .toJSON();
-      expect(tree).toMatchSnapshot();
+      const wrapper = mount((
+        <Provider store={store}>
+          <MainContent />
+        </Provider>
+      ));
+      expect(wrapper.html()).toBeNull();
     });
 
     it('with program enrollments course runs data', () => {
@@ -76,12 +77,17 @@ describe('<MainContent />', () => {
           }],
         },
       });
-      const tree = renderer
-        .create((
-          <MainContent store={store} />
-        ))
-        .toJSON();
-      expect(tree).toMatchSnapshot();
+
+      const wrapper = mount((
+        <Provider store={store}>
+          <MainContent />
+        </Provider>
+      ));
+
+      expect(wrapper.html()).not.toBeNull();
+      expect(wrapper.find('.course-section').length).toEqual(2);
+      expect(wrapper.find('.course-section').first().find('.card').length).toEqual(1);
+      expect(wrapper.find('.course-section').last().find('.card').length).toEqual(1);
     });
 
     it('with error state', () => {
@@ -95,7 +101,9 @@ describe('<MainContent />', () => {
 
       const tree = renderer
         .create((
-          <MainContent store={store} />
+          <Provider store={store}>
+            <MainContent />
+          </Provider>
         ))
         .toJSON();
       expect(tree).toMatchSnapshot();
@@ -112,7 +120,9 @@ describe('<MainContent />', () => {
 
       const tree = renderer
         .create((
-          <MainContent store={store} />
+          <Provider store={store}>
+            <MainContent />
+          </Provider>
         ))
         .toJSON();
       expect(tree).toMatchSnapshot();
@@ -124,13 +134,21 @@ describe('<MainContent />', () => {
 
     it('is not shown at screen widths greater than or equal to large breakpoint', () => {
       global.innerWidth = breakpoints.large.minWidth;
-      wrapper = mount(<MainContent store={store} />);
+      wrapper = mount((
+        <Provider store={store}>
+          <MainContent />
+        </Provider>
+      ));
       expect(wrapper.find('Sidebar').exists()).toBeFalsy();
     });
 
     it('is shown at screen widths less than large breakpoint', () => {
       global.innerWidth = breakpoints.small.minWidth;
-      wrapper = mount(<MainContent store={store} />);
+      wrapper = mount((
+        <Provider store={store}>
+          <MainContent />
+        </Provider>
+      ));
       expect(wrapper.find('Sidebar').exists()).toBeTruthy();
     });
   });

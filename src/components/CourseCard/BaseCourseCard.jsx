@@ -13,7 +13,10 @@ import './CourseCard.scss';
 class BaseCourseCard extends Component {
   state = {
     modals: {
-      emailSettings: null,
+      emailSettings: {
+        open: false,
+        options: {},
+      },
     },
     hasEmailsEnabled: this.props.hasEmailsEnabled,
     hasNewEmailSettings: false,
@@ -31,11 +34,14 @@ class BaseCourseCard extends Component {
     }
   }
 
-  setModalState = ({ key, options }) => {
+  setModalState = ({ key, open = false, options = {} }) => {
     this.setState(state => ({
       modals: {
         ...state.modals,
-        [key]: options,
+        [key]: {
+          open,
+          options,
+        },
       },
     }));
   };
@@ -52,11 +58,7 @@ class BaseCourseCard extends Component {
   };
 
   resetModals = () => {
-    this.setState({
-      modals: {
-        emailSettings: null,
-      },
-    });
+    this.setModalState({ key: 'emailSettings' });
   };
 
   render() {
@@ -116,6 +118,7 @@ class BaseCourseCard extends Component {
                   onClick={() => {
                     this.setModalState({
                       key: 'emailSettings',
+                      open: true,
                       options: {
                         title,
                         hasEmailsEnabled,
@@ -129,6 +132,7 @@ class BaseCourseCard extends Component {
                 >
                   <FontAwesomeIcon className="mr-2" icon={faCog} />
                   Email settings
+                  <span className="sr-only">for {title}</span>
                 </button>
                 {hasNewEmailSettings &&
                   <span className="text-success" role="alert">
@@ -137,11 +141,12 @@ class BaseCourseCard extends Component {
                     <span className="sr-only">your email settings for {title}</span>
                   </span>
                 }
-                {modals.emailSettings &&
+                {modals.emailSettings && modals.emailSettings.options &&
                   <EmailSettingsModal
-                    {...modals.emailSettings}
+                    {...modals.emailSettings.options}
                     courseRunId={courseRunId}
                     onClose={this.handleEmailSettingsModalOnClose}
+                    open={modals.emailSettings.open}
                   />
                 }
               </div>

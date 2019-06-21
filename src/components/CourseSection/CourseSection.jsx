@@ -19,12 +19,7 @@ class CourseSection extends React.Component {
   getFormattedTitle = () => {
     const { isOpen } = this.state;
     const { enrollments, title } = this.props;
-
-    if (!isOpen) {
-      return `${title} (${enrollments.length})`;
-    }
-
-    return title;
+    return isOpen ? title : `${title} (${enrollments.length})`;
   };
 
   handleCollapsibleToggle = (isOpen) => {

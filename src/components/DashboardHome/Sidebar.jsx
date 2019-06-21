@@ -10,7 +10,7 @@ import SidebarBlock from './SidebarBlock';
 const Sidebar = () => (
   <>
     <SidebarBlock title="Program Documents" className="mb-5">
-      <Links id={linksData.id} links={linksData.links} />
+      <Links id={linksData.id} links={linksData.links} label="program documents" />
     </SidebarBlock>
     <SidebarBlock title="Manage Your Degree" className="mb-5">
       <p>Go to Georgia Tech portal to</p>
@@ -30,7 +30,13 @@ const Sidebar = () => (
           onClick={() => { sendTrackEvent('edx.learner_portal.school_portal_link.clicked'); }}
         >
           Go to Georgia Tech portal
-          <FontAwesomeIcon className="ml-2 text-primary" icon={faExternalLinkAlt} size="sm" />
+          <FontAwesomeIcon
+            className="ml-2 text-primary"
+            icon={faExternalLinkAlt}
+            size="sm"
+            aria-hidden={false}
+            aria-label="opens in a new window"
+          />
         </a>
       </p>
     </SidebarBlock>
@@ -43,7 +49,13 @@ const Sidebar = () => (
           onClick={() => { sendTrackEvent('edx.learner_portal.support_link.clicked'); }}
         >
           Go to edX help center
-          <FontAwesomeIcon className="ml-2 text-primary" icon={faExternalLinkAlt} size="sm" />
+          <FontAwesomeIcon
+            className="ml-2 text-primary"
+            icon={faExternalLinkAlt}
+            size="sm"
+            aria-hidden={false}
+            aria-label="opens in a new window"
+          />
         </a>
       </p>
     </SidebarBlock>

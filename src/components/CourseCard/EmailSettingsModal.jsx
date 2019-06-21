@@ -11,11 +11,21 @@ import './EmailSettingsModal.scss';
 
 class EmailSettingsModal extends Component {
   state = {
-    hasEmailsEnabled: this.props.hasEmailsEnabled,
+    hasEmailsEnabled: false,
     isSubmitting: false,
     isFormChanged: false,
     error: null,
   };
+
+  componentDidUpdate(prevProps) {
+    const { hasEmailsEnabled } = this.props;
+    if (hasEmailsEnabled !== prevProps.hasEmailsEnabled) {
+      // eslint-disable-next-line react/no-did-update-set-state
+      this.setState({
+        hasEmailsEnabled,
+      });
+    }
+  }
 
   handleEmailSettingsChange = (e) => {
     const { hasEmailsEnabled } = this.props;
@@ -58,7 +68,7 @@ class EmailSettingsModal extends Component {
     const {
       error, isFormChanged, hasEmailsEnabled, isSubmitting,
     } = this.state;
-    const { title } = this.props;
+    const { title, open } = this.props;
 
     return (
       <Modal
@@ -116,18 +126,25 @@ class EmailSettingsModal extends Component {
             onClick: this.handleSaveButtonClick,
           },
         ]}
-        open
+        open={open}
       />
     );
   }
 }
 
 EmailSettingsModal.propTypes = {
-  title: PropTypes.string.isRequired,
-  hasEmailsEnabled: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
   updateEmailSettings: PropTypes.func.isRequired,
   courseRunId: PropTypes.string.isRequired,
+  title: PropTypes.string,
+  hasEmailsEnabled: PropTypes.bool,
+  open: PropTypes.bool,
+};
+
+EmailSettingsModal.defaultProps = {
+  title: null,
+  hasEmailsEnabled: false,
+  open: false,
 };
 
 const mapDispatchToProps = dispatch => ({

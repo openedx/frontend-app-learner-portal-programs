@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 import { StaticQuery, graphql } from 'gatsby';
 import PropTypes from 'prop-types';
 import SiteHeader from '@edx/frontend-component-site-header';
@@ -24,6 +25,7 @@ const Layout = ({ children, username, avatar }) => (
     query={LayoutQuery}
     render={data => (
       <>
+        <Helmet titleTemplate="%s - edX" defaultTitle="edX" />
         <SiteHeader
           logo={data.site.siteMetadata.logo}
           logoDestination={data.site.siteMetadata.siteUrl}
