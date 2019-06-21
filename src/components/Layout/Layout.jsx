@@ -4,11 +4,13 @@ import PropTypes from 'prop-types';
 import SiteHeader from '@edx/frontend-component-site-header';
 import SiteFooter from '@edx/frontend-component-footer';
 import { connect } from 'react-redux';
+import { IntlProvider } from 'react-intl';
+
 
 import './Layout.scss';
 
 const Layout = props => (
-  <>
+  <IntlProvider locale="en">
     <Helmet titleTemplate="%s - edX" defaultTitle="edX" />
     <SiteHeader
       logo={props.logo}
@@ -70,7 +72,7 @@ const Layout = props => (
       googlePlayUrl="https://play.google.com"
       handleAllTrackEvents={() => {}}
     />
-  </>
+  </IntlProvider>
 );
 
 Layout.defaultProps = {

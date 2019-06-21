@@ -6,11 +6,13 @@ import { breakpoints } from '@edx/paragon';
 import Hero from '../Hero/Hero';
 import MainContent from './MainContent';
 import Sidebar from './Sidebar';
+import withAuthentication from '../withAuthentication';
+import Layout from '../Layout/Layout';
 
 import './DashboardHome.scss';
 
 const DashboardHome = () => (
-  <>
+  <Layout>
     <Helmet title="Master's Degree in Analytics" />
     <main id="content">
       <Hero
@@ -37,7 +39,7 @@ const DashboardHome = () => (
         </div>
       </div>
     </main>
-  </>
+  </Layout>
 );
 
-export default DashboardHome;
+export default withAuthentication(DashboardHome);
