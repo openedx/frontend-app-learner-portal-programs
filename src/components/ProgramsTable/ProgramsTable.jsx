@@ -2,24 +2,18 @@ import React, { Component } from 'react';
 import classNames from 'classnames';
 import { navigate } from 'gatsby';
 
-
 class ProgramsTable extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      programs: [
+    this.programData = this.props.programQueryData
+      .filter(program => program.node.context.programUUID !== null)
+      .map(program => (
         {
-          uuid: '6eefc008-db50-46f0-8746-667f55533a5d',
-          name: 'Example Program',
-          slug: 'exampleprogram',
-        },
-        {
-          uuid: '6eefc008-db50-46f0-8746-667f55533a5d',
-          name: 'Another Program',
-          slug: 'another-program',
-        },
-      ],
-    };
+          uuid: program.node.context.programUUID,
+          slug: program.node.context.programSlug,
+          name: program.node.context.programName,
+        }
+      ));
   }
 
   componentDidMount() {
@@ -53,14 +47,14 @@ class ProgramsTable extends Component {
       // render the 403 page
       console.log('Page to be put here');
     }
-    if (this.state.programs.length < 2) navigate(`${this.state.programs[0].slug}`);
+    if (this.programData.length < 2) navigate(`${this.programData[0].slug}`);
   }
 
   userHasValidPrograms(enrolledPrograms) {
     // list of program uuids that are part of this site
-    const programsList = this.state.programs.map(prod => prod.uuid);
+    const programsList = this.programData.map(program => program.uuid);
     // list of program uuids that the user is enrolled in
-    const enrolledProgramsList = enrolledPrograms.map(prog => prog.uuid);
+    const enrolledProgramsList = enrolledPrograms.map(program => program.uuid);
     // check if the user has program uuid matching the site's program uuids
     const found = programsList.some(r => enrolledProgramsList.indexOf(r) >= 0);
     return found;
@@ -79,7 +73,7 @@ class ProgramsTable extends Component {
             </thead>
             <tbody>
               {
-              this.state.programs.map(program => (
+              this.programData.map(program => (
                 <tr key={program.uuid}>
                   <td><a href={`${program.slug}`}>{program.name}</a></td>
                 </tr>
