@@ -14,6 +14,7 @@ const UserProgramsQuery = graphql`
           context  {
             programUUID
             programName
+            programSlug
           }
         }
       }
