@@ -4,6 +4,7 @@ import { StaticQuery, graphql } from 'gatsby';
 
 import withAuthentication from '../components/withAuthentication';
 import ProgramsTable from '../components/ProgramsTable/ProgramsTable';
+import Layout from '../components/Layout/Layout';
 
 const UserProgramsQuery = graphql`
   query {
