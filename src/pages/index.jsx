@@ -3,7 +3,6 @@ import { IntlProvider } from 'react-intl';
 import { StaticQuery, graphql } from 'gatsby';
 
 import withAuthentication from '../components/withAuthentication';
-import Layout from '../components/Layout/Layout';
 import ProgramsTable from '../components/ProgramsTable/ProgramsTable';
 
 const UserProgramsQuery = graphql`

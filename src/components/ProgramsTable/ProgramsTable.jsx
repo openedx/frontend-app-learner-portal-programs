@@ -6,6 +6,7 @@ import { StatusAlert } from '@edx/paragon';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import Layout from '../Layout/Layout';
 
 class ProgramsTable extends Component {
   constructor(props) {
@@ -25,10 +26,7 @@ class ProgramsTable extends Component {
   };
 
   componentDidMount() {
-    // if user does not have correct program for the portal
-    // they're trying to access, go to an unauthorized page
-
-    // api call here
+    // TODO: api call here
     // this tells us what programs the user is enrolled in so we
     // can compare it to what programs the deployed application
     // knows about
@@ -96,27 +94,34 @@ class ProgramsTable extends Component {
       return this.renderError();
     }
     return (
-      <div className="container">
-        <h1>Program List</h1>
-        <div className="table-responsive">
-          <table className={classNames('table', 'table-sm', 'table-striped')}>
-            <thead>
-              <tr>
-                <th>Program Name</th>
-              </tr>
-            </thead>
-            <tbody>
-              {
+      <Layout>
+        {
+          this.programData.length
+          ?
+            <div className="container">
+              <h1>Program List</h1>
+              <div className="table-responsive">
+                <table className={classNames('table', 'table-sm', 'table-striped')}>
+                  <thead>
+                    <tr>
+                      <th>Program</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {
               this.programData.map(program => (
                 <tr key={program.uuid}>
                   <td><a href={`${program.slug}`}>{program.name}</a></td>
                 </tr>
                   ))
           }
-            </tbody>
-          </table>
-        </div>
-      </div>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          : <div className="container">You are not enrolled in any programs</div>
+       }
+      </Layout>
     );
   }
 }
