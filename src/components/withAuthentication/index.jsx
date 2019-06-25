@@ -9,8 +9,8 @@ import {
   initializeSegment,
   sendPageEvent,
 } from '@edx/frontend-analytics';
-
 import { configureLoggingService, NewRelicLoggingService } from '@edx/frontend-logging';
+import { StaticQuery, graphql } from 'gatsby';
 
 import apiClient from '../../data/apiClient';
 
@@ -82,4 +82,23 @@ withAuthentication.propTypes = {
   providerSlug: PropTypes.string.isRequired,
 };
 
-export default withAuthentication;
+const withSaml = WrappedComponent => (
+  props => (
+    <StaticQuery
+      query={graphql`
+        query {
+          site {
+            siteMetadata {
+              providerSlug
+            }
+          }
+        }
+      `}
+      render={data => (
+        <WrappedComponent providerSlug={data.site.siteMetadata.providerSlug} {...props} />
+      )}
+    />
+  )
+);
+
+export default WrappedComponent => withSaml(withAuthentication(WrappedComponent));
