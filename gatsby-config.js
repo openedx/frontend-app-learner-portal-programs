@@ -4,9 +4,6 @@ require('dotenv').config({
 
 module.exports = {
   siteMetadata: {
-    logo: 'https://www.edx.org/sites/default/files/open-edx-logo-with-reg.png',
-    siteName: 'Open Edx',
-    siteUrl: 'https://www.edx.org/',
     programUUID: 'aa7316ce-1b06-4d4a-b612-7a9c652f2990',
     providerSlug: 'saml-edx-saml-test',
   },
