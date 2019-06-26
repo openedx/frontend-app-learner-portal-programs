@@ -1,6 +1,6 @@
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
 import renderer from 'react-test-renderer';
+import { StaticQuery } from 'gatsby';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
@@ -20,8 +20,20 @@ const store = mockStore({
 });
 
 describe('ProgramsTable', () => {
+  beforeEach(() => {
+    StaticQuery.mockImplementationOnce(({ render }) => (
+      render({
+        site: {
+          siteMetadata: {
+            logo: 'https://edx.org',
+            siteName: 'edX',
+            siteUrl: 'https://edx.org',
+          },
+        },
+      })
+    ));
+  });
 
-  let props = {};
   let programQueryData = [
     {
       node: {
