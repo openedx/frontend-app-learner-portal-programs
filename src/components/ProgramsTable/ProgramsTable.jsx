@@ -128,7 +128,7 @@ class ProgramsTable extends Component {
 }
 
 ProgramsTable.propTypes = {
-  programQueryData: PropTypes.shape({}).isRequired,
+  programQueryData: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 };
 
 export default ProgramsTable;
