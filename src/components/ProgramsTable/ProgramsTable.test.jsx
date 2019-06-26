@@ -34,7 +34,7 @@ describe('ProgramsTable', () => {
     ));
   });
 
-  let programQueryData = [
+  const programQueryData = [
     {
       node: {
         context: {
