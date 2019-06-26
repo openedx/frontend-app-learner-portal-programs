@@ -64,6 +64,7 @@ const Layout = ({ children, username, avatar }) => (
             { type: 'item', href: '#', content: 'Login' },
             { type: 'item', href: '#', content: 'Sign Up' },
           ]}
+          skipNavId="content"
         />
         <>{children}</>
         <SiteFooter
