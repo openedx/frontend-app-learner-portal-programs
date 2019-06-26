@@ -6,6 +6,7 @@ import Links from '../Links';
 const linksData = {
   id: 'examples',
   title: 'Examples',
+  label: 'examples',
   links: [...new Array(8)].map((_, index) => ({
     title: `Test ${index + 1}`,
     href: `http://example.com/${index + 1}`,
@@ -17,7 +18,12 @@ describe('<Links />', () => {
 
   beforeEach(() => {
     wrapper = shallow((
-      <Links id={linksData.id} title={linksData.title} links={linksData.links} />
+      <Links
+        id={linksData.id}
+        title={linksData.title}
+        links={linksData.links}
+        label={linksData.label}
+      />
     ));
   });
 
@@ -38,7 +44,7 @@ describe('<Links />', () => {
   it('renders less than 5 links correctly', () => {
     const links = linksData.links.slice(0, 3);
     wrapper = shallow((
-      <Links id={linksData.id} title={linksData.title} links={links} />
+      <Links id={linksData.id} title={linksData.title} links={links} label={linksData.label} />
     ));
     const listItems = wrapper.find('li');
     expect(listItems).toHaveLength(3);

@@ -45,11 +45,12 @@ class Links extends Component {
     const {
       id,
       links,
+      label,
     } = this.props;
 
     return (
       <>
-        <nav>
+        <nav aria-label={label}>
           <ul id={id} className="list-unstyled mb-2">
             {this.getLinkItems()}
           </ul>
@@ -80,6 +81,7 @@ Links.propTypes = {
     title: PropTypes.string.isRequired,
     href: PropTypes.string.isRequired,
   })).isRequired,
+  label: PropTypes.string.isRequired,
 };
 
 export default Links;

@@ -5,19 +5,10 @@ import { Provider } from 'react-redux';
 import configureMockStore from 'redux-mock-store';
 import * as analytics from '@edx/frontend-analytics';
 
-
 import BaseCourseCard from '../BaseCourseCard';
 
 const mockStore = configureMockStore([thunk]);
-const store = mockStore({
-  state: {
-    modals: {
-      emailSettings: null,
-    },
-    hasEmailsEnabled: false,
-    hasNewEmailSettings: false,
-  },
-});
+const store = mockStore({});
 
 describe('<BaseCourseCard />', () => {
   describe('email settings modal', () => {
@@ -38,14 +29,15 @@ describe('<BaseCourseCard />', () => {
       expect(wrapper.find('.email-settings-btn').exists()).toBeTruthy();
       wrapper.find('.email-settings-btn').simulate('click');
       expect(analytics.sendTrackEvent).toHaveBeenCalled();
-      expect(wrapper.find('EmailSettingsModal').exists()).toBeTruthy();
+      const modal = wrapper.find('EmailSettingsModal');
+      expect(modal.props().open).toBeTruthy();
     });
 
     it('test modal close/cancel', () => {
       expect(wrapper.find('BaseCourseCard').state('modals').emailSettings).not.toBeNull();
       wrapper.find('EmailSettingsModal').find('.modal-footer .js-close-modal-on-click').first().simulate('click');
-      expect(wrapper.find('EmailSettingsModal').exists()).toBeFalsy();
-      expect(wrapper.find('BaseCourseCard').state('modals').emailSettings).toBeNull();
+      const modal = wrapper.find('EmailSettingsModal');
+      expect(modal.props().open).toBeFalsy();
     });
   });
 });

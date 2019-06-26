@@ -13,6 +13,7 @@ const CompletedCourseCard = (props) => {
         onClick={() => { sendTrackEvent('edx.learner_portal.completed_course.viewed', { course_run_id: props.courseRunId }); }}
       >
         View Course
+        <span className="sr-only">for {props.title}</span>
       </a>
       {props.linkToCertificate && (
         <a
@@ -21,6 +22,7 @@ const CompletedCourseCard = (props) => {
           onClick={() => { sendTrackEvent('edx.learner_portal.certificate.viewed', { course_run_id: props.courseRunId }); }}
         >
           View Certificate
+          <span className="sr-only">for {props.title}</span>
         </a>
       )}
     </>
@@ -39,6 +41,7 @@ CompletedCourseCard.propTypes = {
   linkToCourse: PropTypes.string.isRequired,
   linkToCertificate: PropTypes.string,
   courseRunId: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
 };
 
 CompletedCourseCard.defaultProps = {

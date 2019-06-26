@@ -1,10 +1,15 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
 import { mount } from 'enzyme';
+import thunk from 'redux-thunk';
+import { Provider } from 'react-redux';
+import configureMockStore from 'redux-mock-store';
 
 import * as analytics from '@edx/frontend-analytics';
 import CourseSection from '../CourseSection';
 import InProgressCourseCard from '../../CourseCard/InProgressCourseCard';
+
+const mockStore = configureMockStore([thunk]);
+const store = mockStore({});
 
 const sampleEnrollmentData = {
   course_run_id: 'course-v1:edX+DemoX+Demo_Course',
@@ -21,35 +26,37 @@ const sampleEnrollmentData = {
   micromasters_title: null,
 };
 
+const CourseSectionWrapper = props => (
+  <Provider store={store}>
+    <CourseSection {...props} />
+  </Provider>
+);
+
 describe('<CourseSection />', () => {
   it('does not render section if there are no enrollments', () => {
-    const tree = renderer
-      .create((
-        <CourseSection
-          title="Example Title"
-          component={InProgressCourseCard}
-          enrollments={[]}
-        />
-      ))
-      .toJSON();
-    expect(tree).toMatchSnapshot();
+    const wrapper = mount((
+      <CourseSectionWrapper
+        title="Example Title"
+        component={InProgressCourseCard}
+        enrollments={[]}
+      />
+    ));
+    expect(wrapper.html()).toEqual(null);
   });
 
   it('renders section if there are enrollments', () => {
-    const tree = renderer
-      .create((
-        <CourseSection
-          title="Example Title"
-          component={InProgressCourseCard}
-          enrollments={[sampleEnrollmentData, {
-            ...sampleEnrollmentData,
-            course_run_id: 'course-v1:edX+DemoX+Demo_Course_2',
-            display_name: 'edX Demonstration Course 2',
-          }]}
-        />
-      ))
-      .toJSON();
-    expect(tree).toMatchSnapshot();
+    const wrapper = mount((
+      <CourseSectionWrapper
+        title="Example Title"
+        component={InProgressCourseCard}
+        enrollments={[sampleEnrollmentData, {
+          ...sampleEnrollmentData,
+          course_run_id: 'course-v1:edX+DemoX+Demo_Course_2',
+          display_name: 'edX Demonstration Course 2',
+        }]}
+      />
+    ));
+    expect(wrapper.html()).not.toEqual(null);
   });
 
   it('properly handles collapsible behavior', () => {
@@ -57,19 +64,16 @@ describe('<CourseSection />', () => {
     const enrollments = [sampleEnrollmentData];
     analytics.sendTrackEvent = jest.fn();
     const wrapper = mount((
-      <CourseSection
+      <CourseSectionWrapper
         title={sectionTitle}
         component={InProgressCourseCard}
         enrollments={enrollments}
       />
     ));
-    expect(wrapper.state('isOpen')).toBeTruthy();
+
     expect(wrapper.find('.collapsible-title').text()).toEqual(sectionTitle);
-
     wrapper.find('.btn-collapsible').first().simulate('click');
-
     expect(analytics.sendTrackEvent).toHaveBeenCalled();
-    expect(wrapper.state('isOpen')).toBeFalsy();
     expect(wrapper.find('.collapsible-title').text()).toEqual(`${sectionTitle} (${enrollments.length})`);
   });
 });
