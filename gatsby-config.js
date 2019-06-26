@@ -8,7 +8,7 @@ module.exports = {
     siteName: 'Open Edx',
     siteUrl: 'https://www.edx.org/',
     programUUID: 'aa7316ce-1b06-4d4a-b612-7a9c652f2990',
-    providerSlug: 'saml-edx-stage',
+    providerSlug: 'saml-edx-saml-test',
   },
   plugins: [
     {
