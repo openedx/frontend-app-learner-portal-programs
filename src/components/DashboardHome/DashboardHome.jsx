@@ -12,7 +12,7 @@ import './DashboardHome.scss';
 const DashboardHome = () => (
   <>
     <Helmet title="Master's Degree in Analytics" />
-    <main>
+    <main id="content">
       <Hero
         programTitle="Master's Degree in Analytics"
         organizationLogo={{
