@@ -11,7 +11,7 @@ import Layout from '../Layout/Layout';
 class ProgramsTable extends Component {
   constructor(props) {
     super(props);
-    const programData = this.props.programQueryData;
+    const { programQueryData: programData } = this.props;
     this.programData = programData
       .filter(program => program.node.context.programUUID !== null)
       .map(program => (
