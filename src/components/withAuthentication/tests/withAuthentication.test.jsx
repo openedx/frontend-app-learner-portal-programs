@@ -3,6 +3,7 @@ import { mount } from 'enzyme';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import configureMockStore from 'redux-mock-store';
+import { StaticQuery } from 'gatsby';
 
 import apiClient from '../../../data/apiClient';
 
@@ -20,6 +21,18 @@ apiClient.ensurePublicOrAuthenticationAndCookies = (_, callback) => {
 };
 
 describe('<withAuthentication />', () => {
+  beforeEach(() => {
+    StaticQuery.mockImplementationOnce(({ render }) => (
+      render({
+        site: {
+          siteMetadata: {
+            providerSlug: 'test-saml',
+          },
+        },
+      })
+    ));
+  });
+
   it('does not render anything on initial paint', () => {
     const MyComponent = () => <div />;
     const AuthenticatedComponent = withAuthentication(MyComponent);
