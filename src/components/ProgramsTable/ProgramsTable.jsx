@@ -51,7 +51,7 @@ class ProgramsTable extends Component {
     ];
 
     this.validateUserPrograms(enrolledPrograms);
-    if (this.state.hasValidProgram === true && this.programData.length < 2) navigate(`${this.programData[0].slug}`);
+    if (this.state.hasValidProgram === true && this.programData.length === 1) navigate(`${this.programData[0].slug}`);
   }
 
   validateUserPrograms(enrolledPrograms) {
@@ -96,32 +96,28 @@ class ProgramsTable extends Component {
     }
     return (
       <Layout>
-        {
-          this.programData.length
-          ?
-            <div className="container">
-              <h1>Program List</h1>
-              <div className="table-responsive">
-                <table className={classNames('table', 'table-sm', 'table-striped')}>
-                  <thead>
-                    <tr>
-                      <th>Program</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {
+        <div className="container">
+          <h1>Program List</h1>
+          <div className="table-responsive">
+            <table className={classNames('table', 'table-sm', 'table-striped')}>
+              <thead>
+                <tr>
+                  <th>Program</th>
+                </tr>
+              </thead>
+              <tbody>
+                {
               this.programData.map(program => (
                 <tr key={program.uuid}>
                   <td><a href={`${program.slug}`}>{program.name}</a></td>
                 </tr>
                   ))
           }
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          : <div className="container">You are not enrolled in any programs</div>
-       }
+              </tbody>
+            </table>
+          </div>
+        </div>
+
       </Layout>
     );
   }
