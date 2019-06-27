@@ -22,6 +22,7 @@ class ProgramsTable extends Component {
         }
       ));
   }
+
   state = {
     validPrograms: [],
   };
@@ -110,13 +111,11 @@ class ProgramsTable extends Component {
                 </tr>
               </thead>
               <tbody>
-                {
-                this.programData.map(program => (
+                {this.programData.map(program => (
                   <tr key={program.uuid}>
                     <td><Link to={`${program.slug}`}>{program.name}</Link></td>
                   </tr>
-                    ))
-            }
+                    ))}
               </tbody>
             </table>
           </div>
