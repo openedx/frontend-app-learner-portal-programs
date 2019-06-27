@@ -1,4 +1,4 @@
-version: "2"
+version: "2.2"
 services:
   web:
     container_name: openedx.devstack.learner_portal
@@ -13,6 +13,6 @@ services:
       - "8734:8734"
     environment:
       - NODE_ENV=development
-
+    network_mode: host
 volumes:
   notused:
