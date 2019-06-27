@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { navigate } from 'gatsby';
+import { navigate, Link } from 'gatsby';
 import { StatusAlert } from '@edx/paragon';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -113,7 +113,7 @@ class ProgramsTable extends Component {
                 {
                 this.programData.map(program => (
                   <tr key={program.uuid}>
-                    <td><a href={`${program.slug}`}>{program.name}</a></td>
+                    <td><Link to={`${program.slug}`}>{program.name}</Link></td>
                   </tr>
                     ))
             }
