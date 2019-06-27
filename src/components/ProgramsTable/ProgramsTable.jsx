@@ -127,7 +127,13 @@ class ProgramsTable extends Component {
 
 ProgramsTable.propTypes = {
   programQueryData: PropTypes.arrayOf(PropTypes.shape({
-    node: PropTypes.shape({}),
+    node: PropTypes.shape({
+      context: PropTypes.shape({
+        programUUID: PropTypes.string,
+        programName: PropTypes.string,
+        programSlug: PropTypes.string,
+      }),
+    }),
   })).isRequired,
 };
 
