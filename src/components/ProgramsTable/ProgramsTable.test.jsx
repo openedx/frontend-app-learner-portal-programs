@@ -4,6 +4,7 @@ import { StaticQuery } from 'gatsby';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
+import { IntlProvider } from 'react-intl';
 
 import ProgramsTable from './ProgramsTable';
 
@@ -59,9 +60,11 @@ describe('ProgramsTable', () => {
   it('renders table when there are valid programs', () => {
     const tree = renderer
       .create((
-        <Provider store={store}>
-          <ProgramsTable programQueryData={programQueryData} />
-        </Provider>
+        <IntlProvider locale="en">
+          <Provider store={store}>
+            <ProgramsTable programQueryData={programQueryData} />
+          </Provider>
+        </IntlProvider>
       ))
       .toJSON();
     expect(tree).toMatchSnapshot();
@@ -71,9 +74,11 @@ describe('ProgramsTable', () => {
     programQueryData[0].uuid = "totes doesn't exist";
     const tree = renderer
       .create((
-        <Provider store={store}>
-          <ProgramsTable programQueryData={programQueryData} />
-        </Provider>
+        <IntlProvider locale="en">
+          <Provider store={store}>
+            <ProgramsTable programQueryData={programQueryData} />
+          </Provider>
+        </IntlProvider>
       ))
       .toJSON();
     expect(tree).toMatchSnapshot();

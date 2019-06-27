@@ -51,15 +51,14 @@ class ProgramsTable extends Component {
     ];
 
     this.validateUserPrograms(enrolledPrograms);
-    if (this.state.hasValidProgram === true && this.programData.length === 1) navigate(`${this.programData[0].slug}`);
   }
 
   validateUserPrograms(enrolledPrograms) {
     // list of program uuids that are part of this site
     const programsList = this.programData.map(program => program.uuid);
     // list of program uuids that the user is enrolled in
-    const enrolledProgramsList = enrolledPrograms.filter(program => programsList.includes(program.uuid));
-    // check if the user has program uuid matching the site's program uuids
+    const enrolledProgramsList = enrolledPrograms
+      .filter(program => programsList.includes(program.uuid));
     this.setState({
       validPrograms: enrolledProgramsList,
     });
@@ -67,34 +66,39 @@ class ProgramsTable extends Component {
 
   renderError() {
     return (
-      <StatusAlert
-        alertType="danger"
-        dialog={
-          <div className="d-flex">
-            <div>
-              <FontAwesomeIcon className="mr-2" icon={faExclamationTriangle} />
-            </div>
-            <div>
-            You are not authorized to view this page.
-            This page is reserved for masters students only.
-            You may access public edX courses on edx.org.
-            If you are a masters student and believe you should have access,
-            please contact your advisor at the university for further assistance.
-            </div>
-          </div>
-        }
-        dismissible={false}
-        open
-      />
+      <Layout>
+        <div className="container my-4">
+          <StatusAlert
+            alertType="danger"
+            dialog={
+              <div className="d-flex">
+                <div>
+                  <FontAwesomeIcon className="mr-2" icon={faExclamationTriangle} />
+                </div>
+                <div>
+                You are not authorized to view this page.
+                This page is reserved for masters students only.
+                You may access public edX courses on edx.org.
+                If you are a masters student and believe you should have access,
+                please contact your advisor at the university for further assistance.
+                </div>
+              </div>
+            }
+            dismissible={false}
+            open
+          />
+        </div>
+      </Layout>
     );
   }
 
   render() {
-    if (!this.state.hasValidPrograms) {
+    if (!this.state.validPrograms.length) {
       return this.renderError();
+    } else if (this.state.validPrograms.length === 1) {
+      navigate(`${this.state.validPrograms[0].slug}`);
     }
     return (
-
       <Layout>
         <div className="container">
           <h1>Program List</h1>
@@ -107,17 +111,16 @@ class ProgramsTable extends Component {
               </thead>
               <tbody>
                 {
-              this.programData.map(program => (
-                <tr key={program.uuid}>
-                  <td><a href={`${program.slug}`}>{program.name}</a></td>
-                </tr>
-                  ))
-          }
+                this.programData.map(program => (
+                  <tr key={program.uuid}>
+                    <td><a href={`${program.slug}`}>{program.name}</a></td>
+                  </tr>
+                    ))
+            }
               </tbody>
             </table>
           </div>
         </div>
-
       </Layout>
     );
   }
