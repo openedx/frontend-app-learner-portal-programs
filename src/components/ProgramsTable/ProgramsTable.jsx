@@ -23,7 +23,7 @@ class ProgramsTable extends Component {
       ));
   }
   state = {
-    hasValidPrograms: false,
+    validPrograms: [],
   };
 
   componentDidMount() {
@@ -58,11 +58,10 @@ class ProgramsTable extends Component {
     // list of program uuids that are part of this site
     const programsList = this.programData.map(program => program.uuid);
     // list of program uuids that the user is enrolled in
-    const enrolledProgramsList = enrolledPrograms.map(program => program.uuid);
+    const enrolledProgramsList = enrolledPrograms.filter(program => programsList.includes(program.uuid));
     // check if the user has program uuid matching the site's program uuids
-    const found = programsList.some(r => enrolledProgramsList.indexOf(r) >= 0);
     this.setState({
-      hasValidPrograms: found,
+      validPrograms: enrolledProgramsList,
     });
   }
 
@@ -95,6 +94,7 @@ class ProgramsTable extends Component {
       return this.renderError();
     }
     return (
+
       <Layout>
         <div className="container">
           <h1>Program List</h1>
