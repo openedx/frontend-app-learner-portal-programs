@@ -12,9 +12,8 @@ class ProgramsTable extends Component {
   constructor(props) {
     super(props);
     const { programQueryData: programData } = this.props;
-    console.log(programData);
     this.programData = programData
-      .filter(program => program.node.context.programUUID !== null)
+      .filter(program => program.node.context && program.node.context.programUUID !== null)
       .map(program => (
         {
           uuid: program.node.context.programUUID,
