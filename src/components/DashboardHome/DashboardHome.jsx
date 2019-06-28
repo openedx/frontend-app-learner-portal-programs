@@ -67,7 +67,10 @@ class DashboardHome extends Component {
               </div>
               <div>
                 You are not authorized to view this page.
-                This page is reserved for students enrolled in this program.
+                This page is reserved for masters students only.
+                You may access public edX courses on edx.org.
+                If you are a masters student and believe you should have access,
+                please contact your advisor at the university for further assistance.
               </div>
             </div>
             }
