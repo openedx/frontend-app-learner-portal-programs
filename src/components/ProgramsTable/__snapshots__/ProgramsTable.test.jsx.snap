@@ -1,0 +1,847 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProgramsTable renders error page when there are not valid programs 1`] = `
+Array [
+  <div
+    className="position-absolute"
+  >
+    <a
+      className="skip-nav-link sr-only sr-only-focusable btn btn-primary px-2 py-1 mt-3 ml-2"
+      href="#content"
+    >
+      Skip to main content
+    </a>
+  </div>,
+  <div
+    className="container"
+  >
+    <h1>
+      Program List
+    </h1>
+    <div
+      className="table-responsive"
+    >
+      <table
+        className="table table-sm table-striped"
+      >
+        <thead>
+          <tr>
+            <th>
+              Program
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <a
+                href="Example Program"
+              >
+                exampleprogram
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>,
+  <footer
+    aria-label="Page Footer"
+    className="footer d-flex justify-content-center border-top py-3 px-4"
+    role="contentinfo"
+  >
+    <div
+      className="max-width-1180 d-grid"
+    >
+      <div
+        className="area-1"
+      >
+        <a
+          aria-label="Open Edx Home"
+          href="https://www.example.com/"
+          onClick={[Function]}
+          target="_self"
+        >
+          <img
+            alt="Open Edx logo"
+            src="https://www.edx.org/sites/default/files/open-edx-logo-with-reg.png"
+          />
+        </a>
+      </div>
+      <div
+        className="area-2"
+      >
+        <h2>
+          Open Edx
+        </h2>
+        <ul
+          className="list-unstyled p-0 m-0"
+        >
+          <li>
+            <a
+              href="https://www.example.com/about-us"
+            >
+              <span>
+                About
+              </span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.example.com/enterprise"
+            >
+              <span>
+                Open Edx for Business
+              </span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.example.com/affiliate-program"
+            >
+              <span>
+                Affiliates
+              </span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.example.com/open"
+            >
+              <span>
+                Open Open Edx
+              </span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.example.com/careers"
+            >
+              <span>
+                Careers
+              </span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.example.com/news-announcements"
+            >
+              <span>
+                News
+              </span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div
+        className="area-3"
+      >
+        <h2>
+          <span>
+            Legal
+          </span>
+        </h2>
+        <ul
+          className="list-unstyled p-0 m-0"
+        >
+          <li>
+            <a
+              href="https://www.example.com/terms-of-service"
+            >
+              <span>
+                Terms of Service & Honor Code
+              </span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.example.com/privacy-policy"
+            >
+              <span>
+                Privacy Policy
+              </span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.example.com/accessibility"
+            >
+              <span>
+                Accessibility Policy
+              </span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.example.com/trademarks"
+            >
+              <span>
+                Trademark Policy
+              </span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.example.com/sitemap"
+            >
+              <span>
+                Sitemap
+              </span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div
+        className="area-4"
+      >
+        <h2>
+          <span>
+            Connect
+          </span>
+        </h2>
+        <ul
+          className="list-unstyled p-0 m-0"
+        >
+          <li>
+            <a
+              href="https://www.example.com/blog"
+            >
+              <span>
+                Blog
+              </span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.example.com/contact"
+            >
+              <span>
+                Contact Us
+              </span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.example.com/support"
+            >
+              <span>
+                Help Center
+              </span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.example.com/media-kit"
+            >
+              <span>
+                Media Kit
+              </span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.example.com/donate"
+            >
+              <span>
+                Donate
+              </span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div
+        className="area-5"
+      >
+        <ul
+          className="d-flex flex-row justify-content-between list-unstyled max-width-222 p-0 mb-4"
+        >
+          <li>
+            <a
+              href="https://www.facebook.com"
+              onClick={[Function]}
+              rel="noopener noreferrer"
+              target="_blank"
+              title="Facebook"
+            >
+              <span
+                aria-hidden={true}
+                className="fa fa-facebook-square fa-2x"
+                id="edx-footer-icon-facebook"
+              />
+              <span
+                className="sr-only"
+              >
+                Like Open Edx on Facebook
+              </span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.twitter.com"
+              onClick={[Function]}
+              rel="noopener noreferrer"
+              target="_blank"
+              title="Twitter"
+            >
+              <span
+                aria-hidden={true}
+                className="fa fa-twitter-square fa-2x"
+                id="edx-footer-icon-twitter"
+              />
+              <span
+                className="sr-only"
+              >
+                Follow Open Edx on Twitter
+              </span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.youtube.com"
+              onClick={[Function]}
+              rel="noopener noreferrer"
+              target="_blank"
+              title="Youtube"
+            >
+              <span
+                aria-hidden={true}
+                className="fa fa-youtube-square fa-2x"
+                id="edx-footer-icon-youtube"
+              />
+              <span
+                className="sr-only"
+              >
+                Subscribe to the Open Edx YouTube channel
+              </span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.linkedin.com"
+              onClick={[Function]}
+              rel="noopener noreferrer"
+              target="_blank"
+              title="LinkedIn"
+            >
+              <span
+                aria-hidden={true}
+                className="fa fa-linkedin-square fa-2x"
+                id="edx-footer-icon-linkedin"
+              />
+              <span
+                className="sr-only"
+              >
+                Follow Open Edx on LinkedIn
+              </span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://plus.google.com"
+              onClick={[Function]}
+              rel="noopener noreferrer"
+              target="_blank"
+              title="Google+"
+            >
+              <span
+                aria-hidden={true}
+                className="fa fa-google-plus-square fa-2x"
+                id="edx-footer-icon-google"
+              />
+              <span
+                className="sr-only"
+              >
+                Follow Open Edx on Google+
+              </span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://reddit.com"
+              onClick={[Function]}
+              rel="noopener noreferrer"
+              target="_blank"
+              title="Reddit"
+            >
+              <span
+                aria-hidden={true}
+                className="fa fa-reddit-square fa-2x"
+                id="edx-footer-icon-reddit"
+              />
+              <span
+                className="sr-only"
+              >
+                Subscribe to the Open Edx subreddit
+              </span>
+            </a>
+          </li>
+        </ul>
+        <ul
+          className="d-flex flex-row justify-content-between list-unstyled max-width-264 p-0 mb-5"
+        >
+          <li>
+            <a
+              href="https://store.apple.com"
+              onClick={[Function]}
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <img
+                alt="Download the Open Edx mobile app from the Apple App Store"
+                className="max-height-39"
+                src="https://prod-edxapp.edx-cdn.org/static/images/app/app_store_badge_135x40.d0558d910630.svg"
+              />
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://play.google.com"
+              onClick={[Function]}
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <img
+                alt="Download the Open Edx mobile app from Google Play"
+                className="max-height-39"
+                src="https://prod-edxapp.edx-cdn.org/static/images/app/google_play_badge_45.6ea466e328da.png"
+              />
+            </a>
+          </li>
+        </ul>
+        <p>
+          <span>
+            © 2012–2019 Open Edx Inc.
+          </span>
+          <br />
+          <span>
+            EdX, Open edX, and MicroMasters are registered trademarks of edX Inc. | 粤ICP备17044299号-2
+          </span>
+        </p>
+      </div>
+    </div>
+  </footer>,
+]
+`;
+
+exports[`ProgramsTable renders table when there are valid programs 1`] = `
+Array [
+  <div
+    className="position-absolute"
+  >
+    <a
+      className="skip-nav-link sr-only sr-only-focusable btn btn-primary px-2 py-1 mt-3 ml-2"
+      href="#content"
+    >
+      Skip to main content
+    </a>
+  </div>,
+  <div
+    className="container"
+  >
+    <h1>
+      Program List
+    </h1>
+    <div
+      className="table-responsive"
+    >
+      <table
+        className="table table-sm table-striped"
+      >
+        <thead>
+          <tr>
+            <th>
+              Program
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <a
+                href="Example Program"
+              >
+                exampleprogram
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>,
+  <footer
+    aria-label="Page Footer"
+    className="footer d-flex justify-content-center border-top py-3 px-4"
+    role="contentinfo"
+  >
+    <div
+      className="max-width-1180 d-grid"
+    >
+      <div
+        className="area-1"
+      >
+        <a
+          aria-label="Open Edx Home"
+          href="https://www.example.com/"
+          onClick={[Function]}
+          target="_self"
+        >
+          <img
+            alt="Open Edx logo"
+            src="https://www.edx.org/sites/default/files/open-edx-logo-with-reg.png"
+          />
+        </a>
+      </div>
+      <div
+        className="area-2"
+      >
+        <h2>
+          Open Edx
+        </h2>
+        <ul
+          className="list-unstyled p-0 m-0"
+        >
+          <li>
+            <a
+              href="https://www.example.com/about-us"
+            >
+              <span>
+                About
+              </span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.example.com/enterprise"
+            >
+              <span>
+                Open Edx for Business
+              </span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.example.com/affiliate-program"
+            >
+              <span>
+                Affiliates
+              </span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.example.com/open"
+            >
+              <span>
+                Open Open Edx
+              </span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.example.com/careers"
+            >
+              <span>
+                Careers
+              </span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.example.com/news-announcements"
+            >
+              <span>
+                News
+              </span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div
+        className="area-3"
+      >
+        <h2>
+          <span>
+            Legal
+          </span>
+        </h2>
+        <ul
+          className="list-unstyled p-0 m-0"
+        >
+          <li>
+            <a
+              href="https://www.example.com/terms-of-service"
+            >
+              <span>
+                Terms of Service & Honor Code
+              </span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.example.com/privacy-policy"
+            >
+              <span>
+                Privacy Policy
+              </span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.example.com/accessibility"
+            >
+              <span>
+                Accessibility Policy
+              </span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.example.com/trademarks"
+            >
+              <span>
+                Trademark Policy
+              </span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.example.com/sitemap"
+            >
+              <span>
+                Sitemap
+              </span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div
+        className="area-4"
+      >
+        <h2>
+          <span>
+            Connect
+          </span>
+        </h2>
+        <ul
+          className="list-unstyled p-0 m-0"
+        >
+          <li>
+            <a
+              href="https://www.example.com/blog"
+            >
+              <span>
+                Blog
+              </span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.example.com/contact"
+            >
+              <span>
+                Contact Us
+              </span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.example.com/support"
+            >
+              <span>
+                Help Center
+              </span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.example.com/media-kit"
+            >
+              <span>
+                Media Kit
+              </span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.example.com/donate"
+            >
+              <span>
+                Donate
+              </span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div
+        className="area-5"
+      >
+        <ul
+          className="d-flex flex-row justify-content-between list-unstyled max-width-222 p-0 mb-4"
+        >
+          <li>
+            <a
+              href="https://www.facebook.com"
+              onClick={[Function]}
+              rel="noopener noreferrer"
+              target="_blank"
+              title="Facebook"
+            >
+              <span
+                aria-hidden={true}
+                className="fa fa-facebook-square fa-2x"
+                id="edx-footer-icon-facebook"
+              />
+              <span
+                className="sr-only"
+              >
+                Like Open Edx on Facebook
+              </span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.twitter.com"
+              onClick={[Function]}
+              rel="noopener noreferrer"
+              target="_blank"
+              title="Twitter"
+            >
+              <span
+                aria-hidden={true}
+                className="fa fa-twitter-square fa-2x"
+                id="edx-footer-icon-twitter"
+              />
+              <span
+                className="sr-only"
+              >
+                Follow Open Edx on Twitter
+              </span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.youtube.com"
+              onClick={[Function]}
+              rel="noopener noreferrer"
+              target="_blank"
+              title="Youtube"
+            >
+              <span
+                aria-hidden={true}
+                className="fa fa-youtube-square fa-2x"
+                id="edx-footer-icon-youtube"
+              />
+              <span
+                className="sr-only"
+              >
+                Subscribe to the Open Edx YouTube channel
+              </span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.linkedin.com"
+              onClick={[Function]}
+              rel="noopener noreferrer"
+              target="_blank"
+              title="LinkedIn"
+            >
+              <span
+                aria-hidden={true}
+                className="fa fa-linkedin-square fa-2x"
+                id="edx-footer-icon-linkedin"
+              />
+              <span
+                className="sr-only"
+              >
+                Follow Open Edx on LinkedIn
+              </span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://plus.google.com"
+              onClick={[Function]}
+              rel="noopener noreferrer"
+              target="_blank"
+              title="Google+"
+            >
+              <span
+                aria-hidden={true}
+                className="fa fa-google-plus-square fa-2x"
+                id="edx-footer-icon-google"
+              />
+              <span
+                className="sr-only"
+              >
+                Follow Open Edx on Google+
+              </span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://reddit.com"
+              onClick={[Function]}
+              rel="noopener noreferrer"
+              target="_blank"
+              title="Reddit"
+            >
+              <span
+                aria-hidden={true}
+                className="fa fa-reddit-square fa-2x"
+                id="edx-footer-icon-reddit"
+              />
+              <span
+                className="sr-only"
+              >
+                Subscribe to the Open Edx subreddit
+              </span>
+            </a>
+          </li>
+        </ul>
+        <ul
+          className="d-flex flex-row justify-content-between list-unstyled max-width-264 p-0 mb-5"
+        >
+          <li>
+            <a
+              href="https://store.apple.com"
+              onClick={[Function]}
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <img
+                alt="Download the Open Edx mobile app from the Apple App Store"
+                className="max-height-39"
+                src="https://prod-edxapp.edx-cdn.org/static/images/app/app_store_badge_135x40.d0558d910630.svg"
+              />
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://play.google.com"
+              onClick={[Function]}
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <img
+                alt="Download the Open Edx mobile app from Google Play"
+                className="max-height-39"
+                src="https://prod-edxapp.edx-cdn.org/static/images/app/google_play_badge_45.6ea466e328da.png"
+              />
+            </a>
+          </li>
+        </ul>
+        <p>
+          <span>
+            © 2012–2019 Open Edx Inc.
+          </span>
+          <br />
+          <span>
+            EdX, Open edX, and MicroMasters are registered trademarks of edX Inc. | 粤ICP备17044299号-2
+          </span>
+        </p>
+      </div>
+    </div>
+  </footer>,
+]
+`;

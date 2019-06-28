@@ -5,6 +5,7 @@ import SiteHeader from '@edx/frontend-component-site-header';
 import SiteFooter from '@edx/frontend-component-footer';
 import { connect } from 'react-redux';
 
+
 import './Layout.scss';
 
 const Layout = props => (

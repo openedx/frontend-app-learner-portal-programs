@@ -1,15 +1,34 @@
 import React from 'react';
+import { StaticQuery, graphql } from 'gatsby';
 import { IntlProvider } from 'react-intl';
 
 import withAuthentication from '../components/withAuthentication';
-import Layout from '../components/Layout/Layout';
-import DashboardHome from '../components/DashboardHome/DashboardHome';
+import ProgramsTable from '../components/ProgramsTable/ProgramsTable';
 
-const IndexPage = () => (
+const UserProgramsQuery = graphql`
+  query {
+    allSitePage {
+      edges {
+        node {
+          context  {
+            programUUID
+            programName
+            programSlug
+          }
+        }
+      }
+    }
+  }
+`;
+
+const IndexPage = props => (
   <IntlProvider locale="en">
-    <Layout>
-      <DashboardHome />
-    </Layout>
+    <StaticQuery
+      query={UserProgramsQuery}
+      render={data => (
+        <ProgramsTable programQueryData={data.allSitePage.edges} {...props} />
+        )}
+    />
   </IntlProvider>
 );
 
