@@ -18,6 +18,11 @@ const store = mockStore({
       imageUrlMedium: 'someImageData',
     },
   },
+  enrolledPrograms: {
+    loading: false,
+    data: null,
+    error: null,
+  },
 });
 
 describe('ProgramsTable', () => {
@@ -40,8 +45,8 @@ describe('ProgramsTable', () => {
       node: {
         context: {
           programUUID: '6eefc008-db50-46f0-8746-667f55533a5d',
-          programSlug: 'Example Program',
-          programName: 'exampleprogram',
+          programName: 'Example Program',
+          programSlug: 'exampleprogram',
         },
       },
     },
@@ -70,7 +75,7 @@ describe('ProgramsTable', () => {
     expect(tree).toMatchSnapshot();
   });
 
-  it('renders error page when there are not valid programs', () => {
+  it('renders error page when there are no valid programs', () => {
     programQueryData[0].uuid = "totes doesn't exist";
     const tree = renderer
       .create((

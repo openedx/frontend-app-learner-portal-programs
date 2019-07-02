@@ -26,6 +26,10 @@ class LmsApiService {
       },
     );
   }
+
+  static fetchUserProgramEnrollments() {
+    return apiClient.get(`${LmsApiService.baseUrl}/api/program_enrollments/v1/programs/enrollments/`);
+  }
 }
 
 export default LmsApiService;
