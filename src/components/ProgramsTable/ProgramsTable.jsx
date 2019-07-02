@@ -142,6 +142,7 @@ ProgramsTable.propTypes = {
         programUUID: PropTypes.string,
         programName: PropTypes.string,
         programSlug: PropTypes.string,
+        programHostname: PropTypes.string,
       }),
     }),
   })).isRequired,
