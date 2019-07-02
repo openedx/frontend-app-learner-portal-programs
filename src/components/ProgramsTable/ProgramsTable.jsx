@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { navigate, Link } from 'gatsby';
+import { Link } from 'gatsby';
 import { StatusAlert } from '@edx/paragon';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -107,7 +107,7 @@ class ProgramsTable extends Component {
       return this.renderError();
     } else if (this.state.validPrograms.length === 1) {
       const program = this.state.validPrograms[0];
-      window.location.replace(`https://${program.hostname}/${program.slug}`)
+      window.location.replace(`https://${program.hostname}/${program.slug}`);
     }
     return (
       <Layout>
