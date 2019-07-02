@@ -12,7 +12,6 @@ class ProgramsTable extends Component {
   constructor(props) {
     super(props);
     const { programQueryData: programData } = this.props;
-    console.log(programData);
     this.programData = programData
       .filter(program => program.node.context && program.node.context.programUUID !== null)
       .map(program => (
@@ -20,6 +19,7 @@ class ProgramsTable extends Component {
           uuid: program.node.context.programUUID,
           slug: program.node.context.programSlug,
           name: program.node.context.programName,
+          hostname: program.node.context.programHostname,
         }
       ));
   }
@@ -60,7 +60,15 @@ class ProgramsTable extends Component {
     const programsList = this.programData.map(program => program.uuid);
     // list of program uuids that the user is enrolled in
     const enrolledProgramsList = enrolledPrograms
-      .filter(program => programsList.includes(program.uuid));
+      .filter(program => programsList.includes(program.uuid))
+      .map(program => (
+        {
+          ...program,
+          name: this.programData.find(p => p.uuid === program.uuid).name,
+          hostname: this.programData.find(p => p.uuid === program.uuid).hostname,
+        }
+      ));
+
     this.setState({
       validPrograms: enrolledProgramsList,
     });
@@ -98,7 +106,8 @@ class ProgramsTable extends Component {
     if (!this.state.validPrograms.length) {
       return this.renderError();
     } else if (this.state.validPrograms.length === 1) {
-      navigate(`${this.state.validPrograms[0].slug}`);
+      const program = this.state.validPrograms[0];
+      window.location.replace(`https://${program.hostname}/${program.slug}`)
     }
     return (
       <Layout>
@@ -112,9 +121,9 @@ class ProgramsTable extends Component {
                 </tr>
               </thead>
               <tbody>
-                {this.programData.map(program => (
+                {this.state.validPrograms.map(program => (
                   <tr key={program.uuid}>
-                    <td><Link to={`${program.slug}`}>{program.name}</Link></td>
+                    <td><Link to={`https://${program.hostname}/${program.slug}`}>{program.name}</Link></td>
                   </tr>
                     ))}
               </tbody>
