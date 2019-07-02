@@ -42,7 +42,7 @@ describe('ProgramsTable', () => {
           programUUID: '6eefc008-db50-46f0-8746-667f55533a5d',
           programName: 'Example Program',
           programSlug: 'exampleprogram',
-          programHostname: 'exampleprogram.edx.org',
+          programHostname: 'https://exampleprogram.edx.org',
         },
       },
     },
