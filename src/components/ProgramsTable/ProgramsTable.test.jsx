@@ -40,8 +40,9 @@ describe('ProgramsTable', () => {
       node: {
         context: {
           programUUID: '6eefc008-db50-46f0-8746-667f55533a5d',
-          programSlug: 'Example Program',
-          programName: 'exampleprogram',
+          programName: 'Example Program',
+          programSlug: 'exampleprogram',
+          programHostname: 'exampleprogram.edx.org',
         },
       },
     },
@@ -51,6 +52,7 @@ describe('ProgramsTable', () => {
           programUUID: null,
           programSlug: null,
           programName: null,
+          programHostname: null,
         },
       },
     },
