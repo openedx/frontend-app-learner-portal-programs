@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Link } from 'gatsby';
 import { StatusAlert } from '@edx/paragon';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -107,7 +106,8 @@ class ProgramsTable extends Component {
       return this.renderError();
     } else if (this.state.validPrograms.length === 1) {
       const program = this.state.validPrograms[0];
-      window.location.replace(`https://${program.hostname}/${program.slug}`);
+      window.location.replace(`${program.hostname}/${program.slug}`);
+      return null;
     }
     return (
       <Layout>
@@ -123,7 +123,7 @@ class ProgramsTable extends Component {
               <tbody>
                 {this.state.validPrograms.map(program => (
                   <tr key={program.uuid}>
-                    <td><Link to={`https://${program.hostname}/${program.slug}`}>{program.name}</Link></td>
+                    <td><a href={`${program.hostname}/${program.slug}`}>{program.name}</a></td>
                   </tr>
                     ))}
               </tbody>

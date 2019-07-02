@@ -29,13 +29,13 @@ exports.createPages = async ({ actions }) => {
       uuid: '6eefc008-db50-46f0-8746-667f55533a5d',
       name: 'Example Program',
       slug: 'exampleprogram',
-      hostname: 'exampleprogram.edx.org',
+      hostname: 'http://localhost:8734',
     },
     {
       uuid: '6eefc008-db50-46f0-8746-667f55533a5d',
       name: 'Another Program',
       slug: 'another-program',
-      hostname: 'exampleprogram.edx.org',
+      hostname: 'http://localhost:8734',
     },
   ];
 

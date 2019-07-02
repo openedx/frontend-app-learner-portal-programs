@@ -14,6 +14,7 @@ const UserProgramsQuery = graphql`
             programUUID
             programName
             programSlug
+            programHostname
           }
         }
       }
