@@ -3,7 +3,7 @@ import { StaticQuery, graphql } from 'gatsby';
 import { IntlProvider } from 'react-intl';
 
 import withAuthentication from '../components/withAuthentication';
-import ProgramsTable from '../components/ProgramsTable/ProgramsTable';
+import { ProgramsTable } from '../components/ProgramsTable';
 
 const UserProgramsQuery = graphql`
   query {

@@ -13,7 +13,7 @@ if (process.env.UNBRANDED_LANDING_PAGE === true) {
 module.exports = {
   siteMetadata: {
     programUUID: 'aa7316ce-1b06-4d4a-b612-7a9c652f2990',
-    providerSlug: 'saml-edx-saml-test',
+    providerSlug: 'saml-default',
   },
   plugins: [
     {
