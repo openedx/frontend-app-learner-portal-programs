@@ -35,9 +35,18 @@ Array [
           <tr>
             <td>
               <a
-                href="Example Program"
+                href="https://exampleprogram.edx.org/exampleprogram"
               >
-                exampleprogram
+                Example Program
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a
+                href="https://exampleprogram.edx.org/another-program"
+              >
+                Example Program
               </a>
             </td>
           </tr>
@@ -458,9 +467,18 @@ Array [
           <tr>
             <td>
               <a
-                href="Example Program"
+                href="https://exampleprogram.edx.org/exampleprogram"
               >
-                exampleprogram
+                Example Program
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a
+                href="https://exampleprogram.edx.org/another-program"
+              >
+                Example Program
               </a>
             </td>
           </tr>
