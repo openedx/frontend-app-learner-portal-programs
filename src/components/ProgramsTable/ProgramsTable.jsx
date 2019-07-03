@@ -32,7 +32,6 @@ class ProgramsTable extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    // const { validPrograms } = this.state;
     const { enrolledPrograms } = this.props;
 
     if (enrolledPrograms && enrolledPrograms !== prevProps.enrolledPrograms) {
