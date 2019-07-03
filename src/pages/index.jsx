@@ -3,7 +3,7 @@ import { StaticQuery, graphql } from 'gatsby';
 import { IntlProvider } from 'react-intl';
 
 import withAuthentication from '../components/common/withAuthentication';
-import { ProgramsPage } from '../components/masters/programs';
+import { ProgramsListPage } from '../components/masters/programs-list';
 
 const UserProgramsQuery = graphql`
   query {
@@ -27,8 +27,8 @@ const IndexPage = props => (
     <StaticQuery
       query={UserProgramsQuery}
       render={data => (
-        <ProgramsPage programQueryData={data.allSitePage.edges} {...props} />
-        )}
+        <ProgramsListPage programQueryData={data.allSitePage.edges} {...props} />
+      )}
     />
   </IntlProvider>
 );

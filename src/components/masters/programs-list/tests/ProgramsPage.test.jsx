@@ -6,7 +6,7 @@ import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import { IntlProvider } from 'react-intl';
 
-import ProgramsPage from '../ProgramsPage';
+import ProgramsListPage from '../ProgramsListPage';
 
 const mockStore = configureMockStore([thunk]);
 const store = mockStore({
@@ -20,7 +20,7 @@ const store = mockStore({
   },
 });
 
-describe('ProgramsPage', () => {
+describe('ProgramsListPage', () => {
   beforeEach(() => {
     StaticQuery.mockImplementationOnce(({ render }) => (
       render({
@@ -64,7 +64,7 @@ describe('ProgramsPage', () => {
       .create((
         <IntlProvider locale="en">
           <Provider store={store}>
-            <ProgramsPage programQueryData={programQueryData} />
+            <ProgramsListPage programQueryData={programQueryData} />
           </Provider>
         </IntlProvider>
       ))
@@ -78,7 +78,7 @@ describe('ProgramsPage', () => {
       .create((
         <IntlProvider locale="en">
           <Provider store={store}>
-            <ProgramsPage programQueryData={programQueryData} />
+            <ProgramsListPage programQueryData={programQueryData} />
           </Provider>
         </IntlProvider>
       ))

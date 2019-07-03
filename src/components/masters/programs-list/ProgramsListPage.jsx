@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { Layout } from '../../common';
 
-class ProgramsPage extends Component {
+class ProgramsListPage extends Component {
   constructor(props) {
     super(props);
     const { programQueryData: programData } = this.props;
@@ -135,7 +135,7 @@ class ProgramsPage extends Component {
   }
 }
 
-ProgramsPage.propTypes = {
+ProgramsListPage.propTypes = {
   programQueryData: PropTypes.arrayOf(PropTypes.shape({
     node: PropTypes.shape({
       context: PropTypes.shape({
@@ -148,4 +148,4 @@ ProgramsPage.propTypes = {
   })).isRequired,
 };
 
-export default ProgramsPage;
+export default ProgramsListPage;
