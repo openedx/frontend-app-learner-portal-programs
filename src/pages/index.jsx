@@ -2,8 +2,8 @@ import React from 'react';
 import { StaticQuery, graphql } from 'gatsby';
 import { IntlProvider } from 'react-intl';
 
-import withAuthentication from '../components/withAuthentication';
-import ProgramsTable from '../components/ProgramsTable/ProgramsTable';
+import withAuthentication from '../components/common/withAuthentication';
+import { ProgramsPage } from '../components/masters/programs';
 
 const UserProgramsQuery = graphql`
   query {
@@ -27,7 +27,7 @@ const IndexPage = props => (
     <StaticQuery
       query={UserProgramsQuery}
       render={data => (
-        <ProgramsTable programQueryData={data.allSitePage.edges} {...props} />
+        <ProgramsPage programQueryData={data.allSitePage.edges} {...props} />
         )}
     />
   </IntlProvider>

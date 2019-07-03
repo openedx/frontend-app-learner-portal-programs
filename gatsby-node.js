@@ -5,7 +5,7 @@
  */
 const path = require('path');
 
-const DashboardHome = path.resolve('./src/components/DashboardHome/DashboardHome.jsx');
+const ProgramPage = path.resolve('./src/components/masters/program/ProgramPage.jsx');
 
 exports.onCreatePage = async ({ page, actions }) => {
   const { createPage } = actions;
@@ -48,7 +48,7 @@ exports.createPages = async ({ actions }) => {
     } = program;
     createPage({
       path: slug,
-      component: DashboardHome,
+      component: ProgramPage,
       context: {
         programSlug: slug,
         programUUID: uuid,
