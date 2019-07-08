@@ -1,13 +1,14 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import { mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import { StaticQuery } from 'gatsby';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import { IntlProvider } from 'react-intl';
+import { StatusAlert } from '@edx/paragon';
 
-import ProgramsTable from './ProgramsTable';
+import ConnectedProgramsTable, { ProgramsTable } from './ProgramsTable';
 
 const mockStore = configureMockStore([thunk]);
 
@@ -68,7 +69,7 @@ describe('ProgramsTable', () => {
       .create((
         <IntlProvider locale="en">
           <Provider store={store}>
-            <ProgramsTable programQueryData={programQueryData} />
+            <ConnectedProgramsTable programQueryData={programQueryData} />
           </Provider>
         </IntlProvider>
       ))
@@ -96,7 +97,7 @@ describe('ProgramsTable', () => {
       .create((
         <IntlProvider locale="en">
           <Provider store={store}>
-            <ProgramsTable programQueryData={programQueryData} />
+            <ConnectedProgramsTable programQueryData={programQueryData} />
           </Provider>
         </IntlProvider>
       ))
@@ -104,35 +105,7 @@ describe('ProgramsTable', () => {
     expect(tree).toMatchSnapshot();
   });
 
-  // below tests need work :(
   it('renders table when there are valid programs', () => {
-    const store = mockStore({
-      authentication: {
-        username: 'edx',
-      },
-      userAccount: {
-        profileImage: {
-          imageUrlMedium: 'someImageData',
-        },
-      },
-      enrolledPrograms: {
-        loading: false,
-        data: [
-          {
-            uuid: '6eefc008-db50-46f0-8746-667f55533a5d',
-            name: 'Example Program',
-            slug: 'exampleprogram',
-          },
-          {
-            uuid: '6eefc008-db50-46f0-8746-667f55533a5e',
-            name: 'Another Program',
-            slug: 'another-program',
-          },
-        ],
-        error: null,
-      },
-    });
-
     const data = [
       {
         uuid: '6eefc008-db50-46f0-8746-667f55533a5d',
@@ -146,58 +119,47 @@ describe('ProgramsTable', () => {
       },
     ];
 
-    const wrapper = mount((
-      <IntlProvider locale="en">
-        <Provider store={store}>
-          <ProgramsTable
-            programQueryData={programQueryData}
-          />
-        </Provider>
-      </IntlProvider>
+    const wrapper = shallow((
+      <ProgramsTable
+        store={mockStore()}
+        programQueryData={programQueryData}
+        isLoading={false}
+        fetchUserProgramEnrollments={jest.fn()}
+      />
     ));
 
-    wrapper.setProps({ children: <ProgramsTable data={data} /> });
+    wrapper.setProps({ enrolledPrograms: data });
 
     expect(wrapper.find('.table-responsive').exists()).toBeTruthy();
+    expect(wrapper.find('tbody tr').length).toEqual(2);
   });
 
   it('renders error page when there are no valid programs', () => {
-    const store = mockStore({
-      authentication: {
-        username: 'edx',
+    const data = [
+      {
+        uuid: 'this-is-a-fake-program',
+        name: 'This is a fake program',
+        slug: 'fake-program',
       },
-      userAccount: {
-        profileImage: {
-          imageUrlMedium: 'someImageData',
-        },
+      {
+        uuid: 'this-is-another-fake-program',
+        name: 'This is another fake program',
+        slug: 'another-fake-program',
       },
-      enrolledPrograms: {
-        loading: false,
-        data: [
-          {
-            uuid: 'this-is-a-fake-program',
-            name: 'This is a fake program',
-            slug: 'fake-program',
-          },
-          {
-            uuid: 'this-is-another-fake-program',
-            name: 'This is another fake program',
-            slug: 'another-fake-program',
-          },
-        ],
-        error: null,
-      },
-    });
+    ];
 
-    const tree = renderer
-      .create((
-        <IntlProvider locale="en">
-          <Provider store={store}>
-            <ProgramsTable programQueryData={programQueryData} />
-          </Provider>
-        </IntlProvider>
-      ))
-      .toJSON();
-    expect(tree).toMatchSnapshot();
+    const wrapper = shallow((
+      <ProgramsTable
+        store={mockStore()}
+        programQueryData={programQueryData}
+        isLoading={false}
+        fetchUserProgramEnrollments={jest.fn()}
+      />
+    ));
+
+    wrapper.setProps({ enrolledPrograms: data });
+
+    expect(wrapper.find('.table-responsive').exists()).toBeFalsy();
+    expect(wrapper.find(StatusAlert).exists()).toBeTruthy();
   });
 });
