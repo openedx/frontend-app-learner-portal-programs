@@ -1,13 +1,12 @@
 @import "~@edx/edx-bootstrap/scss/edx/theme";
 
 .collapsible {
-  border: 0;
+  @extend .border-0;
+  
+  .collapsible-body {
+    @extend .p-0;
 
-  &.open {
-    border: 0;
-    
-    .collapsible-body {
-      padding: 0;
+    &.open {
       overflow: initial;
     }
   }
@@ -17,17 +16,14 @@
   }
 
   .btn-collapsible {
-    background: $white;
-    border-radius: 0;
-    border: 0;
+    @extend .rounded-0;
     @extend .mb-2;
+    @extend .border-0;
 
-    &.open {
-      border: 0;
-    }
+    background-color: $white;
 
     &:hover {
-      background: $white;
+      background-color: $white !important;
     }
 
     &:focus {

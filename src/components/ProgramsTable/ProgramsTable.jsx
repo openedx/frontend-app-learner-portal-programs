@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import Layout from '../Layout/Layout';
 
-import { fetchUserProgramEnrollments } from './data/actions';
+import { fetchUserProgramEnrollments } from '../user-program-enrollments';
 
 class ProgramsTable extends Component {
   constructor(props) {

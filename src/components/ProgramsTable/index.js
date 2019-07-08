@@ -1,3 +1,5 @@
 export { default as ProgramsTable } from './ProgramsTable';
-export { default as reducer } from './data/reducer';
-export { fetchUserProgramEnrollments } from './data/actions';
+export {
+  fetchUserProgramEnrollments,
+  reducer,
+} from '../user-program-enrollments';
