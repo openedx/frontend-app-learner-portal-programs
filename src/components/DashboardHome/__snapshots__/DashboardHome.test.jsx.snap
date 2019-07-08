@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DashboardTable renders dashboard if user is enrolled in the program 1`] = `null`;

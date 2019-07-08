@@ -24,6 +24,7 @@ class DashboardHome extends Component {
     this.state = {
       hasProgramAccess: false,
     };
+    this.validateAccess = this.validateAccess.bind(this);
   }
 
   componentDidMount() {
