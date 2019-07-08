@@ -7,14 +7,14 @@ import thunk from 'redux-thunk';
 import { mount } from 'enzyme';
 import { breakpoints } from '@edx/paragon';
 
-import '../../../__mocks__/reactResponsive.mock';
+import '../../../../../__mocks__/reactResponsive.mock';
 
 import MainContent from '../MainContent';
 
 const mockStore = configureMockStore([thunk]);
 
 const initialStore = mockStore({
-  programEnrollments: {
+  programCourseEnrollments: {
     courseRuns: [],
     loading: false,
     error: null,
@@ -62,7 +62,7 @@ describe('<MainContent />', () => {
       };
 
       store = mockStore({
-        programEnrollments: {
+        programCourseEnrollments: {
           courseRuns: [sampleProgramEnrollment, {
             ...sampleProgramEnrollment,
             course_run_id: 'course-v1:edX+DemoX+Demo_Course_2',
@@ -92,7 +92,7 @@ describe('<MainContent />', () => {
 
     it('with error state', () => {
       store = mockStore({
-        programEnrollments: {
+        programCourseEnrollments: {
           courseRuns: [],
           loading: false,
           error: new Error('Network Request'),
@@ -111,7 +111,7 @@ describe('<MainContent />', () => {
 
     it('with loading state', () => {
       store = mockStore({
-        programEnrollments: {
+        programCourseEnrollments: {
           courseRuns: [],
           loading: true,
           error: null,

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ProgramsTable renders error page when there are not valid programs 1`] = `
+exports[`ProgramsListPage renders error page when there are not valid programs 1`] = `
 Array [
   <div
     className="position-absolute"
@@ -432,7 +432,7 @@ Array [
 ]
 `;
 
-exports[`ProgramsTable renders table when there are valid programs 1`] = `
+exports[`ProgramsListPage renders table when there are valid programs 1`] = `
 Array [
   <div
     className="position-absolute"

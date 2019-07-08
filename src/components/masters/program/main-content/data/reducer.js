@@ -13,7 +13,7 @@ const initialState = {
   error: null,
 };
 
-const programEnrollmentsReducer = (state = initialState, action) => {
+const programCourseEnrollmentsReducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_PROGRAM_COURSE_ENROLLMENTS_REQUEST:
       return {
@@ -45,4 +45,4 @@ const programEnrollmentsReducer = (state = initialState, action) => {
   }
 };
 
-export default programEnrollmentsReducer;
+export default programCourseEnrollmentsReducer;

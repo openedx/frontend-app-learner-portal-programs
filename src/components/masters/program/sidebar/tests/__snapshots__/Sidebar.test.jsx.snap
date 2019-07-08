@@ -1,0 +1,294 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Sidebar /> renders correctly 1`] = `
+Array [
+  <div
+    className="mb-5"
+  >
+    <h2
+      className="mb-2"
+    >
+      Program Documents
+    </h2>
+    <nav
+      aria-label="program documents"
+    >
+      <ul
+        className="list-unstyled mb-2"
+        id="program-documents"
+      >
+        <li
+          className="mb-1"
+        >
+          <svg
+            aria-hidden="true"
+            className="svg-inline--fa fa-file fa-w-12 mr-2 text-primary"
+            data-icon="file"
+            data-prefix="fas"
+            focusable="false"
+            role="img"
+            style={Object {}}
+            viewBox="0 0 384 512"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm160-14.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"
+              fill="currentColor"
+              style={Object {}}
+            />
+          </svg>
+          <a
+            href="https://edx.org/degree-requirements"
+            onClick={[Function]}
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Degree Requirements
+          </a>
+        </li>
+        <li
+          className="mb-1"
+        >
+          <svg
+            aria-hidden="true"
+            className="svg-inline--fa fa-file fa-w-12 mr-2 text-primary"
+            data-icon="file"
+            data-prefix="fas"
+            focusable="false"
+            role="img"
+            style={Object {}}
+            viewBox="0 0 384 512"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm160-14.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"
+              fill="currentColor"
+              style={Object {}}
+            />
+          </svg>
+          <a
+            href="https://edx.org/student-record"
+            onClick={[Function]}
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Student Record
+          </a>
+        </li>
+        <li
+          className="mb-1"
+        >
+          <svg
+            aria-hidden="true"
+            className="svg-inline--fa fa-file fa-w-12 mr-2 text-primary"
+            data-icon="file"
+            data-prefix="fas"
+            focusable="false"
+            role="img"
+            style={Object {}}
+            viewBox="0 0 384 512"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm160-14.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"
+              fill="currentColor"
+              style={Object {}}
+            />
+          </svg>
+          <a
+            href="https://edx.org/test-1"
+            onClick={[Function]}
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Test 1
+          </a>
+        </li>
+        <li
+          className="mb-1"
+        >
+          <svg
+            aria-hidden="true"
+            className="svg-inline--fa fa-file fa-w-12 mr-2 text-primary"
+            data-icon="file"
+            data-prefix="fas"
+            focusable="false"
+            role="img"
+            style={Object {}}
+            viewBox="0 0 384 512"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm160-14.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"
+              fill="currentColor"
+              style={Object {}}
+            />
+          </svg>
+          <a
+            href="https://edx.org/test-2"
+            onClick={[Function]}
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Test 2
+          </a>
+        </li>
+        <li
+          className="mb-1"
+        >
+          <svg
+            aria-hidden="true"
+            className="svg-inline--fa fa-file fa-w-12 mr-2 text-primary"
+            data-icon="file"
+            data-prefix="fas"
+            focusable="false"
+            role="img"
+            style={Object {}}
+            viewBox="0 0 384 512"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm160-14.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"
+              fill="currentColor"
+              style={Object {}}
+            />
+          </svg>
+          <a
+            href="https://edx.org/test-3"
+            onClick={[Function]}
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Test 3
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <button
+      aria-controls="program-documents"
+      aria-expanded={false}
+      className="btn toggle-show-all-btn px-0 btn-link"
+      onBlur={[Function]}
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      type="button"
+    >
+      <svg
+        aria-hidden="true"
+        className="svg-inline--fa fa-chevron-circle-down fa-w-16 mr-2"
+        data-icon="chevron-circle-down"
+        data-prefix="fas"
+        focusable="false"
+        role="img"
+        style={Object {}}
+        viewBox="0 0 512 512"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M504 256c0 137-111 248-248 248S8 393 8 256 119 8 256 8s248 111 248 248zM273 369.9l135.5-135.5c9.4-9.4 9.4-24.6 0-33.9l-17-17c-9.4-9.4-24.6-9.4-33.9 0L256 285.1 154.4 183.5c-9.4-9.4-24.6-9.4-33.9 0l-17 17c-9.4 9.4-9.4 24.6 0 33.9L239 369.9c9.4 9.4 24.6 9.4 34 0z"
+          fill="currentColor"
+          style={Object {}}
+        />
+      </svg>
+      <span>
+        show all 8
+      </span>
+    </button>
+  </div>,
+  <div
+    className="mb-5"
+  >
+    <h2
+      className="mb-2"
+    >
+      Manage Your Degree
+    </h2>
+    <p>
+      Go to Georgia Tech portal to
+    </p>
+    <ul>
+      <li>
+        Add or drop courses
+      </li>
+      <li>
+        Finance department
+      </li>
+      <li>
+        Contact an advisor
+      </li>
+      <li>
+        Get your grade
+      </li>
+      <li>
+        Program wide discussions
+      </li>
+      <li>
+        and more
+      </li>
+    </ul>
+    <p>
+      <a
+        href="https://www.edx.org/"
+        onClick={[Function]}
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        Go to Georgia Tech portal
+        <svg
+          aria-hidden={false}
+          aria-label="opens in a new window"
+          className="svg-inline--fa fa-external-link-alt fa-w-18 fa-sm ml-2 text-primary"
+          data-icon="external-link-alt"
+          data-prefix="fas"
+          focusable="false"
+          role="img"
+          style={Object {}}
+          viewBox="0 0 576 512"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M576 24v127.984c0 21.461-25.96 31.98-40.971 16.971l-35.707-35.709-243.523 243.523c-9.373 9.373-24.568 9.373-33.941 0l-22.627-22.627c-9.373-9.373-9.373-24.569 0-33.941L442.756 76.676l-35.703-35.705C391.982 25.9 402.656 0 424.024 0H552c13.255 0 24 10.745 24 24zM407.029 270.794l-16 16A23.999 23.999 0 0 0 384 303.765V448H64V128h264a24.003 24.003 0 0 0 16.97-7.029l16-16C376.089 89.851 365.381 64 344 64H48C21.49 64 0 85.49 0 112v352c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48V287.764c0-21.382-25.852-32.09-40.971-16.97z"
+            fill="currentColor"
+            style={Object {}}
+          />
+        </svg>
+      </a>
+    </p>
+  </div>,
+  <div>
+    <h2
+      className="mb-2"
+    >
+      Get Technical Support
+    </h2>
+    <p>
+      <a
+        href="https://www.edx.org/"
+        onClick={[Function]}
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        Go to edX help center
+        <svg
+          aria-hidden={false}
+          aria-label="opens in a new window"
+          className="svg-inline--fa fa-external-link-alt fa-w-18 fa-sm ml-2 text-primary"
+          data-icon="external-link-alt"
+          data-prefix="fas"
+          focusable="false"
+          role="img"
+          style={Object {}}
+          viewBox="0 0 576 512"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M576 24v127.984c0 21.461-25.96 31.98-40.971 16.971l-35.707-35.709-243.523 243.523c-9.373 9.373-24.568 9.373-33.941 0l-22.627-22.627c-9.373-9.373-9.373-24.569 0-33.941L442.756 76.676l-35.703-35.705C391.982 25.9 402.656 0 424.024 0H552c13.255 0 24 10.745 24 24zM407.029 270.794l-16 16A23.999 23.999 0 0 0 384 303.765V448H64V128h264a24.003 24.003 0 0 0 16.97-7.029l16-16C376.089 89.851 365.381 64 344 64H48C21.49 64 0 85.49 0 112v352c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48V287.764c0-21.382-25.852-32.09-40.971-16.97z"
+            fill="currentColor"
+            style={Object {}}
+          />
+        </svg>
+      </a>
+    </p>
+  </div>,
+]
+`;
