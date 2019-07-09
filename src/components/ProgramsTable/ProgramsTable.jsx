@@ -19,6 +19,7 @@ class ProgramsTable extends Component {
         uuid: program.node.context.programUUID,
         slug: program.node.context.programSlug,
         name: program.node.context.programName,
+        hostname: program.node.context.programHostname,
       }));
   }
 
@@ -37,7 +38,7 @@ class ProgramsTable extends Component {
       const validEnrolledPrograms = this.validateUserEnrolledPrograms(enrolledPrograms);
 
       if (validEnrolledPrograms.length === 1) {
-        const program = this.programData.find(p => p.uuid === validEnrolledPrograms[0]);
+        const program = validEnrolledPrograms[0];
         window.location.replace(`${program.hostname}/${program.slug}`);
       } else {
         // eslint-disable-next-line react/no-did-update-set-state

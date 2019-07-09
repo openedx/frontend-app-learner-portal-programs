@@ -13,8 +13,8 @@ exports.createPages = async ({ actions }) => {
   const programs = [
     {
       uuid: '6eefc008-db50-46f0-8746-667f55533a5d',
-      name: 'Example Program',
-      slug: 'exampleprogram',
+      name: 'Demo Program',
+      slug: 'demo-program',
       hostname: 'http://localhost:8734',
     },
     {
