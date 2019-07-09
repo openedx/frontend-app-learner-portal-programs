@@ -35,9 +35,11 @@ const withAuthentication = (WrappedComponent) => {
 
     componentDidMount() {
       const {
-        username, location, fetchUserAccount, providerSlug,
+        username, location, fetchUserAccount, providerSlug, hasLoadedUserData,
       } = this.props;
+
       apiClient.loginUrl = `${process.env.LMS_BASE_URL}/auth/idp_redirect/${providerSlug}`;
+
       apiClient.ensurePublicOrAuthenticationAndCookies(location.pathname, async (accessToken) => {
         configureLoggingService(NewRelicLoggingService);
         initializeSegment(process.env.SEGMENT_KEY);
@@ -51,7 +53,9 @@ const withAuthentication = (WrappedComponent) => {
           apiClient,
           process.env.LMS_BASE_URL,
         );
+
         await fetchUserAccount(userAccountApiService, username);
+
         if (accessToken) {
           identifyAuthenticatedUser(accessToken.user_id);
         } else {
@@ -72,7 +76,10 @@ const withAuthentication = (WrappedComponent) => {
   };
 
   return connect(
-    state => ({ username: state.authentication.username }),
+    state => ({
+      username: state.authentication.username,
+      hasLoadedUserData: state.userAccount.loaded,
+    }),
     { fetchUserAccount: _fetchUserAccount },
   )(ComponentClass);
 };

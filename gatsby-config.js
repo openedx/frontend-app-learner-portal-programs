@@ -2,7 +2,13 @@ require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
 });
 
-const pagesApiUrl = `${process.env.DESIGNER_BASE_URL}/api/v1/pages/?hostname=${process.env.HOSTNAME}`;
+let pagesApiUrl;
+if (process.env.UNBRANDED_LANDING_PAGE === true) {
+  pagesApiUrl = `${process.env.DESIGNER_BASE_URL}/api/v1/pages/}`;
+} else {
+  pagesApiUrl = `${process.env.DESIGNER_BASE_URL}/api/v1/pages/?hostname=${process.env.HOSTNAME}`;
+}
+
 
 module.exports = {
   siteMetadata: {
@@ -37,6 +43,7 @@ module.exports = {
           'ACCESS_TOKEN_COOKIE_NAME',
           'USER_INFO_COOKIE_NAME',
           'SEGMENT_KEY',
+          'UNBRANDED_LANDING_PAGE',
         ],
       },
     },

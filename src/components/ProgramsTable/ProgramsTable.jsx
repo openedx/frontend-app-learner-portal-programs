@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { navigate } from 'gatsby';
 import { StatusAlert } from '@edx/paragon';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import Layout from '../Layout/Layout';
 
-import { fetchUserProgramEnrollments } from './data/actions';
+import { fetchUserProgramEnrollments } from '../user-program-enrollments';
 
 class ProgramsTable extends Component {
   constructor(props) {
@@ -20,11 +19,12 @@ class ProgramsTable extends Component {
         uuid: program.node.context.programUUID,
         slug: program.node.context.programSlug,
         name: program.node.context.programName,
+        hostname: program.node.context.programHostname,
       }));
   }
 
   state = {
-    validPrograms: [],
+    validPrograms: null,
   };
 
   componentDidMount() {
@@ -35,35 +35,50 @@ class ProgramsTable extends Component {
     const { enrolledPrograms } = this.props;
 
     if (enrolledPrograms && enrolledPrograms !== prevProps.enrolledPrograms) {
-      const validEnrolledPrograms = this.getValidEnrolledPrograms(enrolledPrograms);
+      const validEnrolledPrograms = this.validateUserEnrolledPrograms(enrolledPrograms);
 
       if (validEnrolledPrograms.length === 1) {
-        const program = this.programData.find(p => p.uuid === validEnrolledPrograms[0]);
-        // TODO: combine with hostname here
-        navigate(program.slug);
+        const program = validEnrolledPrograms[0];
+        window.location.replace(`${program.hostname}/${program.slug}`);
       } else {
-        const validPrograms = this.programData
-          .filter(program => validEnrolledPrograms.indexOf(program.uuid) !== -1);
-
         // eslint-disable-next-line react/no-did-update-set-state
         this.setState({
-          validPrograms,
+          validPrograms: validEnrolledPrograms,
         });
       }
     }
   }
 
-  getValidEnrolledPrograms = (enrolledPrograms) => {
-    const getUuidsFromPrograms = programs => programs.map(program => program.uuid);
+  validateUserEnrolledPrograms = (enrolledPrograms) => {
+    // list of program uuids that are part of this site
+    const programsList = this.programData.map(program => program.uuid);
+    // list of program uuids that the user is enrolled in
+    const enrolledProgramsList = enrolledPrograms
+      .filter(program => programsList.includes(program.uuid))
+      .map(program => ({
+        ...program,
+        name: this.programData.find(p => p.uuid === program.uuid).name,
+        hostname: this.programData.find(p => p.uuid === program.uuid).hostname,
+      }));
 
-    const configuredProgramUUIDs = getUuidsFromPrograms(this.programData);
-    const enrolledProgramUUIDs = getUuidsFromPrograms(enrolledPrograms);
-
-    const validEnrolledProgramUUIDs = enrolledProgramUUIDs
-      .filter(uuid => configuredProgramUUIDs.indexOf(uuid) !== -1);
-
-    return validEnrolledProgramUUIDs;
+    return enrolledProgramsList;
   }
+
+  renderError = ({ message }) => (
+    <StatusAlert
+      alertType="danger"
+      dialog={
+        <div className="d-flex">
+          <div>
+            <FontAwesomeIcon className="mr-2" icon={faExclamationTriangle} />
+          </div>
+          <div>{message}</div>
+        </div>
+      }
+      dismissible={false}
+      open
+    />
+  );
 
   renderError = ({ message }) => (
     <StatusAlert
@@ -86,61 +101,72 @@ class ProgramsTable extends Component {
     const { validPrograms } = this.state;
 
     return (
-      <Layout>
-        <div className="container my-4">
-          {isLoading ? (
-            <div className="d-flex justify-content-center align-items-center" style={{ height: 200 }}>
-              <div className="spinner-border text-primary" role="status">
-                <div className="sr-only">Loading program enrollments...</div>
+      <>
+        {isLoading ? (
+          <Layout>
+            <div className="container my-4">
+              <div className="d-flex justify-content-center align-items-center" style={{ height: 200 }}>
+                <div className="spinner-border text-primary" role="status">
+                  <div className="sr-only">Loading program enrollments...</div>
+                </div>
               </div>
             </div>
-          ) : (
-            <>
-              {error ? (
-                this.renderError({
-                  message: 'An error occurred while fetching your program enrollments. Please try again later.',
-                })
-              ) : (
-                <>
-                  {!validPrograms.length ? (
-                    this.renderError({
-                      message: (
-                        <>
-                          You are not authorized to view this page.
-                          This page is reserved for Masters students only.
-                          You may access public edX courses on <a href="https://www.edx.org">edx.org</a>.
-                          If you are a Masters student and believe you should have access,
-                          please contact your advisor at the university for further assistance.
-                        </>
-                      ),
-                    })
-                  ) : (
-                    <>
-                      <h1>My Programs</h1>
-                      <div className="table-responsive mt-3">
-                        <table className="table table-sm table-striped">
-                          <thead>
-                            <tr>
-                              <th>Program</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            {validPrograms.map(program => (
-                              <tr key={program.uuid}>
-                                <td><a href={`${program.slug}`}>{program.name}</a></td>
+          </Layout>
+        ) : (
+          <>
+            {error ? (
+              <Layout>
+                <div className="container my-4">
+                  {this.renderError({
+                    message: 'An error occurred while fetching your program enrollments. Please try again later.',
+                  })}
+                </div>
+              </Layout>
+            ) : (
+              <>
+                {validPrograms && (
+                  <>
+                    {!validPrograms.length ? (
+                      this.renderError({
+                        message: (
+                          <>
+                            You are not authorized to view this page.
+                            This page is reserved for Masters students only.
+                            You may access public edX courses on
+                            {' '}<a className="alert-link" href="https://www.edx.org">edX.org</a>.
+                            If you are a Masters student and believe you should have access,
+                            please contact your advisor at the university for further assistance.
+                          </>
+                        ),
+                      })
+                    ) : (
+                      <>
+                        <h1>My Programs</h1>
+                        <div className="table-responsive mt-3">
+                          <table className="table table-sm table-striped">
+                            <thead>
+                              <tr>
+                                <th>Program</th>
                               </tr>
-                            ))}
-                          </tbody>
-                        </table>
-                      </div>
-                    </>
-                  )}
-                </>
-              )}
-            </>
-          )}
-        </div>
-      </Layout>
+                            </thead>
+                            <tbody>
+                              {validPrograms.map(program => (
+                                <tr key={program.uuid}>
+                                  <td><a href={`${program.slug}`}>{program.name}</a></td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        </div>
+                      </>
+                    )}
+                  </>
+                )}
+              </>
+            )}
+          </>
+        )}
+      </>
     );
   }
 }
@@ -152,6 +178,7 @@ ProgramsTable.propTypes = {
         programUUID: PropTypes.string,
         programName: PropTypes.string,
         programSlug: PropTypes.string,
+        programHostname: PropTypes.string,
       }),
     }),
   })).isRequired,

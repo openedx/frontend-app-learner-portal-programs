@@ -18,16 +18,6 @@ import {
   fetchProgramEnrollmentOverview,
 } from '../../data/actions/programEnrollments';
 
-const MainContentQuery = graphql`
-  query {
-    site {
-      siteMetadata {
-        programUUID
-      }
-    }
-  }
-`;
-
 class MainContent extends Component {
   componentDidMount() {
     const { programUUID } = this.props;
@@ -170,13 +160,4 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
-const MainContentWithQuery = props => (
-  <StaticQuery
-    query={MainContentQuery}
-    render={data => (
-      <MainContent programUUID={data.site.siteMetadata.programUUID} {...props} />
-    )}
-  />
-);
-
-export default connect(mapStateToProps, mapDispatchToProps)(MainContentWithQuery);
+export default connect(mapStateToProps, mapDispatchToProps)(MainContent);
