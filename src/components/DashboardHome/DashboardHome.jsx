@@ -27,12 +27,7 @@ class DashboardHome extends Component {
   }
 
   componentDidMount() {
-    const { enrolledPrograms } = this.props;
-    if (!enrolledPrograms) {
-      this.props.fetchUserProgramEnrollments();
-    } else {
-      this.validateProgramAccess(enrolledPrograms);
-    }
+    this.props.fetchUserProgramEnrollments();
   }
 
   componentDidUpdate(prevProps) {

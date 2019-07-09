@@ -41,22 +41,20 @@ const withAuthentication = (WrappedComponent) => {
       apiClient.loginUrl = `${process.env.LMS_BASE_URL}/auth/idp_redirect/${providerSlug}`;
 
       apiClient.ensurePublicOrAuthenticationAndCookies(location.pathname, async (accessToken) => {
-        if (!hasLoadedUserData) {
-          configureLoggingService(NewRelicLoggingService);
-          initializeSegment(process.env.SEGMENT_KEY);
-          configureAnalytics({
-            loggingService: NewRelicLoggingService,
-            authApiClient: apiClient,
-            analyticsApiBaseUrl: process.env.LMS_BASE_URL,
-          });
+        configureLoggingService(NewRelicLoggingService);
+        initializeSegment(process.env.SEGMENT_KEY);
+        configureAnalytics({
+          loggingService: NewRelicLoggingService,
+          authApiClient: apiClient,
+          analyticsApiBaseUrl: process.env.LMS_BASE_URL,
+        });
 
-          const userAccountApiService = new UserAccountApiService(
-            apiClient,
-            process.env.LMS_BASE_URL,
-          );
+        const userAccountApiService = new UserAccountApiService(
+          apiClient,
+          process.env.LMS_BASE_URL,
+        );
 
-          await fetchUserAccount(userAccountApiService, username);
-        }
+        await fetchUserAccount(userAccountApiService, username);
 
         if (accessToken) {
           identifyAuthenticatedUser(accessToken.user_id);

@@ -23,7 +23,7 @@ class ProgramsTable extends Component {
   }
 
   state = {
-    validPrograms: [],
+    validPrograms: null,
   };
 
   componentDidMount() {
@@ -38,7 +38,6 @@ class ProgramsTable extends Component {
 
       if (validEnrolledPrograms.length === 1) {
         const program = this.programData.find(p => p.uuid === validEnrolledPrograms[0]);
-        // TODO: combine with hostname here
         window.location.replace(`${program.hostname}/${program.slug}`);
       } else {
         // eslint-disable-next-line react/no-did-update-set-state
@@ -60,8 +59,6 @@ class ProgramsTable extends Component {
         name: this.programData.find(p => p.uuid === program.uuid).name,
         hostname: this.programData.find(p => p.uuid === program.uuid).hostname,
       }));
-
-    console.log(enrolledProgramsList);
 
     return enrolledProgramsList;
   }
@@ -87,61 +84,72 @@ class ProgramsTable extends Component {
     const { validPrograms } = this.state;
 
     return (
-      <Layout>
-        <div className="container my-4">
-          {isLoading ? (
-            <div className="d-flex justify-content-center align-items-center" style={{ height: 200 }}>
-              <div className="spinner-border text-primary" role="status">
-                <div className="sr-only">Loading program enrollments...</div>
+      <>
+        {isLoading ? (
+          <Layout>
+            <div className="container my-4">
+              <div className="d-flex justify-content-center align-items-center" style={{ height: 200 }}>
+                <div className="spinner-border text-primary" role="status">
+                  <div className="sr-only">Loading program enrollments...</div>
+                </div>
               </div>
             </div>
-          ) : (
-            <>
-              {error ? (
-                this.renderError({
-                  message: 'An error occurred while fetching your program enrollments. Please try again later.',
-                })
-              ) : (
-                <>
-                  {!validPrograms.length ? (
-                    this.renderError({
-                      message: (
-                        <>
-                          You are not authorized to view this page.
-                          This page is reserved for Masters students only.
-                          You may access public edX courses on <a href="https://www.edx.org">edx.org</a>.
-                          If you are a Masters student and believe you should have access,
-                          please contact your advisor at the university for further assistance.
-                        </>
-                      ),
-                    })
-                  ) : (
-                    <>
-                      <h1>My Programs</h1>
-                      <div className="table-responsive mt-3">
-                        <table className="table table-sm table-striped">
-                          <thead>
-                            <tr>
-                              <th>Program</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            {validPrograms.map(program => (
-                              <tr key={program.uuid}>
-                                <td><a href={`${program.slug}`}>{program.name}</a></td>
+          </Layout>
+        ) : (
+          <>
+            {error ? (
+              <Layout>
+                <div className="container my-4">
+                  {this.renderError({
+                    message: 'An error occurred while fetching your program enrollments. Please try again later.',
+                  })}
+                </div>
+              </Layout>
+            ) : (
+              <>
+                {validPrograms && (
+                  <>
+                    {!validPrograms.length ? (
+                      this.renderError({
+                        message: (
+                          <>
+                            You are not authorized to view this page.
+                            This page is reserved for Masters students only.
+                            You may access public edX courses on
+                            {' '}<a className="alert-link" href="https://www.edx.org">edX.org</a>.
+                            If you are a Masters student and believe you should have access,
+                            please contact your advisor at the university for further assistance.
+                          </>
+                        ),
+                      })
+                    ) : (
+                      <>
+                        <h1>My Programs</h1>
+                        <div className="table-responsive mt-3">
+                          <table className="table table-sm table-striped">
+                            <thead>
+                              <tr>
+                                <th>Program</th>
                               </tr>
-                            ))}
-                          </tbody>
-                        </table>
-                      </div>
-                    </>
-                  )}
-                </>
-              )}
-            </>
-          )}
-        </div>
-      </Layout>
+                            </thead>
+                            <tbody>
+                              {validPrograms.map(program => (
+                                <tr key={program.uuid}>
+                                  <td><a href={`${program.slug}`}>{program.name}</a></td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        </div>
+                      </>
+                    )}
+                  </>
+                )}
+              </>
+            )}
+          </>
+        )}
+      </>
     );
   }
 }
