@@ -1,4 +1,5 @@
 const fetch = require('node-fetch');
+const dummyData = require('./test/dummy.json');
 
 exports.sourceNodes = async (
   { actions, createNodeId, createContentDigest },
@@ -8,6 +9,12 @@ exports.sourceNodes = async (
   // Gatsby adds a configOption that's not needed for this plugin, delete it
   delete configOptions.plugins; // eslint-disable-line
   const fetchBrandingData = async () => {
+    // switch to load dummy data from the cms for testing purposes.
+    // set "useDummyData" to true in this plugins options in the gatsby-config
+    // dummy data lives at './test/dummy.json'
+    if (configOptions.useDummyData) {
+      return dummyData;
+    }
     try {
       const response = await fetch(configOptions.pagesApiUrl);
       return await response.json();
