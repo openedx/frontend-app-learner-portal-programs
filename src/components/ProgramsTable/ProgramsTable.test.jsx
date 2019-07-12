@@ -44,7 +44,7 @@ describe('ProgramsTable', () => {
           programUUID: '6eefc008-db50-46f0-8746-667f55533a5e',
           programName: 'Another Program',
           programSlug: 'another-program',
-          programHostname: 'http:www.hey.com',
+          programHostname: 'http://localhost:8734/another-program',
         },
       },
     }];
