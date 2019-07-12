@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import { userAccount } from '@edx/frontend-auth';
 
 import programEnrollments from './programEnrollments';
+import { reducer as enrolledPrograms } from '../../components/user-program-enrollments';
 
 const identityReducer = (state) => {
   const newState = { ...state };
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   authentication: identityReducer,
   userAccount,
   programEnrollments,
+  enrolledPrograms,
 });
 
 export default rootReducer;
