@@ -1,4 +1,4 @@
-export { default as ProgramsTable } from './ProgramsTable';
+export { default as ConnectedProgramsTable } from './ProgramsTable';
 export {
   fetchUserProgramEnrollments,
   reducer,
