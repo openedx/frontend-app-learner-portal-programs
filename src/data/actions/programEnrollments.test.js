@@ -5,11 +5,9 @@ import {
   PROGRAM_ENROLLMENTS_REQUEST,
   PROGRAM_ENROLLMENTS_SUCCESS,
   PROGRAM_ENROLLMENTS_FAILURE,
-  CLEAR_PROGRAM_ENROLLMENTS,
 } from '../constants/programEnrollments';
 import {
   fetchProgramEnrollmentOverview,
-  clearProgramEnrollmentOverview,
 } from './programEnrollments';
 import LmsApiService from '../services/LmsApiService';
 
@@ -56,20 +54,4 @@ describe('fetchProgramEnrollmentOverview action', () => {
     return store.dispatch(fetchProgramEnrollmentOverview())
       .then(() => expect(store.getActions()).toEqual(expectedAction));
   });
-});
-
-describe('clearProgramEnrollmentOverview', () => {
-  const expectedAction = [
-    { type: CLEAR_PROGRAM_ENROLLMENTS },
-  ];
-
-  const store = mockStore();
-
-  LmsApiService.fetchProgramEnrollmentOverview.mockImplementation((
-    () => Promise.resolve({ data: 'This is some data' })
-  ));
-
-  store.dispatch(fetchProgramEnrollmentOverview())
-    .then(() => store.dispatch(clearProgramEnrollmentOverview()))
-    .then(() => expect(store.getActions()).toEqual(expectedAction));
 });
