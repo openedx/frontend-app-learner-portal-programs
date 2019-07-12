@@ -35,7 +35,7 @@ const withAuthentication = (WrappedComponent) => {
 
     componentDidMount() {
       const {
-        username, location, fetchUserAccount, providerSlug, hasLoadedUserData,
+        username, location, fetchUserAccount, providerSlug,
       } = this.props;
 
       apiClient.loginUrl = `${process.env.LMS_BASE_URL}/auth/idp_redirect/${providerSlug}`;

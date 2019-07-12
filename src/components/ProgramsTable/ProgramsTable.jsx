@@ -9,7 +9,7 @@ import Layout from '../Layout/Layout';
 
 import { fetchUserProgramEnrollments } from '../user-program-enrollments';
 
-class ProgramsTable extends Component {
+export class ProgramsTable extends Component {
   constructor(props) {
     super(props);
     const { programQueryData: programData } = this.props;
@@ -189,4 +189,6 @@ const mapDispatchToProps = dispatch => ({
   fetchUserProgramEnrollments: () => dispatch(fetchUserProgramEnrollments()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProgramsTable);
+const ConnectedProgramsTable = connect(mapStateToProps, mapDispatchToProps)(ProgramsTable);
+
+export default ConnectedProgramsTable;
