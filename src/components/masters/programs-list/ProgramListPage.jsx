@@ -109,20 +109,22 @@ export class ProgramListPage extends Component {
             ) : (
               <>
                 {validPrograms && (
-                  <>
+                  <Layout>
                     {!validPrograms.length ? (
-                      this.renderError({
-                        message: (
-                          <>
-                            You are not authorized to view this page.
-                            This page is reserved for Masters students only.
-                            You may access public edX courses on
-                            {' '}<a className="alert-link" href="https://www.edx.org">edX.org</a>.
-                            If you are a Masters student and believe you should have access,
-                            please contact your advisor at the university for further assistance.
-                          </>
-                        ),
-                      })
+                      <div className="my-3 container">
+                        {this.renderError({
+                          message: (
+                            <>
+                              You are not authorized to view this page.
+                              This page is reserved for Masters students only.
+                              You may access public edX courses on
+                              {' '}<a className="alert-link" href="https://www.edx.org">edX.org</a>.
+                              If you are a Masters student and believe you should have access,
+                              please contact your advisor at the university for further assistance.
+                            </>
+                          ),
+                        })}
+                      </div>
                     ) : (
                       <>
                         <h1>My Programs</h1>
@@ -144,7 +146,7 @@ export class ProgramListPage extends Component {
                         </div>
                       </>
                     )}
-                  </>
+                  </Layout>
                 )}
               </>
             )}

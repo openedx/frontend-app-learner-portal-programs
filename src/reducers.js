@@ -3,6 +3,7 @@ import { userAccount } from '@edx/frontend-auth';
 
 import { reducer as emailSettingsReducer } from './components/masters/program/main-content/course-cards/email-settings';
 import { reducer as programCourseEnrollments } from './components/masters/program/main-content';
+import { reducer as enrolledPrograms } from './components/masters/user-program-enrollments';
 
 const identityReducer = (state) => {
   const newState = { ...state };
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
   userAccount,
   programCourseEnrollments,
   emailSettingsReducer,
+  enrolledPrograms,
 });
 
 export default rootReducer;
