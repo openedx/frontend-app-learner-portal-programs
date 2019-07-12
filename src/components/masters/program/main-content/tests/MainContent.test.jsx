@@ -44,7 +44,7 @@ describe('<MainContent />', () => {
     it('with no program enrollments course runs data', () => {
       const wrapper = mount((
         <Provider store={store}>
-          <MainContent />
+          <MainContent programUUID="test-program-uuid" />
         </Provider>
       ));
       expect(wrapper.html()).toBeNull();
@@ -80,7 +80,7 @@ describe('<MainContent />', () => {
 
       const wrapper = mount((
         <Provider store={store}>
-          <MainContent />
+          <MainContent programUUID="test-program-uuid" />
         </Provider>
       ));
 
@@ -102,7 +102,7 @@ describe('<MainContent />', () => {
       const tree = renderer
         .create((
           <Provider store={store}>
-            <MainContent />
+            <MainContent programUUID="test-program-uuid" />
           </Provider>
         ))
         .toJSON();
@@ -121,7 +121,7 @@ describe('<MainContent />', () => {
       const tree = renderer
         .create((
           <Provider store={store}>
-            <MainContent />
+            <MainContent programUUID="test-program-uuid" />
           </Provider>
         ))
         .toJSON();
@@ -136,7 +136,7 @@ describe('<MainContent />', () => {
       global.innerWidth = breakpoints.large.minWidth;
       wrapper = mount((
         <Provider store={store}>
-          <MainContent />
+          <MainContent programUUID="test-program-uuid" />
         </Provider>
       ));
       expect(wrapper.find('Sidebar').exists()).toBeFalsy();
@@ -146,7 +146,7 @@ describe('<MainContent />', () => {
       global.innerWidth = breakpoints.small.minWidth;
       wrapper = mount((
         <Provider store={store}>
-          <MainContent />
+          <MainContent programUUID="test-program-uuid" />
         </Provider>
       ));
       expect(wrapper.find('Sidebar').exists()).toBeTruthy();

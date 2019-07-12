@@ -1,5 +1,12 @@
+// used for multiple environments. This allows us to use `gatsby build` with
+// different configurations instead of just 'production'
+// eg.
+// $ ACTIVE_ENV=<env_name> npm run build
+const activeEnv =
+  process.env.ACTIVE_ENV || process.env.NODE_ENV || 'development';
+
 require('dotenv').config({
-  path: `.env.${process.env.NODE_ENV}`,
+  path: `.env.${activeEnv}`,
 });
 
 let pagesApiUrl;

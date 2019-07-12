@@ -14,6 +14,9 @@ const store = mockStore({
   authentication: {
     username: 'edx',
   },
+  userAccount: {
+    loaded: true,
+  },
 });
 
 apiClient.ensurePublicOrAuthenticationAndCookies = (_, callback) => {

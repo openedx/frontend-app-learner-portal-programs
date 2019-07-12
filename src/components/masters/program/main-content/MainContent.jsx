@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import MediaQuery from 'react-responsive';
-import { StaticQuery, graphql } from 'gatsby';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { breakpoints, StatusAlert } from '@edx/paragon';
@@ -15,16 +14,6 @@ import {
   clearProgramEnrollmentOverview,
   fetchProgramEnrollmentOverview,
 } from './data/actions';
-
-const MainContentQuery = graphql`
-  query {
-    site {
-      siteMetadata {
-        programUUID
-      }
-    }
-  }
-`;
 
 class MainContent extends Component {
   componentDidMount() {
@@ -168,13 +157,4 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
-const MainContentWithQuery = props => (
-  <StaticQuery
-    query={MainContentQuery}
-    render={data => (
-      <MainContent programUUID={data.site.siteMetadata.programUUID} {...props} />
-    )}
-  />
-);
-
-export default connect(mapStateToProps, mapDispatchToProps)(MainContentWithQuery);
+export default connect(mapStateToProps, mapDispatchToProps)(MainContent);

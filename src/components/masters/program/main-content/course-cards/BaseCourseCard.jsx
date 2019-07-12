@@ -89,9 +89,9 @@ class BaseCourseCard extends Component {
                   {microMastersTitle}
                 </p>
               )}
-              <h3 className="card-title mb-1 font-weight-normal">
+              <h4 className="card-title mb-1 font-weight-normal">
                 <a href={linkToCourse}>{title}</a>
-              </h3>
+              </h4>
               {startDate && (
                 <p className="card-text">
                   Course starts on {moment(startDate).format('MMMM D, YYYY')}
