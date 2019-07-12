@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ProgramsTable correctly renders the loading page 1`] = `
+exports[`ProgramListPage correctly renders the loading page 1`] = `
 Array [
   <div
     className="position-absolute"
@@ -413,7 +413,7 @@ Array [
 ]
 `;
 
-exports[`ProgramsTable renders fetching program error page when there are issues fetching the user programs 1`] = `
+exports[`ProgramListPage renders fetching program error page when there are issues fetching the user programs 1`] = `
 Array [
   <div
     className="position-absolute"
