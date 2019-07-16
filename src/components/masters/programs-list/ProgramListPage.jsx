@@ -12,14 +12,14 @@ import { fetchUserProgramEnrollments } from '../user-program-enrollments';
 export class ProgramListPage extends Component {
   constructor(props) {
     super(props);
-    const { programQueryData: programData } = this.props;
-    this.programData = programData
-      .filter(program => program.node.context && program.node.context.programUUID !== null)
+    const { programs } = this.props.pageContext;
+    this.programData = programs
+      .filter(program => program.programUUID !== null)
       .map(program => ({
-        uuid: program.node.context.programUUID,
-        slug: program.node.context.programSlug,
-        name: program.node.context.programName,
-        hostname: program.node.context.programHostname,
+        uuid: program.programUUID,
+        slug: program.programSlug,
+        name: program.programName,
+        hostname: program.programHostname,
       }));
   }
 
@@ -158,16 +158,14 @@ export class ProgramListPage extends Component {
 }
 
 ProgramListPage.propTypes = {
-  programQueryData: PropTypes.arrayOf(PropTypes.shape({
-    node: PropTypes.shape({
-      context: PropTypes.shape({
-        programUUID: PropTypes.string,
-        programName: PropTypes.string,
-        programSlug: PropTypes.string,
-        programHostname: PropTypes.string,
-      }),
-    }),
-  })).isRequired,
+  pageContext: PropTypes.shape({
+    programs: PropTypes.arrayOf(PropTypes.shape({
+      programUUID: PropTypes.string,
+      programName: PropTypes.string,
+      programSlug: PropTypes.string,
+      programHostname: PropTypes.string,
+    })),
+  }).isRequired,
   isLoading: PropTypes.bool.isRequired,
   fetchUserProgramEnrollments: PropTypes.func.isRequired,
   enrolledPrograms: PropTypes.arrayOf(PropTypes.shape({

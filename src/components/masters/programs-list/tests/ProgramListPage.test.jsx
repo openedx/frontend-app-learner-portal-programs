@@ -27,27 +27,22 @@ describe('ProgramListPage', () => {
     ));
   });
 
-  const programQueryData = [
-    {
-      node: {
-        context: {
-          programUUID: '6eefc008-db50-46f0-8746-667f55533a5d',
-          programName: 'Example Program',
-          programSlug: 'exampleprogram',
-          programHostname: 'http://localhost:8734',
-        },
+  const pageContext = {
+    programs: [
+      {
+        programSlug: 'exampleprogram',
+        programUUID: '6eefc008-db50-46f0-8746-667f55533a5d',
+        programName: 'Example Program',
+        programHostname: 'http://localhost:8734',
       },
-    },
-    {
-      node: {
-        context: {
-          programUUID: '6eefc008-db50-46f0-8746-667f55533a5e',
-          programName: 'Another Program',
-          programSlug: 'another-program',
-          programHostname: 'http://localhost:8734/another-program',
-        },
+      {
+        programSlug: 'another-program',
+        programUUID: '6eefc008-db50-46f0-8746-667f55533a5e',
+        programName: 'Another Program',
+        programHostname: 'http://localhost:8734/another-program',
       },
-    }];
+    ],
+  };
 
   it('correctly renders the loading page', () => {
     const store = mockStore({
@@ -69,7 +64,7 @@ describe('ProgramListPage', () => {
       .create((
         <IntlProvider locale="en">
           <Provider store={store}>
-            <ConnectedProgramListPage programQueryData={programQueryData} />
+            <ConnectedProgramListPage pageContext={pageContext} />
           </Provider>
         </IntlProvider>
       ))
@@ -97,7 +92,7 @@ describe('ProgramListPage', () => {
       .create((
         <IntlProvider locale="en">
           <Provider store={store}>
-            <ConnectedProgramListPage programQueryData={programQueryData} />
+            <ConnectedProgramListPage pageContext={pageContext} />
           </Provider>
         </IntlProvider>
       ))
@@ -122,7 +117,7 @@ describe('ProgramListPage', () => {
     const wrapper = shallow((
       <ProgramListPage
         store={mockStore()}
-        programQueryData={programQueryData}
+        pageContext={pageContext}
         isLoading={false}
         fetchUserProgramEnrollments={jest.fn()}
       />
@@ -151,7 +146,7 @@ describe('ProgramListPage', () => {
     const wrapper = shallow((
       <ProgramListPage
         store={mockStore()}
-        programQueryData={programQueryData}
+        pageContext={pageContext}
         isLoading={false}
         fetchUserProgramEnrollments={jest.fn()}
       />
