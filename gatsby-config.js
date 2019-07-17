@@ -11,10 +11,11 @@ require('dotenv').config({
 
 let pagesApiUrl;
 if (process.env.UNBRANDED_LANDING_PAGE === true) {
-  pagesApiUrl = `${process.env.DESIGNER_BASE_URL}/api/v1/pages/}&type=pages.IndexPage,pages.ProgramPage`;
+  pagesApiUrl = `${process.env.DESIGNER_BASE_URL}/api/v1/pages/}`;
 } else {
-  pagesApiUrl = `${process.env.DESIGNER_BASE_URL}/api/v1/pages/?hostname=${process.env.HOSTNAME}&type=pages.IndexPage,pages.ProgramPage`;
+  pagesApiUrl = `${process.env.DESIGNER_BASE_URL}/api/v1/pages/?hostname=${process.env.HOSTNAME}`;
 }
+
 
 module.exports = {
   siteMetadata: {
