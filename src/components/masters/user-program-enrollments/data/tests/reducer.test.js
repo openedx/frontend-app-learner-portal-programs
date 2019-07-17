@@ -17,7 +17,7 @@ describe('programEnrollments reducer', () => {
     expect(programEnrollmentsReducer(undefined, {})).toEqual(initialState);
   });
 
-  it('should handle PROGRAM_ENROLLMENTS_REQUEST', () => {
+  it('should handle FETCH_USER_PROGRAM_ENROLLMENTS_REQUEST', () => {
     const expected = {
       ...initialState,
       loading: true,
@@ -28,7 +28,7 @@ describe('programEnrollments reducer', () => {
     })).toEqual(expected);
   });
 
-  it('should handle PROGRAM_ENROLLMENTS_SUCCESS', () => {
+  it('should handle FETCH_USER_PROGRAM_ENROLLMENTS_SUCCESS', () => {
     const expected = {
       loading: false,
       data: {
@@ -46,7 +46,7 @@ describe('programEnrollments reducer', () => {
     })).toEqual(expected);
   });
 
-  it('should handle PROGRAM_ENROLLMENTS_FAILURE', () => {
+  it('should handle FETCH_USER_PROGRAM_ENROLLMENTS_FAILURE', () => {
     const expected = {
       ...initialState,
       loading: false,

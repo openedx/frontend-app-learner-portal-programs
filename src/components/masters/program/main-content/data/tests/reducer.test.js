@@ -20,7 +20,7 @@ describe('programEnrollments reducer', () => {
     expect(programCourseEnrollmentsReducer(undefined, {})).toEqual(initialState);
   });
 
-  it('should handle PROGRAM_ENROLLMENTS_REQUEST', () => {
+  it('should handle FETCH_PROGRAM_COURSE_ENROLLMENTS_REQUEST', () => {
     const expected = {
       loading: true,
       data: {
@@ -33,7 +33,7 @@ describe('programEnrollments reducer', () => {
     })).toEqual(expected);
   });
 
-  it('should handle PROGRAM_ENROLLMENTS_SUCCESS', () => {
+  it('should handle FETCH_PROGRAM_COURSE_ENROLLMENTS_SUCCESS', () => {
     const expected = {
       loading: false,
       data: {
@@ -52,7 +52,7 @@ describe('programEnrollments reducer', () => {
     })).toEqual(expected);
   });
 
-  it('should handle PROGRAM_ENROLLMENTS_FAILURE', () => {
+  it('should handle FETCH_PROGRAM_COURSE_ENROLLMENTS_FAILURE', () => {
     const expected = {
       ...initialState,
       loading: false,
@@ -66,7 +66,7 @@ describe('programEnrollments reducer', () => {
     })).toEqual(expected);
   });
 
-  it('should handle CLEAR_PROGRAM_ENROLLMENTS', () => {
+  it('should handle CLEAR_PROGRAM_COURSE_ENROLLMENTS', () => {
     const expected = {
       loading: false,
       error: null,
