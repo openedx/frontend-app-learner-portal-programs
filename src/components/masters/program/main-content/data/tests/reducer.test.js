@@ -1,10 +1,11 @@
-import programEnrollmentsReducer from './programEnrollments';
+import programCourseEnrollmentsReducer from '../reducer';
 import {
-  PROGRAM_ENROLLMENTS_REQUEST,
-  PROGRAM_ENROLLMENTS_SUCCESS,
-  PROGRAM_ENROLLMENTS_FAILURE,
-  CLEAR_PROGRAM_ENROLLMENTS,
-} from '../constants/programEnrollments';
+  FETCH_PROGRAM_COURSE_ENROLLMENTS_REQUEST,
+  FETCH_PROGRAM_COURSE_ENROLLMENTS_SUCCESS,
+  FETCH_PROGRAM_COURSE_ENROLLMENTS_FAILURE,
+  CLEAR_PROGRAM_COURSE_ENROLLMENTS,
+} from '../constants';
+
 
 const initialState = {
   loading: false,
@@ -16,7 +17,7 @@ const initialState = {
 
 describe('programEnrollments reducer', () => {
   it('should return the initial state', () => {
-    expect(programEnrollmentsReducer(undefined, {})).toEqual(initialState);
+    expect(programCourseEnrollmentsReducer(undefined, {})).toEqual(initialState);
   });
 
   it('should handle PROGRAM_ENROLLMENTS_REQUEST', () => {
@@ -27,8 +28,8 @@ describe('programEnrollments reducer', () => {
       },
       error: null,
     };
-    expect(programEnrollmentsReducer(undefined, {
-      type: PROGRAM_ENROLLMENTS_REQUEST,
+    expect(programCourseEnrollmentsReducer(undefined, {
+      type: FETCH_PROGRAM_COURSE_ENROLLMENTS_REQUEST,
     })).toEqual(expected);
   });
 
@@ -41,8 +42,8 @@ describe('programEnrollments reducer', () => {
       courseRuns: ['some data'],
       error: null,
     };
-    expect(programEnrollmentsReducer(undefined, {
-      type: PROGRAM_ENROLLMENTS_SUCCESS,
+    expect(programCourseEnrollmentsReducer(undefined, {
+      type: FETCH_PROGRAM_COURSE_ENROLLMENTS_SUCCESS,
       payload: {
         data: {
           course_runs: ['some data'],
@@ -57,8 +58,8 @@ describe('programEnrollments reducer', () => {
       loading: false,
       error: 'sorry there was an error!',
     };
-    expect(programEnrollmentsReducer(undefined, {
-      type: PROGRAM_ENROLLMENTS_FAILURE,
+    expect(programCourseEnrollmentsReducer(undefined, {
+      type: FETCH_PROGRAM_COURSE_ENROLLMENTS_FAILURE,
       payload: {
         error: 'sorry there was an error!',
       },
@@ -71,8 +72,8 @@ describe('programEnrollments reducer', () => {
       error: null,
       courseRuns: [],
     };
-    expect(programEnrollmentsReducer(undefined, {
-      type: CLEAR_PROGRAM_ENROLLMENTS,
+    expect(programCourseEnrollmentsReducer(undefined, {
+      type: CLEAR_PROGRAM_COURSE_ENROLLMENTS,
     })).toEqual(expected);
   });
 });

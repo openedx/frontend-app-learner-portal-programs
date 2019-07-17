@@ -29,7 +29,7 @@ const clearProgramEnrollmentOverviewEvent = () => ({ type: CLEAR_PROGRAM_COURSE_
 const fetchProgramEnrollmentOverview = options => (
   (dispatch) => {
     dispatch(fetchProgramEnrollmentOverviewRequest(options));
-    return service.fetchProgramEnrollmentOverview(options)
+    return service.fetchProgramEnrollment(options)
       .then((response) => {
         dispatch(fetchProgramEnrollmentOverviewSuccess(response.data));
       })
