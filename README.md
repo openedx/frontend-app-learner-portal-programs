@@ -36,13 +36,13 @@ Testing is supported with Jest and Enzyme. To run tests, use:
 
 ```$ npm test```
 
-to use dummy branding data, add `useDummyData` to the `options` object of the `gatsby-source-wagtail` plugin
+to use mock branding data, add `useMockData` to the `options` object of the `gatsby-source-wagtail` plugin
 
 ```
 {
   resolve: 'gatsby-source-wagtail',
     options: {
-      useDummyData: true,
+      useMockData: true,
     }
 }
 ```

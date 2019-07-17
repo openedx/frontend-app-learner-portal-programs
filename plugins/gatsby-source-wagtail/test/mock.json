@@ -1,0 +1,46 @@
+[
+  {
+    "id": 5,
+    "uuid": "9747bf6c-9278-435a-b400-5d541873e4cc",
+    "title": "Example site 2",
+    "slug": "example-site-2",
+    "last_published_at": "2019-07-16T20:58:09.439440Z",
+    "program_documents": [],
+    "branding": [
+      {
+        "texture_image": "/media/original_images/pinata_ALb2tOc.jpg",
+        "banner_border_color": "#FFFFFF",
+        "cover_image": "/media/original_images/pinata_ALb2tOc.jpg",
+        "organization_logo": {
+          "alt": "example-site",
+          "url": "/media/original_images/pinata_ALb2tOc.jpg"
+        }
+      }
+    ],
+    "hostname": "example.com",
+    "idp_slug": "example-site-idp",
+    "type": "pages.ProgramPage"
+  },
+  {
+    "id": 6,
+    "uuid": "47fc98b8-9a90-406d-854b-a4e91df0bc8c",
+    "title": "Example site",
+    "slug": "example-site-slug",
+    "last_published_at": "2019-07-16T20:57:48.578177Z",
+    "program_documents": [],
+    "branding": [
+      {
+        "texture_image": "/media/original_images/pinata_ALb2tOc.jpg",
+        "banner_border_color": "#FFFFFF",
+        "cover_image": "/media/original_images/pinata_ALb2tOc.jpg",
+        "organization_logo": {
+          "alt": "example-site",
+          "url": "/media/original_images/pinata_ALb2tOc.jpg"
+        }
+      }
+    ],
+    "hostname": "example.com",
+    "idp_slug": "example-site-idp",
+    "type": "pages.ProgramPage"
+  }
+]
