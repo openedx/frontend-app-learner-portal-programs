@@ -8,8 +8,8 @@ import {
   CLEAR_PROGRAM_COURSE_ENROLLMENTS,
 } from '../constants';
 import {
-  fetchProgramCourseEnrollment,
-  clearProgramCourseEnrollment,
+  fetchProgramCourseEnrollments,
+  clearProgramCourseEnrollments,
 } from '../actions';
 import * as service from '../service';
 
@@ -29,11 +29,11 @@ describe('fetchProgramCourseEnrollment action', () => {
     ];
     const store = mockStore();
 
-    service.fetchProgramCourseEnrollment.mockImplementation((
+    service.fetchProgramCourseEnrollments.mockImplementation((
       () => Promise.resolve({ data: 'This is some data' })
     ));
 
-    return store.dispatch(fetchProgramCourseEnrollment())
+    return store.dispatch(fetchProgramCourseEnrollments())
       .then(() => expect(store.getActions()).toEqual(expectedAction));
   });
 
@@ -49,11 +49,11 @@ describe('fetchProgramCourseEnrollment action', () => {
     ];
     const store = mockStore();
 
-    service.fetchProgramCourseEnrollment.mockImplementation((
+    service.fetchProgramCourseEnrollments.mockImplementation((
       () => Promise.reject(Error)
     ));
 
-    return store.dispatch(fetchProgramCourseEnrollment())
+    return store.dispatch(fetchProgramCourseEnrollments())
       .then(() => expect(store.getActions()).toEqual(expectedAction));
   });
 });
@@ -66,7 +66,7 @@ describe('clearProgramCourseEnrollment action', () => {
     ];
     const store = mockStore();
 
-    store.dispatch(clearProgramCourseEnrollment());
+    store.dispatch(clearProgramCourseEnrollments());
 
     expect(store.getActions()).toEqual(expectedAction);
   });
