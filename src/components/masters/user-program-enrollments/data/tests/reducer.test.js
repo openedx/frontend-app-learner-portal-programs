@@ -5,7 +5,6 @@ import {
   FETCH_USER_PROGRAM_ENROLLMENTS_FAILURE,
 } from '../constants';
 
-
 const initialState = {
   loading: false,
   data: null,
