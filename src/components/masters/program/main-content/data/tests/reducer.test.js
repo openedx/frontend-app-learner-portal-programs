@@ -6,7 +6,6 @@ import {
   CLEAR_PROGRAM_COURSE_ENROLLMENTS,
 } from '../constants';
 
-
 const initialState = {
   loading: false,
   data: {
@@ -56,12 +55,12 @@ describe('programEnrollments reducer', () => {
     const expected = {
       ...initialState,
       loading: false,
-      error: 'sorry there was an error!',
+      error: Error,
     };
     expect(programCourseEnrollmentsReducer(undefined, {
       type: FETCH_PROGRAM_COURSE_ENROLLMENTS_FAILURE,
       payload: {
-        error: 'sorry there was an error!',
+        error: Error,
       },
     })).toEqual(expected);
   });

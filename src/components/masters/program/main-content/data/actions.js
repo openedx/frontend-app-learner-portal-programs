@@ -6,46 +6,46 @@ import {
 } from './constants';
 import * as service from './service';
 
-const fetchProgramEnrollmentOverviewRequest = () => ({
+const fetchProgramCourseEnrollmentRequest = () => ({
   type: FETCH_PROGRAM_COURSE_ENROLLMENTS_REQUEST,
 });
 
-const fetchProgramEnrollmentOverviewSuccess = data => ({
+const fetchProgramCourseEnrollmentSuccess = data => ({
   type: FETCH_PROGRAM_COURSE_ENROLLMENTS_SUCCESS,
   payload: {
     data,
   },
 });
 
-const fetchProgramEnrollmentOverviewFailure = error => ({
+const fetchProgramCourseEnrollmentFailure = error => ({
   type: FETCH_PROGRAM_COURSE_ENROLLMENTS_FAILURE,
   payload: {
     error,
   },
 });
 
-const clearProgramEnrollmentOverviewEvent = () => ({ type: CLEAR_PROGRAM_COURSE_ENROLLMENTS });
+const clearProgramCourseEnrollmentEvent = () => ({ type: CLEAR_PROGRAM_COURSE_ENROLLMENTS });
 
-const fetchProgramEnrollmentOverview = options => (
+const fetchProgramCourseEnrollment = options => (
   (dispatch) => {
-    dispatch(fetchProgramEnrollmentOverviewRequest(options));
-    return service.fetchProgramEnrollment(options)
+    dispatch(fetchProgramCourseEnrollmentRequest(options));
+    return service.fetchProgramCourseEnrollment(options)
       .then((response) => {
-        dispatch(fetchProgramEnrollmentOverviewSuccess(response.data));
+        dispatch(fetchProgramCourseEnrollmentSuccess(response.data));
       })
       .catch((error) => {
-        dispatch(fetchProgramEnrollmentOverviewFailure(error));
+        dispatch(fetchProgramCourseEnrollmentFailure(error));
       });
   }
 );
 
-const clearProgramEnrollmentOverview = () => (
+const clearProgramCourseEnrollment = () => (
   (dispatch) => {
-    dispatch(clearProgramEnrollmentOverviewEvent());
+    dispatch(clearProgramCourseEnrollmentEvent());
   }
 );
 
 export {
-  fetchProgramEnrollmentOverview,
-  clearProgramEnrollmentOverview,
+  fetchProgramCourseEnrollment,
+  clearProgramCourseEnrollment,
 };

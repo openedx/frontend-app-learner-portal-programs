@@ -50,12 +50,12 @@ describe('programEnrollments reducer', () => {
     const expected = {
       ...initialState,
       loading: false,
-      error: 'sorry there was an error!',
+      error: Error,
     };
     expect(programEnrollmentsReducer(undefined, {
       type: FETCH_USER_PROGRAM_ENROLLMENTS_FAILURE,
       payload: {
-        error: 'sorry there was an error!',
+        error: Error,
       },
     })).toEqual(expected);
   });

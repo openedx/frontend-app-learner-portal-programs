@@ -8,16 +8,16 @@ import {
   CLEAR_PROGRAM_COURSE_ENROLLMENTS,
 } from '../constants';
 import {
-  fetchProgramEnrollmentOverview,
-  clearProgramEnrollmentOverview,
+  fetchProgramCourseEnrollment,
+  clearProgramCourseEnrollment,
 } from '../actions';
 import * as service from '../service';
 
 const mockStore = configureMockStore([thunk]);
 jest.mock('../service');
 
-describe('fetchProgramEnrollmentOverview action', () => {
-  it('fetch program enrollment success', () => {
+describe('fetchProgramCourseEnrollment action', () => {
+  it('fetch program course enrollment success', () => {
     const expectedAction = [
       { type: FETCH_PROGRAM_COURSE_ENROLLMENTS_REQUEST },
       {
@@ -29,15 +29,15 @@ describe('fetchProgramEnrollmentOverview action', () => {
     ];
     const store = mockStore();
 
-    service.fetchProgramEnrollment.mockImplementation((
+    service.fetchProgramCourseEnrollment.mockImplementation((
       () => Promise.resolve({ data: 'This is some data' })
     ));
 
-    return store.dispatch(fetchProgramEnrollmentOverview())
+    return store.dispatch(fetchProgramCourseEnrollment())
       .then(() => expect(store.getActions()).toEqual(expectedAction));
   });
 
-  it('fetch program enrollment failure', () => {
+  it('fetch program course enrollment failure', () => {
     const expectedAction = [
       { type: FETCH_PROGRAM_COURSE_ENROLLMENTS_REQUEST },
       {
@@ -49,24 +49,24 @@ describe('fetchProgramEnrollmentOverview action', () => {
     ];
     const store = mockStore();
 
-    service.fetchProgramEnrollment.mockImplementation((
+    service.fetchProgramCourseEnrollment.mockImplementation((
       () => Promise.reject(Error)
     ));
 
-    return store.dispatch(fetchProgramEnrollmentOverview())
+    return store.dispatch(fetchProgramCourseEnrollment())
       .then(() => expect(store.getActions()).toEqual(expectedAction));
   });
 });
 
 
-describe('clearProgramEnrollmentOverview action', () => {
-  it('clear program enrollment overview', () => {
+describe('clearProgramCourseEnrollment action', () => {
+  it('clear program course enrollment overview', () => {
     const expectedAction = [
       { type: CLEAR_PROGRAM_COURSE_ENROLLMENTS },
     ];
     const store = mockStore();
 
-    store.dispatch(clearProgramEnrollmentOverview());
+    store.dispatch(clearProgramCourseEnrollment());
 
     expect(store.getActions()).toEqual(expectedAction);
   });

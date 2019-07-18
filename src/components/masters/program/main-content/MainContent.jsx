@@ -11,18 +11,18 @@ import { InProgressCourseCard, UpcomingCourseCard, CompletedCourseCard } from '.
 import Sidebar from '../sidebar/Sidebar';
 
 import {
-  clearProgramEnrollmentOverview,
-  fetchProgramEnrollmentOverview,
+  fetchProgramCourseEnrollment,
+  clearProgramCourseEnrollment,
 } from './data/actions';
 
 class MainContent extends Component {
   componentDidMount() {
     const { programUUID } = this.props;
-    this.props.fetchProgramEnrollmentOverview(programUUID);
+    this.props.fetchProgramCourseEnrollment(programUUID);
   }
 
   componentWillUnmount() {
-    this.props.clearProgramEnrollmentOverview();
+    this.props.clearProgramCourseEnrollment();
   }
 
   groupCourseEnrollmentsByStatus = () => {
@@ -118,8 +118,8 @@ MainContent.defaultProps = {
 };
 
 MainContent.propTypes = {
-  fetchProgramEnrollmentOverview: PropTypes.func.isRequired,
-  clearProgramEnrollmentOverview: PropTypes.func.isRequired,
+  fetchProgramCourseEnrollment: PropTypes.func.isRequired,
+  clearProgramCourseEnrollment: PropTypes.func.isRequired,
   programUUID: PropTypes.string.isRequired,
   courseRuns: PropTypes.arrayOf(PropTypes.shape({
     course_run_id: PropTypes.string.isRequired,
@@ -149,11 +149,11 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchProgramEnrollmentOverview: (programUUID) => {
-    dispatch(fetchProgramEnrollmentOverview(programUUID));
+  fetchProgramCourseEnrollment: (programUUID) => {
+    dispatch(fetchProgramCourseEnrollment(programUUID));
   },
-  clearProgramEnrollmentOverview: () => {
-    dispatch(clearProgramEnrollmentOverview());
+  clearProgramCourseEnrollment: () => {
+    dispatch(clearProgramCourseEnrollment());
   },
 });
 
