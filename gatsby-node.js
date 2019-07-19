@@ -31,22 +31,20 @@ exports.createPages = async ({ graphql, actions }) => {
   return graphql(`
     {
       allPage {
-        edges {
-          node {
-            id
-            slug
-            title
-            type
-            uuid
-            hostname
-            branding {
-              cover_image
-              banner_border_color
-              texture_image
-              organization_logo {
-                url
-                alt
-              }
+        nodes {
+          id
+          slug
+          title
+          type
+          uuid
+          hostname
+          branding {
+            cover_image
+            banner_border_color
+            texture_image
+            organization_logo {
+              url
+              alt
             }
           }
         }
@@ -54,7 +52,7 @@ exports.createPages = async ({ graphql, actions }) => {
     }
   `).then((result) => {
     if (result.data) {
-      const allProgramsData = result.data.allPage.edges
+      const allProgramsData = result.data.allPage.nodes
         .filter(node => node.type === programPageType)
         .map(transformProgramPageContext);
       // Create landing page
