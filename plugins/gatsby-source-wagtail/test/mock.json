@@ -1,0 +1,46 @@
+[
+  {
+    "id": 5,
+    "uuid": "13e66617-df31-4153-9ce3-281638188dc8",
+    "title": "Example site 2",
+    "slug": "test-slug-0",
+    "last_published_at": "2019-07-16T20:58:09.439440Z",
+    "program_documents": [],
+    "branding": [
+      {
+        "texture_image": "http://pigment.github.io/fake-logos/logos/large/color/space-cube.png",
+        "banner_border_color": "#FFFFFF",
+        "cover_image": "http://pigment.github.io/fake-logos/logos/large/color/space-cube.png",
+        "organization_logo": {
+          "alt": "example-site",
+          "url": "http://pigment.github.io/fake-logos/logos/large/color/space-cube.png"
+        }
+      }
+    ],
+    "hostname": "example.com",
+    "idp_slug": "example-site-idp",
+    "type": "pages.ProgramPage"
+  },
+  {
+    "id": 6,
+    "uuid": "47fc98b8-9a90-406d-854b-a4e91df0bc8c",
+    "title": "Example site",
+    "slug": "example-site-slug",
+    "last_published_at": "2019-07-16T20:57:48.578177Z",
+    "program_documents": [],
+    "branding": [
+      {
+        "texture_image": "http://pigment.github.io/fake-logos/logos/large/color/space-cube.png",
+        "banner_border_color": "#FFFFFF",
+        "cover_image": "http://pigment.github.io/fake-logos/logos/large/color/space-cube.png",
+        "organization_logo": {
+          "alt": "example-site",
+          "url": "http://pigment.github.io/fake-logos/logos/large/color/space-cube.png"
+        }
+      }
+    ],
+    "hostname": "example.com",
+    "idp_slug": "example-site-idp",
+    "type": "pages.ProgramPage"
+  }
+]
