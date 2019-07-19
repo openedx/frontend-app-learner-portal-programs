@@ -12,7 +12,8 @@ exports.sourceNodes = async (
     // switch to load mock data from the cms for testing purposes.
     // set "useMockData" to true in this plugins options in the gatsby-config
     // mock data lives at './test/mock.json'
-    if (configOptions.useMockData) {
+    if (process.env.USE_MOCK_DATA) {
+      console.warn('Using fake data...');
       return mockData;
     }
     try {

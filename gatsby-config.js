@@ -26,7 +26,6 @@ module.exports = {
       resolve: 'gatsby-source-wagtail',
       options: {
         pagesApiUrl,
-        useMockData: process.env.USE_MOCK_DATA,
       },
     },
     {

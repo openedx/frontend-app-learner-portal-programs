@@ -36,16 +36,18 @@ Testing is supported with Jest and Enzyme. To run tests, use:
 
 ```$ npm test```
 
-to use mock branding data, add `useMockData` to the `options` object of the `gatsby-source-wagtail` plugin
+to use mock branding data, add `USE_MOCK_DATA` to the `.env.development` file
 
 ```
-{
-  resolve: 'gatsby-source-wagtail',
-    options: {
-      useMockData: true,
-    }
-}
+...
+DESIGNER_BASE_URL='http://localhost:18808'
+HOSTNAME='example.com'
+UNBRANDED_LANDING_PAGE=''
+USE_MOCK_DATA='true'
+
 ```
+
+`.env` forces all variables to be strings, so in order to turn the mock data off again, set `USE_MOCK_DATA` to either an empty string, or delete the variable.
 
 ## Other useful commands
 
