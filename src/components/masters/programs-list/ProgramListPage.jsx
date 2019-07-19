@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { IntlProvider } from 'react-intl';
 import { connect } from 'react-redux';
 import { StatusAlert } from '@edx/paragon';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
@@ -85,7 +86,7 @@ export class ProgramListPage extends Component {
     const { validPrograms } = this.state;
 
     return (
-      <>
+      <IntlProvider locale="en">
         {isLoading ? (
           <Layout>
             <div className="container my-4">
@@ -152,7 +153,7 @@ export class ProgramListPage extends Component {
             )}
           </>
         )}
-      </>
+      </IntlProvider>
     );
   }
 }
