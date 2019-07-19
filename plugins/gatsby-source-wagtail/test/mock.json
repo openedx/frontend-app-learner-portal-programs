@@ -8,12 +8,12 @@
     "program_documents": [],
     "branding": [
       {
-        "texture_image": "/media/original_images/pinata_ALb2tOc.jpg",
+        "texture_image": "http://pigment.github.io/fake-logos/logos/large/color/space-cube.png",
         "banner_border_color": "#FFFFFF",
-        "cover_image": "/media/original_images/pinata_ALb2tOc.jpg",
+        "cover_image": "http://pigment.github.io/fake-logos/logos/large/color/space-cube.png",
         "organization_logo": {
           "alt": "example-site",
-          "url": "/media/original_images/pinata_ALb2tOc.jpg"
+          "url": "http://pigment.github.io/fake-logos/logos/large/color/space-cube.png"
         }
       }
     ],
@@ -30,12 +30,12 @@
     "program_documents": [],
     "branding": [
       {
-        "texture_image": "/media/original_images/pinata_ALb2tOc.jpg",
+        "texture_image": "http://pigment.github.io/fake-logos/logos/large/color/space-cube.png",
         "banner_border_color": "#FFFFFF",
-        "cover_image": "/media/original_images/pinata_ALb2tOc.jpg",
+        "cover_image": "http://pigment.github.io/fake-logos/logos/large/color/space-cube.png",
         "organization_logo": {
           "alt": "example-site",
-          "url": "/media/original_images/pinata_ALb2tOc.jpg"
+          "url": "http://pigment.github.io/fake-logos/logos/large/color/space-cube.png"
         }
       }
     ],

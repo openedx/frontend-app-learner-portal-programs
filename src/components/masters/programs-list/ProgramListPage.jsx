@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { IntlProvider } from 'react-intl';
 import { connect } from 'react-redux';
 import { StatusAlert } from '@edx/paragon';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
@@ -9,7 +8,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Layout } from '../../common';
 
 import { fetchUserProgramEnrollments } from '../user-program-enrollments';
-import { IntlProvider } from 'react-intl';
 
 export class ProgramListPage extends Component {
   constructor(props) {
@@ -37,9 +35,7 @@ export class ProgramListPage extends Component {
     const { enrolledPrograms } = this.props;
 
     if (enrolledPrograms && enrolledPrograms !== prevProps.enrolledPrograms) {
-      const validEnrolledPrograms = this.validateUserEnrolledPrograms(
-        enrolledPrograms,
-      );
+      const validEnrolledPrograms = this.validateUserEnrolledPrograms(enrolledPrograms);
 
       if (validEnrolledPrograms.length === 1) {
         const program = validEnrolledPrograms[0];
@@ -53,7 +49,7 @@ export class ProgramListPage extends Component {
     }
   }
 
-  validateUserEnrolledPrograms = enrolledPrograms => {
+  validateUserEnrolledPrograms = (enrolledPrograms) => {
     // list of program uuids that are part of this site
     const programsList = this.programData.map(program => program.uuid);
     // list of program uuids that the user is enrolled in
@@ -66,7 +62,7 @@ export class ProgramListPage extends Component {
       }));
 
     return enrolledProgramsList;
-  };
+  }
 
   renderError = ({ message }) => (
     <StatusAlert
@@ -89,14 +85,11 @@ export class ProgramListPage extends Component {
     const { validPrograms } = this.state;
 
     return (
-      <IntlProvider locale="en">
+      <>
         {isLoading ? (
           <Layout>
             <div className="container my-4">
-              <div
-                className="d-flex justify-content-center align-items-center"
-                style={{ height: 200 }}
-              >
+              <div className="d-flex justify-content-center align-items-center" style={{ height: 200 }}>
                 <div className="spinner-border text-primary" role="status">
                   <div className="sr-only">Loading program enrollments...</div>
                 </div>
@@ -109,8 +102,7 @@ export class ProgramListPage extends Component {
               <Layout>
                 <div className="container my-4">
                   {this.renderError({
-                    message:
-                      'An error occurred while fetching your program enrollments. Please try again later.',
+                    message: 'An error occurred while fetching your program enrollments. Please try again later.',
                   })}
                 </div>
               </Layout>
@@ -123,18 +115,12 @@ export class ProgramListPage extends Component {
                         {this.renderError({
                           message: (
                             <>
-                              You are not authorized to view this page. This
-                              page is reserved for Masters students only. You
-                              may access public edX courses on{' '}
-                              <a
-                                className="alert-link"
-                                href="https://www.edx.org"
-                              >
-                                edX.org
-                              </a>
-                              . If you are a Masters student and believe you
-                              should have access, please contact your advisor at
-                              the university for further assistance.
+                              You are not authorized to view this page.
+                              This page is reserved for Masters students only.
+                              You may access public edX courses on
+                              {' '}<a className="alert-link" href="https://www.edx.org">edX.org</a>.
+                              If you are a Masters student and believe you should have access,
+                              please contact your advisor at the university for further assistance.
                             </>
                           ),
                         })}
@@ -152,11 +138,7 @@ export class ProgramListPage extends Component {
                             <tbody>
                               {validPrograms.map(program => (
                                 <tr key={program.uuid}>
-                                  <td>
-                                    <a href={`${program.slug}`}>
-                                      {program.name}
-                                    </a>
-                                  </td>
+                                  <td><a href={`${program.slug}`}>{program.name}</a></td>
                                 </tr>
                               ))}
                             </tbody>
@@ -170,29 +152,25 @@ export class ProgramListPage extends Component {
             )}
           </>
         )}
-      </IntlProvider>
+      </>
     );
   }
 }
 
 ProgramListPage.propTypes = {
   pageContext: PropTypes.shape({
-    programs: PropTypes.arrayOf(
-      PropTypes.shape({
-        programUUID: PropTypes.string,
-        programName: PropTypes.string,
-        programSlug: PropTypes.string,
-        programHostname: PropTypes.string,
-      }),
-    ),
+    programs: PropTypes.arrayOf(PropTypes.shape({
+      programUUID: PropTypes.string,
+      programName: PropTypes.string,
+      programSlug: PropTypes.string,
+      programHostname: PropTypes.string,
+    })),
   }).isRequired,
   isLoading: PropTypes.bool.isRequired,
   fetchUserProgramEnrollments: PropTypes.func.isRequired,
-  enrolledPrograms: PropTypes.arrayOf(
-    PropTypes.shape({
-      uuid: PropTypes.string.isRequired,
-    }),
-  ),
+  enrolledPrograms: PropTypes.arrayOf(PropTypes.shape({
+    uuid: PropTypes.string.isRequired,
+  })),
   error: PropTypes.instanceOf(Error),
 };
 
@@ -211,9 +189,6 @@ const mapDispatchToProps = dispatch => ({
   fetchUserProgramEnrollments: () => dispatch(fetchUserProgramEnrollments()),
 });
 
-const ConnectedProgramListPage = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(ProgramListPage);
+const ConnectedProgramListPage = connect(mapStateToProps, mapDispatchToProps)(ProgramListPage);
 
 export default ConnectedProgramListPage;
