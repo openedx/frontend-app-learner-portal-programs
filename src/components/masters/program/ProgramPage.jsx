@@ -7,6 +7,7 @@ import { breakpoints, StatusAlert } from '@edx/paragon';
 import { IntlProvider } from 'react-intl';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import heroImage from './maincampus_hero.jpg';
 
 import Hero from './Hero';
 import { MainContent } from './main-content';
@@ -37,14 +38,14 @@ class ProgramPage extends Component {
     }
   }
 
-  validateProgramAccess = (programs) => {
+  validateProgramAccess = programs => {
     const { programUUID } = this.props.pageContext;
     if (programs.map(program => program.uuid).includes(programUUID)) {
       this.setState({
         hasProgramAccess: true,
       });
     }
-  }
+  };
 
   renderError = () => (
     <div className="container my-4">
@@ -56,16 +57,17 @@ class ProgramPage extends Component {
               <FontAwesomeIcon className="mr-2" icon={faExclamationTriangle} />
             </div>
             <div>
-              You are not authorized to view this page.
-              This page is reserved for Masters students only.
-              You may access public edX courses on
-              {' '}
-              <a className="alert-link" href="https://edx.org">edX.org</a>.
-              If you are a Masters student and believe you should have access,
-              please contact your advisor at the university for further assistance.
+              You are not authorized to view this page. This page is reserved
+              for Masters students only. You may access public edX courses on{' '}
+              <a className="alert-link" href="https://edx.org">
+                edX.org
+              </a>
+              . If you are a Masters student and believe you should have access,
+              please contact your advisor at the university for further
+              assistance.
             </div>
           </div>
-          }
+        }
         dismissible={false}
         open
       />
@@ -81,7 +83,10 @@ class ProgramPage extends Component {
       <IntlProvider locale="en">
         <Layout>
           {isLoading ? (
-            <div className="d-flex justify-content-center align-items-center" style={{ height: 200 }}>
+            <div
+              className="d-flex justify-content-center align-items-center"
+              style={{ height: 200 }}
+            >
               <div className="spinner-border text-primary" role="status">
                 <div className="sr-only">Loading program enrollments...</div>
               </div>
@@ -95,11 +100,11 @@ class ProgramPage extends Component {
                     <Hero
                       programTitle={programName}
                       organizationLogo={{
-                        url: 'https://www.edx.org/sites/default/files/school/image/logo/gtx-logo-200x101.png',
-                        alt: 'Georgia Tech Institute of Technology logo',
+                        url: '',
+                        alt: 'UT Austin',
                       }}
                       textureImage="https://prod-discovery.edx-cdn.org/media/degree_marketing/campus_images/gt-cyber-title_bg_img_440x400.jpg"
-                      coverImage="https://prod-discovery.edx-cdn.org/media/degree_marketing/campus_images/gt_cyber_campus_image_1000x400.jpg"
+                      coverImage={heroImage}
                     />
                     <div className="container py-5">
                       <div className="row">
@@ -107,11 +112,13 @@ class ProgramPage extends Component {
                           <MainContent programUUID={programUUID} />
                         </div>
                         <MediaQuery minWidth={breakpoints.large.minWidth}>
-                          {matches => matches && (
-                            <aside className="col offset-lg-1">
-                              <Sidebar />
-                            </aside>
-                          )}
+                          {matches =>
+                            matches && (
+                              <aside className="col offset-lg-1">
+                                <Sidebar />
+                              </aside>
+                            )
+                          }
                         </MediaQuery>
                       </div>
                     </div>
@@ -136,10 +143,12 @@ ProgramPage.propTypes = {
   }).isRequired,
   isLoading: PropTypes.bool.isRequired,
   fetchUserProgramEnrollments: PropTypes.func.isRequired,
-  enrolledPrograms: PropTypes.arrayOf(PropTypes.shape({
-    uuid: PropTypes.string.isRequired,
-    slug: PropTypes.string.isRequired,
-  })),
+  enrolledPrograms: PropTypes.arrayOf(
+    PropTypes.shape({
+      uuid: PropTypes.string.isRequired,
+      slug: PropTypes.string.isRequired,
+    }),
+  ),
 };
 
 ProgramPage.defaultProps = {
@@ -156,4 +165,7 @@ const mapDispatchToProps = dispatch => ({
   fetchUserProgramEnrollments: () => dispatch(fetchUserProgramEnrollments()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(withAuthentication(ProgramPage));
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(withAuthentication(ProgramPage));
