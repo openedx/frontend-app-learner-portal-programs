@@ -1,11 +1,15 @@
 version: "2.2"
 services:
   web:
-    container_name: openedx.devstack.learner_portal
     build:
-      context: .
       args:
         - NODE_ENV=development
+      context: .
+      dockerfile: Dockerfile
+    container_name: openedx.devstack.learner_portal
+    image: frontend-app-learner-portal_web:latest
+    networks:
+      - devstack_default
     volumes:
       - .:/edx/app:delegated
       - notused:/edx/app/node_modules
@@ -13,6 +17,10 @@ services:
       - "8734:8734"
     environment:
       - NODE_ENV=development
-    network_mode: host
+      - HOSTNAME=www.example.com
+networks:
+  devstack_default:
+    external: true
 volumes:
   notused:
+
