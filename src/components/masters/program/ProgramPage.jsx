@@ -75,7 +75,7 @@ class ProgramPage extends Component {
   render() {
     const { hasProgramAccess } = this.state;
     const { pageContext, isLoading } = this.props;
-    const { programUUID, programName } = pageContext;
+    const { programUUID, programName, programDocuments } = pageContext;
 
     return (
       <IntlProvider locale="en">
@@ -109,7 +109,7 @@ class ProgramPage extends Component {
                         <MediaQuery minWidth={breakpoints.large.minWidth}>
                           {matches => matches && (
                             <aside className="col offset-lg-1">
-                              <Sidebar />
+                              <Sidebar programDocuments={programDocuments} />
                             </aside>
                           )}
                         </MediaQuery>
