@@ -16,8 +16,8 @@ module.exports = `
       hostname: String
       idp_slug: String
       type: String
-      branding: [branding]
-      program_documents: [program_documents]
+      branding: branding
+      program_documents: program_documents
   }
   type branding {
     cover_image: String
