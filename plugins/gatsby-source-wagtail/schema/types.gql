@@ -1,0 +1,44 @@
+module.exports = `
+  schema {
+    query: Query
+  }
+
+  type Query{
+    page: [page]
+  }
+
+  type page implements Node {
+      id: String
+      uuid: String
+      title: String
+      slug: String
+      last_published_at: Date
+      hostname: String
+      idp_slug: String
+      type: String
+      branding: [branding]
+      program_documents: [program_documents]
+  }
+  type branding {
+    cover_image: String
+    banner_border_color: String
+    texture_image: String
+    organization_logo: organization_logo
+  }
+
+  type organization_logo {
+    url: String
+    alt: String
+  }
+
+  type program_documents {
+    header: String
+    display: Boolean
+    documents: [document]
+  }
+
+  type document {
+    display_text: String
+    document: String
+  }
+`;

@@ -1,13 +1,20 @@
 const fetch = require('node-fetch');
 const mockData = require('./test/mock.json');
+const typedefs = require('./schema/types.gql');
 
 exports.sourceNodes = async (
   { actions, createNodeId, createContentDigest },
   configOptions,
 ) => {
-  const { createNode } = actions;
+  const { createNode, createTypes } = actions;
   // Gatsby adds a configOption that's not needed for this plugin, delete it
   delete configOptions.plugins; // eslint-disable-line
+
+  // This creates default types for the graphql nodes so that queries do not
+  // break while building pages. If nested types are added to the designer
+  // backend, they will most likely need to be added to the schema.
+  createTypes(typedefs);
+
   const fetchBrandingData = async () => {
     // switch to load mock data from the cms for testing purposes.
     // set "useMockData" to true in this plugins options in the gatsby-config
