@@ -19,6 +19,7 @@ module.exports = `
       branding: branding
       program_documents: program_documents
   }
+  
   type branding {
     cover_image: String
     banner_border_color: String

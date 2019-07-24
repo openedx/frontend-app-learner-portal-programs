@@ -17,7 +17,9 @@ exports.sourceNodes = async (
 
   const fetchBrandingData = async () => {
     // switch to load mock data from the cms for testing purposes.
-    // set "useMockData" to true in this plugins options in the gatsby-config
+    // set "USE_MOCK_DATA" to true in .env.development
+    // remove it or set it to an empty string to remove it. setting it to false does
+    // not remove the mock data!
     // mock data lives at './test/mock.json'
     if (process.env.USE_MOCK_DATA) {
       console.warn('Using fake designer data...');
