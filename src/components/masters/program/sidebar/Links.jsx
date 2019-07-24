@@ -78,7 +78,8 @@ Links.propTypes = {
   id: PropTypes.string.isRequired,
   links: PropTypes.arrayOf(PropTypes.shape({
     display_text: PropTypes.string.isRequired,
-    document: PropTypes.string.isRequired,
+    document: PropTypes.string,
+    url: PropTypes.string,
   })).isRequired,
   label: PropTypes.string.isRequired,
 };
