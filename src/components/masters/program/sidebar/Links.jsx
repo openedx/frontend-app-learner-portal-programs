@@ -22,7 +22,7 @@ class Links extends Component {
       <li key={link.document} className="mb-1">
         <FontAwesomeIcon className="mr-2 text-primary" icon={faFile} />
         <a
-          href={link.document}
+          href={link.document || link.url}
           target="_blank"
           rel="noopener noreferrer"
           onClick={() => {

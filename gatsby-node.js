@@ -45,6 +45,7 @@ exports.createPages = async ({ graphql, actions }) => {
           documents {
             display_text
             document
+            url
           }
         }
         branding {
