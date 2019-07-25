@@ -65,7 +65,7 @@ class ProgramPage extends Component {
               please contact your advisor at the university for further assistance.
             </div>
           </div>
-          }
+        }
         dismissible={false}
         open
       />
@@ -75,7 +75,7 @@ class ProgramPage extends Component {
   render() {
     const { hasProgramAccess } = this.state;
     const { pageContext, isLoading } = this.props;
-    const { programUUID, programName } = pageContext;
+    const { programUUID, programName, programDocuments } = pageContext;
 
     return (
       <IntlProvider locale="en">
@@ -104,12 +104,15 @@ class ProgramPage extends Component {
                     <div className="container py-5">
                       <div className="row">
                         <div className="col-xs-12 col-lg-7">
-                          <MainContent programUUID={programUUID} />
+                          <MainContent
+                            programDocuments={programDocuments}
+                            programUUID={programUUID}
+                          />
                         </div>
                         <MediaQuery minWidth={breakpoints.large.minWidth}>
                           {matches => matches && (
                             <aside className="col offset-lg-1">
-                              <Sidebar />
+                              <Sidebar programDocuments={programDocuments} />
                             </aside>
                           )}
                         </MediaQuery>
@@ -133,6 +136,14 @@ ProgramPage.propTypes = {
     programName: PropTypes.string.isRequired,
     programSlug: PropTypes.string.isRequired,
     programUUID: PropTypes.string.isRequired,
+    programDocuments: PropTypes.shape({
+      display: PropTypes.bool,
+      header: PropTypes.string,
+      documents: PropTypes.arrayOf(PropTypes.shape({
+        display_text: PropTypes.string,
+        document: PropTypes.string,
+      })),
+    }),
   }).isRequired,
   isLoading: PropTypes.bool.isRequired,
   fetchUserProgramEnrollments: PropTypes.func.isRequired,

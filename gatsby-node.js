@@ -19,6 +19,7 @@ const transformProgramPageContext = context => (
     programUUID: context.uuid,
     programName: context.title,
     programHostname: context.hostname,
+    programDocuments: context.program_documents,
   }
 );
 
@@ -29,27 +30,36 @@ exports.createPages = async ({ graphql, actions }) => {
   const onlyCreateListingPage = process.env.UNBRANDED_LANDING_PAGE;
 
   return graphql(`
-    {
-      allPage {
-        nodes {
-          id
-          slug
-          title
-          type
-          uuid
-          hostname
-          branding {
-            cover_image
-            banner_border_color
-            texture_image
-            organization_logo {
-              url
-              alt
-            }
+  {
+    allPage {
+      nodes {
+        id
+        slug
+        title
+        type
+        uuid
+        hostname
+        program_documents {
+          header
+          display
+          documents {
+            display_text
+            document
+            url
+          }
+        }
+        branding {
+          cover_image
+          banner_border_color
+          texture_image
+          organization_logo {
+            url
+            alt
           }
         }
       }
     }
+  }  
   `).then((result) => {
     if (result.data) {
       const allProgramsData = result.data.allPage.nodes

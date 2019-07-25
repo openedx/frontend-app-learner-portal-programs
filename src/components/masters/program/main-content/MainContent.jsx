@@ -64,7 +64,7 @@ class MainContent extends Component {
   }
 
   render() {
-    const { error, loading } = this.props;
+    const { error, loading, programDocuments } = this.props;
 
     if (error) {
       return this.renderError();
@@ -90,7 +90,7 @@ class MainContent extends Component {
             <MediaQuery minWidth={breakpoints.large.minWidth}>
               {matches => !matches && (
                 <aside className="mb-5">
-                  <Sidebar />
+                  <Sidebar programDocuments={programDocuments} />
                 </aside>
               )}
             </MediaQuery>
@@ -115,12 +115,21 @@ MainContent.defaultProps = {
   courseRuns: [],
   loading: false,
   error: null,
+  programDocuments: null,
 };
 
 MainContent.propTypes = {
   fetchProgramCourseEnrollments: PropTypes.func.isRequired,
   clearProgramCourseEnrollments: PropTypes.func.isRequired,
   programUUID: PropTypes.string.isRequired,
+  programDocuments: PropTypes.shape({
+    display: PropTypes.bool,
+    header: PropTypes.string,
+    documents: PropTypes.arrayOf(PropTypes.shape({
+      display_text: PropTypes.string,
+      document: PropTypes.string,
+    })),
+  }),
   courseRuns: PropTypes.arrayOf(PropTypes.shape({
     course_run_id: PropTypes.string.isRequired,
     course_run_status: PropTypes.string.isRequired,

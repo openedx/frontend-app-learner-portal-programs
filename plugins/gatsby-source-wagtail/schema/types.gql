@@ -41,5 +41,6 @@ module.exports = `
   type document {
     display_text: String
     document: String
+    url: String
   }
 `;
