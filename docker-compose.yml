@@ -17,7 +17,7 @@ services:
       - "8734:8734"
     environment:
       - NODE_ENV=development
-      - HOSTNAME=www.example.com
+      - HOSTNAME=example.com
 networks:
   devstack_default:
     external: true
