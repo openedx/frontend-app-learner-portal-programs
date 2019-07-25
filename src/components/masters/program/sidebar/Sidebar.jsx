@@ -77,14 +77,14 @@ Sidebar.defaultProps = {
 };
 
 Sidebar.propTypes = {
-  programDocuments: (PropTypes.shape({
+  programDocuments: PropTypes.shape({
     display: PropTypes.bool,
     header: PropTypes.string,
     documents: PropTypes.arrayOf(PropTypes.shape({
       display_text: PropTypes.string,
       document: PropTypes.string,
     })),
-  })),
+  }),
 };
 
 export default Sidebar;
