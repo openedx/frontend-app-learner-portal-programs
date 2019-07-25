@@ -87,41 +87,41 @@ class ProgramPage extends Component {
               </div>
             </div>
           ) : (
-              <>
-                {hasProgramAccess ? (
-                  <>
-                    <Helmet title={programName} />
-                    <main id="content">
-                      <Hero
-                        programTitle={programName}
-                        organizationLogo={{
-                          url: `${process.env.DESIGNER_BASE_URL}${programBranding.organization_logo.url}`,
-                          alt: programBranding.organization_logo.alt,
-                        }}
-                        textureImage={`${process.env.DESIGNER_BASE_URL}${programBranding.texture_image}`}
-                        coverImage={`${process.env.DESIGNER_BASE_URL}${programBranding.cover_image}`}
-                        bannerBorderColor={programBranding.banner_border_color}
-                      />
-                      <div className="container py-5">
-                        <div className="row">
-                          <div className="col-xs-12 col-lg-7">
-                            <MainContent programUUID={programUUID} />
-                          </div>
-                          <MediaQuery minWidth={breakpoints.large.minWidth}>
-                            {matches => matches && (
-                              <aside className="col offset-lg-1">
-                                <Sidebar />
-                              </aside>
-                            )}
-                          </MediaQuery>
+            <>
+              {hasProgramAccess ? (
+                <>
+                  <Helmet title={programName} />
+                  <main id="content">
+                    <Hero
+                      programTitle={programName}
+                      organizationLogo={{
+                        url: `${process.env.DESIGNER_BASE_URL}${programBranding.organization_logo.url}`,
+                        alt: programBranding.organization_logo.alt,
+                      }}
+                      textureImage={`${process.env.DESIGNER_BASE_URL}${programBranding.texture_image}`}
+                      coverImage={`${process.env.DESIGNER_BASE_URL}${programBranding.cover_image}`}
+                      bannerBorderColor={programBranding.banner_border_color}
+                    />
+                    <div className="container py-5">
+                      <div className="row">
+                        <div className="col-xs-12 col-lg-7">
+                          <MainContent programUUID={programUUID} />
                         </div>
+                        <MediaQuery minWidth={breakpoints.large.minWidth}>
+                          {matches => matches && (
+                            <aside className="col offset-lg-1">
+                              <Sidebar programName={programName} />
+                            </aside>
+                          )}
+                        </MediaQuery>
                       </div>
-                    </main>
-                  </>
-                ) : (
-                    this.renderError()
-                  )}
-              </>
+                    </div>
+                  </main>
+                </>
+              ) : (
+                  this.renderError()
+                )}
+            </>
             )}
         </Layout>
       </IntlProvider>
