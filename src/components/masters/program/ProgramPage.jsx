@@ -100,11 +100,11 @@ class ProgramPage extends Component {
                     <Hero
                       programTitle={programName}
                       organizationLogo={{
-                        url: `${process.env.DESIGNER_BASE_URL}${programBranding.organization_logo.url}`,
+                        url: programBranding.organization_logo.url,
                         alt: programBranding.organization_logo.alt,
                       }}
-                      textureImage={`${process.env.DESIGNER_BASE_URL}${programBranding.texture_image}`}
-                      coverImage={`${process.env.DESIGNER_BASE_URL}${programBranding.cover_image}`}
+                      textureImage={programBranding.texture_image}
+                      coverImage={programBranding.cover_image}
                       bannerBorderColor={programBranding.banner_border_color}
                     />
                     <div className="container py-5">
