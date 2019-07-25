@@ -118,7 +118,7 @@ class ProgramPage extends Component {
                   </main>
                 </>
               ) : (
-                  this.renderError()
+                this.renderError()
                 )}
             </>
             )}
@@ -133,7 +133,14 @@ ProgramPage.propTypes = {
     programName: PropTypes.string.isRequired,
     programSlug: PropTypes.string.isRequired,
     programUUID: PropTypes.string.isRequired,
-    programDocuments: PropTypes.object,
+    programDocuments: (PropTypes.shape({
+      display: PropTypes.bool,
+      header: PropTypes.string,
+      documents: PropTypes.arrayOf(PropTypes.shape({
+        display_text: PropTypes.string,
+        document: PropTypes.string,
+      })),
+    })),
   }).isRequired,
   isLoading: PropTypes.bool.isRequired,
   fetchUserProgramEnrollments: PropTypes.func.isRequired,
