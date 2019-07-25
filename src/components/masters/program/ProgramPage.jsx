@@ -118,9 +118,7 @@ class ProgramPage extends Component {
                         <MediaQuery minWidth={breakpoints.large.minWidth}>
                           {matches => matches && (
                             <aside className="col offset-lg-1">
-                              <Sidebar
-                                programDocuments={programDocuments}
-                              />
+                              <Sidebar programDocuments={programDocuments} />
                             </aside>
                           )}
                         </MediaQuery>
@@ -129,10 +127,10 @@ class ProgramPage extends Component {
                   </main>
                 </>
               ) : (
-                  this.renderError()
-                )}
+                this.renderError()
+              )}
             </>
-            )}
+          )}
         </Layout>
       </IntlProvider>
     );
