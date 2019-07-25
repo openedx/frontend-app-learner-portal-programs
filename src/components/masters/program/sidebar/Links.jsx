@@ -19,7 +19,7 @@ class Links extends Component {
     }
 
     return links.map(link => (
-      <li key={link.document} className="mb-1">
+      <li key={link.document || link.url} className="mb-1">
         <FontAwesomeIcon className="mr-2 text-primary" icon={faFile} />
         <a
           href={link.document || link.url}

@@ -12,7 +12,7 @@ const Sidebar = ({ programDocuments }) => (
     {programDocuments && programDocuments.display &&
       <SidebarBlock title={programDocuments.header} className="mb-5">
         <Links
-          id={programDocuments.header}
+          id={programDocuments.header.toLowerCase().split(' ').join('-')}
           links={programDocuments.documents}
           label="program documents"
         />
@@ -77,7 +77,7 @@ Sidebar.defaultProps = {
 };
 
 Sidebar.propTypes = {
-  programDocuments: PropTypes.arrayOf(PropTypes.shape({
+  programDocuments: (PropTypes.shape({
     display: PropTypes.bool,
     header: PropTypes.string,
     documents: PropTypes.arrayOf(PropTypes.shape({

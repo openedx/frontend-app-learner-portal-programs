@@ -1,7 +1,7 @@
 [
   {
     "id": 5,
-    "uuid": "13e66617-df31-4153-9ce3-281638188dc8",
+    "uuid": "931a0661-d3f7-4a7d-b6f9-48511818816e",
     "title": "Example site 2",
     "slug": "test-slug-0",
     "last_published_at": "2019-07-16T20:58:09.439440Z",
@@ -14,8 +14,16 @@
           "document": "/test/document"
         },
         {
+          "display_text": "Test Link",
+          "url": "example.com/1"
+        },
+        {
           "display_text": "Test Document 2",
           "document": "/test/document2"
+        },
+        {
+          "display_text": "Test Link 2",
+          "url": "example.com/2"
         },
         {
           "display_text": "Test Document 3",
@@ -26,20 +34,12 @@
           "document": "/test/document4"
         },
         {
+          "display_text": "Test Link 3",
+          "url": "example.com/3"
+        },
+        {
           "display_text": "Test Document 5",
-          "document": "/test/document"
-        },
-        {
-          "display_text": "Test Document 6",
-          "document": "/test/document6"
-        },
-        {
-          "display_text": "Test Document 7",
-          "document": "/test/document7"
-        },
-        {
-          "display_text": "Test Document 8",
-          "document": "/test/document8"
+          "document": "/test/document5"
         }
       ]
     },
