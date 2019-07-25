@@ -122,7 +122,7 @@ class ProgramPage extends Component {
                 </>
               ) : (
                 this.renderError()
-                )}
+              )}
             </>
           )}
         </Layout>
