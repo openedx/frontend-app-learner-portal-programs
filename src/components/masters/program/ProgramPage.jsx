@@ -75,7 +75,7 @@ class ProgramPage extends Component {
   render() {
     const { hasProgramAccess } = this.state;
     const { pageContext, isLoading } = this.props;
-    const { programUUID, programName } = pageContext;
+    const { programUUID, programName, programBranding } = pageContext;
 
     return (
       <IntlProvider locale="en">
@@ -95,11 +95,12 @@ class ProgramPage extends Component {
                       <Hero
                         programTitle={programName}
                         organizationLogo={{
-                          url: '',
-                          alt: 'Institution Logo',
+                          url: `${process.env.DESIGNER_BASE_URL}${programBranding.organization_logo.url}`,
+                          alt: programBranding.organization_logo.alt,
                         }}
-                        textureImage="https://prod-discovery.edx-cdn.org/media/degree_marketing/campus_images/gt-cyber-title_bg_img_440x400.jpg"
-                        coverImage=""
+                        textureImage={`${process.env.DESIGNER_BASE_URL}${programBranding.texture_image}`}
+                        coverImage={`${process.env.DESIGNER_BASE_URL}${programBranding.cover_image}`}
+                        bannerBorderColor={programBranding.banner_border_color}
                       />
                       <div className="container py-5">
                         <div className="row">
@@ -133,6 +134,7 @@ ProgramPage.propTypes = {
     programName: PropTypes.string.isRequired,
     programSlug: PropTypes.string.isRequired,
     programUUID: PropTypes.string.isRequired,
+    programBranding: PropTypes.object.isRequired,
   }).isRequired,
   isLoading: PropTypes.bool.isRequired,
   fetchUserProgramEnrollments: PropTypes.func.isRequired,

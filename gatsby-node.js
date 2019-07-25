@@ -19,6 +19,7 @@ const transformProgramPageContext = context => (
     programUUID: context.uuid,
     programName: context.title,
     programHostname: context.hostname,
+    programBranding: context.branding,
   }
 );
 
