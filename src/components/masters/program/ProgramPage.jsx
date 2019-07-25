@@ -141,7 +141,8 @@ ProgramPage.propTypes = {
   pageContext: PropTypes.shape({
     programName: PropTypes.string.isRequired,
     programSlug: PropTypes.string.isRequired,
-    programUUID: PropTypes.shape({
+    programUUID: PropTypes.string.isRequired,
+    programDocuments: PropTypes.shape({
       cover_image: PropTypes.string,
       banner_border_color: PropTypes.string,
       texture_image: PropTypes.string,
@@ -150,14 +151,14 @@ ProgramPage.propTypes = {
         alt: PropTypes.string,
       }),
     }),
-    programBranding: PropTypes.object.isRequired,
-    programDocuments: PropTypes.shape({
-      display: PropTypes.bool,
-      header: PropTypes.string,
-      documents: PropTypes.arrayOf(PropTypes.shape({
-        display_text: PropTypes.string,
-        document: PropTypes.string,
-      })),
+    programBranding: PropTypes.shape({
+      cover_image: PropTypes.string,
+      banner_border_color: PropTypes.string,
+      texture_image: PropTypes.string,
+      organization_logo: PropTypes.shape({
+        url: PropTypes.string,
+        alt: PropTypes.string,
+      }),
     }),
   }).isRequired,
   isLoading: PropTypes.bool.isRequired,
