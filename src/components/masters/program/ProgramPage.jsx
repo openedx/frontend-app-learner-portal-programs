@@ -104,7 +104,10 @@ class ProgramPage extends Component {
                     <div className="container py-5">
                       <div className="row">
                         <div className="col-xs-12 col-lg-7">
-                          <MainContent programUUID={programUUID} />
+                          <MainContent
+                            programDocuments={programDocuments}
+                            programUUID={programUUID}
+                          />
                         </div>
                         <MediaQuery minWidth={breakpoints.large.minWidth}>
                           {matches => matches && (
