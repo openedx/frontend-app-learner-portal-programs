@@ -12,7 +12,7 @@ exports[`<Hero /> renders correctly 1`] = `
       style={
         Object {
           "backgroundImage": "url(https://example.com/avengersx-texture-image-440x400.png)",
-          "borderColor": "#cc9900",
+          "borderColor": "cc9900",
         }
       }
     />
@@ -21,7 +21,7 @@ exports[`<Hero /> renders correctly 1`] = `
       style={
         Object {
           "backgroundImage": "url(https://example.com/avengersx-cover-image-1000x400.png)",
-          "borderColor": "#cc9900",
+          "borderColor": "cc9900",
         }
       }
     />
@@ -39,7 +39,7 @@ exports[`<Hero /> renders correctly 1`] = `
           className="hero-box bg-white p-4 d-inline-block"
           style={
             Object {
-              "borderColor": "#cc9900",
+              "borderColor": "cc9900",
             }
           }
         >
@@ -61,7 +61,7 @@ exports[`<Hero /> renders correctly 1`] = `
           className="hero-logo bg-white pl-3 pr-5 d-sm-inline-block text-left"
           style={
             Object {
-              "borderColor": "#cc9900",
+              "borderColor": "cc9900",
             }
           }
         >
