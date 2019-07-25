@@ -1,19 +1,25 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { sendTrackEvent } from '@edx/frontend-analytics';
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import Links from './Links';
-import linksData from './data/sampleLinks';
 import SidebarBlock from './SidebarBlock';
 
-const Sidebar = ({ programName }) => (
+const Sidebar = ({ programDocuments }) => (
   <>
-    <SidebarBlock title="Program Documents" className="mb-5">
-      <Links id={linksData.id} links={linksData.links} label="program documents" />
-    </SidebarBlock>
+    {programDocuments && programDocuments.display &&
+      <SidebarBlock title={programDocuments.header} className="mb-5">
+        <Links
+          id={programDocuments.header.toLowerCase().split(' ').join('-')}
+          links={programDocuments.documents}
+          label="program documents"
+        />
+      </SidebarBlock>
+    }
     <SidebarBlock title="Manage Your Degree" className="mb-5">
-      <p>Go to the {programName} portal to</p>
+      <p>Go to the portal to</p>
       <ul>
         <li>Add or drop courses</li>
         <li>Finance department</li>
@@ -27,9 +33,11 @@ const Sidebar = ({ programName }) => (
           href="https://www.edx.org/"
           target="_blank"
           rel="noopener noreferrer"
-          onClick={() => { sendTrackEvent('edx.learner_portal.school_portal_link.clicked'); }}
+          onClick={() => {
+            sendTrackEvent('edx.learner_portal.school_portal_link.clicked');
+          }}
         >
-          Go to the {programName} portal
+          Go to the portal
           <FontAwesomeIcon
             className="ml-2 text-primary"
             icon={faExternalLinkAlt}
@@ -46,7 +54,9 @@ const Sidebar = ({ programName }) => (
           href="https://www.edx.org/"
           target="_blank"
           rel="noopener noreferrer"
-          onClick={() => { sendTrackEvent('edx.learner_portal.support_link.clicked'); }}
+          onClick={() => {
+            sendTrackEvent('edx.learner_portal.support_link.clicked');
+          }}
         >
           Go to edX help center
           <FontAwesomeIcon
@@ -61,5 +71,20 @@ const Sidebar = ({ programName }) => (
     </SidebarBlock>
   </>
 );
+
+Sidebar.defaultProps = {
+  programDocuments: null,
+};
+
+Sidebar.propTypes = {
+  programDocuments: PropTypes.shape({
+    display: PropTypes.bool,
+    header: PropTypes.string,
+    documents: PropTypes.arrayOf(PropTypes.shape({
+      display_text: PropTypes.string,
+      document: PropTypes.string,
+    })),
+  }),
+};
 
 export default Sidebar;

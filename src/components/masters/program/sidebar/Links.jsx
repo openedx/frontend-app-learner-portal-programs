@@ -14,21 +14,24 @@ class Links extends Component {
   getLinkItems = () => {
     const { defaultNumLinksDisplayed, isExpanded } = this.state;
     let { links } = this.props;
-
     if (!isExpanded) {
       links = links.slice(0, defaultNumLinksDisplayed);
     }
 
     return links.map(link => (
-      <li key={link.href} className="mb-1">
+      <li key={link.document || link.url} className="mb-1">
         <FontAwesomeIcon className="mr-2 text-primary" icon={faFile} />
         <a
-          href={link.href}
+          href={link.document || link.url}
           target="_blank"
           rel="noopener noreferrer"
-          onClick={() => { sendTrackEvent('edx.learner_portal.program_link.clicked', { title: link.title }); }}
+          onClick={() => {
+            sendTrackEvent('edx.learner_portal.program_link.clicked', {
+              title: link.display_text,
+            });
+          }}
         >
-          {link.title}
+          {link.display_text}
         </a>
       </li>
     ));
@@ -42,11 +45,7 @@ class Links extends Component {
 
   render() {
     const { isExpanded, defaultNumLinksDisplayed } = this.state;
-    const {
-      id,
-      links,
-      label,
-    } = this.props;
+    const { id, links, label } = this.props;
 
     return (
       <>
@@ -78,8 +77,9 @@ class Links extends Component {
 Links.propTypes = {
   id: PropTypes.string.isRequired,
   links: PropTypes.arrayOf(PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    href: PropTypes.string.isRequired,
+    display_text: PropTypes.string.isRequired,
+    document: PropTypes.string,
+    url: PropTypes.string,
   })).isRequired,
   label: PropTypes.string.isRequired,
 };

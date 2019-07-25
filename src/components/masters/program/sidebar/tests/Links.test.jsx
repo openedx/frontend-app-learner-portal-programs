@@ -8,8 +8,8 @@ const linksData = {
   title: 'Examples',
   label: 'examples',
   links: [...new Array(8)].map((_, index) => ({
-    title: `Test ${index + 1}`,
-    href: `http://example.com/${index + 1}`,
+    display_text: `Test ${index + 1}`,
+    document: `http://example.com/${index + 1}`,
   })),
 };
 

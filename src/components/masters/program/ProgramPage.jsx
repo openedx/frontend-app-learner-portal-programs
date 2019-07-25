@@ -75,7 +75,12 @@ class ProgramPage extends Component {
   render() {
     const { hasProgramAccess } = this.state;
     const { pageContext, isLoading } = this.props;
-    const { programUUID, programName, programBranding } = pageContext;
+    const {
+      programUUID,
+      programName,
+      programDocuments,
+      programBranding,
+    } = pageContext;
 
     return (
       <IntlProvider locale="en">
@@ -105,12 +110,17 @@ class ProgramPage extends Component {
                     <div className="container py-5">
                       <div className="row">
                         <div className="col-xs-12 col-lg-7">
-                          <MainContent programUUID={programUUID} />
+                          <MainContent
+                            programDocuments={programDocuments}
+                            programUUID={programUUID}
+                          />
                         </div>
                         <MediaQuery minWidth={breakpoints.large.minWidth}>
                           {matches => matches && (
                             <aside className="col offset-lg-1">
-                              <Sidebar programName={programName} />
+                              <Sidebar
+                                programDocuments={programDocuments}
+                              />
                             </aside>
                           )}
                         </MediaQuery>
@@ -133,8 +143,24 @@ ProgramPage.propTypes = {
   pageContext: PropTypes.shape({
     programName: PropTypes.string.isRequired,
     programSlug: PropTypes.string.isRequired,
-    programUUID: PropTypes.string.isRequired,
+    programUUID: PropTypes.shape({
+      cover_image: PropTypes.string,
+      banner_border_color: PropTypes.string,
+      texture_image: PropTypes.string,
+      organization_logo: PropTypes.shape({
+        url: PropTypes.string,
+        alt: PropTypes.string,
+      }),
+    }),
     programBranding: PropTypes.object.isRequired,
+    programDocuments: PropTypes.shape({
+      display: PropTypes.bool,
+      header: PropTypes.string,
+      documents: PropTypes.arrayOf(PropTypes.shape({
+        display_text: PropTypes.string,
+        document: PropTypes.string,
+      })),
+    }),
   }).isRequired,
   isLoading: PropTypes.bool.isRequired,
   fetchUserProgramEnrollments: PropTypes.func.isRequired,
