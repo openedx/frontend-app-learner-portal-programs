@@ -19,7 +19,7 @@ const Sidebar = ({ programDocuments }) => (
       </SidebarBlock>
     }
     <SidebarBlock title="Manage Your Degree" className="mb-5">
-      <p>Go to Georgia Tech portal to</p>
+      <p>Go to the portal to</p>
       <ul>
         <li>Add or drop courses</li>
         <li>Finance department</li>
@@ -37,7 +37,7 @@ const Sidebar = ({ programDocuments }) => (
             sendTrackEvent('edx.learner_portal.school_portal_link.clicked');
           }}
         >
-          Go to Georgia Tech portal
+          Go to the portal
           <FontAwesomeIcon
             className="ml-2 text-primary"
             icon={faExternalLinkAlt}

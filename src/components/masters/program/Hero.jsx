@@ -9,14 +9,14 @@ const Hero = props => (
       <div
         className="hero-texture d-none d-lg-block"
         style={{
-          borderColor: `#${props.bannerBorderColor}`,
+          borderColor: `${props.bannerBorderColor}`,
           backgroundImage: `url(${props.textureImage})`,
         }}
       />
       <div
         className="hero-img"
         style={{
-          borderColor: `#${props.bannerBorderColor}`,
+          borderColor: `${props.bannerBorderColor}`,
           backgroundImage: `url(${props.coverImage})`,
         }}
       />
@@ -24,7 +24,7 @@ const Hero = props => (
     <div className="container py-3">
       <div className="row">
         <div className="col-xs-9 col-lg-6">
-          <div className="hero-box bg-white p-4 d-inline-block" style={{ borderColor: `#${props.bannerBorderColor}` }}>
+          <div className="hero-box bg-white p-4 d-inline-block" style={{ borderColor: `${props.bannerBorderColor}` }}>
             <h1 className="hero-heading m-0">{props.programTitle}</h1>
           </div>
         </div>
@@ -34,7 +34,7 @@ const Hero = props => (
           <div
             className="hero-logo bg-white pl-3 pr-5 d-sm-inline-block text-left"
             style={{
-              borderColor: `#${props.bannerBorderColor}`,
+              borderColor: `${props.bannerBorderColor}`,
             }}
           >
             <img

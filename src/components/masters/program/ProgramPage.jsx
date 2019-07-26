@@ -75,7 +75,12 @@ class ProgramPage extends Component {
   render() {
     const { hasProgramAccess } = this.state;
     const { pageContext, isLoading } = this.props;
-    const { programUUID, programName, programDocuments } = pageContext;
+    const {
+      programUUID,
+      programName,
+      programDocuments,
+      programBranding,
+    } = pageContext;
 
     return (
       <IntlProvider locale="en">
@@ -95,11 +100,12 @@ class ProgramPage extends Component {
                     <Hero
                       programTitle={programName}
                       organizationLogo={{
-                        url: 'https://www.edx.org/sites/default/files/school/image/logo/gtx-logo-200x101.png',
-                        alt: 'Georgia Tech Institute of Technology logo',
+                        url: programBranding.organization_logo.url,
+                        alt: programBranding.organization_logo.alt,
                       }}
-                      textureImage="https://prod-discovery.edx-cdn.org/media/degree_marketing/campus_images/gt-cyber-title_bg_img_440x400.jpg"
-                      coverImage="https://prod-discovery.edx-cdn.org/media/degree_marketing/campus_images/gt_cyber_campus_image_1000x400.jpg"
+                      textureImage={programBranding.texture_image}
+                      coverImage={programBranding.cover_image}
+                      bannerBorderColor={programBranding.banner_border_color}
                     />
                     <div className="container py-5">
                       <div className="row">
@@ -136,12 +142,22 @@ ProgramPage.propTypes = {
     programName: PropTypes.string.isRequired,
     programSlug: PropTypes.string.isRequired,
     programUUID: PropTypes.string.isRequired,
+    programBranding: PropTypes.shape({
+      cover_image: PropTypes.string,
+      banner_border_color: PropTypes.string,
+      texture_image: PropTypes.string,
+      organization_logo: PropTypes.shape({
+        url: PropTypes.string,
+        alt: PropTypes.string,
+      }),
+    }),
     programDocuments: PropTypes.shape({
       display: PropTypes.bool,
       header: PropTypes.string,
       documents: PropTypes.arrayOf(PropTypes.shape({
         display_text: PropTypes.string,
         document: PropTypes.string,
+        url: PropTypes.string,
       })),
     }),
   }).isRequired,
