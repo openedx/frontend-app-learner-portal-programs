@@ -22,7 +22,6 @@ exports.sourceNodes = async (
     // not remove the mock data!
     // mock data lives at './test/mock.json'
     if (process.env.USE_MOCK_DATA) {
-      console.warn('Using fake designer data...');
       return mockData;
     }
     try {

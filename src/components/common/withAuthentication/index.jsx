@@ -10,7 +10,6 @@ import {
   sendPageEvent,
 } from '@edx/frontend-analytics';
 import { configureLoggingService, NewRelicLoggingService } from '@edx/frontend-logging';
-import { StaticQuery, graphql } from 'gatsby';
 
 import apiClient from '../../../apiClient';
 
@@ -39,7 +38,6 @@ const withAuthentication = (WrappedComponent) => {
       } = this.props;
 
       apiClient.loginUrl = `${process.env.LMS_BASE_URL}/auth/idp_redirect/${providerSlug}`;
-
       apiClient.ensurePublicOrAuthenticationAndCookies(location.pathname, async (accessToken) => {
         configureLoggingService(NewRelicLoggingService);
         initializeSegment(process.env.SEGMENT_KEY);
@@ -91,20 +89,7 @@ withAuthentication.propTypes = {
 
 const withSaml = WrappedComponent => (
   props => (
-    <StaticQuery
-      query={graphql`
-        query {
-          site {
-            siteMetadata {
-              providerSlug
-            }
-          }
-        }
-      `}
-      render={data => (
-        <WrappedComponent providerSlug={data.site.siteMetadata.providerSlug} {...props} />
-      )}
-    />
+    <WrappedComponent providerSlug={process.env.IDP_SLUG} {...props} />
   )
 );
 
