@@ -88,7 +88,7 @@ withAuthentication.propTypes = {
 };
 
 const withSaml = WrappedComponent => (
-  props => {
+  (props) => {
     if (!process.env.IDP_SLUG) {
       console.error('IDP_Slug is not set');
       return null;
