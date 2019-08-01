@@ -21,6 +21,7 @@ const transformProgramPageContext = context => (
     programHostname: context.hostname,
     programBranding: context.branding,
     programDocuments: context.program_documents,
+    externalProgramWebsite: context.external_program_website,
   }
 );
 

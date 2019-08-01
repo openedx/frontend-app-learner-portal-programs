@@ -6,8 +6,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import Links from './Links';
 import SidebarBlock from './SidebarBlock';
-
-const Sidebar = ({ programDocuments }) => (
+// TODO: get the description in there properly
+const Sidebar = ({ programDocuments, externalProgramWebsite }) => (
   <>
     {programDocuments && programDocuments.display &&
       <SidebarBlock title={programDocuments.header} className="mb-5">
@@ -18,36 +18,38 @@ const Sidebar = ({ programDocuments }) => (
         />
       </SidebarBlock>
     }
-    <SidebarBlock title="Manage Your Degree" className="mb-5">
-      <p>Go to the portal to</p>
-      <ul>
-        <li>Add or drop courses</li>
-        <li>Finance department</li>
-        <li>Contact an advisor</li>
-        <li>Get your grade</li>
-        <li>Program wide discussions</li>
-        <li>and more</li>
-      </ul>
-      <p>
-        <a
-          href="https://www.edx.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={() => {
-            sendTrackEvent('edx.learner_portal.school_portal_link.clicked');
-          }}
-        >
-          Go to the portal
-          <FontAwesomeIcon
-            className="ml-2 text-primary"
-            icon={faExternalLinkAlt}
-            size="sm"
-            aria-hidden={false}
-            aria-label="opens in a new window"
-          />
-        </a>
-      </p>
-    </SidebarBlock>
+    {externalProgramWebsite && externalProgramWebsite.display &&
+      <SidebarBlock title={externalProgramWebsite.header} className="mb-5">
+        <p>{externalProgramWebsite.description}</p>
+        <ul>
+          <li>Add or drop courses</li>
+          <li>Finance department</li>
+          <li>Contact an advisor</li>
+          <li>Get your grade</li>
+          <li>Program wide discussions</li>
+          <li>and more</li>
+        </ul>
+        <p>
+          <a
+            href={externalProgramWebsite.link.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => {
+              sendTrackEvent('edx.learner_portal.school_portal_link.clicked');
+            }}
+          >
+            {externalProgramWebsite.link.display_text}
+            <FontAwesomeIcon
+              className="ml-2 text-primary"
+              icon={faExternalLinkAlt}
+              size="sm"
+              aria-hidden={false}
+              aria-label="opens in a new window"
+            />
+          </a>
+        </p>
+      </SidebarBlock>
+    }
     <SidebarBlock title="Get Technical Support">
       <p>
         <a
@@ -84,6 +86,15 @@ Sidebar.propTypes = {
       display_text: PropTypes.string,
       document: PropTypes.string,
     })),
+  }),
+  externalProgramWebsite: PropTypes.shape({
+    display: PropTypes.bool,
+    header: PropTypes.string,
+    description: PropTypes.string,
+    link: PropTypes.shape({
+      display_text: PropTypes.string,
+      url: PropTypes.string,
+    }),
   }),
 };
 

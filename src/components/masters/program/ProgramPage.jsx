@@ -80,6 +80,7 @@ class ProgramPage extends Component {
       programName,
       programDocuments,
       programBranding,
+      externalProgramWebsite,
     } = pageContext;
 
     return (
@@ -159,6 +160,15 @@ ProgramPage.propTypes = {
         document: PropTypes.string,
         url: PropTypes.string,
       })),
+    }),
+    externalProgramWebsite: PropTypes.shape({
+      display: PropTypes.bool,
+      header: PropTypes.string,
+      description: PropTypes.string,
+      link: PropTypes.shape({
+        display_text: PropTypes.string,
+        url: PropTypes.string,
+      }),
     }),
   }).isRequired,
   isLoading: PropTypes.bool.isRequired,

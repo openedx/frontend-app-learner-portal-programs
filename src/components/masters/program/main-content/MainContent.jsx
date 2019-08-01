@@ -64,7 +64,12 @@ class MainContent extends Component {
   }
 
   render() {
-    const { error, loading, programDocuments } = this.props;
+    const {
+      error,
+      loading,
+      programDocuments,
+      externalProgramWebsite,
+    } = this.props;
 
     if (error) {
       return this.renderError();
@@ -90,7 +95,10 @@ class MainContent extends Component {
             <MediaQuery minWidth={breakpoints.large.minWidth}>
               {matches => !matches && (
                 <aside className="mb-5">
-                  <Sidebar programDocuments={programDocuments} />
+                  <Sidebar
+                    programDocuments={programDocuments}
+                    externalProgramWebsite={externalProgramWebsite}
+                  />
                 </aside>
               )}
             </MediaQuery>
@@ -116,6 +124,7 @@ MainContent.defaultProps = {
   loading: false,
   error: null,
   programDocuments: null,
+  externalProgramWebsite: null,
 };
 
 MainContent.propTypes = {
@@ -129,6 +138,15 @@ MainContent.propTypes = {
       display_text: PropTypes.string,
       document: PropTypes.string,
     })),
+  }),
+  externalProgramWebsite: PropTypes.shape({
+    display: PropTypes.bool,
+    header: PropTypes.string,
+    description: PropTypes.string,
+    link: PropTypes.shape({
+      display_text: PropTypes.string,
+      url: PropTypes.string,
+    }),
   }),
   courseRuns: PropTypes.arrayOf(PropTypes.shape({
     course_run_id: PropTypes.string.isRequired,
