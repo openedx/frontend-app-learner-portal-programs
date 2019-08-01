@@ -18,9 +18,7 @@ describe('ProgramListPage', () => {
       render({
         site: {
           siteMetadata: {
-            logo: 'https://edx.org',
-            siteName: 'edX',
-            siteUrl: 'https://edx.org',
+            programUUID: 'aa7316ce-1b06-4d4a-b612-7a9c652f2990',
           },
         },
       })

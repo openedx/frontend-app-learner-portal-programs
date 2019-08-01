@@ -54,7 +54,11 @@ Array [
         >
           <img
             alt="Open Edx logo"
-            src="https://www.edx.org/sites/default/files/open-edx-logo-with-reg.png"
+            src={
+              Object {
+                "process": [Function],
+              }
+            }
           />
         </a>
       </div>
@@ -484,7 +488,11 @@ Array [
         >
           <img
             alt="Open Edx logo"
-            src="https://www.edx.org/sites/default/files/open-edx-logo-with-reg.png"
+            src={
+              Object {
+                "process": [Function],
+              }
+            }
           />
         </a>
       </div>
