@@ -24,6 +24,7 @@ apiClient.ensurePublicOrAuthenticationAndCookies = (_, callback) => {
 
 describe('<withAuthentication />', () => {
   it('does not render anything on initial paint', () => {
+    process.env.IDP_SLUG = 'saml-default';
     const MyComponent = () => <div />;
     const AuthenticatedComponent = withAuthentication(MyComponent);
     const wrapper = mount((

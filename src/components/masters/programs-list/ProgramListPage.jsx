@@ -6,7 +6,7 @@ import { StatusAlert } from '@edx/paragon';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { Layout } from '../../common';
+import { Layout, withAuthentication } from '../../common';
 
 import { fetchUserProgramEnrollments } from '../user-program-enrollments';
 
@@ -190,6 +190,9 @@ const mapDispatchToProps = dispatch => ({
   fetchUserProgramEnrollments: () => dispatch(fetchUserProgramEnrollments()),
 });
 
-const ConnectedProgramListPage = connect(mapStateToProps, mapDispatchToProps)(ProgramListPage);
+const ConnectedProgramListPage = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(withAuthentication(ProgramListPage));
 
 export default ConnectedProgramListPage;

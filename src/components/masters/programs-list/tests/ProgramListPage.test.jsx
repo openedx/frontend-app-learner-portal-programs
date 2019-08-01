@@ -4,11 +4,10 @@ import { shallow } from 'enzyme';
 import { StaticQuery } from 'gatsby';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
+import { StatusAlert } from '@edx/paragon';
 import { Provider } from 'react-redux';
 import { IntlProvider } from 'react-intl';
-import { StatusAlert } from '@edx/paragon';
-
-import ConnectedProgramListPage, { ProgramListPage } from '../ProgramListPage';
+import { ProgramListPage } from '../ProgramListPage';
 
 const mockStore = configureMockStore([thunk]);
 
@@ -54,17 +53,16 @@ describe('ProgramListPage', () => {
           imageUrlMedium: 'someImageData',
         },
       },
-      enrolledPrograms: {
-        loading: true,
-        error: null,
-      },
     });
-
     const tree = renderer
       .create((
         <IntlProvider locale="en">
           <Provider store={store}>
-            <ConnectedProgramListPage pageContext={pageContext} />
+            <ProgramListPage
+              isLoading
+              pageContext={pageContext}
+              fetchUserProgramEnrollments={jest.fn()}
+            />
           </Provider>
         </IntlProvider>
       ))
@@ -82,17 +80,17 @@ describe('ProgramListPage', () => {
           imageUrlMedium: 'someImageData',
         },
       },
-      enrolledPrograms: {
-        loading: false,
-        error: new Error(),
-      },
     });
-
     const tree = renderer
       .create((
         <IntlProvider locale="en">
           <Provider store={store}>
-            <ConnectedProgramListPage pageContext={pageContext} />
+            <ProgramListPage
+              isLoading={false}
+              error={new Error()}
+              pageContext={pageContext}
+              fetchUserProgramEnrollments={jest.fn()}
+            />
           </Provider>
         </IntlProvider>
       ))
