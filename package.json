@@ -65,7 +65,7 @@
   "keywords": [],
   "license": "GNU",
   "scripts": {
-    "build": "gatsby build",
+    "build": "gatsby build --prefix-paths",
     "postbuild": "rm -r ./dist > /dev/null; mv public dist",
     "start": "gatsby develop -p 8734 --host 0.0.0.0",
     "serve": "gatsby serve -p 8735",
