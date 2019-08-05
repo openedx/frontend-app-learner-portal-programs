@@ -37,9 +37,21 @@ module.exports = `
     documents: [document]
   }
 
+  type program_homepage {
+    header: String,
+    link: link,
+    display: Boolean,
+    description: String,
+},
+
   type document {
     display_text: String
     document: String
     url: String
   }
+
+  type link {
+    display_text: String,
+    url: String,
+  },
 `;

@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Links from './Links';
 import SidebarBlock from './SidebarBlock';
 
-const Sidebar = ({ programDocuments }) => (
+const Sidebar = ({ programDocuments, programHomepage }) => (
   <>
     {programDocuments && programDocuments.display &&
       <SidebarBlock title={programDocuments.header} className="mb-5">
@@ -18,36 +18,31 @@ const Sidebar = ({ programDocuments }) => (
         />
       </SidebarBlock>
     }
-    <SidebarBlock title="Manage Your Degree" className="mb-5">
-      <p>Go to the portal to</p>
-      <ul>
-        <li>Add or drop courses</li>
-        <li>Finance department</li>
-        <li>Contact an advisor</li>
-        <li>Get your grade</li>
-        <li>Program wide discussions</li>
-        <li>and more</li>
-      </ul>
-      <p>
-        <a
-          href="https://www.edx.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={() => {
-            sendTrackEvent('edx.learner_portal.school_portal_link.clicked');
-          }}
-        >
-          Go to the portal
-          <FontAwesomeIcon
-            className="ml-2 text-primary"
-            icon={faExternalLinkAlt}
-            size="sm"
-            aria-hidden={false}
-            aria-label="opens in a new window"
-          />
-        </a>
-      </p>
-    </SidebarBlock>
+    {programHomepage && programHomepage.display &&
+      <SidebarBlock title={programHomepage.header} className="mb-5">
+        {/* eslint-disable-next-line react/no-danger */}
+        <div dangerouslySetInnerHTML={{ __html: programHomepage.description }} />
+        <p>
+          <a
+            href={programHomepage.link.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => {
+              sendTrackEvent('edx.learner_portal.school_portal_link.clicked');
+            }}
+          >
+            {programHomepage.link.display_text}
+            <FontAwesomeIcon
+              className="ml-2 text-primary"
+              icon={faExternalLinkAlt}
+              size="sm"
+              aria-hidden={false}
+              aria-label="opens in a new window"
+            />
+          </a>
+        </p>
+      </SidebarBlock>
+    }
     <SidebarBlock title="Get Technical Support">
       <p>
         <a
@@ -74,6 +69,7 @@ const Sidebar = ({ programDocuments }) => (
 
 Sidebar.defaultProps = {
   programDocuments: null,
+  programHomepage: null,
 };
 
 Sidebar.propTypes = {
@@ -84,6 +80,15 @@ Sidebar.propTypes = {
       display_text: PropTypes.string,
       document: PropTypes.string,
     })),
+  }),
+  programHomepage: PropTypes.shape({
+    header: PropTypes.string,
+    link: PropTypes.shape({
+      display_text: PropTypes.string,
+      url: PropTypes.string,
+    }),
+    display: PropTypes.bool,
+    description: PropTypes.string,
   }),
 };
 
