@@ -5,13 +5,15 @@ import SiteHeader from '@edx/frontend-component-site-header';
 import SiteFooter from '@edx/frontend-component-footer';
 import { connect } from 'react-redux';
 
+import EdXLogo from '../../../images/edx-logo.svg';
+
 import './styles/Layout.scss';
 
 const Layout = props => (
   <>
     <Helmet titleTemplate="%s - edX" defaultTitle="edX" />
     <SiteHeader
-      logo={props.logo}
+      logo={EdXLogo}
       logoDestination={props.siteUrl}
       logoAltText={props.siteName}
       loggedIn={!!props.username}
@@ -53,7 +55,7 @@ const Layout = props => (
     <>{props.children}</>
     <SiteFooter
       siteName={props.siteName}
-      siteLogo={props.logo}
+      siteLogo={EdXLogo}
       marketingSiteBaseUrl="https://www.example.com"
       supportUrl="https://www.example.com/support"
       contactUrl="https://www.example.com/contact"
@@ -76,7 +78,6 @@ const Layout = props => (
 Layout.defaultProps = {
   avatar: null,
   children: [],
-  logo: 'https://www.edx.org/sites/default/files/open-edx-logo-with-reg.png',
   siteName: 'Open Edx',
   siteUrl: 'https://open.edx.org/',
   username: null,
@@ -85,7 +86,6 @@ Layout.defaultProps = {
 Layout.propTypes = {
   avatar: PropTypes.string,
   children: PropTypes.node,
-  logo: PropTypes.string,
   siteName: PropTypes.string,
   siteUrl: PropTypes.string,
   username: PropTypes.string,
