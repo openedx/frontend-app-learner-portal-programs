@@ -80,6 +80,7 @@ class ProgramPage extends Component {
       programName,
       programDocuments,
       programBranding,
+      programHomepage,
     } = pageContext;
 
     return (
@@ -118,7 +119,10 @@ class ProgramPage extends Component {
                         <MediaQuery minWidth={breakpoints.large.minWidth}>
                           {matches => matches && (
                             <aside className="col offset-lg-1">
-                              <Sidebar programDocuments={programDocuments} />
+                              <Sidebar
+                                programDocuments={programDocuments}
+                                programHomepage={programHomepage}
+                              />
                             </aside>
                           )}
                         </MediaQuery>
@@ -159,6 +163,15 @@ ProgramPage.propTypes = {
         document: PropTypes.string,
         url: PropTypes.string,
       })),
+    }),
+    programHomepage: PropTypes.shape({
+      header: PropTypes.string,
+      link: PropTypes.shape({
+        display_text: PropTypes.string,
+        url: PropTypes.string,
+      }),
+      display: PropTypes.bool,
+      description: PropTypes.string,
     }),
   }).isRequired,
   isLoading: PropTypes.bool.isRequired,

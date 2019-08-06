@@ -43,6 +43,15 @@
         }
       ]
     },
+    "program_homepage": {
+      "header": "edX Portal",
+      "link": {
+        "display_text": "Click here to go to edX's portal",
+        "url": "http://example.com"
+      },
+      "display": true,
+      "description": "<p>Go to edX's portal to:</p>\n        <ul>\n            <li>Make sure this works</li><li>Test this block of text<br/></li>\n            <li>Contact an advisor</li>\n            <li>Get your grade</li>\n            <li>Program wide discussions</li>\n            <li>and more</li></ul><ul>\n        </ul>"
+    },
     "branding": [
       {
         "texture_image": "http://pigment.github.io/fake-logos/logos/large/color/space-cube.png",
