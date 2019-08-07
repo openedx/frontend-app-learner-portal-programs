@@ -80,7 +80,7 @@ class ProgramPage extends Component {
       programName,
       programDocuments,
       programBranding,
-      programHomepage,
+      externalProgramWebsite,
     } = pageContext;
 
     return (
@@ -121,7 +121,7 @@ class ProgramPage extends Component {
                             <aside className="col offset-lg-1">
                               <Sidebar
                                 programDocuments={programDocuments}
-                                programHomepage={programHomepage}
+                                externalProgramWebsite={externalProgramWebsite}
                               />
                             </aside>
                           )}
@@ -164,7 +164,7 @@ ProgramPage.propTypes = {
         url: PropTypes.string,
       })),
     }),
-    programHomepage: PropTypes.shape({
+    externalProgramWebsite: PropTypes.shape({
       header: PropTypes.string,
       link: PropTypes.shape({
         display_text: PropTypes.string,
