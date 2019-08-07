@@ -17,6 +17,7 @@ module.exports = `
       type: String
       branding: branding
       program_documents: program_documents
+      program_homepage: program_homepage
   }
 
   type branding {
