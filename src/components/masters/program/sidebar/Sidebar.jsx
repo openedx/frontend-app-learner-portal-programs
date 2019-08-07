@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Links from './Links';
 import SidebarBlock from './SidebarBlock';
 
-const Sidebar = ({ programDocuments, programHomepage }) => (
+const Sidebar = ({ programDocuments, externalProgramWebsite }) => (
   <>
     {programDocuments && programDocuments.display &&
       <SidebarBlock title={programDocuments.header} className="mb-5">
@@ -18,20 +18,20 @@ const Sidebar = ({ programDocuments, programHomepage }) => (
         />
       </SidebarBlock>
     }
-    {programHomepage && programHomepage.display &&
-      <SidebarBlock title={programHomepage.header} className="mb-5">
+    {externalProgramWebsite && externalProgramWebsite.display &&
+      <SidebarBlock title={externalProgramWebsite.header} className="mb-5">
         {/* eslint-disable-next-line react/no-danger */}
-        <div dangerouslySetInnerHTML={{ __html: programHomepage.description }} />
+        <div dangerouslySetInnerHTML={{ __html: externalProgramWebsite.description }} />
         <p>
           <a
-            href={programHomepage.link.url}
+            href={externalProgramWebsite.link.url}
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => {
               sendTrackEvent('edx.learner_portal.school_portal_link.clicked');
             }}
           >
-            {programHomepage.link.display_text}
+            {externalProgramWebsite.link.display_text}
             <FontAwesomeIcon
               className="ml-2 text-primary"
               icon={faExternalLinkAlt}
@@ -69,7 +69,7 @@ const Sidebar = ({ programDocuments, programHomepage }) => (
 
 Sidebar.defaultProps = {
   programDocuments: null,
-  programHomepage: null,
+  externalProgramWebsite: null,
 };
 
 Sidebar.propTypes = {
@@ -81,7 +81,7 @@ Sidebar.propTypes = {
       document: PropTypes.string,
     })),
   }),
-  programHomepage: PropTypes.shape({
+  externalProgramWebsite: PropTypes.shape({
     header: PropTypes.string,
     link: PropTypes.shape({
       display_text: PropTypes.string,

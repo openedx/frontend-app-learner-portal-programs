@@ -17,7 +17,7 @@ module.exports = `
       type: String
       branding: branding
       program_documents: program_documents
-      program_homepage: program_homepage
+      external_program_website: external_program_website
   }
 
   type branding {
@@ -38,7 +38,7 @@ module.exports = `
     documents: [document]
   }
 
-  type program_homepage {
+  type external_program_website {
     header: String,
     link: link,
     display: Boolean,

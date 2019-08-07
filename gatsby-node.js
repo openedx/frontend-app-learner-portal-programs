@@ -21,7 +21,7 @@ const transformProgramPageContext = context => (
     programHostname: context.hostname,
     programBranding: context.branding,
     programDocuments: context.program_documents,
-    programHomepage: context.program_homepage,
+    externalProgramWebsite: context.external_program_website,
   }
 );
 
@@ -50,7 +50,7 @@ exports.createPages = async ({ graphql, actions }) => {
             url
           }
         }
-        program_homepage {
+        external_program_website {
           header
           display
           description
