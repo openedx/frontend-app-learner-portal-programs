@@ -13,11 +13,11 @@ const routerHistoryMiddleware = routerMiddleware(history);
 
 const middleware = [thunkMiddleware, loggerMiddleware, routerHistoryMiddleware];
 
-const initialState = apiClient.getAuthenticationState();
+//const initialState = apiClient.getAuthenticationState();
 
 const store = createStore(
   reducers,
-  initialState,
+  //initialState,
   composeWithDevTools(applyMiddleware(...middleware)),
 );
 

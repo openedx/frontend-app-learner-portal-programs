@@ -21,20 +21,20 @@ class ProgramPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      hasProgramAccess: false,
+      hasProgramAccess: true,
     };
   }
 
   componentDidMount() {
-    this.props.fetchUserProgramEnrollments();
+    //this.props.fetchUserProgramEnrollments();
   }
 
   componentDidUpdate(prevProps) {
     const { enrolledPrograms } = this.props;
 
-    if (enrolledPrograms && enrolledPrograms !== prevProps.enrolledPrograms) {
-      this.validateProgramAccess(enrolledPrograms);
-    }
+    // if (enrolledPrograms && enrolledPrograms !== prevProps.enrolledPrograms) {
+    //   this.validateProgramAccess(enrolledPrograms);
+    // }
   }
 
   validateProgramAccess = (programs) => {
@@ -196,4 +196,4 @@ const mapDispatchToProps = dispatch => ({
   fetchUserProgramEnrollments: () => dispatch(fetchUserProgramEnrollments()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(withAuthentication(ProgramPage));
+export default connect(mapStateToProps, mapDispatchToProps)(ProgramPage);

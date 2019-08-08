@@ -16,8 +16,8 @@ const Layout = props => (
       logo={EdXLogo}
       logoDestination={props.siteUrl}
       logoAltText={props.siteName}
-      loggedIn={!!props.username}
-      username={props.username}
+      loggedIn
+      username={"Masters Student"}
       avatar={props.avatar}
       userMenu={[
         {
@@ -32,7 +32,7 @@ const Layout = props => (
         },
         {
           type: 'item',
-          href: `${process.env.LMS_BASE_URL}/u/${props.username}`,
+          href: `${process.env.LMS_BASE_URL}/u/${"Masters Student"}`,
           content: 'Profile',
         },
         {
@@ -80,7 +80,7 @@ Layout.defaultProps = {
   children: [],
   siteName: 'Open Edx',
   siteUrl: 'https://open.edx.org/',
-  username: null,
+  username: "Masters Student",
 };
 
 Layout.propTypes = {

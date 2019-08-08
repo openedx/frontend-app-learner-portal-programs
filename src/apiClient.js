@@ -13,4 +13,4 @@ const apiClient = getAuthenticatedAPIClient({
   loggingService: NewRelicLoggingService,
 });
 
-export default apiClient;
+export default null;

@@ -18,11 +18,11 @@ import {
 class MainContent extends Component {
   componentDidMount() {
     const { programUUID } = this.props;
-    this.props.fetchProgramCourseEnrollments(programUUID);
+ //   this.props.fetchProgramCourseEnrollments(programUUID);
   }
 
   componentWillUnmount() {
-    this.props.clearProgramCourseEnrollments();
+ //   this.props.clearProgramCourseEnrollments();
   }
 
   groupCourseEnrollmentsByStatus = () => {

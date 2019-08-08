@@ -97,4 +97,4 @@ const withSaml = WrappedComponent => (
   }
 );
 
-export default WrappedComponent => withSaml(withAuthentication(WrappedComponent));
+export default WrappedComponent => withSaml(WrappedComponent);
