@@ -13,6 +13,11 @@ import { configureLoggingService, NewRelicLoggingService } from '@edx/frontend-l
 
 import apiClient from '../../../apiClient';
 
+const userAccountApiService = new UserAccountApiService(
+  apiClient,
+  process.env.LMS_BASE_URL,
+);
+
 const withAuthentication = (WrappedComponent) => {
   const ComponentClass = class extends Component {
     static propTypes = {
@@ -37,30 +42,42 @@ const withAuthentication = (WrappedComponent) => {
         username, location, fetchUserAccount, providerSlug,
       } = this.props;
 
-      apiClient.loginUrl = `${process.env.LMS_BASE_URL}/auth/idp_redirect/${providerSlug}`;
-      apiClient.ensurePublicOrAuthenticationAndCookies(location.pathname, async (accessToken) => {
-        configureLoggingService(NewRelicLoggingService);
-        initializeSegment(process.env.SEGMENT_KEY);
-        configureAnalytics({
-          loggingService: NewRelicLoggingService,
-          authApiClient: apiClient,
-          analyticsApiBaseUrl: process.env.LMS_BASE_URL,
+      if (!providerSlug) {
+        apiClient.loginUrl = `${process.env.LMS_BASE_URL}/login`;
+        apiClient.ensurePublicOrAuthenticationAndCookies(location.pathname, async () => {
+          this.configure();
+
+          await fetchUserAccount(userAccountApiService, username);
+
+          identifyAuthenticatedUser();
+          sendPageEvent();
+          this.setState({ isLoading: false });
         });
+      } else {
+        apiClient.loginUrl = `${process.env.LMS_BASE_URL}/auth/idp_redirect/${providerSlug}`;
+        apiClient.ensurePublicOrAuthenticationAndCookies(location.pathname, async (accessToken) => {
+          this.configure();
 
-        const userAccountApiService = new UserAccountApiService(
-          apiClient,
-          process.env.LMS_BASE_URL,
-        );
+          await fetchUserAccount(userAccountApiService, username);
 
-        await fetchUserAccount(userAccountApiService, username);
+          if (accessToken) {
+            identifyAuthenticatedUser(accessToken.user_id);
+          } else {
+            identifyAnonymousUser();
+          }
+          sendPageEvent();
+          this.setState({ isLoading: false });
+        });
+      }
+    }
 
-        if (accessToken) {
-          identifyAuthenticatedUser(accessToken.user_id);
-        } else {
-          identifyAnonymousUser();
-        }
-        sendPageEvent();
-        this.setState({ isLoading: false });
+    configure() {
+      configureLoggingService(NewRelicLoggingService);
+      initializeSegment(process.env.SEGMENT_KEY);
+      configureAnalytics({
+        loggingService: NewRelicLoggingService,
+        authApiClient: apiClient,
+        analyticsApiBaseUrl: process.env.LMS_BASE_URL,
       });
     }
 
@@ -88,13 +105,7 @@ withAuthentication.propTypes = {
 };
 
 const withSaml = WrappedComponent => (
-  (props) => {
-    if (!process.env.IDP_SLUG) {
-      console.error('IDP_Slug is not set');
-      return null;
-    }
-    return <WrappedComponent providerSlug={process.env.IDP_SLUG} {...props} />;
-  }
+  props => <WrappedComponent providerSlug={process.env.IDP_SLUG} {...props} />
 );
 
 export default WrappedComponent => withSaml(withAuthentication(WrappedComponent));
