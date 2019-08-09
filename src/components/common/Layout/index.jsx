@@ -56,20 +56,20 @@ const Layout = props => (
     <SiteFooter
       siteName={props.siteName}
       siteLogo={EdXLogo}
-      marketingSiteBaseUrl="https://www.example.com"
-      supportUrl="https://www.example.com/support"
-      contactUrl="https://www.example.com/contact"
-      openSourceUrl="https://www.example.com/open"
-      termsOfServiceUrl="https://www.example.com/terms-of-service"
-      privacyPolicyUrl="https://www.example.com/privacy-policy"
-      facebookUrl="https://www.facebook.com"
-      twitterUrl="https://www.twitter.com"
-      youTubeUrl="https://www.youtube.com"
-      linkedInUrl="https://www.linkedin.com"
-      googlePlusUrl="https://plus.google.com"
-      redditUrl="https://reddit.com"
-      appleAppStoreUrl="https://store.apple.com"
-      googlePlayUrl="https://play.google.com"
+      marketingSiteBaseUrl="https://www.edx.org"
+      supportUrl="https://support.edx.org/hc/en-us"
+      contactUrl="https://courses.edx.org/support/contact_us"
+      openSourceUrl="https://open.edx.org/"
+      termsOfServiceUrl="https://www.edx.org/edx-terms-service"
+      privacyPolicyUrl="https://www.edx.org/edx-privacy-policy"
+      facebookUrl="https://www.facebook.com/edX"
+      twitterUrl="https://twitter.com/edXOnline"
+      youTubeUrl="https://www.youtube.com/user/edxonline"
+      linkedInUrl="http://www.linkedin.com/company/edx"
+      googlePlusUrl="https://plus.google.com/+edXOnline"
+      redditUrl="https://www.reddit.com/r/edX/"
+      appleAppStoreUrl="https://apps.apple.com/us/app/edx/id945480667"
+      googlePlayUrl="https://play.google.com/store/apps/details?id=org.edx.mobile"
       handleAllTrackEvents={() => {}}
     />
   </>
@@ -78,8 +78,8 @@ const Layout = props => (
 Layout.defaultProps = {
   avatar: null,
   children: [],
-  siteName: 'Open Edx',
-  siteUrl: 'https://open.edx.org/',
+  siteName: 'edX',
+  siteUrl: 'https://edx.org/',
   username: null,
 };
 

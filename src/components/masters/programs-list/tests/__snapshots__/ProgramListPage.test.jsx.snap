@@ -47,13 +47,13 @@ Array [
         className="area-1"
       >
         <a
-          aria-label="Open Edx Home"
-          href="https://www.example.com/"
+          aria-label="edX Home"
+          href="https://www.edx.org/"
           onClick={[Function]}
           target="_self"
         >
           <img
-            alt="Open Edx logo"
+            alt="edX logo"
             src={
               Object {
                 "process": [Function],
@@ -66,14 +66,14 @@ Array [
         className="area-2"
       >
         <h2>
-          Open Edx
+          edX
         </h2>
         <ul
           className="list-unstyled p-0 m-0"
         >
           <li>
             <a
-              href="https://www.example.com/about-us"
+              href="https://www.edx.org/about-us"
             >
               <span>
                 About
@@ -82,16 +82,16 @@ Array [
           </li>
           <li>
             <a
-              href="https://www.example.com/enterprise"
+              href="https://www.edx.org/enterprise"
             >
               <span>
-                Open Edx for Business
+                edX for Business
               </span>
             </a>
           </li>
           <li>
             <a
-              href="https://www.example.com/affiliate-program"
+              href="https://www.edx.org/affiliate-program"
             >
               <span>
                 Affiliates
@@ -100,16 +100,16 @@ Array [
           </li>
           <li>
             <a
-              href="https://www.example.com/open"
+              href="https://open.edx.org/"
             >
               <span>
-                Open Open Edx
+                Open edX
               </span>
             </a>
           </li>
           <li>
             <a
-              href="https://www.example.com/careers"
+              href="https://www.edx.org/careers"
             >
               <span>
                 Careers
@@ -118,7 +118,7 @@ Array [
           </li>
           <li>
             <a
-              href="https://www.example.com/news-announcements"
+              href="https://www.edx.org/news-announcements"
             >
               <span>
                 News
@@ -140,7 +140,7 @@ Array [
         >
           <li>
             <a
-              href="https://www.example.com/terms-of-service"
+              href="https://www.edx.org/edx-terms-service"
             >
               <span>
                 Terms of Service & Honor Code
@@ -149,7 +149,7 @@ Array [
           </li>
           <li>
             <a
-              href="https://www.example.com/privacy-policy"
+              href="https://www.edx.org/edx-privacy-policy"
             >
               <span>
                 Privacy Policy
@@ -158,7 +158,7 @@ Array [
           </li>
           <li>
             <a
-              href="https://www.example.com/accessibility"
+              href="https://www.edx.org/accessibility"
             >
               <span>
                 Accessibility Policy
@@ -167,7 +167,7 @@ Array [
           </li>
           <li>
             <a
-              href="https://www.example.com/trademarks"
+              href="https://www.edx.org/trademarks"
             >
               <span>
                 Trademark Policy
@@ -176,7 +176,7 @@ Array [
           </li>
           <li>
             <a
-              href="https://www.example.com/sitemap"
+              href="https://www.edx.org/sitemap"
             >
               <span>
                 Sitemap
@@ -198,7 +198,7 @@ Array [
         >
           <li>
             <a
-              href="https://www.example.com/blog"
+              href="https://www.edx.org/blog"
             >
               <span>
                 Blog
@@ -207,7 +207,7 @@ Array [
           </li>
           <li>
             <a
-              href="https://www.example.com/contact"
+              href="https://courses.edx.org/support/contact_us"
             >
               <span>
                 Contact Us
@@ -216,7 +216,7 @@ Array [
           </li>
           <li>
             <a
-              href="https://www.example.com/support"
+              href="https://support.edx.org/hc/en-us"
             >
               <span>
                 Help Center
@@ -225,7 +225,7 @@ Array [
           </li>
           <li>
             <a
-              href="https://www.example.com/media-kit"
+              href="https://www.edx.org/media-kit"
             >
               <span>
                 Media Kit
@@ -234,7 +234,7 @@ Array [
           </li>
           <li>
             <a
-              href="https://www.example.com/donate"
+              href="https://www.edx.org/donate"
             >
               <span>
                 Donate
@@ -251,7 +251,7 @@ Array [
         >
           <li>
             <a
-              href="https://www.facebook.com"
+              href="https://www.facebook.com/edX"
               onClick={[Function]}
               rel="noopener noreferrer"
               target="_blank"
@@ -265,13 +265,13 @@ Array [
               <span
                 className="sr-only"
               >
-                Like Open Edx on Facebook
+                Like edX on Facebook
               </span>
             </a>
           </li>
           <li>
             <a
-              href="https://www.twitter.com"
+              href="https://twitter.com/edXOnline"
               onClick={[Function]}
               rel="noopener noreferrer"
               target="_blank"
@@ -285,13 +285,13 @@ Array [
               <span
                 className="sr-only"
               >
-                Follow Open Edx on Twitter
+                Follow edX on Twitter
               </span>
             </a>
           </li>
           <li>
             <a
-              href="https://www.youtube.com"
+              href="https://www.youtube.com/user/edxonline"
               onClick={[Function]}
               rel="noopener noreferrer"
               target="_blank"
@@ -305,13 +305,13 @@ Array [
               <span
                 className="sr-only"
               >
-                Subscribe to the Open Edx YouTube channel
+                Subscribe to the edX YouTube channel
               </span>
             </a>
           </li>
           <li>
             <a
-              href="https://www.linkedin.com"
+              href="http://www.linkedin.com/company/edx"
               onClick={[Function]}
               rel="noopener noreferrer"
               target="_blank"
@@ -325,13 +325,13 @@ Array [
               <span
                 className="sr-only"
               >
-                Follow Open Edx on LinkedIn
+                Follow edX on LinkedIn
               </span>
             </a>
           </li>
           <li>
             <a
-              href="https://plus.google.com"
+              href="https://plus.google.com/+edXOnline"
               onClick={[Function]}
               rel="noopener noreferrer"
               target="_blank"
@@ -345,13 +345,13 @@ Array [
               <span
                 className="sr-only"
               >
-                Follow Open Edx on Google+
+                Follow edX on Google+
               </span>
             </a>
           </li>
           <li>
             <a
-              href="https://reddit.com"
+              href="https://www.reddit.com/r/edX/"
               onClick={[Function]}
               rel="noopener noreferrer"
               target="_blank"
@@ -365,7 +365,7 @@ Array [
               <span
                 className="sr-only"
               >
-                Subscribe to the Open Edx subreddit
+                Subscribe to the edX subreddit
               </span>
             </a>
           </li>
@@ -375,13 +375,13 @@ Array [
         >
           <li>
             <a
-              href="https://store.apple.com"
+              href="https://apps.apple.com/us/app/edx/id945480667"
               onClick={[Function]}
               rel="noopener noreferrer"
               target="_blank"
             >
               <img
-                alt="Download the Open Edx mobile app from the Apple App Store"
+                alt="Download the edX mobile app from the Apple App Store"
                 className="max-height-39"
                 src="https://prod-edxapp.edx-cdn.org/static/images/app/app_store_badge_135x40.d0558d910630.svg"
               />
@@ -389,13 +389,13 @@ Array [
           </li>
           <li>
             <a
-              href="https://play.google.com"
+              href="https://play.google.com/store/apps/details?id=org.edx.mobile"
               onClick={[Function]}
               rel="noopener noreferrer"
               target="_blank"
             >
               <img
-                alt="Download the Open Edx mobile app from Google Play"
+                alt="Download the edX mobile app from Google Play"
                 className="max-height-39"
                 src="https://prod-edxapp.edx-cdn.org/static/images/app/google_play_badge_45.6ea466e328da.png"
               />
@@ -404,7 +404,7 @@ Array [
         </ul>
         <p>
           <span>
-            © 2012–2019 Open Edx Inc.
+            © 2012–2019 edX Inc.
           </span>
           <br />
           <span>
@@ -481,13 +481,13 @@ Array [
         className="area-1"
       >
         <a
-          aria-label="Open Edx Home"
-          href="https://www.example.com/"
+          aria-label="edX Home"
+          href="https://www.edx.org/"
           onClick={[Function]}
           target="_self"
         >
           <img
-            alt="Open Edx logo"
+            alt="edX logo"
             src={
               Object {
                 "process": [Function],
@@ -500,14 +500,14 @@ Array [
         className="area-2"
       >
         <h2>
-          Open Edx
+          edX
         </h2>
         <ul
           className="list-unstyled p-0 m-0"
         >
           <li>
             <a
-              href="https://www.example.com/about-us"
+              href="https://www.edx.org/about-us"
             >
               <span>
                 About
@@ -516,16 +516,16 @@ Array [
           </li>
           <li>
             <a
-              href="https://www.example.com/enterprise"
+              href="https://www.edx.org/enterprise"
             >
               <span>
-                Open Edx for Business
+                edX for Business
               </span>
             </a>
           </li>
           <li>
             <a
-              href="https://www.example.com/affiliate-program"
+              href="https://www.edx.org/affiliate-program"
             >
               <span>
                 Affiliates
@@ -534,16 +534,16 @@ Array [
           </li>
           <li>
             <a
-              href="https://www.example.com/open"
+              href="https://open.edx.org/"
             >
               <span>
-                Open Open Edx
+                Open edX
               </span>
             </a>
           </li>
           <li>
             <a
-              href="https://www.example.com/careers"
+              href="https://www.edx.org/careers"
             >
               <span>
                 Careers
@@ -552,7 +552,7 @@ Array [
           </li>
           <li>
             <a
-              href="https://www.example.com/news-announcements"
+              href="https://www.edx.org/news-announcements"
             >
               <span>
                 News
@@ -574,7 +574,7 @@ Array [
         >
           <li>
             <a
-              href="https://www.example.com/terms-of-service"
+              href="https://www.edx.org/edx-terms-service"
             >
               <span>
                 Terms of Service & Honor Code
@@ -583,7 +583,7 @@ Array [
           </li>
           <li>
             <a
-              href="https://www.example.com/privacy-policy"
+              href="https://www.edx.org/edx-privacy-policy"
             >
               <span>
                 Privacy Policy
@@ -592,7 +592,7 @@ Array [
           </li>
           <li>
             <a
-              href="https://www.example.com/accessibility"
+              href="https://www.edx.org/accessibility"
             >
               <span>
                 Accessibility Policy
@@ -601,7 +601,7 @@ Array [
           </li>
           <li>
             <a
-              href="https://www.example.com/trademarks"
+              href="https://www.edx.org/trademarks"
             >
               <span>
                 Trademark Policy
@@ -610,7 +610,7 @@ Array [
           </li>
           <li>
             <a
-              href="https://www.example.com/sitemap"
+              href="https://www.edx.org/sitemap"
             >
               <span>
                 Sitemap
@@ -632,7 +632,7 @@ Array [
         >
           <li>
             <a
-              href="https://www.example.com/blog"
+              href="https://www.edx.org/blog"
             >
               <span>
                 Blog
@@ -641,7 +641,7 @@ Array [
           </li>
           <li>
             <a
-              href="https://www.example.com/contact"
+              href="https://courses.edx.org/support/contact_us"
             >
               <span>
                 Contact Us
@@ -650,7 +650,7 @@ Array [
           </li>
           <li>
             <a
-              href="https://www.example.com/support"
+              href="https://support.edx.org/hc/en-us"
             >
               <span>
                 Help Center
@@ -659,7 +659,7 @@ Array [
           </li>
           <li>
             <a
-              href="https://www.example.com/media-kit"
+              href="https://www.edx.org/media-kit"
             >
               <span>
                 Media Kit
@@ -668,7 +668,7 @@ Array [
           </li>
           <li>
             <a
-              href="https://www.example.com/donate"
+              href="https://www.edx.org/donate"
             >
               <span>
                 Donate
@@ -685,7 +685,7 @@ Array [
         >
           <li>
             <a
-              href="https://www.facebook.com"
+              href="https://www.facebook.com/edX"
               onClick={[Function]}
               rel="noopener noreferrer"
               target="_blank"
@@ -699,13 +699,13 @@ Array [
               <span
                 className="sr-only"
               >
-                Like Open Edx on Facebook
+                Like edX on Facebook
               </span>
             </a>
           </li>
           <li>
             <a
-              href="https://www.twitter.com"
+              href="https://twitter.com/edXOnline"
               onClick={[Function]}
               rel="noopener noreferrer"
               target="_blank"
@@ -719,13 +719,13 @@ Array [
               <span
                 className="sr-only"
               >
-                Follow Open Edx on Twitter
+                Follow edX on Twitter
               </span>
             </a>
           </li>
           <li>
             <a
-              href="https://www.youtube.com"
+              href="https://www.youtube.com/user/edxonline"
               onClick={[Function]}
               rel="noopener noreferrer"
               target="_blank"
@@ -739,13 +739,13 @@ Array [
               <span
                 className="sr-only"
               >
-                Subscribe to the Open Edx YouTube channel
+                Subscribe to the edX YouTube channel
               </span>
             </a>
           </li>
           <li>
             <a
-              href="https://www.linkedin.com"
+              href="http://www.linkedin.com/company/edx"
               onClick={[Function]}
               rel="noopener noreferrer"
               target="_blank"
@@ -759,13 +759,13 @@ Array [
               <span
                 className="sr-only"
               >
-                Follow Open Edx on LinkedIn
+                Follow edX on LinkedIn
               </span>
             </a>
           </li>
           <li>
             <a
-              href="https://plus.google.com"
+              href="https://plus.google.com/+edXOnline"
               onClick={[Function]}
               rel="noopener noreferrer"
               target="_blank"
@@ -779,13 +779,13 @@ Array [
               <span
                 className="sr-only"
               >
-                Follow Open Edx on Google+
+                Follow edX on Google+
               </span>
             </a>
           </li>
           <li>
             <a
-              href="https://reddit.com"
+              href="https://www.reddit.com/r/edX/"
               onClick={[Function]}
               rel="noopener noreferrer"
               target="_blank"
@@ -799,7 +799,7 @@ Array [
               <span
                 className="sr-only"
               >
-                Subscribe to the Open Edx subreddit
+                Subscribe to the edX subreddit
               </span>
             </a>
           </li>
@@ -809,13 +809,13 @@ Array [
         >
           <li>
             <a
-              href="https://store.apple.com"
+              href="https://apps.apple.com/us/app/edx/id945480667"
               onClick={[Function]}
               rel="noopener noreferrer"
               target="_blank"
             >
               <img
-                alt="Download the Open Edx mobile app from the Apple App Store"
+                alt="Download the edX mobile app from the Apple App Store"
                 className="max-height-39"
                 src="https://prod-edxapp.edx-cdn.org/static/images/app/app_store_badge_135x40.d0558d910630.svg"
               />
@@ -823,13 +823,13 @@ Array [
           </li>
           <li>
             <a
-              href="https://play.google.com"
+              href="https://play.google.com/store/apps/details?id=org.edx.mobile"
               onClick={[Function]}
               rel="noopener noreferrer"
               target="_blank"
             >
               <img
-                alt="Download the Open Edx mobile app from Google Play"
+                alt="Download the edX mobile app from Google Play"
                 className="max-height-39"
                 src="https://prod-edxapp.edx-cdn.org/static/images/app/google_play_badge_45.6ea466e328da.png"
               />
@@ -838,7 +838,7 @@ Array [
         </ul>
         <p>
           <span>
-            © 2012–2019 Open Edx Inc.
+            © 2012–2019 edX Inc.
           </span>
           <br />
           <span>
