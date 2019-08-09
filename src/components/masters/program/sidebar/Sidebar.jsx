@@ -46,7 +46,7 @@ const Sidebar = ({ programDocuments, externalProgramWebsite }) => (
     <SidebarBlock title="Get Technical Support">
       <p>
         <a
-          href="https://www.edx.org/"
+          href="https://support.edx.org/hc/en-us"
           target="_blank"
           rel="noopener noreferrer"
           onClick={() => {
