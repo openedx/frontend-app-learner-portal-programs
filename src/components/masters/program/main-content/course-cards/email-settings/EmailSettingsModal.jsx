@@ -27,10 +27,10 @@ class EmailSettingsModal extends Component {
   }
 
   handleEmailSettingsChange = (e) => {
-    const { hasEmailsEnabled } = this.props;
     const isChecked = e.target.checked;
     this.setState({
       hasEmailsEnabled: isChecked,
+      isSuccessful: false,
     });
   };
 
@@ -59,9 +59,9 @@ class EmailSettingsModal extends Component {
   handleOnClose = () => {
     this.setState({
       isSubmitting: false,
-      isSuccessful: false,
       error: null,
     });
+    this.props.onClose();
   };
 
   handleButtonState = () => {
@@ -133,6 +133,7 @@ class EmailSettingsModal extends Component {
             className="save-email-settings-btn btn-primary"
             state={buttonState}
             onClick={this.handleSaveButtonClick}
+            key="save-email-settings-btn btn-primary"
           />,
         ]}
         open={open}
