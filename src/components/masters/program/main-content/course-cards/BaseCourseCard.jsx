@@ -66,7 +66,6 @@ class BaseCourseCard extends Component {
     const {
       modals,
       hasEmailsEnabled,
-      hasNewEmailSettings,
     } = this.state;
     const {
       children,
@@ -83,6 +82,47 @@ class BaseCourseCard extends Component {
     return (
       <div className={classNames('card mb-4', { 'is-micromasters': !!microMastersTitle })}>
         <div className="card-body">
+          <div className="float-right mt-3 mt-xl-0">
+            <Dropdown>
+              <Dropdown.Button>
+                <FontAwesomeIcon icon={faCog} />
+              </Dropdown.Button>
+              <Dropdown.Menu>
+                <Dropdown.Item
+                  type="button"
+                  onClick={() => {
+                      this.setModalState({
+                        key: 'emailSettings',
+                        open: true,
+                        options: {
+                          title,
+                          hasEmailsEnabled,
+                        },
+                      });
+                      this.setState({
+                        hasNewEmailSettings: false,
+                      });
+                      sendTrackEvent('edx.learner_portal.email_settings_modal.opened', { course_run_id: courseRunId });
+                    }}
+                >
+                    Email Settings
+                  <span className="sr-only">for {title}</span>
+                </Dropdown.Item>
+                <Dropdown.Item
+                  type="button"
+                  onClick={() => {}}
+                >
+                    Move to completed
+                </Dropdown.Item>
+                <Dropdown.Item
+                  type="button"
+                  onClick={() => {}}
+                >
+                    Unenroll
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          </div>
           <div className="row no-gutters mb-3">
             <div className="col-lg-12 col-xl-8">
               {microMastersTitle && (
@@ -104,49 +144,8 @@ class BaseCourseCard extends Component {
                 </p>
               )}
             </div>
-            <div className="col-lg-12 col-xl-4 text-xl-right mt-3 mt-xl-0">
-              <Dropdown>
-                <Dropdown.Button>
-                  <FontAwesomeIcon icon={faCog} />
-                </Dropdown.Button>
-                <Dropdown.Menu>
-                  <Dropdown.Item
-                    type="button"
-                    onClick={() => {
-                      this.setModalState({
-                        key: 'emailSettings',
-                        open: true,
-                        options: {
-                          title,
-                          hasEmailsEnabled,
-                        },
-                      });
-                      this.setState({
-                        hasNewEmailSettings: false,
-                      });
-                      sendTrackEvent('edx.learner_portal.email_settings_modal.opened', { course_run_id: courseRunId });
-                    }}
-                  >
-                    Email Settings
-                    <span className="sr-only">for {title}</span>
-                  </Dropdown.Item>
-                  <Dropdown.Item
-                    type="button"
-                    onClick={() => {}}
-                  >
-                    Move to completed
-                  </Dropdown.Item>
-                  <Dropdown.Item
-                    type="button"
-                    onClick={() => {}}
-                  >
-                    Unenroll
-                  </Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown>
-            </div>
             {buttons && (
-              <div className="row">
+              <div className="col-lg-12 col-xl-8 text-xl-left mt-3 mt-xl-0">
                 {buttons}
               </div>
             )}
