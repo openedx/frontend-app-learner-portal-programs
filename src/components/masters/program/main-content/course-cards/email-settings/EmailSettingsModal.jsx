@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { Input, Modal, StatusAlert } from '@edx/paragon';
-import { faExclamationTriangle, faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { Input, Modal, StatusAlert, StatefulButton } from '@edx/paragon';
+import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { updateEmailSettings } from './data';
@@ -13,7 +12,7 @@ class EmailSettingsModal extends Component {
   state = {
     hasEmailsEnabled: false,
     isSubmitting: false,
-    isFormChanged: false,
+    isSuccessful: false,
     error: null,
   };
 
@@ -31,7 +30,6 @@ class EmailSettingsModal extends Component {
     const { hasEmailsEnabled } = this.props;
     const isChecked = e.target.checked;
     this.setState({
-      isFormChanged: isChecked !== hasEmailsEnabled,
       hasEmailsEnabled: isChecked,
     });
   };
@@ -45,7 +43,10 @@ class EmailSettingsModal extends Component {
     }, async () => {
       try {
         await updateEmailSettings(courseRunId, hasEmailsEnabled);
-        this.props.onClose(hasEmailsEnabled);
+        this.setState({
+          isSuccessful: true,
+          isSubmitting: false,
+        });
       } catch (error) {
         this.setState({
           isSubmitting: false,
@@ -58,17 +59,30 @@ class EmailSettingsModal extends Component {
   handleOnClose = () => {
     this.setState({
       isSubmitting: false,
-      isFormChanged: false,
+      isSuccessful: false,
       error: null,
     });
-    this.props.onClose();
   };
+
+  handleButtonState = () => {
+    const { isSubmitting, isSuccessful } = this.state;
+
+    if (isSubmitting) {
+      return 'pending';
+    } else if (isSuccessful) {
+      return 'complete';
+    }
+
+    return 'default';
+  }
 
   render() {
     const {
-      error, isFormChanged, hasEmailsEnabled, isSubmitting,
+      error, hasEmailsEnabled, isSubmitting,
     } = this.state;
     const { title, open } = this.props;
+
+    const buttonState = this.handleButtonState();
 
     return (
       <Modal
@@ -109,22 +123,17 @@ class EmailSettingsModal extends Component {
         }
         onClose={this.handleOnClose}
         buttons={[
-          {
-            label: (
-              <>
-                {isSubmitting &&
-                  <FontAwesomeIcon className="mr-2" icon={faSpinner} spin />
-                }
-                {isSubmitting ? 'Saving' : 'Save'}
-                {' changes'}
-                {isSubmitting && '...'}
-              </>
-            ),
-            className: classNames('save-email-settings-btn', { 'is-form-changed': isFormChanged }),
-            buttonType: 'primary',
-            disabled: isSubmitting || !isFormChanged,
-            onClick: this.handleSaveButtonClick,
-          },
+          <StatefulButton
+            labels={{
+              default: 'Save',
+              pending: 'Saving',
+              complete: 'Saved',
+            }}
+            disabledStates={['pending', 'complete']}
+            className="save-email-settings-btn btn-primary"
+            state={buttonState}
+            onClick={this.handleSaveButtonClick}
+          />,
         ]}
         open={open}
       />
