@@ -5,7 +5,7 @@ import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import Links from './Links';
-import SidebarBlock from './SidebarBlock';
+import SidebarBlock from '../../../common/Layout/SidebarBlock';
 
 const Sidebar = ({ programDocuments, externalProgramWebsite }) => (
   <>

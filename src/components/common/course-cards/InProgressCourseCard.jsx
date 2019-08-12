@@ -9,7 +9,7 @@ import Notification from './Notification';
 const InProgressCourseCard = (props) => {
   const renderButtons = () => (
     <a
-      className="btn btn-primary btn-block"
+      className="btn btn-outline-primary"
       href={props.linkToCourse}
       onClick={() => { sendTrackEvent('edx.learner_portal.course.continued', { course_run_id: props.courseRunId }); }}
     >

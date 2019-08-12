@@ -4,16 +4,16 @@ import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import MediaQuery from 'react-responsive';
 import { breakpoints, StatusAlert } from '@edx/paragon';
-import { IntlProvider } from 'react-intl';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import Hero from './Hero';
-import { MainContent } from './main-content';
-import { Sidebar } from './sidebar';
-import { Layout, withAuthentication } from '../../common';
-
+import { Layout, LayoutConsumer, withAuthentication } from '../../common';
+import { MainContent, Sidebar } from '../../common/Layout';
 import { fetchUserProgramEnrollments } from '../user-program-enrollments';
+
+import ProgramMainContent from './main-content/MainContent';
+import ProgramSidebar from './sidebar/Sidebar';
+import Hero from './Hero';
 
 import './styles/ProgramPage.scss';
 
@@ -84,8 +84,8 @@ class ProgramPage extends Component {
     } = pageContext;
 
     return (
-      <IntlProvider locale="en">
-        <Layout>
+      <Layout pageContext={pageContext}>
+        <>
           {isLoading ? (
             <div className="d-flex justify-content-center align-items-center" style={{ height: 200 }}>
               <div className="spinner-border text-primary" role="status">
@@ -97,46 +97,44 @@ class ProgramPage extends Component {
               {hasProgramAccess ? (
                 <>
                   <Helmet title={programName} />
-                  <main id="content">
-                    <Hero
-                      programTitle={programName}
-                      organizationLogo={{
-                        url: programBranding.organization_logo.url,
-                        alt: programBranding.organization_logo.alt,
-                      }}
-                      textureImage={programBranding.texture_image}
-                      coverImage={programBranding.cover_image}
-                      bannerBorderColor={programBranding.banner_border_color}
-                    />
-                    <div className="container py-5">
-                      <div className="row">
-                        <div className="col-xs-12 col-lg-7">
-                          <MainContent
+                  <Hero
+                    programTitle={programName}
+                    organizationLogo={{
+                      url: programBranding.organization_logo.url,
+                      alt: programBranding.organization_logo.alt,
+                    }}
+                    textureImage={programBranding.texture_image}
+                    coverImage={programBranding.cover_image}
+                    bannerBorderColor={programBranding.banner_border_color}
+                  />
+                  <div className="container py-5">
+                    <div className="row">
+                      <MainContent>
+                        <ProgramMainContent
+                          programDocuments={programDocuments}
+                          programUUID={programUUID}
+                        />
+                      </MainContent>
+                      <MediaQuery minWidth={breakpoints.large.minWidth}>
+                        {matches => matches && (
+                        <Sidebar>
+                          <ProgramSidebar
                             programDocuments={programDocuments}
-                            programUUID={programUUID}
+                            externalProgramWebsite={externalProgramWebsite}
                           />
-                        </div>
-                        <MediaQuery minWidth={breakpoints.large.minWidth}>
-                          {matches => matches && (
-                            <aside className="col offset-lg-1">
-                              <Sidebar
-                                programDocuments={programDocuments}
-                                externalProgramWebsite={externalProgramWebsite}
-                              />
-                            </aside>
-                          )}
-                        </MediaQuery>
-                      </div>
+                        </Sidebar>
+                      )}
+                      </MediaQuery>
                     </div>
-                  </main>
+                  </div>
                 </>
               ) : (
                 this.renderError()
               )}
             </>
           )}
-        </Layout>
-      </IntlProvider>
+        </>
+      </Layout>
     );
   }
 }

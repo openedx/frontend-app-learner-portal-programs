@@ -6,7 +6,7 @@ import BaseCourseCard from './BaseCourseCard';
 
 const UpcomingCourseCard = (props) => {
   const renderButtons = () => (
-    <button className="btn btn-light btn-block" disabled>
+    <button className="btn btn-light" disabled>
       Available on {moment(props.startDate).format('MMM D')}
     </button>
   );

@@ -1,11 +1,7 @@
-@import "~bootstrap/scss/functions";
-@import "~bootstrap/scss/variables";
-@import "~bootstrap/scss/mixins";
-@import "~bootstrap/scss/utilities/_spacing";
-@import "~bootstrap/scss/utilities/_text";
+@import '~@edx/paragon/scss/edx/theme.scss';
 
 .card {
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.3);
+  @extend .border-0;
 
   &.is-micromasters {
     min-height: 170px;
@@ -37,6 +33,8 @@
 
   .card-body {
     z-index: 1;
+    @extend .p-0;
+    @extend .my-2;
   }
 
   .card-title > a {
@@ -55,5 +53,9 @@
   .notification {
     background: #f4f7ff;
     border-color: #d3daf0;
+  }
+
+  .dropdown-menu {
+    right: 0;
   }
 }

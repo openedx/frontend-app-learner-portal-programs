@@ -5,6 +5,7 @@ import moment from 'moment';
 import { sendTrackEvent } from '@edx/frontend-analytics';
 import { faCog, faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Dropdown } from '@edx/paragon';
 
 import { EmailSettingsModal } from './email-settings';
 
@@ -77,6 +78,7 @@ class BaseCourseCard extends Component {
       hasEmailSettings,
       microMastersTitle,
       courseRunId,
+      organization,
     } = this.props;
 
     return (
@@ -92,6 +94,9 @@ class BaseCourseCard extends Component {
               <h4 className="card-title mb-1 font-weight-normal">
                 <a href={linkToCourse}>{title}</a>
               </h4>
+              {organization && (
+                <p>{organization}</p>
+              )}
               {startDate && (
                 <p className="card-text">
                   Course starts on {moment(startDate).format('MMMM D, YYYY')}
@@ -103,54 +108,65 @@ class BaseCourseCard extends Component {
                 </p>
               )}
             </div>
+            <div className="col-lg-12 col-xl-4 text-xl-right mt-3 mt-xl-0">
+              <Dropdown>
+                <Dropdown.Button>
+                  <FontAwesomeIcon icon={faCog} />
+                </Dropdown.Button>
+                <Dropdown.Menu>
+                  <Dropdown.Item
+                    type="button"
+                    onClick={() => {
+                      this.setModalState({
+                        key: 'emailSettings',
+                        open: true,
+                        options: {
+                          title,
+                          hasEmailsEnabled,
+                        },
+                      });
+                      this.setState({
+                        hasNewEmailSettings: false,
+                      });
+                      sendTrackEvent('edx.learner_portal.email_settings_modal.opened', { course_run_id: courseRunId });
+                    }}
+                  >
+                    Email Settings
+                    <span className="sr-only">for {title}</span>
+                  </Dropdown.Item>
+                  <Dropdown.Item
+                    type="button"
+                    onClick={() => {}}
+                  >
+                    Move to completed
+                  </Dropdown.Item>
+                  <Dropdown.Item
+                    type="button"
+                    onClick={() => {}}
+                  >
+                    Unenroll
+                  </Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+            </div>
             {buttons && (
-              <div className="col-lg-12 col-xl-4 text-xl-right mt-3 mt-xl-0">
+              <div className="row">
                 {buttons}
               </div>
             )}
           </div>
           {children}
           {hasEmailSettings && (
-            <div className="row no-gutters">
-              <div className="col">
-                <button
-                  className="email-settings-btn btn btn-link p-0 mr-3"
-                  onClick={() => {
-                    this.setModalState({
-                      key: 'emailSettings',
-                      open: true,
-                      options: {
-                        title,
-                        hasEmailsEnabled,
-                      },
-                    });
-                    this.setState({
-                      hasNewEmailSettings: false,
-                    });
-                    sendTrackEvent('edx.learner_portal.email_settings_modal.opened', { course_run_id: courseRunId });
-                  }}
-                >
-                  <FontAwesomeIcon className="mr-2" icon={faCog} />
-                  Email settings
-                  <span className="sr-only">for {title}</span>
-                </button>
-                {hasNewEmailSettings &&
-                  <span className="text-success" role="alert">
-                    <FontAwesomeIcon className="mr-2" icon={faCheckCircle} />
-                    Saved
-                    <span className="sr-only">your email settings for {title}</span>
-                  </span>
-                }
-                {modals.emailSettings && modals.emailSettings.options &&
-                  <EmailSettingsModal
-                    {...modals.emailSettings.options}
-                    courseRunId={courseRunId}
-                    onClose={this.handleEmailSettingsModalOnClose}
-                    open={modals.emailSettings.open}
-                  />
-                }
-              </div>
-            </div>
+            <>
+              {modals.emailSettings && modals.emailSettings.options &&
+                <EmailSettingsModal
+                  {...modals.emailSettings.options}
+                  courseRunId={courseRunId}
+                  onClose={this.handleEmailSettingsModalOnClose}
+                  open={modals.emailSettings.open}
+                />
+              }
+            </>
           )}
         </div>
       </div>

@@ -1,6 +1,6 @@
 import qs from 'query-string';
 
-import apiClient from '../../../../../../../apiClient';
+import apiClient from '../../../../../apiClient';
 
 const updateEmailSettings = (courseRunId, hasEmailsEnabled) => {
   const queryParams = {

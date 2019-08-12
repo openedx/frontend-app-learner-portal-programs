@@ -8,7 +8,7 @@ const CompletedCourseCard = (props) => {
   const renderButtons = () => (
     <>
       <a
-        className="btn btn-block btn-outline-primary btn-course-link mb-2"
+        className="btn btn-outline-primary btn-course-link mb-2"
         href={props.linkToCourse}
         onClick={() => { sendTrackEvent('edx.learner_portal.completed_course.viewed', { course_run_id: props.courseRunId }); }}
       >
@@ -17,7 +17,7 @@ const CompletedCourseCard = (props) => {
       </a>
       {props.linkToCertificate && (
         <a
-          className="btn btn-block btn-outline-primary btn-course-link"
+          className="btn btn-outline-primary btn-course-link"
           href={props.linkToCertificate}
           onClick={() => { sendTrackEvent('edx.learner_portal.certificate.viewed', { course_run_id: props.courseRunId }); }}
         >

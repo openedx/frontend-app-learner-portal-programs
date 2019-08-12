@@ -6,8 +6,8 @@ import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { breakpoints, StatusAlert } from '@edx/paragon';
 
-import CourseSection from './CourseSection';
-import { InProgressCourseCard, UpcomingCourseCard, CompletedCourseCard } from './course-cards';
+import CourseSection from '../../../common/CourseSection';
+import { InProgressCourseCard, UpcomingCourseCard, CompletedCourseCard } from '../../../common/course-cards';
 import Sidebar from '../sidebar/Sidebar';
 
 import {

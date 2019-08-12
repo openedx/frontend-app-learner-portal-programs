@@ -6,7 +6,7 @@ import configureMockStore from 'redux-mock-store';
 
 import * as analytics from '@edx/frontend-analytics';
 import CourseSection from '../CourseSection';
-import { InProgressCourseCard } from '../course-cards';
+import { InProgressCourseCard } from '../../../../common/course-cards';
 
 const mockStore = configureMockStore([thunk]);
 const store = mockStore({});
