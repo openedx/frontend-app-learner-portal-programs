@@ -1,7 +1,7 @@
 [
   {
     "id": 5,
-    "uuid": "d4014686-0fbe-438a-a3b2-425416746e3d",
+    "uuid": "6eefc008-db50-46f0-8746-667f55533a5d",
     "title": "Example site 2",
     "slug": "foo",
     "last_published_at": "2019-07-16T20:58:09.439440Z",
@@ -82,5 +82,24 @@
     },
     "hostname": "example.com",
     "type": "pages.ProgramPage"
+  },
+  {
+    "id": 6,
+    "uuid": "47fc98b8-9a90-406d-854b-a4e91df0bc8c",
+    "title": "Example Enterprise",
+    "slug": null,
+    "last_published_at": "2019-07-16T20:57:48.578177Z",
+    "program_documents": null,
+    "branding": {
+      "texture_image": "http://pigment.github.io/fake-logos/logos/large/color/space-cube.png",
+      "banner_border_color": "#FFFFFF",
+      "cover_image": "http://pigment.github.io/fake-logos/logos/large/color/space-cube.png",
+      "organization_logo": {
+        "alt": "example-enterprise",
+        "url": "http://pigment.github.io/fake-logos/logos/large/color/space-cube.png"
+      }
+    },
+    "hostname": null,
+    "type": "pages.EnterprisePage"
   }
 ]

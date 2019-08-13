@@ -5,16 +5,18 @@
  */
 const path = require('path');
 
-const programPageType = 'pages.ProgramPage';
+const validPageTypes = ['pages.ProgramPage', 'pages.EnterprisePage'];
 const templates = {
   programListPage: path.resolve('./src/components/masters/programs-list/ProgramListPage.jsx'),
   programPage: path.resolve('./src/components/masters/program/ProgramPage.jsx'),
+  enterprisePage: path.resolve('./src/components/enterprise/EnterprisePage.jsx'),
 };
 
 
 const transformProgramPageContext = context => (
   // Transforms GraphQL data into the props expected by the ProgramPage component
   {
+    pageType: context.type,
     programSlug: context.slug,
     programUUID: context.uuid,
     programName: context.title,
@@ -22,6 +24,15 @@ const transformProgramPageContext = context => (
     programBranding: context.branding,
     programDocuments: context.program_documents,
     externalProgramWebsite: context.external_program_website,
+  }
+);
+
+const transformEnterprisePageContext = context => (
+  // Transforms GraphQL data into the props expected by the EnterprisePage component
+  {
+    pageType: context.type,
+    enterpriseName: context.title,
+    enterpriseBranding: context.branding,
   }
 );
 
@@ -73,23 +84,38 @@ exports.createPages = async ({ graphql, actions }) => {
   }  
   `).then((result) => {
     if (result.data) {
-      const allProgramsData = result.data.allPage.nodes
-        .filter(node => node.type === programPageType)
-        .map(transformProgramPageContext);
-      // Create landing page
-      createPage({
-        path: '/',
-        component: templates.programListPage,
-        context: { programs: allProgramsData },
-      });
+      const allPagesData = result.data.allPage.nodes
+        .filter(node => validPageTypes.indexOf(node.type) !== -1)
+        .map((node) => {
+          if (node.type === 'pages.ProgramPage') {
+            return transformProgramPageContext(node);
+          } else if (node.type === 'pages.EnterprisePage') {
+            return transformEnterprisePageContext(node);
+          }
+          return node;
+        });
+
+      const hasMultiplePrograms = allPagesData.filter(node => node.type === 'pages.ProgramPage');
+
+      if (hasMultiplePrograms && hasMultiplePrograms.length > 1) {
+        // Create landing page
+        createPage({
+          path: '/',
+          component: templates.programListPage,
+          context: { programs: allPagesData },
+        });
+      }
 
       if (!onlyCreateListingPage) {
-        // Create pages for each program
-        allProgramsData.forEach((programData) => {
+        // Create Gatsby pages for each page from portal-designer
+        allPagesData.forEach((pageData) => {
+          const isEnterprise = pageData.pageType === 'pages.EnterprisePage';
+          const template = isEnterprise ? templates.enterprisePage : templates.programPage;
+
           createPage({
-            path: programData.programSlug,
-            component: templates.programPage,
-            context: programData,
+            path: isEnterprise ? '/' : pageData.programSlug,
+            component: template,
+            context: pageData,
           });
         });
       }
