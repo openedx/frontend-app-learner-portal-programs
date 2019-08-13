@@ -18,7 +18,7 @@ if (process.env.UNBRANDED_LANDING_PAGE === 'True') {
 }
 
 module.exports = {
-  pathPrefix: `${process.env.ENABLE_PATH_PREFIX ? process.env.HOSTNAME : '/'}`,
+  pathPrefix: `${process.env.ENABLE_PATH_PREFIX ? process.env.HOSTNAME : ''}/`,
   plugins: [
     {
       resolve: 'gatsby-source-wagtail',
