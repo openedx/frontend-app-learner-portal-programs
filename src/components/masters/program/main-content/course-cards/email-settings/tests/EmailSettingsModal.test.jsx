@@ -2,6 +2,7 @@ import React from 'react';
 import { mount } from 'enzyme';
 import thunk from 'redux-thunk';
 import configureMockStore from 'redux-mock-store';
+import { StatefulButton } from '@edx/paragon';
 
 import EmailSettingsModal from '../EmailSettingsModal';
 
@@ -25,15 +26,15 @@ describe('<EmailSettingsModal />', () => {
     ));
   });
 
-  it('handles the disabling of the submit button properly', () => {
-    expect(wrapper.find('EmailSettingsModal').state('isFormChanged')).toBeFalsy();
-    expect(wrapper.find('.modal-footer .save-email-settings-btn').first().prop('disabled')).toBeTruthy();
+  it('button state is initially set to default', () => {
+    expect(wrapper.find('.modal-footer .save-email-settings-btn').first().prop('state')).toEqual('default');
     wrapper.find('input[type="checkbox"]').simulate('change', { target: { checked: false } });
-    expect(wrapper.find('EmailSettingsModal').state('isFormChanged')).toBeTruthy();
-    expect(wrapper.find('.modal-footer .save-email-settings-btn').first().prop('disabled')).toBeFalsy();
+  });
 
-    expect(wrapper.find('EmailSettingsModal').state('isSubmitting')).toBeFalsy();
-    wrapper.find('.modal-footer .save-email-settings-btn').first().simulate('click');
-    expect(wrapper.find('EmailSettingsModal').state('isSubmitting')).toBeTruthy();
+  it('button state is set to pending after click event', () => {
+    expect(wrapper.find('.modal-footer .save-email-settings-btn').first().prop('state')).toEqual('default');
+    wrapper.find('input[type="checkbox"]').simulate('change', { target: { checked: false } });
+    wrapper.find(StatefulButton).simulate('click');
+    expect(wrapper.find('.modal-footer .save-email-settings-btn').first().prop('state')).toEqual('pending');
   });
 });

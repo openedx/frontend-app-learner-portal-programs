@@ -26,11 +26,6 @@ describe('<BaseCourseCard />', () => {
         </Provider>
       ));
       // open email settings modal
-      expect(wrapper.find('.email-settings-btn').exists()).toBeTruthy();
-      wrapper.find('.email-settings-btn').simulate('click');
-      expect(analytics.sendTrackEvent).toHaveBeenCalled();
-      const modal = wrapper.find('EmailSettingsModal');
-      expect(modal.props().open).toBeTruthy();
     });
 
     it('test modal close/cancel', () => {
