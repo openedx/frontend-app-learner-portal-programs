@@ -2,7 +2,7 @@ import React from 'react';
 import { mount } from 'enzyme';
 import thunk from 'redux-thunk';
 import configureMockStore from 'redux-mock-store';
-import { StatefulButton } from '@edx/paragon';
+import { StatefulButton, StatusAlert } from '@edx/paragon';
 
 import EmailSettingsModal from '../EmailSettingsModal';
 
@@ -26,12 +26,12 @@ describe('<EmailSettingsModal />', () => {
     ));
   });
 
-  it('button state is initially set to default', () => {
+  it('statefulbutton component state is initially set to default', () => {
     expect(wrapper.find('.modal-footer .save-email-settings-btn').first().prop('state')).toEqual('default');
     wrapper.find('input[type="checkbox"]').simulate('change', { target: { checked: false } });
   });
 
-  it('button state is set to pending after click event', () => {
+  it('statefulbutton component state is set to pending after click event', () => {
     expect(wrapper.find('.modal-footer .save-email-settings-btn').first().prop('state')).toEqual('default');
     wrapper.find('input[type="checkbox"]').simulate('change', { target: { checked: false } });
     wrapper.find(StatefulButton).simulate('click');
