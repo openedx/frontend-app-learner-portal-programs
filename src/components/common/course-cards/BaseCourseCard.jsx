@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import moment from 'moment';
 import { sendTrackEvent } from '@edx/frontend-analytics';
-import { faCog, faCheckCircle } from '@fortawesome/free-solid-svg-icons';
+import { faCog } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Dropdown } from '@edx/paragon';
 
@@ -33,6 +33,11 @@ class BaseCourseCard extends Component {
         });
       }, 6000);
     }
+  }
+
+  getPacingType = () => {
+    const { pacing } = this.props;
+    return pacing && pacing.replace('_', '-');
   }
 
   setModalState = ({ key, open = false, options = {} }) => {
@@ -79,94 +84,105 @@ class BaseCourseCard extends Component {
       microMastersTitle,
       courseRunId,
       organization,
+      pacing,
     } = this.props;
 
     return (
-      <div className={classNames('card mb-4', { 'is-micromasters': !!microMastersTitle })}>
+      <div
+        className={classNames(
+          'course-card card border-top py-3',
+          { 'is-micromasters': !!microMastersTitle },
+        )}
+      >
         <div className="card-body">
-          <div className="row no-gutters mb-3">
+          <div className="row no-gutters">
             <div className="col-lg-12 col-xl-8">
               {microMastersTitle && (
                 <p className="font-weight-bold w-75 mb-2">
                   {microMastersTitle}
                 </p>
               )}
-              <h4 className="card-title mb-1 font-weight-normal">
+              <h4 className="card-title mb-2 font-weight-normal">
                 <a href={linkToCourse}>{title}</a>
               </h4>
               {organization && (
-                <p>{organization}</p>
+                <p className="card-text">{organization}</p>
               )}
-              {startDate && (
-                <p className="card-text">
-                  Course starts on {moment(startDate).format('MMMM D, YYYY')}
-                </p>
-              )}
-              {endDate && (
-                <p className="card-text">
-                  Course {moment(endDate) > moment() ? 'ends' : 'ended'} on {moment(endDate).format('MMMM D, YYYY')}
-                </p>
-              )}
+              <div className="card-buttons mb-3">
+                {buttons}
+              </div>
             </div>
             <div className="col-lg-12 col-xl-4 text-xl-right mt-3 mt-xl-0">
               <Dropdown>
-                <Dropdown.Button>
+                <Dropdown.Button className="btn-outline-secondary bg-white">
                   <FontAwesomeIcon icon={faCog} />
                 </Dropdown.Button>
                 <Dropdown.Menu>
+                  {hasEmailSettings && (
+                    <Dropdown.Item
+                      type="button"
+                      onClick={() => {
+                        this.setModalState({
+                          key: 'emailSettings',
+                          open: true,
+                          options: {
+                            title,
+                            hasEmailsEnabled,
+                          },
+                        });
+                        this.setState({
+                          hasNewEmailSettings: false,
+                        });
+                        sendTrackEvent('edx.learner_portal.email_settings_modal.opened', { course_run_id: courseRunId });
+                      }}
+                    >
+                      Email Settings
+                      <span className="sr-only">for {title}</span>
+                    </Dropdown.Item>
+                  )}
                   <Dropdown.Item
                     type="button"
-                    onClick={() => {
-                      this.setModalState({
-                        key: 'emailSettings',
-                        open: true,
-                        options: {
-                          title,
-                          hasEmailsEnabled,
-                        },
-                      });
-                      this.setState({
-                        hasNewEmailSettings: false,
-                      });
-                      sendTrackEvent('edx.learner_portal.email_settings_modal.opened', { course_run_id: courseRunId });
-                    }}
-                  >
-                    Email Settings
-                    <span className="sr-only">for {title}</span>
-                  </Dropdown.Item>
-                  <Dropdown.Item
-                    type="button"
-                    onClick={() => {}}
+                    onClick={() => { /* TODO: move to completed */ }}
                   >
                     Move to completed
                   </Dropdown.Item>
                   <Dropdown.Item
                     type="button"
-                    onClick={() => {}}
+                    onClick={() => { /* TODO: unenroll */ }}
                   >
                     Unenroll
                   </Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
             </div>
-            {buttons && (
-              <div className="row">
-                {buttons}
-              </div>
-            )}
           </div>
-          {children}
-          {hasEmailSettings && (
-            <>
-              {modals.emailSettings && modals.emailSettings.options &&
-                <EmailSettingsModal
-                  {...modals.emailSettings.options}
-                  courseRunId={courseRunId}
-                  onClose={this.handleEmailSettingsModalOnClose}
-                  open={modals.emailSettings.open}
-                />
-              }
-            </>
+          <div className="row">
+            <div className="col">
+              {children}
+              <p className="card-text">
+                {pacing && (
+                  <>
+                    This course is
+                    {' '}
+                    {this.getPacingType()}
+                    {'. '}
+                  </>
+                )}
+                {endDate && (
+                  <>
+                    Complete at your own speed before {moment(endDate).format('MMMM D, YYYY')}.
+                  </>
+                )}
+              </p>
+            </div>
+          </div>
+          {hasEmailSettings && modals.emailSettings && modals.emailSettings.options && (
+            <EmailSettingsModal
+              {...modals.emailSettings.options}
+              courseRunId={courseRunId}
+              onClose={this.handleEmailSettingsModalOnClose}
+              open={modals.emailSettings.open}
+            />
           )}
         </div>
       </div>

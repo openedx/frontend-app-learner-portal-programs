@@ -1,7 +1,8 @@
 @import '~@edx/paragon/scss/edx/theme.scss';
 
-.card {
+.course-card {
   @extend .border-0;
+  @extend .rounded-0;
 
   &.is-micromasters {
     min-height: 170px;

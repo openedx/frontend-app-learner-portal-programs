@@ -51,6 +51,7 @@ class CourseSection extends React.Component {
                 microMastersTitle: courseData.micromasters_title,
                 hasEmailsEnabled: courseData.emails_enabled,
                 organization: courseData.organization,
+                pacing: courseData.pacing,
               };
               const cardProps = {};
               switch (courseRunStatus) {

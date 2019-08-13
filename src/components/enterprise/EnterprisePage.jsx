@@ -23,10 +23,26 @@ const EnterprisePage = props => (
                   course_run_status: 'in_progress',
                   course_run_url: 'http://localhost:18000/courses/course-v1:edX+DemoX+Demo_Course/course/',
                   display_name: 'edX Demonstration Course',
-                  due_dates: [],
+                  due_dates: [{
+                    url: 'https://edx.org',
+                    name: 'Assignment 1',
+                    date: '2019-08-16',
+                  }],
                   end_date: '2019-03-23T00:00:00Z',
                   start_date: '2013-02-05T05:00:00Z',
                   organization: 'University Y',
+                  pacing: 'self_paced',
+                },
+                {
+                  course_run_id: 'course-v1:edX+DemoX+Demo_Course_2',
+                  course_run_status: 'in_progress',
+                  course_run_url: 'http://localhost:18000/courses/course-v1:edX+DemoX+Demo_Course/course/',
+                  display_name: 'edX Demonstration Course 2',
+                  due_dates: [],
+                  end_date: '2019-03-23T00:00:00Z',
+                  start_date: '2013-02-05T05:00:00Z',
+                  organization: 'University Z',
+                  pacing: 'instructor_paced',
                 },
               ]}
             />
@@ -74,6 +90,20 @@ const EnterprisePage = props => (
                 expires="2019-10-01"
                 link="https://edx.org"
               />
+              <p>
+                <a href="https://edx.org">Contact your {props.pageContext.enterpriseName} learning coordinator</a>
+                {' '}
+                for more benefits.
+              </p>
+              <div className="mt-5">
+                <h5>Need help?</h5>
+                <p>For technical support, visit the <a href="https://edx.org">edX Help Center</a>.</p>
+                <p>
+                  To request more benefits or specific courses,
+                  {' '}
+                  <a href="https://edx.org">Contact your {props.pageContext.enterpriseName} learning coordinator</a>.
+                </p>
+              </div>
             </SidebarBlock>
           </Sidebar>
         </div>

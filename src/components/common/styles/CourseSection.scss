@@ -8,8 +8,6 @@
 
     &.open {
       overflow: initial;
-      @extend .border-top;
-      @extend .pt-3;
     }
   }
 
