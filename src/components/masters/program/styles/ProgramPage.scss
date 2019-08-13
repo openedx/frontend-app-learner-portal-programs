@@ -1,7 +1,4 @@
-@import "~bootstrap/scss/functions";
-@import "~bootstrap/scss/variables";
-@import "~bootstrap/scss/mixins";
-@import "~bootstrap/scss/utilities/_spacing";
+@import "~@edx/paragon/scss/edx/theme.scss";
 
 .course-section {
   @extend .mb-5;

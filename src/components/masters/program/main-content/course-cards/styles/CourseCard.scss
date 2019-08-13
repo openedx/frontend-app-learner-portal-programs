@@ -1,8 +1,4 @@
-@import "~bootstrap/scss/functions";
-@import "~bootstrap/scss/variables";
-@import "~bootstrap/scss/mixins";
-@import "~bootstrap/scss/utilities/_spacing";
-@import "~bootstrap/scss/utilities/_text";
+@import "~@edx/paragon/scss/edx/theme.scss";
 
 .card {
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.3);
