@@ -4,14 +4,14 @@ import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import MediaQuery from 'react-responsive';
 import { breakpoints, StatusAlert } from '@edx/paragon';
-import { IntlProvider } from 'react-intl';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import Hero from './Hero';
-import { MainContent } from './main-content';
-import { Sidebar } from './sidebar';
-import { Layout, withAuthentication } from '../../common';
+import { ProgramMainContent } from './main-content';
+import { ProgramSidebar } from './sidebar';
+import { withAuthentication } from '../../common/with-authentication';
+import { Layout, MainContent, Sidebar } from '../../common/layout';
 
 import { fetchUserProgramEnrollments } from '../user-program-enrollments';
 
@@ -84,59 +84,57 @@ class ProgramPage extends Component {
     } = pageContext;
 
     return (
-      <IntlProvider locale="en">
-        <Layout>
-          {isLoading ? (
-            <div className="d-flex justify-content-center align-items-center" style={{ height: 200 }}>
-              <div className="spinner-border text-primary" role="status">
-                <div className="sr-only">Loading program enrollments...</div>
-              </div>
+      <Layout pageContext={pageContext}>
+        {isLoading ? (
+          <div className="d-flex justify-content-center align-items-center" style={{ height: 200 }}>
+            <div className="spinner-border text-primary" role="status">
+              <div className="sr-only">Loading program enrollments...</div>
             </div>
-          ) : (
-            <>
-              {hasProgramAccess ? (
-                <>
-                  <Helmet title={programName} />
-                  <main id="content">
-                    <Hero
-                      programTitle={programName}
-                      organizationLogo={{
-                        url: programBranding.organization_logo.url,
-                        alt: programBranding.organization_logo.alt,
-                      }}
-                      textureImage={programBranding.texture_image}
-                      coverImage={programBranding.cover_image}
-                      bannerBorderColor={programBranding.banner_border_color}
-                    />
-                    <div className="container py-5">
-                      <div className="row">
-                        <div className="col-xs-12 col-lg-7">
-                          <MainContent
-                            programDocuments={programDocuments}
-                            programUUID={programUUID}
-                          />
-                        </div>
-                        <MediaQuery minWidth={breakpoints.large.minWidth}>
-                          {matches => matches && (
-                            <aside className="col offset-lg-1">
-                              <Sidebar
-                                programDocuments={programDocuments}
-                                externalProgramWebsite={externalProgramWebsite}
-                              />
-                            </aside>
-                          )}
-                        </MediaQuery>
-                      </div>
+          </div>
+        ) : (
+          <>
+            {hasProgramAccess ? (
+              <>
+                <Helmet title={programName} />
+                <main id="content">
+                  <Hero
+                    programTitle={programName}
+                    organizationLogo={{
+                      url: programBranding.organization_logo.url,
+                      alt: programBranding.organization_logo.alt,
+                    }}
+                    textureImage={programBranding.texture_image}
+                    coverImage={programBranding.cover_image}
+                    bannerBorderColor={programBranding.banner_border_color}
+                  />
+                  <div className="container py-5">
+                    <div className="row">
+                      <MainContent>
+                        <ProgramMainContent
+                          programDocuments={programDocuments}
+                          programUUID={programUUID}
+                        />
+                      </MainContent>
+                      <MediaQuery minWidth={breakpoints.large.minWidth}>
+                        {matches => matches && (
+                          <Sidebar>
+                            <ProgramSidebar
+                              programDocuments={programDocuments}
+                              externalProgramWebsite={externalProgramWebsite}
+                            />
+                          </Sidebar>
+                        )}
+                      </MediaQuery>
                     </div>
-                  </main>
-                </>
-              ) : (
-                this.renderError()
-              )}
-            </>
-          )}
-        </Layout>
-      </IntlProvider>
+                  </div>
+                </main>
+              </>
+            ) : (
+              this.renderError()
+            )}
+          </>
+        )}
+      </Layout>
     );
   }
 }
@@ -196,4 +194,6 @@ const mapDispatchToProps = dispatch => ({
   fetchUserProgramEnrollments: () => dispatch(fetchUserProgramEnrollments()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(withAuthentication(ProgramPage));
+const authenticatedProgramPage = withAuthentication(ProgramPage);
+
+export default connect(mapStateToProps, mapDispatchToProps)(authenticatedProgramPage);

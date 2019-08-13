@@ -1,2 +1,2 @@
 // eslint-disable-next-line import/prefer-default-export
-export { default as Sidebar } from './Sidebar';
+export { default as ProgramSidebar } from './Sidebar';

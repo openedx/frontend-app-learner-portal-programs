@@ -1,24 +1,31 @@
 import React from 'react';
-import { IntlProvider } from 'react-intl';
+import PropTypes from 'prop-types';
 
-import { Layout, withAuthentication } from '../common';
+import { withAuthentication } from '../common/with-authentication';
+import { Layout, MainContent, Sidebar } from '../common/layout';
 
-const EnterprisePage = () => (
-  <IntlProvider locale="en">
-    <Layout>
-      <div className="container">
-        <div className="row">
-          <div className="col-6">
-            <h1>Enterprise Page</h1>
-            <p>
-              Note: This page intentionally left blank and will be added to in additional
-              PRs based on this branch. This is due to the refactoring of shared components
-              that will come in a later PR.
-            </p>
-          </div>
-        </div>
+const EnterprisePage = props => (
+  <Layout pageContext={props.pageContext}>
+    <div className="container my-3">
+      <div className="row">
+        <MainContent>
+          <h1>Enterprise Page</h1>
+          <p>
+            Note: This page intentionally left blank and will be added to in
+            additional PRs based on this branch. This is due to the refactoring
+            of shared components that will come in a later PR.
+          </p>
+        </MainContent>
+        <Sidebar>
+          <p>Sidebar</p>
+        </Sidebar>
       </div>
-    </Layout>
-  </IntlProvider>
+    </div>
+  </Layout>
 );
+
+EnterprisePage.propTypes = {
+  pageContext: PropTypes.shape({}).isRequired,
+};
+
 export default withAuthentication(EnterprisePage);
