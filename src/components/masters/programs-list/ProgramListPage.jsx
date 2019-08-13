@@ -40,7 +40,7 @@ export class ProgramListPage extends Component {
 
       if (validEnrolledPrograms.length === 1) {
         const program = validEnrolledPrograms[0];
-        window.location.replace(`${program.hostname}/${program.slug}`);
+        window.location.replace(`/${program.hostname}/${program.cms_slug}`);
       } else {
         // eslint-disable-next-line react/no-did-update-set-state
         this.setState({
@@ -60,6 +60,7 @@ export class ProgramListPage extends Component {
         ...program,
         name: this.programData.find(p => p.uuid === program.uuid).name,
         hostname: this.programData.find(p => p.uuid === program.uuid).hostname,
+        cms_slug: this.programData.find(p => p.uuid === program.uuid).slug,
       }));
 
     return enrolledProgramsList;
