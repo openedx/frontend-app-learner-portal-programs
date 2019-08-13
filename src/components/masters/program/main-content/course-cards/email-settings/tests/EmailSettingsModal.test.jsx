@@ -2,7 +2,7 @@ import React from 'react';
 import { mount } from 'enzyme';
 import thunk from 'redux-thunk';
 import configureMockStore from 'redux-mock-store';
-import { StatefulButton, StatusAlert } from '@edx/paragon';
+import { StatefulButton } from '@edx/paragon';
 
 import EmailSettingsModal from '../EmailSettingsModal';
 
