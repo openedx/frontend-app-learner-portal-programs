@@ -81,11 +81,16 @@ class ProgramPage extends Component {
       programDocuments,
       programBranding,
       externalProgramWebsite,
+      programHostname,
+      programSlug,
     } = pageContext;
 
     return (
       <IntlProvider locale="en">
-        <Layout>
+        <Layout
+          programHostname={programHostname}
+          programSlug={programSlug}
+        >
           {isLoading ? (
             <div className="d-flex justify-content-center align-items-center" style={{ height: 200 }}>
               <div className="spinner-border text-primary" role="status">

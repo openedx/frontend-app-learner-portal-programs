@@ -27,7 +27,7 @@ const Layout = props => (
         },
         {
           type: 'item',
-          href: `/${props.program_hostname}/${props.program_slug}/`,
+          href: `/${props.programHostname}/${props.programSlug}/`,
           content: 'My Masters Degree',
         },
         {
@@ -81,8 +81,8 @@ Layout.defaultProps = {
   siteName: 'edx',
   siteUrl: 'https://edx.org/',
   username: null,
-  program_hostname: 'example',
-  program_slug: 'test-program',
+  programHostname: '',
+  programSlug: '',
 };
 
 Layout.propTypes = {
@@ -91,8 +91,8 @@ Layout.propTypes = {
   siteName: PropTypes.string,
   siteUrl: PropTypes.string,
   username: PropTypes.string,
-  program_hostname: PropTypes.string,
-  program_slug: PropTypes.string,
+  programHostname: PropTypes.string,
+  programSlug: PropTypes.string,
 };
 
 const ConnectedLayout = connect(state => ({
