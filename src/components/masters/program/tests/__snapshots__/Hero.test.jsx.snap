@@ -36,7 +36,7 @@ exports[`<Hero /> renders correctly 1`] = `
         className="col-xs-9 col-lg-6"
       >
         <div
-          className="hero-box bg-white p-4 d-inline-block"
+          className="hero-box bg-white p-4 d-sm-inline-block"
           style={
             Object {
               "borderColor": "cc9900",
