@@ -1,23 +1,28 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
+import { LayoutProvider } from '../../layout';
 import Hero from '../Hero';
-
-const heroData = {
-  programTitle: 'Avengers: Basic Training',
-  organizationLogo: {
-    url: 'https://example.com/avengersx-logo-200x101.png',
-    alt: 'Avengers logo',
-  },
-  textureImage: 'https://example.com/avengersx-texture-image-440x400.png',
-  coverImage: 'https://example.com/avengersx-cover-image-1000x400.png',
-};
 
 describe('<Hero />', () => {
   it('renders correctly', () => {
+    const pageContext = {
+      pageBranding: {
+        banner_border_color: '#FFFFFF',
+        texture_image: 'https://example.com/avengersx-texture-image-440x400.png',
+        cover_image: 'https://example.com/avengersx-cover-image-1000x400.png',
+        organization_logo: {
+          url: 'https://example.com/avengersx-logo-200x101.png',
+          alt: 'Avengers logo',
+        },
+      },
+    };
+
     const tree = renderer
       .create((
-        <Hero {...heroData} />
+        <LayoutProvider value={{ pageContext }}>
+          <Hero title="Example Title" />
+        </LayoutProvider>
       ))
       .toJSON();
     expect(tree).toMatchSnapshot();

@@ -6,7 +6,7 @@ import configureMockStore from 'redux-mock-store';
 
 import apiClient from '../../../../apiClient';
 
-import withAuthentication from '../index';
+import withAuthentication from '../withAuthentication';
 
 const mockStore = configureMockStore([thunk]);
 const store = mockStore({
