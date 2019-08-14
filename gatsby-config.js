@@ -18,13 +18,7 @@ if (process.env.UNBRANDED_LANDING_PAGE === 'True') {
 }
 
 module.exports = {
-<<<<<<< HEAD
   pathPrefix: `${process.env.ENABLE_PATH_PREFIX ? process.env.HOSTNAME : '/'}`,
-=======
-  siteMetadata: {
-    programUUID: 'aa7316ce-1b06-4d4a-b612-7a9c652f2990',
-  },
->>>>>>> remove changes from mock file
   plugins: [
     {
       resolve: 'gatsby-source-wagtail',
