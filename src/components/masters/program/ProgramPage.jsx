@@ -7,11 +7,11 @@ import { breakpoints, StatusAlert } from '@edx/paragon';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import Hero from './Hero';
-import { ProgramMainContent } from './main-content';
-import { ProgramSidebar } from './sidebar';
+import { Hero } from '../../common/hero';
 import { withAuthentication } from '../../common/with-authentication';
 import { Layout, MainContent, Sidebar } from '../../common/layout';
+import { ProgramMainContent } from './main-content';
+import { ProgramSidebar } from './sidebar';
 
 import { fetchUserProgramEnrollments } from '../user-program-enrollments';
 
@@ -79,7 +79,6 @@ class ProgramPage extends Component {
       programUUID,
       programName,
       programDocuments,
-      programBranding,
       externalProgramWebsite,
     } = pageContext;
 
@@ -97,16 +96,7 @@ class ProgramPage extends Component {
               <>
                 <Helmet title={programName} />
                 <main id="content">
-                  <Hero
-                    programTitle={programName}
-                    organizationLogo={{
-                      url: programBranding.organization_logo.url,
-                      alt: programBranding.organization_logo.alt,
-                    }}
-                    textureImage={programBranding.texture_image}
-                    coverImage={programBranding.cover_image}
-                    bannerBorderColor={programBranding.banner_border_color}
-                  />
+                  <Hero title={programName} />
                   <div className="container py-5">
                     <div className="row">
                       <MainContent>
