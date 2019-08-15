@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { compose } from 'recompose';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
@@ -8,7 +9,7 @@ import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { Hero } from '../../common/hero';
-import { withAuthentication } from '../../common/with-authentication';
+import { withSamlSso } from '../../common/with-authentication';
 import { Layout, MainContent, Sidebar } from '../../common/layout';
 import { LoadingSpinner } from '../../common/loading-spinner';
 import { ProgramMainContent } from './main-content';
@@ -168,6 +169,12 @@ const mapDispatchToProps = dispatch => ({
   fetchUserProgramEnrollments: () => dispatch(fetchUserProgramEnrollments()),
 });
 
-const authenticatedProgramPage = withAuthentication(ProgramPage);
+const ConnectedProgramPage = compose(
+  withSamlSso,
+  connect(
+    mapStateToProps,
+    mapDispatchToProps,
+  ),
+)(ProgramPage);
 
-export default connect(mapStateToProps, mapDispatchToProps)(authenticatedProgramPage);
+export default ConnectedProgramPage;
