@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { navigate } from 'gatsby';
 import PropTypes from 'prop-types';
 import { IntlProvider } from 'react-intl';
 import { connect } from 'react-redux';
@@ -40,7 +41,7 @@ export class ProgramListPage extends Component {
 
       if (validEnrolledPrograms.length === 1) {
         const program = validEnrolledPrograms[0];
-        window.location.replace(`${program.hostname}/${program.slug}`);
+        navigate(`${program.slug}`);
       } else {
         // eslint-disable-next-line react/no-did-update-set-state
         this.setState({
@@ -56,11 +57,12 @@ export class ProgramListPage extends Component {
     // list of program uuids that the user is enrolled in
     const enrolledProgramsList = enrolledPrograms
       .filter(program => programsList.includes(program.uuid))
-      .map(program => ({
-        ...program,
-        name: this.programData.find(p => p.uuid === program.uuid).name,
-        hostname: this.programData.find(p => p.uuid === program.uuid).hostname,
-      }));
+      .map((program) => {
+        const programInDesigner = this.programData.find(p => p.uuid === program.uuid);
+        return {
+          ...programInDesigner,
+        };
+      });
 
     return enrolledProgramsList;
   }
