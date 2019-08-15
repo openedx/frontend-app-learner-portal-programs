@@ -7,7 +7,7 @@ Draft
 
 Context
 -------
-When data coming in from the designer api changes, we don’t want to leave it up to Gatsby to infer the fields and create nodes based on incomplete information. If designer doesn't include data for all fields required by a query on learner-portal, gatsby won't know those fields exist, and the query will error causing the build to fail. Instead, we would like to explicitly name the types for graphql, as to be explicit about the structure that queries can have. This will also standardize the schema from build to build, as opposed to leaving it up to gatsby.
+When data coming in from the designer api changes, we don’t want to leave it up to Gatsby to infer the fields and create nodes based on incomplete information. If designer doesn't include data for all fields required by a query on learner-portal, gatsby won't know those fields exist, and the query will error causing the build to fail. Instead, we would like to name all types for graphql, as to be explicit about the structure that queries can have. This will also standardize the schema from build to build, as opposed to leaving it up to gatsby.
 
 Decision
 --------
