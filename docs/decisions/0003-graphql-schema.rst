@@ -7,7 +7,7 @@ Draft
 
 Context
 -------
-When data coming in from the designer api changes, we don’t want to leave it up to Gatsby to infer the fields and create nodes based on incomplete information. Instead, we would like to explicitly name the types for graphql, as to determine the exact structures that queries can have.
+When data coming in from the designer api changes, we don’t want to leave it up to Gatsby to infer the fields and create nodes based on incomplete information. If designer doesn't include data for all fields required by a query on learner-portal, gatsby won't know those fields exist, and the query will error causing the build to fail. Instead, we would like to explicitly name the types for graphql, as to be explicit about the structure that queries can have. This will also standardize the schema from build to build, as opposed to leaving it up to gatsby.
 
 Decision
 --------
@@ -17,7 +17,7 @@ These `.gql`  files should live in the `schema` folder found within the `gatsby-
 
 Consequences
 ------------
-This will safeguard us from pages failing to build do to missing information, but will not necessarily warn us if the data is not there.
+This will safeguard us from pages failing to build due to missing information, but will not necessarily warn us if the data is not there.
 
 Monitoring of these schemas is necessary to make sure they are in sync with the data coming from designer — This will be the “source of truth” for the data coming into the learner-portal, not designer. Any time data changes shape in designer, it must also be changed in the schema.
 
