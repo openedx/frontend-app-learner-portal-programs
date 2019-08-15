@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { LayoutConsumer } from '../layout';
+import { LayoutContext } from '../layout';
 
 import './styles/Hero.scss';
 
 const Hero = props => (
-  <LayoutConsumer>
+  <LayoutContext.Consumer>
     {({ pageContext }) => {
       const { pageBranding } = pageContext;
       const { title } = props;
@@ -55,7 +55,7 @@ const Hero = props => (
         </div>
       );
     }}
-  </LayoutConsumer>
+  </LayoutContext.Consumer>
 );
 
 Hero.propTypes = {

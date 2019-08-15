@@ -10,10 +10,7 @@ import EdXLogo from '../../../images/edx-logo.svg';
 
 import './styles/Layout.scss';
 
-const {
-  Provider: LayoutProvider,
-  Consumer: LayoutConsumer,
-} = React.createContext();
+const LayoutContext = React.createContext();
 
 class Layout extends Component {
   getUserMenuItems = () => {
@@ -74,11 +71,11 @@ class Layout extends Component {
             ]}
             skipNavId="content"
           />
-          <LayoutProvider value={{ pageContext }}>
+          <LayoutContext.Provider value={{ pageContext }}>
             <main id="content">
               {children}
             </main>
-          </LayoutProvider>
+          </LayoutContext.Provider>
           <SiteFooter
             siteName={siteName}
             siteLogo={EdXLogo}
@@ -129,6 +126,6 @@ const ConnectedLayout = connect(state => ({
   username: state.authentication.username,
 }))(Layout);
 
-export { LayoutProvider, LayoutConsumer };
+export { LayoutContext };
 
 export default ConnectedLayout;

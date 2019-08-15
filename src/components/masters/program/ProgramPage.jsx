@@ -100,18 +100,12 @@ class ProgramPage extends Component {
                   <div className="container py-5">
                     <div className="row">
                       <MainContent>
-                        <ProgramMainContent
-                          programDocuments={programDocuments}
-                          programUUID={programUUID}
-                        />
+                        <ProgramMainContent />
                       </MainContent>
                       <MediaQuery minWidth={breakpoints.large.minWidth}>
                         {matches => matches && (
                           <Sidebar>
-                            <ProgramSidebar
-                              programDocuments={programDocuments}
-                              externalProgramWebsite={externalProgramWebsite}
-                            />
+                            <ProgramSidebar />
                           </Sidebar>
                         )}
                       </MediaQuery>
