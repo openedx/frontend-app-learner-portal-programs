@@ -31,7 +31,7 @@ const Hero = props => (
           <div className="container py-3">
             <div className="row">
               <div className="col-xs-9 col-lg-6">
-                <div className="hero-box bg-white p-4 d-inline-block" style={{ borderColor: `${pageBranding.banner_border_color}` }}>
+                <div className="hero-box bg-white p-4 d-sm-inline-block" style={{ borderColor: `${pageBranding.banner_border_color}` }}>
                   <h1 className="hero-heading m-0">{title}</h1>
                 </div>
               </div>
