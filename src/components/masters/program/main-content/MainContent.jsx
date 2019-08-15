@@ -81,39 +81,38 @@ class MainContent extends Component {
   );
 
   renderCourseSections = () => {
+    const {
+      pageContext: {
+        programDocuments,
+      },
+    } = this.context;
     const courses = this.groupCourseEnrollmentsByStatus();
+
     return (
-      <LayoutContext.Consumer>
-        {({ pageContext }) => {
-          const { programDocuments } = pageContext;
-          return (
-            <>
-              <CourseSection
-                title="My Courses In Progress"
-                component={InProgressCourseCard}
-                enrollments={courses.in_progress}
-              />
-              <MediaQuery minWidth={breakpoints.large.minWidth}>
-                {matches => !matches && (
-                  <aside className="mb-5">
-                    <Sidebar programDocuments={programDocuments} />
-                  </aside>
-                )}
-              </MediaQuery>
-              <CourseSection
-                title="Upcoming Courses"
-                component={UpcomingCourseCard}
-                enrollments={courses.upcoming}
-              />
-              <CourseSection
-                title="Completed Courses"
-                component={CompletedCourseCard}
-                enrollments={courses.completed}
-              />
-            </>
-          );
-        }}
-      </LayoutContext.Consumer>
+      <>
+        <CourseSection
+          title="My Courses In Progress"
+          component={InProgressCourseCard}
+          enrollments={courses.in_progress}
+        />
+        <MediaQuery minWidth={breakpoints.large.minWidth}>
+          {matches => !matches && (
+            <aside className="mb-5">
+              <Sidebar programDocuments={programDocuments} />
+            </aside>
+          )}
+        </MediaQuery>
+        <CourseSection
+          title="Upcoming Courses"
+          component={UpcomingCourseCard}
+          enrollments={courses.upcoming}
+        />
+        <CourseSection
+          title="Completed Courses"
+          component={CompletedCourseCard}
+          enrollments={courses.completed}
+        />
+      </>
     );
   };
 
@@ -121,8 +120,7 @@ class MainContent extends Component {
     const { error, isLoading } = this.props;
     if (error) {
       return this.renderError();
-    }
-    if (isLoading) {
+    } else if (isLoading) {
       return this.renderLoading();
     }
     return this.renderCourseSections();
