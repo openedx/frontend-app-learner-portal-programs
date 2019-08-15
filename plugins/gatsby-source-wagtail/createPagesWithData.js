@@ -75,6 +75,6 @@ function createPagesWithData(result, actions) {
       });
     }
   }
-};
+}
 
 exports.createPagesWithData = createPagesWithData;

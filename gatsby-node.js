@@ -5,11 +5,9 @@
  */
 const { createPagesWithData } = require('./plugins/gatsby-source-wagtail/createPagesWithData');
 
-exports.createPages = async ({ graphql, actions }) => {
-  // **Note:** The graphql function call returns a Promise
-  // see: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise for more info
-
-  return graphql(`
+// **Note:** The graphql function call returns a Promise
+// see: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise for more info
+exports.createPages = async ({ graphql, actions }) => graphql(`
   {
     allPage {
       nodes {
@@ -50,8 +48,8 @@ exports.createPages = async ({ graphql, actions }) => {
     }
   }  
   `).then((result) => {
-    if (result.data) {
-      createPagesWithData(result, actions);
-    }
-  });
-};
+  if (result.data) {
+    createPagesWithData(result, actions);
+  }
+});
+
