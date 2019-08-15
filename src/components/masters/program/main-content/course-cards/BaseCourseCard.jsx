@@ -108,18 +108,6 @@ class BaseCourseCard extends Component {
                     Email Settings
                   <span className="sr-only">for {title}</span>
                 </Dropdown.Item>
-                <Dropdown.Item
-                  type="button"
-                  onClick={() => {}}
-                >
-                    Move to completed
-                </Dropdown.Item>
-                <Dropdown.Item
-                  type="button"
-                  onClick={() => {}}
-                >
-                    Unenroll
-                </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
           </div>
