@@ -1,11 +1,6 @@
-const path = require('path');
+const { templates } = require('./templates');
 
 const validPageTypes = ['pages.ProgramPage', 'pages.EnterprisePage'];
-const templates = {
-  programListPage: path.resolve('./src/components/masters/programs-list/ProgramListPage.jsx'),
-  programPage: path.resolve('./src/components/masters/program/ProgramPage.jsx'),
-  enterprisePage: path.resolve('./src/components/enterprise/EnterprisePage.jsx'),
-};
 
 const transformProgramPageContext = context => (
   // Transforms GraphQL data into the props expected by the ProgramPage component
@@ -55,7 +50,7 @@ function createPagesWithData(result, actions) {
     });
   } else {
     // Create landing page if there are multiple programs pages
-    const programs = allPagesData.filter(node => node.type === 'pages.ProgramPage');
+    const programs = allPagesData.filter(node => node.pageType === 'pages.ProgramPage');
     if (programs && programs.length > 1) {
       createPage({
         path: '/',
