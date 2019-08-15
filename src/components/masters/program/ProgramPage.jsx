@@ -75,12 +75,7 @@ class ProgramPage extends Component {
   render() {
     const { hasProgramAccess } = this.state;
     const { pageContext, isLoading } = this.props;
-    const {
-      programUUID,
-      programName,
-      programDocuments,
-      externalProgramWebsite,
-    } = pageContext;
+    const { programName } = pageContext;
 
     return (
       <Layout pageContext={pageContext}>
