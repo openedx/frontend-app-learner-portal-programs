@@ -9,7 +9,7 @@ import { breakpoints } from '@edx/paragon';
 import '../../../../../__mocks__/reactResponsive.mock';
 
 import { LayoutContext } from '../../../../common/layout';
-import MainContent from '../MainContent';
+import ProgramMainContent from '../ProgramMainContent';
 
 const mockStore = configureMockStore([thunk]);
 
@@ -25,7 +25,7 @@ const pageContext = {
   programUUID: 'test-program-uuid',
 };
 
-describe('<MainContent />', () => {
+describe('<ProgramMainContent />', () => {
   let store = initialStore;
 
   afterEach(() => {
@@ -37,7 +37,7 @@ describe('<MainContent />', () => {
       const wrapper = mount((
         <Provider store={store}>
           <LayoutContext.Provider value={{ pageContext }}>
-            <MainContent />
+            <ProgramMainContent />
           </LayoutContext.Provider>
         </Provider>
       ));
@@ -75,7 +75,7 @@ describe('<MainContent />', () => {
       const wrapper = mount((
         <Provider store={store}>
           <LayoutContext.Provider value={{ pageContext }}>
-            <MainContent />
+            <ProgramMainContent />
           </LayoutContext.Provider>
         </Provider>
       ));
@@ -99,7 +99,7 @@ describe('<MainContent />', () => {
         .create((
           <Provider store={store}>
             <LayoutContext.Provider value={{ pageContext }}>
-              <MainContent />
+              <ProgramMainContent />
             </LayoutContext.Provider>
           </Provider>
         ))
@@ -120,7 +120,7 @@ describe('<MainContent />', () => {
         .create((
           <Provider store={store}>
             <LayoutContext.Provider value={{ pageContext }}>
-              <MainContent />
+              <ProgramMainContent />
             </LayoutContext.Provider>
           </Provider>
         ))
@@ -137,11 +137,11 @@ describe('<MainContent />', () => {
       wrapper = mount((
         <Provider store={store}>
           <LayoutContext.Provider value={{ pageContext }}>
-            <MainContent />
+            <ProgramMainContent />
           </LayoutContext.Provider>
         </Provider>
       ));
-      expect(wrapper.find('Sidebar').exists()).toBeFalsy();
+      expect(wrapper.find('ProgramSidebar').exists()).toBeFalsy();
     });
 
     it('is shown at screen widths less than large breakpoint', () => {
@@ -149,11 +149,11 @@ describe('<MainContent />', () => {
       wrapper = mount((
         <Provider store={store}>
           <LayoutContext.Provider value={{ pageContext }}>
-            <MainContent />
+            <ProgramMainContent />
           </LayoutContext.Provider>
         </Provider>
       ));
-      expect(wrapper.find('Sidebar').exists()).toBeTruthy();
+      expect(wrapper.find('ProgramSidebar').exists()).toBeTruthy();
     });
   });
 });

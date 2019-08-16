@@ -3,9 +3,9 @@ import renderer from 'react-test-renderer';
 
 import { LayoutContext } from '../../../../common/layout';
 
-import Sidebar from '../Sidebar';
+import ProgramSidebar from '../ProgramSidebar';
 
-describe('<Sidebar />', () => {
+describe('<ProgramSidebar />', () => {
   it('renders correctly', () => {
     const pageContext = {
       programDocuments: null,
@@ -14,7 +14,7 @@ describe('<Sidebar />', () => {
     const tree = renderer
       .create((
         <LayoutContext.Provider value={{ pageContext }}>
-          <Sidebar />
+          <ProgramSidebar />
         </LayoutContext.Provider>
       ))
       .toJSON();
@@ -45,7 +45,7 @@ describe('<Sidebar />', () => {
     };
     const tree = renderer.create((
       <LayoutContext.Provider value={{ pageContext }}>
-        <Sidebar />
+        <ProgramSidebar />
       </LayoutContext.Provider>
     )).toJSON();
     expect(tree).toMatchSnapshot();

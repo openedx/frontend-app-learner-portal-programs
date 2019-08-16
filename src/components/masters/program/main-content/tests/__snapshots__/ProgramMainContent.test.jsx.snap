@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<MainContent /> renders correctly with error state 1`] = `
+exports[`<ProgramMainContent /> renders correctly with error state 1`] = `
 <div
   className="alert fade alert-danger show"
   hidden={false}
@@ -39,7 +39,7 @@ exports[`<MainContent /> renders correctly with error state 1`] = `
 </div>
 `;
 
-exports[`<MainContent /> renders correctly with loading state 1`] = `
+exports[`<ProgramMainContent /> renders correctly with loading state 1`] = `
 <div
   className="d-flex justify-content-center align-items-center"
 >

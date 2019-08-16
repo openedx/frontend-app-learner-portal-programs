@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { breakpoints, StatusAlert } from '@edx/paragon';
 
 import { LayoutContext } from '../../../common/layout';
-import Sidebar from '../sidebar/Sidebar';
+import ProgramSidebar from '../sidebar/ProgramSidebar';
 import CourseSection from './CourseSection';
 import {
   InProgressCourseCard,
@@ -81,13 +81,7 @@ class MainContent extends Component {
   );
 
   renderCourseSections = () => {
-    const {
-      pageContext: {
-        programDocuments,
-      },
-    } = this.context;
     const courses = this.groupCourseEnrollmentsByStatus();
-
     return (
       <>
         <CourseSection
@@ -98,7 +92,7 @@ class MainContent extends Component {
         <MediaQuery minWidth={breakpoints.large.minWidth}>
           {matches => !matches && (
             <aside className="mb-5">
-              <Sidebar programDocuments={programDocuments} />
+              <ProgramSidebar />
             </aside>
           )}
         </MediaQuery>

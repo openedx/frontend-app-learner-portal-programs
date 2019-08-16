@@ -90,23 +90,21 @@ class ProgramPage extends Component {
             {hasProgramAccess ? (
               <>
                 <Helmet title={programName} />
-                <main id="content">
-                  <Hero title={programName} />
-                  <div className="container py-5">
-                    <div className="row">
-                      <MainContent>
-                        <ProgramMainContent />
-                      </MainContent>
-                      <MediaQuery minWidth={breakpoints.large.minWidth}>
-                        {matches => matches && (
-                          <Sidebar>
-                            <ProgramSidebar />
-                          </Sidebar>
-                        )}
-                      </MediaQuery>
-                    </div>
+                <Hero title={programName} />
+                <div className="container py-5">
+                  <div className="row">
+                    <MainContent>
+                      <ProgramMainContent />
+                    </MainContent>
+                    <MediaQuery minWidth={breakpoints.large.minWidth}>
+                      {matches => matches && (
+                        <Sidebar>
+                          <ProgramSidebar />
+                        </Sidebar>
+                      )}
+                    </MediaQuery>
                   </div>
-                </main>
+                </div>
               </>
             ) : (
               this.renderError()
