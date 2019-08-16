@@ -89,30 +89,17 @@ class BaseCourseCard extends Component {
       <div className={classNames('card mb-4', { 'is-micromasters': !!microMastersTitle })}>
         <div className="card-body">
           <div className="row no-gutters">
-            <div className="col-lg-12 col-xl-8">
+            <div className="col-10">
               {microMastersTitle && (
-                <p className="font-weight-bold w-75 mb-2">
-                  {microMastersTitle}
-                </p>
+              <p className="font-weight-bold w-75 mb-2">
+                {microMastersTitle}
+              </p>
               )}
               <h4 className="card-title mb-1 font-weight-normal">
                 <a href={linkToCourse}>{title}</a>
               </h4>
-              {startDate && (
-                <p className="card-text">
-                  Course starts on {moment(startDate).format('MMMM D, YYYY')}
-                </p>
-              )}
-              {endDate && (
-                <p className="card-text">
-                  Course {moment(endDate) > moment() ? 'ends' : 'ended'} on {moment(endDate).format('MMMM D, YYYY')}
-                </p>
-              )}
-              <div className="card-buttons">
-                {buttons}
-              </div>
             </div>
-            <div className="col-lg-12 col-xl-4 text-xl-right mt-3 mt-xl-0">
+            <div className="col-2 text-right">
               <Dropdown>
                 <Dropdown.Button className="btn-outline-secondary">
                   <FontAwesomeIcon icon={faCog} />
@@ -127,6 +114,23 @@ class BaseCourseCard extends Component {
                   </Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col">
+              {startDate && (
+                <p className="card-text">
+                  Course starts on {moment(startDate).format('MMMM D, YYYY')}
+                </p>
+              )}
+              {endDate && (
+                <p className="card-text">
+                  Course {moment(endDate) > moment() ? 'ends' : 'ended'} on {moment(endDate).format('MMMM D, YYYY')}
+                </p>
+              )}
+              <div className="card-buttons mt-3">
+                {buttons}
+              </div>
             </div>
           </div>
           <div className="row">

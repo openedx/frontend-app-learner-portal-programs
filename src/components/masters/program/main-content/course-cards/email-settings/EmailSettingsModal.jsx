@@ -48,7 +48,6 @@ class EmailSettingsModal extends Component {
   handleSaveButtonClick = () => {
     const { hasEmailsEnabled } = this.state;
     const { courseRunId, updateEmailSettings } = this.props; // eslint-disable-line no-shadow
-
     this.setState({
       isSubmitting: true,
     }, async () => {

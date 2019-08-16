@@ -4,9 +4,12 @@ import thunk from 'redux-thunk';
 import configureMockStore from 'redux-mock-store';
 import { StatefulButton } from '@edx/paragon';
 
+import * as data from '../data';
+
 import EmailSettingsModal from '../EmailSettingsModal';
 
 jest.useFakeTimers();
+data.updateEmailSettings = Promise.resolve({ data: 'hi' });
 
 const mockStore = configureMockStore([thunk]);
 const store = mockStore({});
@@ -32,9 +35,9 @@ describe('<EmailSettingsModal />', () => {
   });
 
   it('statefulbutton component state is set to pending after click event', () => {
-    expect(wrapper.find('.modal-footer .save-email-settings-btn').first().prop('state')).toEqual('default');
-    wrapper.find('input[type="checkbox"]').simulate('change', { target: { checked: false } });
+    expect(wrapper.find(StatefulButton).prop('state')).toEqual('default');
+    wrapper.find('input[type="checkbox"]').simulate('change', { target: { checked: true } });
     wrapper.find(StatefulButton).simulate('click');
-    expect(wrapper.find('.modal-footer .save-email-settings-btn').first().prop('state')).toEqual('pending');
+    expect(wrapper.find(StatefulButton).prop('state')).toEqual('pending');
   });
 });
