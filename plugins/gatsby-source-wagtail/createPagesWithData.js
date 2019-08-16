@@ -2,15 +2,22 @@ const { templates } = require('./templates');
 
 const validPageTypes = ['pages.ProgramPage', 'pages.EnterprisePage'];
 
+const transformCommonPageContext = ({ type, branding }) => (
+  // Transforms GraphQL data into the common props expected
+  // by the ProgramPage and EnteprisePage components.
+  {
+    pageType: type,
+    pageBranding: branding,
+  }
+);
+
 const transformProgramPageContext = context => (
   // Transforms GraphQL data into the props expected by the ProgramPage component
   {
-    pageType: context.type,
     programSlug: context.slug,
     programUUID: context.uuid,
     programName: context.title,
     programHostname: context.hostname,
-    programBranding: context.branding,
     programDocuments: context.program_documents,
     externalProgramWebsite: context.external_program_website,
   }
@@ -19,9 +26,7 @@ const transformProgramPageContext = context => (
 const transformEnterprisePageContext = context => (
   // Transforms GraphQL data into the props expected by the EnterprisePage component
   {
-    pageType: context.type,
     enterpriseName: context.title,
-    enterpriseBranding: context.branding,
   }
 );
 
@@ -31,12 +36,14 @@ function createPagesWithData(result, actions) {
   const allPagesData = result.data.allPage.nodes
     .filter(node => validPageTypes.indexOf(node.type) !== -1)
     .map((node) => {
+      const commonPageContext = transformCommonPageContext(node);
+      let pageContext = {};
       if (node.type === 'pages.ProgramPage') {
-        return transformProgramPageContext(node);
+        pageContext = transformProgramPageContext(node);
       } else if (node.type === 'pages.EnterprisePage') {
-        return transformEnterprisePageContext(node);
+        pageContext = transformEnterprisePageContext(node);
       }
-      return node;
+      return { ...commonPageContext, ...pageContext };
     });
 
   // If we spot an enterprise page, create it, and do not create programs pages
