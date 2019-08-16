@@ -14,23 +14,15 @@ class EmailSettingsModal extends Component {
     isSubmitting: false,
     isSuccessful: false,
     isFormChanged: false,
-    disabledState: ['pending', 'complete'],
     error: null,
   };
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps) {
     const { hasEmailsEnabled } = this.props;
     if (hasEmailsEnabled !== prevProps.hasEmailsEnabled) {
       // eslint-disable-next-line react/no-did-update-set-state
       this.setState({
         hasEmailsEnabled,
-      });
-    }
-
-    const { isFormChanged } = this.state;
-    if (isFormChanged !== prevState.isFormChanged && !isFormChanged) {
-      this.setState({
-        disabledState: ['pending', 'complete'],
       });
     }
   }
@@ -43,6 +35,14 @@ class EmailSettingsModal extends Component {
       return 'complete';
     }
     return 'default';
+  }
+
+  getDisabledState = () => {
+    const { isFormChanged } = this.state;
+    if (isFormChanged) {
+      return ['pending', 'complete'];
+    }
+    return ['pending', 'complete', 'default'];
   }
 
   handleSaveButtonClick = () => {
@@ -68,18 +68,17 @@ class EmailSettingsModal extends Component {
   };
 
   handleOnClose = () => {
-    const { isFormChanged } = this.state;
     this.setState({
       isSubmitting: false,
-      error: null,
       isSuccessful: null,
-      disabledState: isFormChanged ? ['default', 'pending', 'complete'] : ['pending', 'complete'],
+      isFormChanged: false,
+      error: null,
     });
     this.props.onClose();
   };
 
   handleEmailSettingsChange = (e) => {
-    const { hasEmailsEnabled } = this.props;
+    const { hasEmailsEnabled } = this.state;
     const isChecked = e.target.checked;
     this.setState({
       isFormChanged: isChecked !== hasEmailsEnabled,
@@ -89,7 +88,7 @@ class EmailSettingsModal extends Component {
 
   render() {
     const {
-      error, hasEmailsEnabled, isSubmitting, disabledState,
+      error, hasEmailsEnabled, isSubmitting,
     } = this.state;
     const { title, open } = this.props;
 
@@ -139,7 +138,7 @@ class EmailSettingsModal extends Component {
               complete: 'Saved',
               prevChange: 'Save',
             }}
-            disabledStates={disabledState}
+            disabledStates={this.getDisabledState()}
             className="save-email-settings-btn btn-primary"
             state={this.getButtonState()}
             onClick={this.handleSaveButtonClick}

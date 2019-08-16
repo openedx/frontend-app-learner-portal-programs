@@ -115,7 +115,7 @@ class BaseCourseCard extends Component {
               </div>
             )}
           </div>
-          <div className="col-lg-12 col-xl-4 text-xl-right mt-3 mt-xl-0">
+          <div className="col-lg-12 col-xl-4 text-xl-right mt-3 mt-xl-0 float-right">
             <Dropdown>
               <Dropdown.Button className="btn-outline-secondary">
                 <FontAwesomeIcon icon={faCog} />
