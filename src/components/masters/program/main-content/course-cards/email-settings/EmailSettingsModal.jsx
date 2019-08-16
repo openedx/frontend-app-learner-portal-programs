@@ -13,10 +13,12 @@ class EmailSettingsModal extends Component {
     hasEmailsEnabled: false,
     isSubmitting: false,
     isSuccessful: false,
+    isFormChanged: false,
+    disabledState: ['pending', 'complete'],
     error: null,
   };
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps, prevState) {
     const { hasEmailsEnabled } = this.props;
     if (hasEmailsEnabled !== prevProps.hasEmailsEnabled) {
       // eslint-disable-next-line react/no-did-update-set-state
@@ -24,15 +26,24 @@ class EmailSettingsModal extends Component {
         hasEmailsEnabled,
       });
     }
+
+    const { isFormChanged } = this.state;
+    if (isFormChanged !== prevState.isFormChanged && !isFormChanged) {
+      this.setState({
+        disabledState: ['pending', 'complete'],
+      });
+    }
   }
 
-  handleEmailSettingsChange = (e) => {
-    const isChecked = e.target.checked;
-    this.setState({
-      hasEmailsEnabled: isChecked,
-      isSuccessful: false,
-    });
-  };
+  getButtonState = () => {
+    const { isSubmitting, isSuccessful } = this.state;
+    if (isSubmitting) {
+      return 'pending';
+    } else if (isSuccessful) {
+      return 'complete';
+    }
+    return 'default';
+  }
 
   handleSaveButtonClick = () => {
     const { hasEmailsEnabled } = this.state;
@@ -57,32 +68,30 @@ class EmailSettingsModal extends Component {
   };
 
   handleOnClose = () => {
+    const { isFormChanged } = this.state;
     this.setState({
       isSubmitting: false,
       error: null,
+      isSuccessful: null,
+      disabledState: isFormChanged ? ['default', 'pending', 'complete'] : ['pending', 'complete'],
     });
     this.props.onClose();
   };
 
-  handleButtonState = () => {
-    const { isSubmitting, isSuccessful } = this.state;
-
-    if (isSubmitting) {
-      return 'pending';
-    } else if (isSuccessful) {
-      return 'complete';
-    }
-
-    return 'default';
-  }
+  handleEmailSettingsChange = (e) => {
+    const { hasEmailsEnabled } = this.props;
+    const isChecked = e.target.checked;
+    this.setState({
+      isFormChanged: isChecked !== hasEmailsEnabled,
+      hasEmailsEnabled: isChecked,
+    });
+  };
 
   render() {
     const {
-      error, hasEmailsEnabled, isSubmitting,
+      error, hasEmailsEnabled, isSubmitting, disabledState,
     } = this.state;
     const { title, open } = this.props;
-
-    const buttonState = this.handleButtonState();
 
     return (
       <Modal
@@ -128,10 +137,11 @@ class EmailSettingsModal extends Component {
               default: 'Save',
               pending: 'Saving',
               complete: 'Saved',
+              prevChange: 'Save',
             }}
-            disabledStates={['pending', 'complete']}
+            disabledStates={disabledState}
             className="save-email-settings-btn btn-primary"
-            state={buttonState}
+            state={this.getButtonState()}
             onClick={this.handleSaveButtonClick}
             key="save-email-settings-btn btn-primary"
           />,

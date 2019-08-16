@@ -20,20 +20,7 @@ class BaseCourseCard extends Component {
       },
     },
     hasEmailsEnabled: this.props.hasEmailsEnabled,
-    hasNewEmailSettings: false,
   };
-
-  componentDidUpdate(prevProps, prevState) {
-    const { hasNewEmailSettings } = this.state;
-
-    if (hasNewEmailSettings && hasNewEmailSettings !== prevState.hasNewEmailSettings) {
-      setTimeout(() => {
-        this.setState({
-          hasNewEmailSettings: false,
-        });
-      }, 6000);
-    }
-  }
 
   setModalState = ({ key, open = false, options = {} }) => {
     this.setState(state => ({
@@ -47,12 +34,32 @@ class BaseCourseCard extends Component {
     }));
   };
 
+  handleEmailSettingsButtonClick = () => {
+    const {
+      title,
+      courseRunId,
+    } = this.props;
+
+    const {
+      hasEmailsEnabled,
+    } = this.state;
+
+    this.setModalState({
+      key: 'emailSettings',
+      open: true,
+      options: {
+        title,
+        hasEmailsEnabled,
+      },
+    });
+    sendTrackEvent('edx.learner_portal.email_settings_modal.opened', { course_run_id: courseRunId });
+  }
+
   handleEmailSettingsModalOnClose = (hasEmailsEnabled) => {
     this.resetModals();
 
     if (hasEmailsEnabled !== undefined) {
       this.setState({
-        hasNewEmailSettings: true,
         hasEmailsEnabled,
       });
     }
@@ -65,7 +72,6 @@ class BaseCourseCard extends Component {
   render() {
     const {
       modals,
-      hasEmailsEnabled,
     } = this.state;
     const {
       children,
@@ -82,36 +88,7 @@ class BaseCourseCard extends Component {
     return (
       <div className={classNames('card mb-4', { 'is-micromasters': !!microMastersTitle })}>
         <div className="card-body">
-          <div className="float-right mt-3 mt-xl-0">
-            <Dropdown>
-              <Dropdown.Button>
-                <FontAwesomeIcon icon={faCog} />
-              </Dropdown.Button>
-              <Dropdown.Menu>
-                <Dropdown.Item
-                  type="button"
-                  onClick={() => {
-                      this.setModalState({
-                        key: 'emailSettings',
-                        open: true,
-                        options: {
-                          title,
-                          hasEmailsEnabled,
-                        },
-                      });
-                      this.setState({
-                        hasNewEmailSettings: false,
-                      });
-                      sendTrackEvent('edx.learner_portal.email_settings_modal.opened', { course_run_id: courseRunId });
-                    }}
-                >
-                    Email Settings
-                  <span className="sr-only">for {title}</span>
-                </Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
-          </div>
-          <div className="row no-gutters mb-3">
+          <div className="row no-gutters">
             <div className="col-lg-12 col-xl-8">
               {microMastersTitle && (
                 <p className="font-weight-bold w-75 mb-2">
@@ -133,25 +110,39 @@ class BaseCourseCard extends Component {
               )}
             </div>
             {buttons && (
-              <div className="col-lg-12 col-xl-8 text-xl-left mt-3 mt-xl-0">
+              <div className="card-buttons">
                 {buttons}
               </div>
             )}
           </div>
-          {children}
-          {hasEmailSettings && (
-            <div className="row no-gutters">
-              <div className="col">
-                {modals.emailSettings && modals.emailSettings.options &&
-                  <EmailSettingsModal
-                    {...modals.emailSettings.options}
-                    courseRunId={courseRunId}
-                    onClose={this.handleEmailSettingsModalOnClose}
-                    open={modals.emailSettings.open}
-                  />
-                }
-              </div>
+          <div className="col-lg-12 col-xl-4 text-xl-right mt-3 mt-xl-0">
+            <Dropdown>
+              <Dropdown.Button className="btn-outline-secondary">
+                <FontAwesomeIcon icon={faCog} />
+              </Dropdown.Button>
+              <Dropdown.Menu>
+                <Dropdown.Item
+                  type="button"
+                  onClick={this.handleEmailSettingsButtonClick}
+                >
+                  Email Settings
+                  <span className="sr-only">for {title}</span>
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          </div>
+          <div className="row">
+            <div className="col">
+              {children}
             </div>
+          </div>
+          {hasEmailSettings && modals.emailSettings && modals.emailSettings.options && (
+            <EmailSettingsModal
+              {...modals.emailSettings.options}
+              courseRunId={courseRunId}
+              onClose={this.handleEmailSettingsModalOnClose}
+              open={modals.emailSettings.open}
+            />
           )}
         </div>
       </div>
