@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /**
  * Implement Gatsby's Node APIs in this file.
  *
@@ -47,9 +48,14 @@ exports.createPages = async ({ graphql, actions }) => graphql(`
       }
     }
   }  
-  `).then((result) => {
-  if (result.data) {
-    createPagesWithData(result, actions);
-  }
-});
-
+  `)
+  .then((result) => {
+    if (result && result.data) {
+      createPagesWithData(result, actions);
+    } else {
+      console.error('GraphQL query for fetching page nodes returned no data.');
+    }
+  })
+  .catch((error) => {
+    console.error('An error occurred while fetching page nodes from GraphQL', error);
+  });

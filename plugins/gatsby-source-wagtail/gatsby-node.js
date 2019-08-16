@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+
 const fetch = require('node-fetch');
 const programsMockData = require('./test/mock_programs_pages.json');
 const enterpriseMockData = require('./test/mock_enterprise_page.json');
@@ -49,6 +51,7 @@ exports.sourceNodes = async (
   });
 
   const data = await fetchBrandingData();
+
   if (data && data.length) {
     data.map(page => processNode(page, 'page'));
   } else {
