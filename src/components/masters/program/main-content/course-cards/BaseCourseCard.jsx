@@ -108,28 +108,26 @@ class BaseCourseCard extends Component {
                   Course {moment(endDate) > moment() ? 'ends' : 'ended'} on {moment(endDate).format('MMMM D, YYYY')}
                 </p>
               )}
-            </div>
-            {buttons && (
               <div className="card-buttons">
                 {buttons}
               </div>
-            )}
-          </div>
-          <div className="col-lg-12 col-xl-4 text-xl-right mt-3 mt-xl-0 float-right">
-            <Dropdown>
-              <Dropdown.Button className="btn-outline-secondary">
-                <FontAwesomeIcon icon={faCog} />
-              </Dropdown.Button>
-              <Dropdown.Menu>
-                <Dropdown.Item
-                  type="button"
-                  onClick={this.handleEmailSettingsButtonClick}
-                >
-                  Email Settings
-                  <span className="sr-only">for {title}</span>
-                </Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
+            </div>
+            <div className="col-lg-12 col-xl-4 text-xl-right mt-3 mt-xl-0">
+              <Dropdown>
+                <Dropdown.Button className="btn-outline-secondary">
+                  <FontAwesomeIcon icon={faCog} />
+                </Dropdown.Button>
+                <Dropdown.Menu>
+                  <Dropdown.Item
+                    type="button"
+                    onClick={this.handleEmailSettingsButtonClick}
+                  >
+                    Email Settings
+                    <span className="sr-only">for {title}</span>
+                  </Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+            </div>
           </div>
           <div className="row">
             <div className="col">
