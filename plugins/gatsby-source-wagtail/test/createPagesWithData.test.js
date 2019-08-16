@@ -16,7 +16,7 @@ describe('createPagesWithData', () => {
               hostname: null,
               program_documents: null,
               external_program_website: null,
-              branding: [{}],
+              branding: {},
             },
             {
               id: '0de66c11-6c9a-538b-aeb6-767f0013c96d',
@@ -27,7 +27,7 @@ describe('createPagesWithData', () => {
               hostname: null,
               program_documents: null,
               external_program_website: null,
-              branding: [{}],
+              branding: {},
             },
           ],
         },
@@ -43,7 +43,7 @@ describe('createPagesWithData', () => {
       context: {
         pageType: 'pages.EnterprisePage',
         enterpriseName: 'Example Enterprise',
-        enterpriseBranding: [{}],
+        enterpriseBranding: {},
       },
     };
     expect(actions.createPage.mock.calls.length).toEqual(1);
@@ -64,7 +64,7 @@ describe('createPagesWithData', () => {
               hostname: null,
               program_documents: null,
               external_program_website: null,
-              branding: [{}],
+              branding: {},
             },
             {
               id: '0de66c11-6c9a-538b-aeb6-767f0013c96d',
@@ -75,7 +75,7 @@ describe('createPagesWithData', () => {
               hostname: null,
               program_documents: null,
               external_program_website: null,
-              branding: [{}],
+              branding: {},
             },
           ],
         },
@@ -94,7 +94,7 @@ describe('createPagesWithData', () => {
         programUUID: '47fc98b8-9a90-406d-854b-a4e91df0bc8c',
         programName: 'The best program ever',
         programHostname: null,
-        programBranding: [{}],
+        programBranding: {},
         programDocuments: null,
         externalProgramWebsite: null,
       },
@@ -117,7 +117,7 @@ describe('createPagesWithData', () => {
               hostname: null,
               program_documents: null,
               external_program_website: null,
-              branding: [{}],
+              branding: {},
             },
             {
               id: '0de66c11-6c9a-538b-aeb6-767f0013c96a',
@@ -128,7 +128,7 @@ describe('createPagesWithData', () => {
               hostname: null,
               program_documents: null,
               external_program_website: null,
-              branding: [{}],
+              branding: {},
             },
           ],
         },
@@ -143,7 +143,7 @@ describe('createPagesWithData', () => {
         {
           externalProgramWebsite: null,
           pageType: 'pages.ProgramPage',
-          programBranding: [{}],
+          programBranding: {},
           programDocuments: null,
           programHostname: null,
           programUUID: '47fc98b8-9a90-406d-854b-a4e91df0bc8c',
@@ -153,7 +153,7 @@ describe('createPagesWithData', () => {
         {
           externalProgramWebsite: null,
           pageType: 'pages.ProgramPage',
-          programBranding: [{}],
+          programBranding: {},
           programDocuments: null,
           programHostname: null,
           programUUID: '47fc98b8-9a90-406d-854b-a4e91df0bc8d',
@@ -185,7 +185,7 @@ describe('createPagesWithData', () => {
               hostname: null,
               program_documents: null,
               external_program_website: null,
-              branding: [{}],
+              branding: {},
             },
             {
               id: '0de66c11-6c9a-538b-aeb6-767f0013c96a',
@@ -196,7 +196,7 @@ describe('createPagesWithData', () => {
               hostname: null,
               program_documents: null,
               external_program_website: null,
-              branding: [{}],
+              branding: {},
             },
           ],
         },
@@ -212,7 +212,7 @@ describe('createPagesWithData', () => {
         {
           externalProgramWebsite: null,
           pageType: 'pages.ProgramPage',
-          programBranding: [{}],
+          programBranding: {},
           programDocuments: null,
           programHostname: null,
           programUUID: '47fc98b8-9a90-406d-854b-a4e91df0bc8c',
@@ -222,7 +222,7 @@ describe('createPagesWithData', () => {
         {
           externalProgramWebsite: null,
           pageType: 'pages.ProgramPage',
-          programBranding: [{}],
+          programBranding: {},
           programDocuments: null,
           programHostname: null,
           programUUID: '47fc98b8-9a90-406d-854b-a4e91df0bc8d',
