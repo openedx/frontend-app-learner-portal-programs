@@ -10,22 +10,12 @@ import './styles/EmailSettingsModal.scss';
 
 class EmailSettingsModal extends Component {
   state = {
-    hasEmailsEnabled: false,
+    hasEmailsEnabled: this.props.hasEmailsEnabled,
     isSubmitting: false,
     isSuccessful: false,
     isFormChanged: false,
     error: null,
   };
-
-  componentDidUpdate(prevProps) {
-    const { hasEmailsEnabled } = this.props;
-    if (hasEmailsEnabled !== prevProps.hasEmailsEnabled) {
-      // eslint-disable-next-line react/no-did-update-set-state
-      this.setState({
-        hasEmailsEnabled,
-      });
-    }
-  }
 
   getButtonState = () => {
     const { isSubmitting, isSuccessful } = this.state;
@@ -37,7 +27,7 @@ class EmailSettingsModal extends Component {
     return 'default';
   }
 
-  getDisabledState = () => {
+  getDisabledStates = () => {
     const { isFormChanged } = this.state;
     if (isFormChanged) {
       return ['pending', 'complete'];
@@ -67,13 +57,14 @@ class EmailSettingsModal extends Component {
   };
 
   handleOnClose = () => {
+    const { hasEmailsEnabled } = this.state;
     this.setState({
       isSubmitting: false,
       isSuccessful: null,
       isFormChanged: false,
       error: null,
     });
-    this.props.onClose();
+    this.props.onClose(hasEmailsEnabled);
   };
 
   handleEmailSettingsChange = (e) => {
@@ -135,13 +126,12 @@ class EmailSettingsModal extends Component {
               default: 'Save',
               pending: 'Saving',
               complete: 'Saved',
-              prevChange: 'Save',
             }}
-            disabledStates={this.getDisabledState()}
+            disabledStates={this.getDisabledStates()}
             className="save-email-settings-btn btn-primary"
             state={this.getButtonState()}
             onClick={this.handleSaveButtonClick}
-            key="save-email-settings-btn btn-primary"
+            key="save-email-settings-btn"
           />,
         ]}
         open={open}
@@ -175,5 +165,7 @@ const mapDispatchToProps = dispatch => ({
     }));
   }),
 });
+
+export { EmailSettingsModal };
 
 export default connect(null, mapDispatchToProps)(EmailSettingsModal);

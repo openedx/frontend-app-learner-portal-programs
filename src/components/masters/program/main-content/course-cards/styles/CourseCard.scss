@@ -56,4 +56,10 @@
   .dropdown-menu {
     right: 0;
   }
+
+  @include media-breakpoint-down(sm) {
+    .btn-xs-block {
+      width: 100%;
+    }
+  }
 }

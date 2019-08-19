@@ -4,20 +4,20 @@ import thunk from 'redux-thunk';
 import configureMockStore from 'redux-mock-store';
 import { StatefulButton } from '@edx/paragon';
 
-import * as data from '../data';
-
-import EmailSettingsModal from '../EmailSettingsModal';
-
-jest.useFakeTimers();
-data.updateEmailSettings = Promise.resolve({ data: 'hi' });
+import { EmailSettingsModal } from '../EmailSettingsModal';
 
 const mockStore = configureMockStore([thunk]);
 const store = mockStore({});
 
 describe('<EmailSettingsModal />', () => {
   let wrapper;
+  let mockUpdateEmailSettings;
 
   beforeEach(() => {
+    mockUpdateEmailSettings = jest.fn().mockResolvedValueOnce({
+      data: {},
+    });
+
     wrapper = mount((
       <EmailSettingsModal
         store={store}
@@ -25,19 +25,26 @@ describe('<EmailSettingsModal />', () => {
         onClose={() => {}}
         hasEmailsEnabled
         courseRunId="my+course+key"
+        updateEmailSettings={mockUpdateEmailSettings}
       />
     ));
   });
 
-  it('statefulbutton component state is initially set to default', () => {
-    expect(wrapper.find('.modal-footer .save-email-settings-btn').first().prop('state')).toEqual('default');
-    wrapper.find('input[type="checkbox"]').simulate('change', { target: { checked: false } });
+  it('statefulbutton component state is initially set to default and disabled', () => {
+    const defaultState = 'default';
+    expect(wrapper.find(StatefulButton).prop('state')).toEqual(defaultState);
+    expect(wrapper.find(StatefulButton).prop('disabledStates')).toContain(defaultState);
   });
 
-  it('statefulbutton component state is set to pending after click event', () => {
+  it('statefulbutton component state is set to complete after click event', async () => {
+    // Note: The below line is needed to properly resolve the updateEmailSettings promise
+    const flushPromises = () => new Promise(setImmediate);
     expect(wrapper.find(StatefulButton).prop('state')).toEqual('default');
-    wrapper.find('input[type="checkbox"]').simulate('change', { target: { checked: true } });
+    wrapper.find('input[type="checkbox"]').simulate('change', { target: { checked: false } });
     wrapper.find(StatefulButton).simulate('click');
-    expect(wrapper.find(StatefulButton).prop('state')).toEqual('pending');
+    await flushPromises();
+    wrapper.update();
+    expect(mockUpdateEmailSettings.mock.calls.length).toBe(1);
+    expect(wrapper.find(StatefulButton).prop('state')).toEqual('complete');
   });
 });

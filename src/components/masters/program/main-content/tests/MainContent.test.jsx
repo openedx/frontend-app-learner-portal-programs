@@ -67,7 +67,7 @@ describe('<MainContent />', () => {
             ...sampleProgramEnrollment,
             course_run_id: 'course-v1:edX+DemoX+Demo_Course_2',
             display_name: 'edX Demonstration Course 2',
-            course_run_status: 'in_progress',
+            course_run_status: 'in-progress',
             due_dates: [{
               name: 'Assignment 1',
               url: 'https://edx.org/',

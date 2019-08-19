@@ -22,6 +22,25 @@ class BaseCourseCard extends Component {
     hasEmailsEnabled: this.props.hasEmailsEnabled,
   };
 
+  getDropdownMenuItems = () => {
+    const { hasEmailsEnabled, title } = this.props;
+    const dropdownMenuItems = [];
+    if (hasEmailsEnabled !== null) {
+      dropdownMenuItems.push({
+        key: 'email-settings',
+        type: 'button',
+        onClick: this.handleEmailSettingsButtonClick,
+        children: (
+          <>
+            Email Settings
+            <span className="sr-only">for {title}</span>
+          </>
+        ),
+      });
+    }
+    return dropdownMenuItems;
+  };
+
   setModalState = ({ key, open = false, options = {} }) => {
     this.setState(state => ({
       modals: {
@@ -57,7 +76,6 @@ class BaseCourseCard extends Component {
 
   handleEmailSettingsModalOnClose = (hasEmailsEnabled) => {
     this.resetModals();
-
     if (hasEmailsEnabled !== undefined) {
       this.setState({
         hasEmailsEnabled,
@@ -80,16 +98,24 @@ class BaseCourseCard extends Component {
       endDate,
       buttons,
       linkToCourse,
-      hasEmailSettings,
       microMastersTitle,
       courseRunId,
+      hasEmailsEnabled,
     } = this.props;
+
+    const dropdownMenuItems = this.getDropdownMenuItems();
+    const shouldDisplaySettingsDropdown = dropdownMenuItems.length > 0;
 
     return (
       <div className={classNames('card mb-4', { 'is-micromasters': !!microMastersTitle })}>
         <div className="card-body">
           <div className="row no-gutters">
-            <div className="col-10">
+            <div
+              className={classNames({
+                'col-6 col-lg-8': shouldDisplaySettingsDropdown,
+                col: !shouldDisplaySettingsDropdown,
+              })}
+            >
               {microMastersTitle && (
               <p className="font-weight-bold w-75 mb-2">
                 {microMastersTitle}
@@ -99,22 +125,26 @@ class BaseCourseCard extends Component {
                 <a href={linkToCourse}>{title}</a>
               </h4>
             </div>
-            <div className="col-2 text-right">
-              <Dropdown>
-                <Dropdown.Button className="btn-outline-secondary">
-                  <FontAwesomeIcon icon={faCog} />
-                </Dropdown.Button>
-                <Dropdown.Menu>
-                  <Dropdown.Item
-                    type="button"
-                    onClick={this.handleEmailSettingsButtonClick}
-                  >
-                    Email Settings
-                    <span className="sr-only">for {title}</span>
-                  </Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown>
-            </div>
+            {shouldDisplaySettingsDropdown && (
+              <div className="col text-right">
+                <Dropdown>
+                  <Dropdown.Button className="btn-outline-secondary">
+                    <FontAwesomeIcon icon={faCog} />
+                  </Dropdown.Button>
+                  <Dropdown.Menu>
+                    {dropdownMenuItems.map(menuItem => (
+                      <Dropdown.Item
+                        key={menuItem.key}
+                        type={menuItem.type}
+                        onClick={menuItem.onClick}
+                      >
+                        {menuItem.children}
+                      </Dropdown.Item>
+                  ))}
+                  </Dropdown.Menu>
+                </Dropdown>
+              </div>
+            )}
           </div>
           <div className="row">
             <div className="col">
@@ -128,17 +158,21 @@ class BaseCourseCard extends Component {
                   Course {moment(endDate) > moment() ? 'ends' : 'ended'} on {moment(endDate).format('MMMM D, YYYY')}
                 </p>
               )}
-              <div className="card-buttons mt-3">
-                {buttons}
+              {buttons && (
+                <div className="card-buttons mt-3">
+                  {buttons}
+                </div>
+              )}
+            </div>
+          </div>
+          {children && (
+            <div className="row">
+              <div className="col">
+                {children}
               </div>
             </div>
-          </div>
-          <div className="row">
-            <div className="col">
-              {children}
-            </div>
-          </div>
-          {hasEmailSettings && modals.emailSettings && modals.emailSettings.options && (
+          )}
+          {hasEmailsEnabled !== null && (
             <EmailSettingsModal
               {...modals.emailSettings.options}
               courseRunId={courseRunId}
@@ -161,7 +195,6 @@ BaseCourseCard.propTypes = {
   startDate: PropTypes.string,
   endDate: PropTypes.string,
   hasEmailsEnabled: PropTypes.bool,
-  hasEmailSettings: PropTypes.bool,
   microMastersTitle: PropTypes.string,
 };
 
@@ -170,8 +203,7 @@ BaseCourseCard.defaultProps = {
   children: null,
   startDate: null,
   endDate: null,
-  hasEmailsEnabled: false,
-  hasEmailSettings: true,
+  hasEmailsEnabled: null,
   microMastersTitle: null,
 };
 
