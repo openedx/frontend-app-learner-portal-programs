@@ -117,9 +117,9 @@ class BaseCourseCard extends Component {
               })}
             >
               {microMastersTitle && (
-              <p className="font-weight-bold w-75 mb-2">
-                {microMastersTitle}
-              </p>
+                <p className="font-weight-bold w-75 mb-2">
+                  {microMastersTitle}
+                </p>
               )}
               <h4 className="card-title mb-1 font-weight-normal">
                 <a href={linkToCourse}>{title}</a>
