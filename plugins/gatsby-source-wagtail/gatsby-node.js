@@ -1,5 +1,8 @@
+/* eslint-disable no-console */
+
 const fetch = require('node-fetch');
-const mockData = require('./test/mock.json');
+const programsMockData = require('./test/mock_programs_pages.json');
+const enterpriseMockData = require('./test/mock_enterprise_page.json');
 const typedefs = require('./schema/types.gql');
 
 exports.sourceNodes = async (
@@ -21,9 +24,13 @@ exports.sourceNodes = async (
     // remove it or set it to an empty string to remove it. setting it to false does
     // not remove the mock data!
     // mock data lives at './test/mock.json'
-    if (process.env.USE_MOCK_DATA) {
-      console.warn('Using fake designer data...');
-      return mockData;
+    if (process.env.USE_ENTERPRISE_MOCK_DATA) {
+      console.warn('Using fake designer enterprise page data...');
+      return enterpriseMockData;
+    }
+    if (process.env.USE_PROGRAMS_MOCK_DATA) {
+      console.warn('Using fake designer programs page data...');
+      return programsMockData;
     }
     try {
       const response = await fetch(configOptions.pagesApiUrl);
@@ -44,6 +51,7 @@ exports.sourceNodes = async (
   });
 
   const data = await fetchBrandingData();
+
   if (data && data.length) {
     data.map(page => processNode(page, 'page'));
   } else {

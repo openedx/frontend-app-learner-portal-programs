@@ -1,37 +1,14 @@
+/* eslint-disable no-console */
 /**
  * Implement Gatsby's Node APIs in this file.
  *
  * See: https://www.gatsbyjs.org/docs/node-apis/
  */
-const path = require('path');
+const { createPagesWithData } = require('./plugins/gatsby-source-wagtail/createPagesWithData');
 
-const programPageType = 'pages.ProgramPage';
-const templates = {
-  programListPage: path.resolve('./src/components/masters/programs-list/ProgramListPage.jsx'),
-  programPage: path.resolve('./src/components/masters/program/ProgramPage.jsx'),
-};
-
-
-const transformProgramPageContext = context => (
-  // Transforms GraphQL data into the props expected by the ProgramPage component
-  {
-    programSlug: context.slug,
-    programUUID: context.uuid,
-    programName: context.title,
-    programHostname: context.hostname,
-    programBranding: context.branding,
-    programDocuments: context.program_documents,
-    externalProgramWebsite: context.external_program_website,
-  }
-);
-
-exports.createPages = async ({ graphql, actions }) => {
-  // **Note:** The graphql function call returns a Promise
-  // see: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise for more info
-  const { createPage } = actions;
-  const onlyCreateListingPage = process.env.UNBRANDED_LANDING_PAGE === 'True';
-
-  return graphql(`
+// **Note:** The graphql function call returns a Promise
+// see: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise for more info
+exports.createPages = async ({ graphql, actions }) => graphql(`
   {
     allPage {
       nodes {
@@ -71,28 +48,14 @@ exports.createPages = async ({ graphql, actions }) => {
       }
     }
   }  
-  `).then((result) => {
-    if (result.data) {
-      const allProgramsData = result.data.allPage.nodes
-        .filter(node => node.type === programPageType)
-        .map(transformProgramPageContext);
-      // Create landing page
-      createPage({
-        path: '/',
-        component: templates.programListPage,
-        context: { programs: allProgramsData },
-      });
-
-      if (!onlyCreateListingPage) {
-        // Create pages for each program
-        allProgramsData.forEach((programData) => {
-          createPage({
-            path: programData.programSlug,
-            component: templates.programPage,
-            context: programData,
-          });
-        });
-      }
+  `)
+  .then((result) => {
+    if (result && result.data) {
+      createPagesWithData(result, actions);
+    } else {
+      console.error('GraphQL query for fetching page nodes returned no data.');
     }
+  })
+  .catch((error) => {
+    console.error('An error occurred while fetching page nodes from GraphQL', error);
   });
-};
