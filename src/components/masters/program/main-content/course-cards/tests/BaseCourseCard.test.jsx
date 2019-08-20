@@ -22,22 +22,19 @@ describe('<BaseCourseCard />', () => {
             title="edX Demonstration Course"
             linkToCourse="https://edx.org"
             courseRunId="my+course+key"
+            hasEmailsEnabled
           />
         </Provider>
       ));
       // open email settings modal
-      expect(wrapper.find('.email-settings-btn').exists()).toBeTruthy();
-      wrapper.find('.email-settings-btn').simulate('click');
-      expect(analytics.sendTrackEvent).toHaveBeenCalled();
-      const modal = wrapper.find('EmailSettingsModal');
-      expect(modal.props().open).toBeTruthy();
+      wrapper.find('Dropdown').find('button.dropdown-toggle').simulate('click');
+      wrapper.find('Dropdown').find('button.dropdown-item').simulate('click');
+      expect(wrapper.find(BaseCourseCard).state('modals').emailSettings.open).toBeTruthy();
     });
 
     it('test modal close/cancel', () => {
-      expect(wrapper.find('BaseCourseCard').state('modals').emailSettings).not.toBeNull();
       wrapper.find('EmailSettingsModal').find('.modal-footer .js-close-modal-on-click').first().simulate('click');
-      const modal = wrapper.find('EmailSettingsModal');
-      expect(modal.props().open).toBeFalsy();
+      expect(wrapper.find(BaseCourseCard).state('modals').emailSettings.open).toBeFalsy();
     });
   });
 });

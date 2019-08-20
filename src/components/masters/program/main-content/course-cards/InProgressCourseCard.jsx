@@ -9,7 +9,7 @@ import Notification from './Notification';
 const InProgressCourseCard = (props) => {
   const renderButtons = () => (
     <a
-      className="btn btn-primary btn-block"
+      className="btn btn-outline-primary btn-xs-block"
       href={props.linkToCourse}
       onClick={() => { sendTrackEvent('edx.learner_portal.course.continued', { course_run_id: props.courseRunId }); }}
     >
@@ -29,8 +29,8 @@ const InProgressCourseCard = (props) => {
   return (
     <BaseCourseCard buttons={renderButtons()} {...props}>
       {filteredNotifications.length > 0 && (
-        <div className="notifications">
-          <ul className="list-unstyled" aria-label="course due dates" role="alert">
+        <div className="notifications mt-3">
+          <ul className="list-unstyled mb-0" aria-label="course due dates" role="alert">
             {filteredNotifications.map(notificationProps => (
               <Notification
                 key={notificationProps}

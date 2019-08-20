@@ -53,7 +53,7 @@ class CourseSection extends React.Component {
               };
               const cardProps = {};
               switch (courseRunStatus) {
-                case 'in_progress':
+                case 'in-progress':
                   cardProps.endDate = courseData.end_date;
                   // The link to course here gives precedence to the resume course link, which is
                   // present if the learner has made progress. If the learner has not made progress,

@@ -13,7 +13,7 @@ const store = mockStore({});
 
 const sampleEnrollmentData = {
   course_run_id: 'course-v1:edX+DemoX+Demo_Course',
-  course_run_status: 'in_progress',
+  course_run_status: 'in-progress',
   course_run_url: 'https://edx.org/',
   display_name: 'edX Demonstration Course',
   due_dates: [{

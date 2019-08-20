@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { Input, Modal, StatusAlert } from '@edx/paragon';
-import { faExclamationTriangle, faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { Input, Modal, StatusAlert, StatefulButton } from '@edx/paragon';
+import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { updateEmailSettings } from './data';
@@ -11,41 +10,43 @@ import './styles/EmailSettingsModal.scss';
 
 class EmailSettingsModal extends Component {
   state = {
-    hasEmailsEnabled: false,
+    hasEmailsEnabled: this.props.hasEmailsEnabled,
     isSubmitting: false,
+    isSuccessful: false,
     isFormChanged: false,
     error: null,
   };
 
-  componentDidUpdate(prevProps) {
-    const { hasEmailsEnabled } = this.props;
-    if (hasEmailsEnabled !== prevProps.hasEmailsEnabled) {
-      // eslint-disable-next-line react/no-did-update-set-state
-      this.setState({
-        hasEmailsEnabled,
-      });
+  getButtonState = () => {
+    const { isSubmitting, isSuccessful } = this.state;
+    if (isSubmitting) {
+      return 'pending';
+    } else if (isSuccessful) {
+      return 'complete';
     }
+    return 'default';
   }
 
-  handleEmailSettingsChange = (e) => {
-    const { hasEmailsEnabled } = this.props;
-    const isChecked = e.target.checked;
-    this.setState({
-      isFormChanged: isChecked !== hasEmailsEnabled,
-      hasEmailsEnabled: isChecked,
-    });
-  };
+  getDisabledStates = () => {
+    const { isFormChanged } = this.state;
+    if (isFormChanged) {
+      return ['pending', 'complete'];
+    }
+    return ['pending', 'complete', 'default'];
+  }
 
   handleSaveButtonClick = () => {
     const { hasEmailsEnabled } = this.state;
     const { courseRunId, updateEmailSettings } = this.props; // eslint-disable-line no-shadow
-
     this.setState({
       isSubmitting: true,
     }, async () => {
       try {
         await updateEmailSettings(courseRunId, hasEmailsEnabled);
-        this.props.onClose(hasEmailsEnabled);
+        this.setState({
+          isSuccessful: true,
+          isSubmitting: false,
+        });
       } catch (error) {
         this.setState({
           isSubmitting: false,
@@ -56,17 +57,28 @@ class EmailSettingsModal extends Component {
   };
 
   handleOnClose = () => {
+    const { hasEmailsEnabled } = this.state;
     this.setState({
       isSubmitting: false,
+      isSuccessful: null,
       isFormChanged: false,
       error: null,
     });
-    this.props.onClose();
+    this.props.onClose(hasEmailsEnabled);
+  };
+
+  handleEmailSettingsChange = (e) => {
+    const { hasEmailsEnabled } = this.state;
+    const isChecked = e.target.checked;
+    this.setState({
+      isFormChanged: isChecked !== hasEmailsEnabled,
+      hasEmailsEnabled: isChecked,
+    });
   };
 
   render() {
     const {
-      error, isFormChanged, hasEmailsEnabled, isSubmitting,
+      error, hasEmailsEnabled, isSubmitting,
     } = this.state;
     const { title, open } = this.props;
 
@@ -109,22 +121,18 @@ class EmailSettingsModal extends Component {
         }
         onClose={this.handleOnClose}
         buttons={[
-          {
-            label: (
-              <>
-                {isSubmitting &&
-                  <FontAwesomeIcon className="mr-2" icon={faSpinner} spin />
-                }
-                {isSubmitting ? 'Saving' : 'Save'}
-                {' changes'}
-                {isSubmitting && '...'}
-              </>
-            ),
-            className: classNames('save-email-settings-btn', { 'is-form-changed': isFormChanged }),
-            buttonType: 'primary',
-            disabled: isSubmitting || !isFormChanged,
-            onClick: this.handleSaveButtonClick,
-          },
+          <StatefulButton
+            labels={{
+              default: 'Save',
+              pending: 'Saving',
+              complete: 'Saved',
+            }}
+            disabledStates={this.getDisabledStates()}
+            className="save-email-settings-btn btn-primary"
+            state={this.getButtonState()}
+            onClick={this.handleSaveButtonClick}
+            key="save-email-settings-btn"
+          />,
         ]}
         open={open}
       />
@@ -157,5 +165,7 @@ const mapDispatchToProps = dispatch => ({
     }));
   }),
 });
+
+export { EmailSettingsModal };
 
 export default connect(null, mapDispatchToProps)(EmailSettingsModal);
