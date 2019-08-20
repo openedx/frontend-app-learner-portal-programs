@@ -46,9 +46,10 @@ function createPagesWithData(result, actions) {
       return { ...commonPageContext, ...pageContext };
     });
 
-  // If we spot an enterprise page, create it, and do not create programs pages
+  // If we spot an enterprise page, create it, and do not create program-related pages
   const firstPageData = allPagesData && allPagesData[0];
   const isEnterprise = firstPageData && firstPageData.pageType === 'pages.EnterprisePage';
+
   if (isEnterprise) {
     createPage({
       path: '/',
@@ -56,17 +57,18 @@ function createPagesWithData(result, actions) {
       context: firstPageData,
     });
   } else {
-    // Create landing page if there are multiple programs pages
     const programs = allPagesData.filter(node => node.pageType === 'pages.ProgramPage');
-    if (programs && programs.length > 1) {
-      createPage({
-        path: '/',
-        component: templates.programListPage,
-        context: { programs },
-      });
-    }
+    // Create the program listing page. This page must exist as it
+    // handles the redirect to an individual program in the case where
+    // only one program exists and the user goes to the `/` path.
+    createPage({
+      path: '/',
+      component: templates.programListPage,
+      context: { programs },
+    });
+
     // Create Gatsby pages for each page from portal-designer so long as
-    // we are not only building the listings
+    // we are not only building the program listing page.
     if (!onlyCreateListingPage) {
       programs.forEach((pageData) => {
         createPage({

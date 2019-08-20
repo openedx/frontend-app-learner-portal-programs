@@ -50,7 +50,7 @@ describe('createPagesWithData', () => {
     expect(actions.createPage).toBeCalledWith({ ...expectedArgs });
   });
 
-  it('should only create a single programPage if only one programPage is present', () => {
+  it('should create both a single program page and program list page if only one program page node is present', () => {
     const graphqlQueryResult = {
       data: {
         allPage: {
@@ -85,25 +85,33 @@ describe('createPagesWithData', () => {
 
     createPagesWithData(graphqlQueryResult, actions);
 
-    const expectedArgs = {
+    const programPageData = {
+      pageType: 'pages.ProgramPage',
+      pageBranding: {},
+      programSlug: 'prog-slug',
+      programUUID: '47fc98b8-9a90-406d-854b-a4e91df0bc8c',
+      programName: 'The best program ever',
+      programHostname: null,
+      programDocuments: null,
+      externalProgramWebsite: null,
+    };
+    const expectedProgramPageArgs = {
       path: 'prog-slug',
       component: templates.programPage,
-      context: {
-        pageType: 'pages.ProgramPage',
-        pageBranding: {},
-        programSlug: 'prog-slug',
-        programUUID: '47fc98b8-9a90-406d-854b-a4e91df0bc8c',
-        programName: 'The best program ever',
-        programHostname: null,
-        programDocuments: null,
-        externalProgramWebsite: null,
-      },
+      context: programPageData,
     };
-    expect(actions.createPage.mock.calls.length).toEqual(1);
-    expect(actions.createPage).toBeCalledWith({ ...expectedArgs });
+    const expectedProgramListPageArgs = {
+      path: '/',
+      component: templates.programListPage,
+      context: { programs: [programPageData] },
+    };
+
+    expect(actions.createPage.mock.calls.length).toEqual(2);
+    expect(actions.createPage).toBeCalledWith(expectedProgramListPageArgs);
+    expect(actions.createPage).toBeCalledWith(expectedProgramPageArgs);
   });
 
-  it('should create list page if multiple programsPage nodes exist.', () => {
+  it('should create list page if multiple program pages nodes exist.', () => {
     const graphqlQueryResult = {
       data: {
         allPage: {
