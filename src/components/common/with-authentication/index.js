@@ -1,2 +1,2 @@
-export { default as Layout } from './Layout';
+// eslint-disable-next-line import/prefer-default-export
 export { default as withAuthentication } from './withAuthentication';

@@ -1,2 +1,2 @@
-export { default as MainContent } from './MainContent';
+export { default as ProgramMainContent } from './ProgramMainContent';
 export { default as reducer } from './data/reducer';

@@ -2,7 +2,7 @@
   {
     "id": 5,
     "uuid": "b3c45a5f-30aa-4423-9e44-11a92ce5d0e7",
-    "title": "Example site 2",
+    "title": "Example Masters Program",
     "slug": "foo",
     "last_published_at": "2019-07-16T20:58:09.439440Z",
     "program_documents": {
@@ -54,7 +54,7 @@
     },
     "branding": {
       "texture_image": "http://pigment.github.io/fake-logos/logos/large/color/space-cube.png",
-      "banner_border_color": "#FFFFFF",
+      "banner_border_color": "#CCCCCC",
       "cover_image": "http://pigment.github.io/fake-logos/logos/large/color/space-cube.png",
       "organization_logo": {
         "alt": "example-site",

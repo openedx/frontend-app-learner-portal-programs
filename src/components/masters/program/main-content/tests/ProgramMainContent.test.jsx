@@ -1,5 +1,4 @@
 import React from 'react';
-import { StaticQuery } from 'gatsby';
 import { Provider } from 'react-redux';
 import renderer from 'react-test-renderer';
 import configureMockStore from 'redux-mock-store';
@@ -9,7 +8,8 @@ import { breakpoints } from '@edx/paragon';
 
 import '../../../../../__mocks__/reactResponsive.mock';
 
-import MainContent from '../MainContent';
+import { LayoutContext } from '../../../../common/layout';
+import ProgramMainContent from '../ProgramMainContent';
 
 const mockStore = configureMockStore([thunk]);
 
@@ -21,20 +21,12 @@ const initialStore = mockStore({
   },
 });
 
-describe('<MainContent />', () => {
-  let store = initialStore;
+const pageContext = {
+  programUUID: 'test-program-uuid',
+};
 
-  beforeEach(() => {
-    StaticQuery.mockImplementationOnce(({ render }) => (
-      render({
-        site: {
-          siteMetadata: {
-            programUUID: 'test-program-uuid',
-          },
-        },
-      })
-    ));
-  });
+describe('<ProgramMainContent />', () => {
+  let store = initialStore;
 
   afterEach(() => {
     store = initialStore;
@@ -44,7 +36,9 @@ describe('<MainContent />', () => {
     it('with no program enrollments course runs data', () => {
       const wrapper = mount((
         <Provider store={store}>
-          <MainContent programUUID="test-program-uuid" />
+          <LayoutContext.Provider value={{ pageContext }}>
+            <ProgramMainContent />
+          </LayoutContext.Provider>
         </Provider>
       ));
       expect(wrapper.html()).toBeNull();
@@ -80,7 +74,9 @@ describe('<MainContent />', () => {
 
       const wrapper = mount((
         <Provider store={store}>
-          <MainContent programUUID="test-program-uuid" />
+          <LayoutContext.Provider value={{ pageContext }}>
+            <ProgramMainContent />
+          </LayoutContext.Provider>
         </Provider>
       ));
 
@@ -102,7 +98,9 @@ describe('<MainContent />', () => {
       const tree = renderer
         .create((
           <Provider store={store}>
-            <MainContent programUUID="test-program-uuid" />
+            <LayoutContext.Provider value={{ pageContext }}>
+              <ProgramMainContent />
+            </LayoutContext.Provider>
           </Provider>
         ))
         .toJSON();
@@ -121,7 +119,9 @@ describe('<MainContent />', () => {
       const tree = renderer
         .create((
           <Provider store={store}>
-            <MainContent programUUID="test-program-uuid" />
+            <LayoutContext.Provider value={{ pageContext }}>
+              <ProgramMainContent />
+            </LayoutContext.Provider>
           </Provider>
         ))
         .toJSON();
@@ -136,20 +136,24 @@ describe('<MainContent />', () => {
       global.innerWidth = breakpoints.large.minWidth;
       wrapper = mount((
         <Provider store={store}>
-          <MainContent programUUID="test-program-uuid" />
+          <LayoutContext.Provider value={{ pageContext }}>
+            <ProgramMainContent />
+          </LayoutContext.Provider>
         </Provider>
       ));
-      expect(wrapper.find('Sidebar').exists()).toBeFalsy();
+      expect(wrapper.find('ProgramSidebar').exists()).toBeFalsy();
     });
 
     it('is shown at screen widths less than large breakpoint', () => {
       global.innerWidth = breakpoints.small.minWidth;
       wrapper = mount((
         <Provider store={store}>
-          <MainContent programUUID="test-program-uuid" />
+          <LayoutContext.Provider value={{ pageContext }}>
+            <ProgramMainContent />
+          </LayoutContext.Provider>
         </Provider>
       ));
-      expect(wrapper.find('Sidebar').exists()).toBeTruthy();
+      expect(wrapper.find('ProgramSidebar').exists()).toBeTruthy();
     });
   });
 });

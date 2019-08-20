@@ -42,8 +42,8 @@ describe('createPagesWithData', () => {
       component: templates.enterprisePage,
       context: {
         pageType: 'pages.EnterprisePage',
+        pageBranding: {},
         enterpriseName: 'Example Enterprise',
-        enterpriseBranding: {},
       },
     };
     expect(actions.createPage.mock.calls.length).toEqual(1);
@@ -90,11 +90,11 @@ describe('createPagesWithData', () => {
       component: templates.programPage,
       context: {
         pageType: 'pages.ProgramPage',
+        pageBranding: {},
         programSlug: 'prog-slug',
         programUUID: '47fc98b8-9a90-406d-854b-a4e91df0bc8c',
         programName: 'The best program ever',
         programHostname: null,
-        programBranding: {},
         programDocuments: null,
         externalProgramWebsite: null,
       },
@@ -141,24 +141,24 @@ describe('createPagesWithData', () => {
     const expectedContext = {
       programs: [
         {
-          externalProgramWebsite: null,
           pageType: 'pages.ProgramPage',
-          programBranding: {},
+          pageBranding: {},
           programDocuments: null,
           programHostname: null,
           programUUID: '47fc98b8-9a90-406d-854b-a4e91df0bc8c',
           programName: 'Program 1',
           programSlug: 'prog-slug-1',
+          externalProgramWebsite: null,
         },
         {
-          externalProgramWebsite: null,
           pageType: 'pages.ProgramPage',
-          programBranding: {},
+          pageBranding: {},
           programDocuments: null,
           programHostname: null,
           programUUID: '47fc98b8-9a90-406d-854b-a4e91df0bc8d',
           programName: 'Program 2',
           programSlug: 'prog-slug-2',
+          externalProgramWebsite: null,
         },
       ],
     };
@@ -210,24 +210,24 @@ describe('createPagesWithData', () => {
     const expectedContext = {
       programs: [
         {
-          externalProgramWebsite: null,
           pageType: 'pages.ProgramPage',
-          programBranding: {},
+          pageBranding: {},
           programDocuments: null,
           programHostname: null,
           programUUID: '47fc98b8-9a90-406d-854b-a4e91df0bc8c',
           programName: 'Program 1',
           programSlug: 'prog-slug-1',
+          externalProgramWebsite: null,
         },
         {
-          externalProgramWebsite: null,
           pageType: 'pages.ProgramPage',
-          programBranding: {},
+          pageBranding: {},
           programDocuments: null,
           programHostname: null,
           programUUID: '47fc98b8-9a90-406d-854b-a4e91df0bc8d',
           programName: 'Program 2',
           programSlug: 'prog-slug-2',
+          externalProgramWebsite: null,
         },
       ],
     };
