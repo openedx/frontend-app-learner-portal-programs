@@ -3,9 +3,8 @@ import { sendTrackEvent } from '@edx/frontend-analytics';
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { LayoutContext } from '../../../common/layout';
+import { LayoutContext, SidebarBlock } from '../../../common/layout';
 import Links from './Links';
-import SidebarBlock from './SidebarBlock';
 
 const ProgramSidebar = () => {
   const {
