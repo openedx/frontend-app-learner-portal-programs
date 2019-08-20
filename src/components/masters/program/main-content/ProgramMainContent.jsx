@@ -87,7 +87,7 @@ class MainContent extends Component {
         <CourseSection
           title="My Courses In Progress"
           component={InProgressCourseCard}
-          enrollments={courses.in_progress}
+          enrollments={courses['in-progress']}
         />
         <MediaQuery minWidth={breakpoints.large.minWidth}>
           {matches => !matches && (
