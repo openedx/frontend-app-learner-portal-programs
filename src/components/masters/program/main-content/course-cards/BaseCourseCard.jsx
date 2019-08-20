@@ -87,10 +87,49 @@ class BaseCourseCard extends Component {
     this.setModalState({ key: 'emailSettings' });
   };
 
+  renderSettingsDropdown = (menuItems) => {
+    if (menuItems && menuItems.length > 0) {
+      return (
+        <div className="col text-right">
+          <Dropdown>
+            <Dropdown.Button className="btn-outline-secondary">
+              <FontAwesomeIcon icon={faCog} />
+            </Dropdown.Button>
+            <Dropdown.Menu>
+              {menuItems.map(menuItem => (
+                <Dropdown.Item
+                  key={menuItem.key}
+                  type={menuItem.type}
+                  onClick={menuItem.onClick}
+                >
+                  {menuItem.children}
+                </Dropdown.Item>
+            ))}
+            </Dropdown.Menu>
+          </Dropdown>
+        </div>
+      );
+    }
+    return null;
+  }
+
+  renderEmailSettingsModal = () => {
+    const { hasEmailsEnabled, courseRunId } = this.props;
+    const { modals } = this.state;
+    if (hasEmailsEnabled !== null) {
+      return (
+        <EmailSettingsModal
+          {...modals.emailSettings.options}
+          courseRunId={courseRunId}
+          onClose={this.handleEmailSettingsModalOnClose}
+          open={modals.emailSettings.open}
+        />
+      );
+    }
+    return null;
+  };
+
   render() {
-    const {
-      modals,
-    } = this.state;
     const {
       children,
       title,
@@ -99,8 +138,6 @@ class BaseCourseCard extends Component {
       buttons,
       linkToCourse,
       microMastersTitle,
-      courseRunId,
-      hasEmailsEnabled,
     } = this.props;
 
     const dropdownMenuItems = this.getDropdownMenuItems();
@@ -125,26 +162,7 @@ class BaseCourseCard extends Component {
                 <a href={linkToCourse}>{title}</a>
               </h4>
             </div>
-            {shouldDisplaySettingsDropdown && (
-              <div className="col text-right">
-                <Dropdown>
-                  <Dropdown.Button className="btn-outline-secondary">
-                    <FontAwesomeIcon icon={faCog} />
-                  </Dropdown.Button>
-                  <Dropdown.Menu>
-                    {dropdownMenuItems.map(menuItem => (
-                      <Dropdown.Item
-                        key={menuItem.key}
-                        type={menuItem.type}
-                        onClick={menuItem.onClick}
-                      >
-                        {menuItem.children}
-                      </Dropdown.Item>
-                  ))}
-                  </Dropdown.Menu>
-                </Dropdown>
-              </div>
-            )}
+            {this.renderSettingsDropdown(dropdownMenuItems)}
           </div>
           <div className="row">
             <div className="col">
@@ -172,14 +190,7 @@ class BaseCourseCard extends Component {
               </div>
             </div>
           )}
-          {hasEmailsEnabled !== null && (
-            <EmailSettingsModal
-              {...modals.emailSettings.options}
-              courseRunId={courseRunId}
-              onClose={this.handleEmailSettingsModalOnClose}
-              open={modals.emailSettings.open}
-            />
-          )}
+          {this.renderEmailSettingsModal()}
         </div>
       </div>
     );
