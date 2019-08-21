@@ -10,13 +10,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Hero } from '../../common/hero';
 import { withAuthentication } from '../../common/with-authentication';
 import { Layout, MainContent, Sidebar } from '../../common/layout';
+import { LoadingSpinner } from '../../common/loading-spinner';
 import { ProgramMainContent } from './main-content';
 import { ProgramSidebar } from './sidebar';
 
 import { fetchUserProgramEnrollments } from '../user-program-enrollments';
 
 import './styles/ProgramPage.scss';
-import { LoadingSpinner } from '../../common/loading-spinner';
 
 class ProgramPage extends Component {
   constructor(props) {

@@ -8,9 +8,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { withAuthentication } from '../../common/with-authentication';
 import { Layout } from '../../common/layout';
+import { LoadingSpinner } from '../../common/loading-spinner';
 
 import { fetchUserProgramEnrollments } from '../user-program-enrollments';
-import { LoadingSpinner } from '../../common/loading-spinner';
 
 export class ProgramListPage extends Component {
   constructor(props) {
