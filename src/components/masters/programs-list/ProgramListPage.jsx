@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { withAuthentication } from '../../common/with-authentication';
 import { Layout } from '../../common/layout';
+import { LoadingSpinner } from '../../common/loading-spinner';
 
 import { fetchUserProgramEnrollments } from '../user-program-enrollments';
 
@@ -91,13 +92,7 @@ export class ProgramListPage extends Component {
       <>
         {isLoading ? (
           <Layout>
-            <div className="container my-4">
-              <div className="d-flex justify-content-center align-items-center" style={{ height: 200 }}>
-                <div className="spinner-border text-primary" role="status">
-                  <div className="sr-only">Loading program enrollments...</div>
-                </div>
-              </div>
-            </div>
+            <LoadingSpinner screenReaderText="loading program enrollments" />
           </Layout>
         ) : (
           <>

@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { breakpoints, StatusAlert } from '@edx/paragon';
 
 import { LayoutContext } from '../../../common/layout';
+import { LoadingSpinner } from '../../../common/loading-spinner';
 import ProgramSidebar from '../sidebar/ProgramSidebar';
 import CourseSection from './CourseSection';
 import {
@@ -72,14 +73,6 @@ class MainContent extends Component {
     />
   );
 
-  renderLoading = () => (
-    <div className="d-flex justify-content-center align-items-center">
-      <div className="spinner-border text-primary" role="status">
-        <div className="sr-only">Loading program enrollments...</div>
-      </div>
-    </div>
-  );
-
   renderCourseSections = () => {
     const courses = this.groupCourseEnrollmentsByStatus();
     return (
@@ -115,7 +108,7 @@ class MainContent extends Component {
     if (error) {
       return this.renderError();
     } else if (isLoading) {
-      return this.renderLoading();
+      return <LoadingSpinner screenReaderText="loading course enrollments for program" />;
     }
     return this.renderCourseSections();
   }
