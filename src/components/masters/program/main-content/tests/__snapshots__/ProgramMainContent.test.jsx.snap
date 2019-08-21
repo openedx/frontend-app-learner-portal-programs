@@ -47,11 +47,11 @@ exports[`<ProgramMainContent /> renders correctly with loading state 1`] = `
     className="spinner-border text-primary"
     role="status"
   >
-    <div
+    <span
       className="sr-only"
     >
-      Loading program enrollments...
-    </div>
+      loading course enrollments for program
+    </span>
   </div>
 </div>
 `;

@@ -16,6 +16,7 @@ import { ProgramSidebar } from './sidebar';
 import { fetchUserProgramEnrollments } from '../user-program-enrollments';
 
 import './styles/ProgramPage.scss';
+import { LoadingSpinner } from '../../common/loading-spinner';
 
 class ProgramPage extends Component {
   constructor(props) {
@@ -80,11 +81,7 @@ class ProgramPage extends Component {
     return (
       <Layout pageContext={pageContext}>
         {isLoading ? (
-          <div className="d-flex justify-content-center align-items-center" style={{ height: 200 }}>
-            <div className="spinner-border text-primary" role="status">
-              <div className="sr-only">Loading program enrollments...</div>
-            </div>
-          </div>
+          <LoadingSpinner screenReaderText="loading program enrollments" />
         ) : (
           <>
             {hasProgramAccess ? (

@@ -16,26 +16,17 @@ Array [
     id="content"
   >
     <div
-      className="container my-4"
+      className="d-flex justify-content-center align-items-center"
     >
       <div
-        className="d-flex justify-content-center align-items-center"
-        style={
-          Object {
-            "height": 200,
-          }
-        }
+        className="spinner-border text-primary"
+        role="status"
       >
-        <div
-          className="spinner-border text-primary"
-          role="status"
+        <span
+          className="sr-only"
         >
-          <div
-            className="sr-only"
-          >
-            Loading program enrollments...
-          </div>
-        </div>
+          loading program enrollments
+        </span>
       </div>
     </div>
   </main>,

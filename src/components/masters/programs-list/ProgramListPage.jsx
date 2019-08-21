@@ -10,6 +10,7 @@ import { withAuthentication } from '../../common/with-authentication';
 import { Layout } from '../../common/layout';
 
 import { fetchUserProgramEnrollments } from '../user-program-enrollments';
+import { LoadingSpinner } from '../../common/loading-spinner';
 
 export class ProgramListPage extends Component {
   constructor(props) {
@@ -91,13 +92,7 @@ export class ProgramListPage extends Component {
       <>
         {isLoading ? (
           <Layout>
-            <div className="container my-4">
-              <div className="d-flex justify-content-center align-items-center" style={{ height: 200 }}>
-                <div className="spinner-border text-primary" role="status">
-                  <div className="sr-only">Loading program enrollments...</div>
-                </div>
-              </div>
-            </div>
+            <LoadingSpinner screenReaderText="loading program enrollments" />
           </Layout>
         ) : (
           <>
