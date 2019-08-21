@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { withAuthentication } from '../common/with-authentication';
-import { Layout, MainContent, Sidebar } from '../common/layout';
-import { Hero } from '../common/hero';
+import { withAuthentication } from '../../common/with-authentication';
+import { Layout, MainContent, Sidebar } from '../../common/layout';
+import { Hero } from '../../common/hero';
+import { DashboardMainContent } from './main-content';
+import { DashboardSidebar } from './sidebar';
 
-const EnterprisePage = (props) => {
+const DashboardPage = (props) => {
   const { pageContext } = props;
   const { enterpriseName } = pageContext;
   return (
@@ -14,10 +16,10 @@ const EnterprisePage = (props) => {
       <div className="container py-5">
         <div className="row">
           <MainContent>
-            <p>Main Content</p>
+            <DashboardMainContent />
           </MainContent>
           <Sidebar>
-            <p>Sidebar</p>
+            <DashboardSidebar />
           </Sidebar>
         </div>
       </div>
@@ -25,8 +27,8 @@ const EnterprisePage = (props) => {
   );
 };
 
-EnterprisePage.propTypes = {
+DashboardPage.propTypes = {
   pageContext: PropTypes.shape({}).isRequired,
 };
 
-export default withAuthentication(EnterprisePage);
+export default withAuthentication(DashboardPage);

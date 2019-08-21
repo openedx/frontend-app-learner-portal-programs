@@ -53,7 +53,7 @@ function createPagesWithData(result, actions) {
   if (isEnterprise) {
     createPage({
       path: '/',
-      component: templates.enterprisePage,
+      component: templates.enterpriseDashboardPage,
       context: firstPageData,
     });
   } else {
