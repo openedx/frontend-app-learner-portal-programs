@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { compose } from 'recompose';
-import { navigate } from 'gatsby';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { StatusAlert } from '@edx/paragon';
@@ -43,7 +42,7 @@ export class ProgramListPage extends Component {
 
       if (validEnrolledPrograms.length === 1) {
         const program = validEnrolledPrograms[0];
-        navigate(`${program.slug}`);
+        window.location.replace(`/${program.hostname}/${program.slug}`);
       } else {
         // eslint-disable-next-line react/no-did-update-set-state
         this.setState({
