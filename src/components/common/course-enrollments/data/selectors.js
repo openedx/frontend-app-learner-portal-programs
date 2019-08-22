@@ -5,7 +5,7 @@ export const getCourseRuns = state => state.courseEnrollments.courseRuns;
 export const getError = state => state.courseEnrollments.error;
 
 const transformCourseRun = (originalCourseRun) => {
-  const courseRun = Object.assign({}, originalCourseRun);
+  const courseRun = { ...originalCourseRun };
 
   // Return the fields expected by the component(s)
   courseRun.title = courseRun.displayName;
@@ -18,10 +18,6 @@ const transformCourseRun = (originalCourseRun) => {
   courseRun.linkToCertificate = courseRun.certificateDownloadUrl;
   courseRun.hasEmailsEnabled = courseRun.emailsEnabled;
   courseRun.notifications = courseRun.dueDates;
-
-  courseRun.courseRunStatus = 'in-progress';
-  courseRun.hasEmailsEnabled = true;
-  courseRun.linkToCertificate = 'https://edx.org';
 
   // Delete renamed/unused fields
   delete courseRun.displayName;
@@ -43,8 +39,8 @@ export const getCourseRunsByStatus = createSelector(
       upcoming: [],
       completed: [],
     };
-    const transformedCourseRuns = courseRuns.map(transformCourseRun);
     if (courseRuns && courseRuns.length > 0) {
+      const transformedCourseRuns = courseRuns.map(transformCourseRun);
       Object.keys(courseRunsByStatus).forEach((status) => {
         courseRunsByStatus[status] = transformedCourseRuns.filter(courseRun =>
           courseRun.courseRunStatus === status);

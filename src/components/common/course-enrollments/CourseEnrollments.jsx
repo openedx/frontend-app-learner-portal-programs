@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { StatusAlert } from '@edx/paragon';
+import MediaQuery from 'react-responsive';
+import { breakpoints, StatusAlert } from '@edx/paragon';
 
 import { LayoutContext } from '../layout';
 import { LoadingSpinner } from '../loading-spinner';
@@ -17,7 +18,7 @@ import {
 import * as selectors from './data/selectors';
 import * as actions from './data/actions';
 
-class CourseEnrollments extends Component {
+export class CourseEnrollments extends Component {
   static contextType = LayoutContext;
 
   componentDidMount() {
@@ -59,7 +60,13 @@ class CourseEnrollments extends Component {
   );
 
   render() {
-    const { courseRuns, isLoading, error } = this.props;
+    const {
+      courseRuns,
+      isLoading,
+      error,
+      sidebarComponent,
+    } = this.props;
+
     if (isLoading) {
       return <LoadingSpinner screenReaderText="loading course enrollments" />;
     } else if (error) {
@@ -72,6 +79,13 @@ class CourseEnrollments extends Component {
           component={InProgressCourseCard}
           courseRuns={courseRuns['in-progress']}
         />
+        <MediaQuery minWidth={breakpoints.large.minWidth}>
+          {matches => !matches && (
+            <aside className="mb-5">
+              {sidebarComponent}
+            </aside>
+          )}
+        </MediaQuery>
         <CourseSection
           title="Upcoming Courses"
           component={UpcomingCourseCard}
@@ -111,6 +125,7 @@ CourseEnrollments.propTypes = {
     completed: PropTypes.array.isRequired,
   }).isRequired,
   isLoading: PropTypes.bool.isRequired,
+  sidebarComponent: PropTypes.element.isRequired,
   error: PropTypes.instanceOf(Error),
 };
 

@@ -115,6 +115,11 @@ CourseSection.propTypes = {
     courseRunId: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     linkToCourse: PropTypes.string.isRequired,
+    notifications: PropTypes.arrayOf(PropTypes.shape({
+      url: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      date: PropTypes.string.isRequired,
+    })).isRequired,
     microMastersTitle: PropTypes.string,
     startDate: PropTypes.string,
     endDate: PropTypes.string,

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<ProgramMainContent /> renders correctly with error state 1`] = `
+exports[`<CourseEnrollments /> renders course enrollments correctly with error 1`] = `
 <div
   className="alert fade alert-danger show"
   hidden={false}
@@ -32,14 +32,14 @@ exports[`<ProgramMainContent /> renders correctly with error state 1`] = `
         </svg>
       </div>
       <div>
-        An error occurred while retrieving your program enrollments. Please try again.
+        An error occurred while retrieving your course enrollments. Please try again.
       </div>
     </div>
   </div>
 </div>
 `;
 
-exports[`<ProgramMainContent /> renders correctly with loading state 1`] = `
+exports[`<CourseEnrollments /> renders course enrollments correctly with loading 1`] = `
 <div
   className="d-flex justify-content-center align-items-center"
 >
@@ -50,7 +50,7 @@ exports[`<ProgramMainContent /> renders correctly with loading state 1`] = `
     <span
       className="sr-only"
     >
-      loading course enrollments for program
+      loading course enrollments
     </span>
   </div>
 </div>

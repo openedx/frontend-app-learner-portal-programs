@@ -23,11 +23,19 @@ describe('<EmailSettingsModal />', () => {
         store={store}
         title="Example Title"
         onClose={() => {}}
-        hasEmailsEnabled
         courseRunId="my+course+key"
         updateEmailSettings={mockUpdateEmailSettings}
       />
     ));
+
+    // The `EmailSettingsModal` component mounts in `BaseCourseCard` and is
+    // opened via the `open` prop. Similarly, the `hasEmailsEnabled` prop
+    // is initially `false` until the modal is opened, at which point it's
+    // set to whatever the correct value is for that particular course run.
+    // Setting the `hasEmailsEnabled` prop here simulates that behavior.
+    wrapper.setProps({
+      hasEmailsEnabled: true,
+    });
   });
 
   it('statefulbutton component state is initially set to default and disabled', () => {
@@ -37,8 +45,10 @@ describe('<EmailSettingsModal />', () => {
   });
 
   it('statefulbutton component state is set to complete after click event', async () => {
-    // Note: The below line is needed to properly resolve the updateEmailSettings promise
+    // Note: The following line is needed to properly resolve the
+    // `updateEmailSettings` promise.
     const flushPromises = () => new Promise(setImmediate);
+
     expect(wrapper.find(StatefulButton).prop('state')).toEqual('default');
     wrapper.find('input[type="checkbox"]').simulate('change', { target: { checked: false } });
     wrapper.find(StatefulButton).simulate('click');

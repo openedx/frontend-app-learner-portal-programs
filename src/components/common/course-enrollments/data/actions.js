@@ -1,4 +1,4 @@
-import camelcaseKeys from 'camelcase-keys';
+import { camelCaseObject } from '../../../../common/utils';
 
 import {
   FETCH_COURSE_ENROLLMENTS_REQUEST,
@@ -29,11 +29,11 @@ const fetchCourseEnrollmentsFailure = error => ({
 const clearCourseEnrollmentsFn = () => ({ type: CLEAR_COURSE_ENROLLMENTS });
 
 const transformCourseEnrollmentsResponse = ({ responseData, options }) => {
-  const data = Object.assign({}, responseData);
+  const data = [...camelCaseObject(responseData)];
   if (options.pageType === 'pages.ProgramPage') {
-    return camelcaseKeys(data.course_runs);
+    return data.courseRuns;
   }
-  return camelcaseKeys(data);
+  return data;
 };
 
 export const fetchCourseEnrollments = options => (
@@ -48,7 +48,7 @@ export const fetchCourseEnrollments = options => (
     return serviceMethod()
       .then((response) => {
         const transformedResponse = transformCourseEnrollmentsResponse({
-          responseData: response.data, 
+          responseData: response.data,
           options,
         });
         dispatch(fetchCourseEnrollmentsSuccess(transformedResponse));
