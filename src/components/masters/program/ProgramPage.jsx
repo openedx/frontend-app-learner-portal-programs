@@ -82,7 +82,11 @@ class ProgramPage extends Component {
     return (
       <Layout pageContext={pageContext}>
         {isLoading ? (
-          <LoadingSpinner screenReaderText="loading program enrollments" />
+          <div className="container py-5">
+            <div className="col">
+              <LoadingSpinner screenReaderText="loading program enrollments" />
+            </div>
+          </div>
         ) : (
           <>
             {hasProgramAccess ? (

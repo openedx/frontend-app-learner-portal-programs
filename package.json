@@ -11,13 +11,14 @@
     "@edx/frontend-component-site-header": "^2.5.0",
     "@edx/frontend-i18n": "^2.1.1",
     "@edx/frontend-logging": "^2.0.1",
-    "@edx/paragon": "^6.2.4",
+    "@edx/paragon": "^7.0.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.17",
     "@fortawesome/free-solid-svg-icons": "^5.8.1",
     "@fortawesome/react-fontawesome": "^0.1.4",
     "axios": "^0.19.0",
     "axios-mock-adapter": "^1.15.0",
     "babel-jest": "^24.5.0",
+    "camelcase-keys": "^6.0.1",
     "classnames": "^2.2.5",
     "connected-react-router": "^5.0.1",
     "dotenv": "^7.0.0",
@@ -45,7 +46,8 @@
     "redux": "^4.0.0",
     "redux-devtools-extension": "^2.13.2",
     "redux-logger": "^3.0.6",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "reselect": "^4.0.0"
   },
   "devDependencies": {
     "autoprefixer": "^9.4.5",

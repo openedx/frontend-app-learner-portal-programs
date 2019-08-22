@@ -1,7 +1,8 @@
 import React from 'react';
+import { CourseEnrollments } from '../../../common/course-enrollments';
 
 const DashboardMainContent = () => (
-  <p>Main Content</p>
+  <CourseEnrollments />
 );
 
 export default DashboardMainContent;
