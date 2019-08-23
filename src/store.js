@@ -6,7 +6,7 @@ import { routerMiddleware } from 'react-router-redux';
 
 import apiClient from './apiClient';
 import history from './history';
-import reducers from './reducers';
+import rootReducer from './rootReducer';
 
 const loggerMiddleware = createLogger();
 const routerHistoryMiddleware = routerMiddleware(history);
@@ -16,7 +16,7 @@ const middleware = [thunkMiddleware, loggerMiddleware, routerHistoryMiddleware];
 const initialState = apiClient.getAuthenticationState();
 
 const store = createStore(
-  reducers,
+  rootReducer,
   initialState,
   composeWithDevTools(applyMiddleware(...middleware)),
 );

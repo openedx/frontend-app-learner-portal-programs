@@ -6,16 +6,29 @@ import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { updateEmailSettings } from './data';
+
 import './styles/EmailSettingsModal.scss';
 
 class EmailSettingsModal extends Component {
   state = {
-    hasEmailsEnabled: this.props.hasEmailsEnabled,
+    hasEmailsEnabled: false,
     isSubmitting: false,
     isSuccessful: false,
     isFormChanged: false,
+    hasSavedForm: false,
     error: null,
   };
+
+  componentDidUpdate(prevProps) {
+    const { hasEmailsEnabled } = this.props;
+
+    if (hasEmailsEnabled !== prevProps.hasEmailsEnabled) {
+      // eslint-disable-next-line react/no-did-update-set-state
+      this.setState({
+        hasEmailsEnabled,
+      });
+    }
+  }
 
   getButtonState = () => {
     const { isSubmitting, isSuccessful } = this.state;
@@ -46,10 +59,14 @@ class EmailSettingsModal extends Component {
         this.setState({
           isSuccessful: true,
           isSubmitting: false,
+          isFormChanged: false,
+          hasSavedForm: true,
+          error: null,
         });
       } catch (error) {
         this.setState({
           isSubmitting: false,
+          isFormChanged: false,
           error,
         });
       }
@@ -57,20 +74,28 @@ class EmailSettingsModal extends Component {
   };
 
   handleOnClose = () => {
-    const { hasEmailsEnabled } = this.state;
+    const { hasEmailsEnabled, hasSavedForm } = this.state;
+    const { onClose } = this.props;
     this.setState({
       isSubmitting: false,
-      isSuccessful: null,
+      isSuccessful: false,
       isFormChanged: false,
+      hasSavedForm: false,
       error: null,
     });
-    this.props.onClose(hasEmailsEnabled);
+    if (hasSavedForm) {
+      onClose(hasEmailsEnabled);
+    } else {
+      onClose();
+    }
   };
 
   handleEmailSettingsChange = (e) => {
     const { hasEmailsEnabled } = this.state;
     const isChecked = e.target.checked;
     this.setState({
+      isSuccessful: false,
+      hasSavedForm: false,
       isFormChanged: isChecked !== hasEmailsEnabled,
       hasEmailsEnabled: isChecked,
     });
