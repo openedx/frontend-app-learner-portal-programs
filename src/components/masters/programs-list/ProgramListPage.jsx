@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { compose } from 'recompose';
 import { connect } from 'react-redux';
 import { StatusAlert } from '@edx/paragon';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
@@ -186,9 +187,12 @@ const mapDispatchToProps = dispatch => ({
   fetchUserProgramEnrollments: () => dispatch(fetchUserProgramEnrollments()),
 });
 
-const ConnectedProgramListPage = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(withAuthentication(ProgramListPage));
+const ConnectedProgramListPage = compose(
+  withAuthentication,
+  connect(
+    mapStateToProps,
+    mapDispatchToProps,
+  ),
+)(ProgramListPage);
 
 export default ConnectedProgramListPage;
