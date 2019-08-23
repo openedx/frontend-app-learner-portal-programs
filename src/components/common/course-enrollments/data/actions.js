@@ -51,7 +51,6 @@ export const fetchCourseEnrollments = options => (
           responseData: response.data,
           options,
         });
-        console.log(transformedResponse);
         dispatch(fetchCourseEnrollmentsSuccess(transformedResponse));
       })
       .catch((error) => {
