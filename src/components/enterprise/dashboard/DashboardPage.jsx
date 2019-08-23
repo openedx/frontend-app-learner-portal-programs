@@ -11,7 +11,7 @@ const DashboardPage = (props) => {
   const { pageContext } = props;
   const { enterpriseName } = pageContext;
   return (
-    <Layout pageContext={props.pageContext}>
+    <Layout pageContext={pageContext}>
       <Hero title={enterpriseName} />
       <div className="container py-5">
         <div className="row">

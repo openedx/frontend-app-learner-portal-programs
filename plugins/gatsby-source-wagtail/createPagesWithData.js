@@ -27,6 +27,7 @@ const transformEnterprisePageContext = context => (
   // Transforms GraphQL data into the props expected by the EnterprisePage component
   {
     enterpriseName: context.title,
+    enterpriseEmail: context.contact_email,
   }
 );
 
