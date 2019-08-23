@@ -135,7 +135,7 @@ export class ProgramListPage extends Component {
                             <tbody>
                               {validPrograms.map(program => (
                                 <tr key={program.uuid}>
-                                  <td><a href={`${program.slug}`}>{program.name}</a></td>
+                                  <td><a href={`/${program.hostname}/${program.slug}`}>{program.name}</a></td>
                                 </tr>
                               ))}
                             </tbody>
