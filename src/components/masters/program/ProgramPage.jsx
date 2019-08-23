@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { compose } from 'recompose';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import MediaQuery from 'react-responsive';
@@ -172,6 +173,12 @@ const mapDispatchToProps = dispatch => ({
   fetchUserProgramEnrollments: () => dispatch(fetchUserProgramEnrollments()),
 });
 
-const authenticatedProgramPage = withAuthentication(ProgramPage);
+const ConnectedProgramPage = compose(
+  withAuthentication,
+  connect(
+    mapStateToProps,
+    mapDispatchToProps,
+  ),
+)(ProgramPage);
 
-export default connect(mapStateToProps, mapDispatchToProps)(authenticatedProgramPage);
+export default ConnectedProgramPage;
