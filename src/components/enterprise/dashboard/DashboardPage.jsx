@@ -1,5 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Helmet } from 'react-helmet';
+import MediaQuery from 'react-responsive';
+import { breakpoints } from '@edx/paragon';
 
 import { withAuthentication } from '../../common/with-authentication';
 import { Layout, MainContent, Sidebar } from '../../common/layout';
@@ -12,15 +15,20 @@ const DashboardPage = (props) => {
   const { enterpriseName } = pageContext;
   return (
     <Layout pageContext={pageContext}>
+      <Helmet title={enterpriseName} />
       <Hero title={enterpriseName} />
       <div className="container py-5">
         <div className="row">
           <MainContent>
             <DashboardMainContent />
           </MainContent>
-          <Sidebar>
-            <DashboardSidebar />
-          </Sidebar>
+          <MediaQuery minWidth={breakpoints.large.minWidth}>
+            {matches => matches && (
+              <Sidebar>
+                <DashboardSidebar />
+              </Sidebar>
+            )}
+          </MediaQuery>
         </div>
       </div>
     </Layout>
@@ -28,7 +36,9 @@ const DashboardPage = (props) => {
 };
 
 DashboardPage.propTypes = {
-  pageContext: PropTypes.shape({}).isRequired,
+  pageContext: PropTypes.shape({
+    enterpriseName: PropTypes.string,
+  }).isRequired,
 };
 
 export default withAuthentication(DashboardPage);

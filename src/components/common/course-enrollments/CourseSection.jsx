@@ -25,39 +25,28 @@ class CourseSection extends React.Component {
     return <h2>{sectionTitle}</h2>;
   };
 
-  getCourseRunProps = (courseRun) => {
-    const {
-      courseRunId,
-      courseRunStatus,
-      title,
-      microMastersTitle,
-      hasEmailsEnabled,
-      linkToCourse,
-    } = courseRun;
-    const defaultCourseRunProps = {
-      courseRunId,
-      title,
-      microMastersTitle,
-      linkToCourse,
-      hasEmailsEnabled,
-    };
+  getCourseRunProps = ({
+    linkToCertificate,
+    notifications,
+    courseRunStatus,
+    ...rest
+  }) => {
     const courseRunProps = {};
     switch (courseRunStatus) {
       case 'in-progress':
-        courseRunProps.endDate = courseRun.endDate;
-        courseRunProps.linkToCertificate = courseRun.linkToCertificate;
-        courseRunProps.notifications = courseRun.notifications;
-        break;
-      case 'upcoming':
-        courseRunProps.startDate = courseRun.startDate;
+        courseRunProps.linkToCertificate = linkToCertificate;
+        courseRunProps.notifications = notifications;
         break;
       case 'completed':
-        courseRunProps.linkToCertificate = courseRun.linkToCertificate;
+        courseRunProps.linkToCertificate = linkToCertificate;
         break;
       default:
         break;
     }
-    return { ...defaultCourseRunProps, ...courseRunProps };
+    return {
+      ...courseRunProps,
+      ...rest,
+    };
   };
 
   handleCollapsibleToggle = (isOpen) => {
@@ -87,7 +76,7 @@ class CourseSection extends React.Component {
       return null;
     }
     return (
-      <div className="course-section mb-5">
+      <div className="course-section mb-4">
         <Collapsible
           styling="card-lg"
           className="border-0 shadow-none"

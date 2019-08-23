@@ -75,7 +75,7 @@ export class CourseEnrollments extends Component {
     return (
       <>
         <CourseSection
-          title="My Courses In Progress"
+          title="My courses in progress"
           component={InProgressCourseCard}
           courseRuns={courseRuns['in-progress']}
         />
@@ -87,12 +87,12 @@ export class CourseEnrollments extends Component {
           )}
         </MediaQuery>
         <CourseSection
-          title="Upcoming Courses"
+          title="Upcoming courses"
           component={UpcomingCourseCard}
           courseRuns={courseRuns.upcoming}
         />
         <CourseSection
-          title="Completed Courses"
+          title="Completed courses"
           component={CompletedCourseCard}
           courseRuns={courseRuns.completed}
         />

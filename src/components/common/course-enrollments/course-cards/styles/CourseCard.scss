@@ -1,7 +1,16 @@
 @import "~@edx/paragon/scss/edx/theme.scss";
 
-.card {
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.3);
+.course {
+  @extend .position-relative;
+
+  &:first-child {
+    @extend .pt-3;
+  }
+
+  &:last-child {
+    @extend .border-0;
+    @extend .mb-0;
+  }
 
   &.is-micromasters {
     min-height: 170px;
@@ -10,7 +19,7 @@
       content: '';
       position: absolute;
       top: 0;
-      right: 16px;
+      right: 0;
       bottom: 0;
       left: 0;
       background-image: url('../images/mm-badge.svg');
@@ -27,39 +36,41 @@
     }
   }
 
-  &:last-child {
-    @extend .mb-0;
-  }
-
-  .card-body {
-    z-index: 1;
-  }
-
-  .card-title > a {
+  .course-title > a {
     @extend .text-dark;
     text-decoration: none;
   }
 
-  .btn-course-link {
-    background-color: $white;
-    
-    &:hover {
-      background: #f1f3f8;
+  .notifications {
+    li:last-child {
+      .notification { 
+        @extend .mb-0;
+      }
     }
-  }
 
-  .notification {
-    background: #f4f7ff;
-    border-color: #d3daf0;
+    .notification {
+      background: #f4f7ff;
+      border-color: #d3daf0;
+    }
   }
 
   .dropdown-menu {
     right: 0;
   }
 
+  .btn-outline-primary {
+    background-color: $white;
+  }
+
   @include media-breakpoint-down(sm) {
     .btn-xs-block {
       width: 100%;
+    }
+  }
+
+  .course-misc-text {
+    small { 
+      display: block;
     }
   }
 }

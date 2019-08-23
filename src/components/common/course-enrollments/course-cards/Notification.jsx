@@ -5,7 +5,7 @@ import { sendTrackEvent } from '@edx/frontend-analytics';
 
 const Notification = props => (
   <li>
-    <div className="notification p-2 mb-2 border">
+    <div className="notification p-2 mb-2 border rounded">
       <div className="row no-gutters">
         <div className="col-12">
           <a
