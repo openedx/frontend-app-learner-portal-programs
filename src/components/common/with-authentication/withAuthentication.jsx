@@ -25,7 +25,7 @@ const withAuthentication = (WrappedComponent) => {
         pathname: PropTypes.string.isRequired,
       }).isRequired,
       fetchUserAccount: PropTypes.func.isRequired,
-      loginUrl: PropTypes.string.isRequired,
+      providerSlug: PropTypes.string.isRequired,
       username: PropTypes.string,
     };
 
@@ -39,23 +39,36 @@ const withAuthentication = (WrappedComponent) => {
 
     componentDidMount() {
       const {
-        username, location, fetchUserAccount, loginUrl,
+        username, location, fetchUserAccount, providerSlug,
       } = this.props;
 
-      apiClient.loginUrl = loginUrl;
-      apiClient.ensurePublicOrAuthenticationAndCookies(location.pathname, async (accessToken) => {
-        this.configure();
+      if (!providerSlug) {
+        apiClient.loginUrl = `${process.env.LMS_BASE_URL}/login`;
+        apiClient.ensurePublicOrAuthenticationAndCookies(location.pathname, async () => {
+          this.configure();
 
-        await fetchUserAccount(userAccountApiService, username);
+          await fetchUserAccount(userAccountApiService, username);
 
-        if (accessToken) {
-          identifyAuthenticatedUser(accessToken.user_id);
-        } else {
-          identifyAnonymousUser();
-        }
-        sendPageEvent();
-        this.setState({ isLoading: false });
-      });
+          identifyAuthenticatedUser();
+          sendPageEvent();
+          this.setState({ isLoading: false });
+        });
+      } else {
+        apiClient.loginUrl = `${process.env.LMS_BASE_URL}/auth/idp_redirect/${providerSlug}`;
+        apiClient.ensurePublicOrAuthenticationAndCookies(location.pathname, async (accessToken) => {
+          this.configure();
+
+          await fetchUserAccount(userAccountApiService, username);
+
+          if (accessToken) {
+            identifyAuthenticatedUser(accessToken.user_id);
+          } else {
+            identifyAnonymousUser();
+          }
+          sendPageEvent();
+          this.setState({ isLoading: false });
+        });
+      }
     }
 
     configure() {
@@ -88,7 +101,11 @@ const withAuthentication = (WrappedComponent) => {
 
 withAuthentication.propTypes = {
   location: PropTypes.string.isRequired,
-  loginUrl: PropTypes.string.isRequired,
+  providerSlug: PropTypes.string.isRequired,
 };
 
-export default withAuthentication;
+const withSaml = WrappedComponent => (
+  props => <WrappedComponent providerSlug={process.env.IDP_SLUG} {...props} />
+);
+
+export default WrappedComponent => withSaml(withAuthentication(WrappedComponent));

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { withDirectLogin } from '../../common/with-authentication';
+import { withAuthentication } from '../../common/with-authentication';
 import { Layout, MainContent, Sidebar } from '../../common/layout';
 import { Hero } from '../../common/hero';
 import { DashboardMainContent } from './main-content';
@@ -31,4 +31,4 @@ DashboardPage.propTypes = {
   pageContext: PropTypes.shape({}).isRequired,
 };
 
-export default withDirectLogin(DashboardPage);
+export default withAuthentication(DashboardPage);

@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import { compose } from 'recompose';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { StatusAlert } from '@edx/paragon';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { withSamlSso } from '../../common/with-authentication';
+import { withAuthentication } from '../../common/with-authentication';
 import { Layout } from '../../common/layout';
 import { LoadingSpinner } from '../../common/loading-spinner';
 
@@ -187,12 +186,9 @@ const mapDispatchToProps = dispatch => ({
   fetchUserProgramEnrollments: () => dispatch(fetchUserProgramEnrollments()),
 });
 
-const ConnectedProgramListPage = compose(
-  withSamlSso,
-  connect(
-    mapStateToProps,
-    mapDispatchToProps,
-  ),
-)(ProgramListPage);
+const ConnectedProgramListPage = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(withAuthentication(ProgramListPage));
 
 export default ConnectedProgramListPage;
