@@ -24,11 +24,12 @@ apiClient.ensurePublicOrAuthenticationAndCookies = (_, callback) => {
 
 describe('<withAuthentication />', () => {
   it('does not render anything on initial paint', () => {
+    process.env.IDP_SLUG = 'saml-default';
     const MyComponent = () => <div />;
     const AuthenticatedComponent = withAuthentication(MyComponent);
     const wrapper = mount((
       <Provider store={store}>
-        <AuthenticatedComponent location={{ pathname: '/' }} loginUrl="http://www.edx.org" />
+        <AuthenticatedComponent location={{ pathname: '/' }} />
       </Provider>
     ));
     expect(wrapper.html()).toBeNull();
