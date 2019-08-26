@@ -21,7 +21,7 @@ const transformCourseRun = (originalCourseRun) => {
 
   // Delete renamed/unused fields
   delete courseRun.displayName;
-  delete courseRun.microMastersTitle;
+  delete courseRun.micromastersTitle;
   delete courseRun.resumeCourseRunUrl;
   delete courseRun.courseRunUrl;
   delete courseRun.certificateDownloadUrl;

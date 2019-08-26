@@ -29,11 +29,11 @@ const InProgressCourseCard = (props) => {
   return (
     <BaseCourseCard buttons={renderButtons()} {...props}>
       {filteredNotifications.length > 0 && (
-        <div className="notifications mt-3">
+        <div className="notifications">
           <ul className="list-unstyled mb-0" aria-label="course due dates" role="alert">
             {filteredNotifications.map(notificationProps => (
               <Notification
-                key={notificationProps}
+                key={`notification-${notificationProps.url}-${notificationProps.date}`}
                 courseRunId={props.courseRunId}
                 {...notificationProps}
               />

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import { connect } from 'react-redux';
 
 import { LayoutContext, SidebarBlock } from '../../../common/layout';
@@ -39,7 +40,7 @@ class DashboardSidebar extends React.Component {
         </a>
       );
     }
-    return `Contact your ${enterpriseName} learning coordinator`;
+    return `contact your ${enterpriseName} learning coordinator`;
   }
 
   render() {
@@ -48,13 +49,13 @@ class DashboardSidebar extends React.Component {
       offers,
       isLoading,
     } = this.props;
-
+    const hasOffers = offers && offers.length > 0;
     return (
       <>
         {isLoading && (
           <LoadingSpinner screenReaderText={`loading learning benefits for ${enterpriseName}`} />
         )}
-        {offers.length > 0 && (
+        {hasOffers && (
           <SidebarBlock title={`Learning Benefits from ${enterpriseName}`} className="mb-5">
             {this.renderOffers(offers)}
             <p>
@@ -65,7 +66,7 @@ class DashboardSidebar extends React.Component {
           </SidebarBlock>
         )}
         <SidebarBlock className="mb-5">
-          <div className="mt-5">
+          <div className={classNames({ 'mt-5': hasOffers })}>
             <h5>Need help?</h5>
             <p>
               For technical support, visit the

@@ -73,6 +73,9 @@ describe('<CourseEnrollments />', () => {
         programUUID: 'test-program-uuid',
       };
       const store = mockStore({
+        userAccount: {
+          username: 'edx',
+        },
         emailSettings: {
           loading: false,
           error: null,
@@ -92,8 +95,8 @@ describe('<CourseEnrollments />', () => {
 
       expect(wrapper.html()).not.toBeNull();
       expect(wrapper.find('.course-section').length).toEqual(2);
-      expect(wrapper.find('.course-section').first().find('.card').length).toEqual(1);
-      expect(wrapper.find('.course-section').last().find('.card').length).toEqual(1);
+      expect(wrapper.find('.course-section').first().find('.course').length).toEqual(1);
+      expect(wrapper.find('.course-section').last().find('.course').length).toEqual(1);
     });
 
     it('with error', () => {

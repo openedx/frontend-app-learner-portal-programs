@@ -92,7 +92,9 @@ export class ProgramListPage extends Component {
       <>
         {isLoading ? (
           <Layout>
-            <LoadingSpinner screenReaderText="loading program enrollments" />
+            <div className="container my-4">
+              <LoadingSpinner screenReaderText="loading program enrollments" />
+            </div>
           </Layout>
         ) : (
           <>

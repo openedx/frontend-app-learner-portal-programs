@@ -16,17 +16,21 @@ Array [
     id="content"
   >
     <div
-      className="d-flex justify-content-center align-items-center"
+      className="container my-4"
     >
       <div
-        className="spinner-border text-primary"
-        role="status"
+        className="d-flex justify-content-center align-items-center"
       >
-        <span
-          className="sr-only"
+        <div
+          className="spinner-border text-primary"
+          role="status"
         >
-          loading program enrollments
-        </span>
+          <span
+            className="sr-only"
+          >
+            loading program enrollments
+          </span>
+        </div>
       </div>
     </div>
   </main>,

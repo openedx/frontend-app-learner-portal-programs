@@ -1,17 +1,21 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { connect } from 'react-redux';
 import moment from 'moment';
 import { sendTrackEvent } from '@edx/frontend-analytics';
 import { faCog } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Dropdown } from '@edx/paragon';
 
+import { LayoutContext } from '../../layout';
 import { EmailSettingsModal } from './email-settings';
 
 import './styles/CourseCard.scss';
 
 class BaseCourseCard extends Component {
+  static contextType = LayoutContext;
+
   state = {
     modals: {
       emailSettings: {
@@ -32,13 +36,51 @@ class BaseCourseCard extends Component {
         onClick: this.handleEmailSettingsButtonClick,
         children: (
           <>
-            Email Settings
+            Email settings
             <span className="sr-only">for {title}</span>
           </>
         ),
       });
     }
     return dropdownMenuItems;
+  };
+
+  getStartDateMessage = () => {
+    const { pacing, startDate, endDate } = this.props;
+    let message = '';
+    if (pacing === 'self') {
+      const formattedEndDate = moment(endDate).format('MMMM D, YYYY');
+      message += `Complete at your own speed before ${formattedEndDate}.`;
+    } else {
+      const formattedStartDate = moment(startDate).format('MMMM D, YYYY');
+      const formattedStartString = this.isCourseEnded() ? 'Ended' : 'Ends';
+      message += `${formattedStartString} ${formattedStartDate}.`;
+    }
+    return message;
+  };
+
+  getEndDateMessage = () => {
+    const { endDate } = this.props;
+    const formattedEndDate = moment(endDate).format('MMMM D, YYYY');
+    const formattedEndString = this.isCourseEnded() ? 'Ended' : 'Ends';
+    return `${formattedEndString} ${formattedEndDate}.`;
+  };
+
+  getCourseMiscText = () => {
+    const { pacing } = this.props;
+    const isCourseEnded = this.isCourseEnded();
+    let message = '';
+    if (pacing) {
+      message += 'This course ';
+      message += isCourseEnded ? 'was ' : 'is ';
+      message += `${pacing}-paced. `;
+    }
+    if (isCourseEnded) {
+      message += this.getEndDateMessage();
+    } else {
+      message += this.getStartDateMessage();
+    }
+    return message;
   };
 
   setModalState = ({ key, open = false, options = {} }) => {
@@ -52,6 +94,11 @@ class BaseCourseCard extends Component {
       },
     }));
   };
+
+  isCourseEnded = () => {
+    const { endDate } = this.props;
+    return moment(endDate) < moment();
+  }
 
   handleEmailSettingsButtonClick = () => {
     const {
@@ -129,69 +176,122 @@ class BaseCourseCard extends Component {
     return null;
   };
 
+  renderSponsoredByEnterpriseMessage = () => {
+    const { pageContext: { pageType, enterpriseName } } = this.context;
+    if (pageType === 'pages.EnterprisePage') {
+      return <small>Sponsored by {enterpriseName}.</small>;
+    }
+    return null;
+  };
+
+  renderMicroMastersTitle = () => {
+    const { microMastersTitle } = this.props;
+    if (microMastersTitle) {
+      return (
+        <p className="font-weight-bold w-75 mb-2">
+          {microMastersTitle}
+        </p>
+      );
+    }
+    return null;
+  };
+
+  renderOrganizationName = () => {
+    const { orgName } = this.props;
+    if (orgName) {
+      return <p className="mb-0">{orgName}</p>;
+    }
+    return null;
+  };
+
+  renderChidren = () => {
+    const { children } = this.props;
+    if (children) {
+      return (
+        <div className="row">
+          <div className="col mb-3">
+            {children}
+          </div>
+        </div>
+      );
+    }
+    return null;
+  }
+
+  renderButtons = () => {
+    const { buttons } = this.props;
+    if (buttons) {
+      return (
+        <div className="row">
+          <div className="col mb-3">
+            {buttons}
+          </div>
+        </div>
+      );
+    }
+    return null;
+  };
+
+  renderViewCertificateText = () => {
+    const { linkToCertificate, username } = this.props;
+    if (linkToCertificate) {
+      return (
+        <small className="mb-0">
+          View your certificate on
+          {' '}
+          <a href={`${process.env.LMS_BASE_URL}/u/${username}`}>your profile →</a>
+        </small>
+      );
+    }
+    return null;
+  };
+
   render() {
     const {
-      children,
       title,
-      startDate,
-      endDate,
-      buttons,
-      linkToCourse,
       microMastersTitle,
+      linkToCourse,
+      hasViewCertificateLink,
     } = this.props;
-
     const dropdownMenuItems = this.getDropdownMenuItems();
     const shouldDisplaySettingsDropdown = dropdownMenuItems.length > 0;
-
     return (
-      <div className={classNames('card mb-4', { 'is-micromasters': !!microMastersTitle })}>
-        <div className="card-body">
-          <div className="row no-gutters">
-            <div
-              className={classNames({
+      <div
+        className={classNames(
+          'course py-4 border-bottom',
+          { 'is-micromasters': !!microMastersTitle },
+        )}
+      >
+        <div className="row no-gutters">
+          <div
+            className={classNames(
+              'mb-3',
+              {
                 'col-6 col-lg-8': shouldDisplaySettingsDropdown,
                 col: !shouldDisplaySettingsDropdown,
-              })}
-            >
-              {microMastersTitle && (
-                <p className="font-weight-bold w-75 mb-2">
-                  {microMastersTitle}
-                </p>
-              )}
-              <h4 className="card-title mb-1 font-weight-normal">
-                <a href={linkToCourse}>{title}</a>
-              </h4>
-            </div>
-            {this.renderSettingsDropdown(dropdownMenuItems)}
+              },
+            )}
+          >
+            {this.renderMicroMastersTitle()}
+            <h4 className="course-title mb-1">
+              <a href={linkToCourse}>{title}</a>
+            </h4>
+            {this.renderOrganizationName()}
           </div>
-          <div className="row">
-            <div className="col">
-              {startDate && (
-                <p className="card-text">
-                  Course starts on {moment(startDate).format('MMMM D, YYYY')}
-                </p>
-              )}
-              {endDate && (
-                <p className="card-text">
-                  Course {moment(endDate) > moment() ? 'ends' : 'ended'} on {moment(endDate).format('MMMM D, YYYY')}
-                </p>
-              )}
-              {buttons && (
-                <div className="card-buttons mt-3">
-                  {buttons}
-                </div>
-              )}
-            </div>
-          </div>
-          {children && (
-            <div className="row">
-              <div className="col">
-                {children}
-              </div>
-            </div>
-          )}
-          {this.renderEmailSettingsModal()}
+          {this.renderSettingsDropdown(dropdownMenuItems)}
         </div>
+        {this.renderButtons()}
+        {this.renderChidren()}
+        <div className="course-misc-text row">
+          <div className="col text-gray">
+            <small className="mb-0">
+              {this.getCourseMiscText()}
+            </small>
+            {this.renderSponsoredByEnterpriseMessage()}
+            {hasViewCertificateLink && this.renderViewCertificateText()}
+          </div>
+        </div>
+        {this.renderEmailSettingsModal()}
       </div>
     );
   }
@@ -201,21 +301,34 @@ BaseCourseCard.propTypes = {
   title: PropTypes.string.isRequired,
   linkToCourse: PropTypes.string.isRequired,
   courseRunId: PropTypes.string.isRequired,
+  username: PropTypes.string.isRequired,
+  hasViewCertificateLink: PropTypes.bool,
   buttons: PropTypes.element,
   children: PropTypes.node,
   startDate: PropTypes.string,
   endDate: PropTypes.string,
   hasEmailsEnabled: PropTypes.bool,
   microMastersTitle: PropTypes.string,
+  orgName: PropTypes.string,
+  pacing: PropTypes.oneOf(['instructor', 'self']),
+  linkToCertificate: PropTypes.string,
 };
 
 BaseCourseCard.defaultProps = {
-  buttons: null,
   children: null,
   startDate: null,
   endDate: null,
   hasEmailsEnabled: null,
   microMastersTitle: null,
+  orgName: null,
+  pacing: null,
+  buttons: null,
+  linkToCertificate: null,
+  hasViewCertificateLink: true,
 };
 
-export default BaseCourseCard;
+const mapStateToProps = state => ({
+  username: state.userAccount.username,
+});
+
+export default connect(mapStateToProps)(BaseCourseCard);
