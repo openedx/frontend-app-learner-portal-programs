@@ -35,15 +35,25 @@ export const getCourseRunsByStatus = createSelector(
   [getCourseRuns],
   (courseRuns) => {
     const courseRunsByStatus = {
-      'in-progress': [],
+      inProgress: [],
       upcoming: [],
       completed: [],
     };
     if (courseRuns && courseRuns.length > 0) {
       const transformedCourseRuns = courseRuns.map(transformCourseRun);
       Object.keys(courseRunsByStatus).forEach((status) => {
-        courseRunsByStatus[status] = transformedCourseRuns.filter(courseRun =>
-          courseRun.courseRunStatus === status);
+        courseRunsByStatus[status] = transformedCourseRuns.filter((courseRun) => {
+          if (status === 'inProgress') {
+            // Note: The Program course enrollments API currently returns
+            // `course_run_status` as `in_progress` (with the underscore) whereas
+            // the Enterprise course enrollments API currently returns
+            // `course_run_status` as `in-progress`. The following ensures we
+            // handle both versions properly.
+            const validInProgressFieldNames = ['in_progress', 'in-progress'];
+            return validInProgressFieldNames.includes(courseRun.courseRunStatus);
+          }
+          return courseRun.courseRunStatus === status;
+        });
       });
     }
     return courseRunsByStatus;

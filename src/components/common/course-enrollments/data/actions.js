@@ -29,11 +29,11 @@ const fetchCourseEnrollmentsFailure = error => ({
 const clearCourseEnrollmentsFn = () => ({ type: CLEAR_COURSE_ENROLLMENTS });
 
 const transformCourseEnrollmentsResponse = ({ responseData, options }) => {
-  const data = [...camelCaseObject(responseData)];
+  const camelCaseResponseData = camelCaseObject(responseData);
   if (options.pageType === 'pages.ProgramPage') {
-    return data.courseRuns;
+    return camelCaseResponseData.courseRuns;
   }
-  return data;
+  return [...camelCaseResponseData];
 };
 
 export const fetchCourseEnrollments = options => (
