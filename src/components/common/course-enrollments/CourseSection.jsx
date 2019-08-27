@@ -33,7 +33,7 @@ class CourseSection extends React.Component {
   }) => {
     const courseRunProps = {};
     switch (courseRunStatus) {
-      case 'in-progress':
+      case 'in_progress':
         courseRunProps.linkToCertificate = linkToCertificate;
         courseRunProps.notifications = notifications;
         break;

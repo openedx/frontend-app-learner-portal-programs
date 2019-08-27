@@ -35,7 +35,7 @@ export const getCourseRunsByStatus = createSelector(
   [getCourseRuns],
   (courseRuns) => {
     const courseRunsByStatus = {
-      'in-progress': [],
+      in_progress: [],
       upcoming: [],
       completed: [],
     };

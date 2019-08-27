@@ -2,7 +2,7 @@
   {
     "certificate_download_url": null,
     "course_run_id": "course-v1:edX+DemoX+Demo_Course",
-    "course_run_status": "in-progress",
+    "course_run_status": "in_progress",
     "start_date": "2013-02-05T05:00:00Z",
     "end_date": "2019-09-14T00:00:00Z",
     "display_name": "edX Demonstration Course",
@@ -24,7 +24,7 @@
   {
     "certificate_download_url": "https://edx.org",
     "course_run_id": "course-v1:edX+DemoX+Demo_Course_2",
-    "course_run_status": "in-progress",
+    "course_run_status": "in_progress",
     "start_date": "2013-02-05T05:00:00Z",
     "end_date": "2019-10-23T00:00:00Z",
     "display_name": "edX Demonstration Course 2",
