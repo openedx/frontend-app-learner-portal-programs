@@ -77,7 +77,7 @@ export class CourseEnrollments extends Component {
         <CourseSection
           title="My courses in progress"
           component={InProgressCourseCard}
-          courseRuns={courseRuns.inProgress}
+          courseRuns={courseRuns.in_progress}
         />
         <MediaQuery minWidth={breakpoints.large.minWidth}>
           {matches => !matches && (
@@ -120,7 +120,7 @@ CourseEnrollments.propTypes = {
   fetchCourseEnrollments: PropTypes.func.isRequired,
   clearCourseEnrollments: PropTypes.func.isRequired,
   courseRuns: PropTypes.shape({
-    inProgress: PropTypes.array.isRequired,
+    in_progress: PropTypes.array.isRequired,
     upcoming: PropTypes.array.isRequired,
     completed: PropTypes.array.isRequired,
   }).isRequired,

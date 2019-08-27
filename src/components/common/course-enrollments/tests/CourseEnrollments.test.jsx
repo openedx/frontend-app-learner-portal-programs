@@ -18,7 +18,7 @@ describe('<CourseEnrollments />', () => {
   const mockClearCourseEnrollments = jest.fn();
   const initialProps = {
     courseRuns: {
-      inProgress: [],
+      in_progress: [],
       upcoming: [],
       completed: [],
     },
@@ -53,7 +53,7 @@ describe('<CourseEnrollments />', () => {
         hasEmailsEnabled: true,
       };
       const courseRuns = {
-        inProgress: [{
+        in_progress: [{
           ...sampleCourseRun,
           courseRunId: 'course-v1:edX+DemoX+Demo_Course_2',
           courseRunStatus: 'in_progress',
