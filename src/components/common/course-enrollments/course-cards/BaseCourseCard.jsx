@@ -45,25 +45,31 @@ class BaseCourseCard extends Component {
     return dropdownMenuItems;
   };
 
-  getStartDateMessage = () => {
-    const { pacing, startDate, endDate } = this.props;
+  getDateMessage = () => {
+    const { type, pacing, endDate } = this.props;
+    const formattedEndDate = endDate ? moment(endDate).format('MMMM D, YYYY') : null;
     let message = '';
-    if (pacing === 'self') {
-      const formattedEndDate = moment(endDate).format('MMMM D, YYYY');
-      message += `Complete at your own speed before ${formattedEndDate}.`;
-    } else {
-      const formattedStartDate = moment(startDate).format('MMMM D, YYYY');
-      const formattedStartString = this.isCourseEnded() ? 'Ended' : 'Ends';
-      message += `${formattedStartString} ${formattedStartDate}.`;
+    switch (type) {
+      case 'in_progress': {
+        if (pacing === 'self') {
+          message += `Complete at your own speed before ${formattedEndDate}.`;
+        } else {
+          message += `Ends ${formattedEndDate}.`;
+        }
+        break;
+      }
+      case 'upcoming': {
+        message += `Ends ${formattedEndDate}.`;
+        break;
+      }
+      case 'completed': {
+        message += `Ended ${formattedEndDate}.`;
+        break;
+      }
+      default:
+        break;
     }
     return message;
-  };
-
-  getEndDateMessage = () => {
-    const { endDate } = this.props;
-    const formattedEndDate = moment(endDate).format('MMMM D, YYYY');
-    const formattedEndString = this.isCourseEnded() ? 'Ended' : 'Ends';
-    return `${formattedEndString} ${formattedEndDate}.`;
   };
 
   getCourseMiscText = () => {
@@ -75,11 +81,7 @@ class BaseCourseCard extends Component {
       message += isCourseEnded ? 'was ' : 'is ';
       message += `${pacing}-paced. `;
     }
-    if (isCourseEnded) {
-      message += this.getEndDateMessage();
-    } else {
-      message += this.getStartDateMessage();
-    }
+    message += this.getDateMessage();
     return message;
   };
 
@@ -98,7 +100,7 @@ class BaseCourseCard extends Component {
   isCourseEnded = () => {
     const { endDate } = this.props;
     return moment(endDate) < moment();
-  }
+  };
 
   handleEmailSettingsButtonClick = () => {
     const {
@@ -119,7 +121,7 @@ class BaseCourseCard extends Component {
       },
     });
     sendTrackEvent('edx.learner_portal.email_settings_modal.opened', { course_run_id: courseRunId });
-  }
+  };
 
   handleEmailSettingsModalOnClose = (hasEmailsEnabled) => {
     this.resetModals();
@@ -158,7 +160,7 @@ class BaseCourseCard extends Component {
       );
     }
     return null;
-  }
+  };
 
   renderEmailSettingsModal = () => {
     const { hasEmailsEnabled, courseRunId } = this.props;
@@ -216,7 +218,7 @@ class BaseCourseCard extends Component {
       );
     }
     return null;
-  }
+  };
 
   renderButtons = () => {
     const { buttons } = this.props;
@@ -298,6 +300,9 @@ class BaseCourseCard extends Component {
 }
 
 BaseCourseCard.propTypes = {
+  type: PropTypes.oneOf([
+    'in_progress', 'upcoming', 'completed',
+  ]).isRequired,
   title: PropTypes.string.isRequired,
   linkToCourse: PropTypes.string.isRequired,
   courseRunId: PropTypes.string.isRequired,
