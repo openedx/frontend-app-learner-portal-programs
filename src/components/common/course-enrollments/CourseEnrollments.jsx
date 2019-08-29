@@ -26,12 +26,15 @@ export class CourseEnrollments extends Component {
       pageContext: {
         pageType,
         programUUID, // for Masters, empty for Enterprise
+        enterpriseUUID,
       },
     } = this.context;
     const { fetchCourseEnrollments } = this.props;
     const options = { pageType };
     if (pageType === 'pages.ProgramPage') {
       options.programUUID = programUUID;
+    } else if (pageType === 'pages.EnterprisePage') {
+      options.enterpriseUUID = enterpriseUUID;
     }
     fetchCourseEnrollments(options);
   }

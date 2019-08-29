@@ -44,6 +44,7 @@ describe('createPagesWithData', () => {
         pageType: 'pages.EnterprisePage',
         pageBranding: {},
         enterpriseName: 'Example Enterprise',
+        enterpriseUUID: '47fc98b8-9a90-406d-854b-a4e91df0bc8c',
       },
     };
     expect(actions.createPage.mock.calls.length).toEqual(1);

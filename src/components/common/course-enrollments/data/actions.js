@@ -41,7 +41,7 @@ export const fetchCourseEnrollments = options => (
     dispatch(fetchCourseEnrollmentsRequest());
     let serviceMethod;
     if (options.pageType === 'pages.EnterprisePage') {
-      serviceMethod = () => service.fetchEnterpriseCourseEnrollments();
+      serviceMethod = () => service.fetchEnterpriseCourseEnrollments(options.enterpriseUUID);
     } else {
       serviceMethod = () => service.fetchProgramCourseEnrollments(options.programUUID);
     }
