@@ -7,15 +7,6 @@ export const getError = state => state.courseEnrollments.error;
 const transformCourseRun = (originalCourseRun) => {
   const courseRun = { ...originalCourseRun };
 
-  // Note: This is a temporary fix to convert the value of
-  // `resumeCourseRunUrl` from a relative URL to absolute URL, only when the
-  // `resumeCourseRunUrl` is actually relative.
-  let { resumeCourseRunUrl } = courseRun;
-  if (resumeCourseRunUrl && (resumeCourseRunUrl.indexOf('://') === -1 || resumeCourseRunUrl.indexOf('//') !== 0)) {
-    // URL is relative; let's make it absolute!
-    resumeCourseRunUrl = `${process.env.LMS_BASE_URL}${resumeCourseRunUrl}`;
-  }
-
   // Return the fields expected by the component(s)
   courseRun.title = courseRun.displayName;
   courseRun.microMastersTitle = courseRun.micromastersTitle;
@@ -23,7 +14,7 @@ const transformCourseRun = (originalCourseRun) => {
   // present if the learner has made progress. If the learner has not made progress,
   // we should link to the main course run URL. Similarly, if the resume course link
   // is not set in the API response, we should fallback on the normal course link.
-  courseRun.linkToCourse = resumeCourseRunUrl || courseRun.courseRunUrl;
+  courseRun.linkToCourse = courseRun.resumeCourseRunUrl || courseRun.courseRunUrl;
   courseRun.linkToCertificate = courseRun.certificateDownloadUrl;
   courseRun.hasEmailsEnabled = courseRun.emailsEnabled;
   courseRun.notifications = courseRun.dueDates;

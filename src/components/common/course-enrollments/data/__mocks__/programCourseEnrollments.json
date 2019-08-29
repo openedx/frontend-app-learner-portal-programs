@@ -7,7 +7,6 @@
     "end_date": "2019-09-14T00:00:00Z",
     "display_name": "edX Demonstration Course",
     "course_run_url": "http://localhost:18000/courses/course-v1:edX+DemoX+Demo_Course/course/",
-    "resume_course_run_url": "http://localhost:18000/courses/course-v1:edX+DemoX+Demo_Course/course/",
     "due_dates": [
       {
         "name": "Assignment 1",
