@@ -28,6 +28,7 @@ const transformEnterprisePageContext = context => (
   {
     enterpriseName: context.title,
     enterpriseEmail: context.contact_email,
+    enterpriseUUID: context.uuid,
   }
 );
 

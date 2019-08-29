@@ -189,8 +189,10 @@ describe('<CourseEnrollments />', () => {
     });
 
     it('for enterprise page', () => {
+      const enterpriseUUID = 'test-enterprise-uuid';
       const pageContext = {
         pageType: 'pages.EnterprisePage',
+        enterpriseUUID,
       };
       mount((
         <LayoutContext.Provider value={{ pageContext }}>
@@ -200,6 +202,7 @@ describe('<CourseEnrollments />', () => {
       expect(mockFetchCourseEnrollments.mock.calls.length).toEqual(1);
       expect(mockFetchCourseEnrollments).toBeCalledWith({
         pageType: 'pages.EnterprisePage',
+        enterpriseUUID,
       });
     });
   });
