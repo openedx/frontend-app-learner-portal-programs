@@ -111,7 +111,7 @@ export class ProgramListPage extends Component {
                 {validPrograms && (
                   <Layout>
                     {!validPrograms.length ? (
-                      <div className="my-3 container">
+                      <div className="container my-3">
                         {this.renderError({
                           message: (
                             <>
@@ -126,7 +126,7 @@ export class ProgramListPage extends Component {
                         })}
                       </div>
                     ) : (
-                      <>
+                      <div className="container my-3">
                         <h1>My Programs</h1>
                         <div className="table-responsive mt-3">
                           <table className="table table-sm table-striped">
@@ -144,7 +144,7 @@ export class ProgramListPage extends Component {
                             </tbody>
                           </table>
                         </div>
-                      </>
+                      </div>
                     )}
                   </Layout>
                 )}
