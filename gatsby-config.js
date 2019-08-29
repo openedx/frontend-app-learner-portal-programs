@@ -40,6 +40,7 @@ module.exports = {
         whitelist: [
           'BASE_URL',
           'LMS_BASE_URL',
+          'ECOMMERCE_BASE_URL',
           'LOGIN_URL',
           'LOGOUT_URL',
           'CSRF_TOKEN_API_PATH',
