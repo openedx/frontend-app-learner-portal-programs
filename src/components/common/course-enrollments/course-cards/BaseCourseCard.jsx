@@ -49,25 +49,27 @@ class BaseCourseCard extends Component {
     const { type, pacing, endDate } = this.props;
     const formattedEndDate = endDate ? moment(endDate).format('MMMM D, YYYY') : null;
     let message = '';
-    switch (type) {
-      case 'in_progress': {
-        if (pacing === 'self') {
-          message += `Complete at your own speed before ${formattedEndDate}.`;
-        } else {
-          message += `Ends ${formattedEndDate}.`;
+    if (formattedEndDate) {
+      switch (type) {
+        case 'in_progress': {
+          if (pacing === 'self') {
+            message += `Complete at your own speed before ${formattedEndDate}.`;
+          } else {
+            message += `Ends ${formattedEndDate}.`;
+          }
+          break;
         }
-        break;
+        case 'upcoming': {
+          message += `Ends ${formattedEndDate}.`;
+          break;
+        }
+        case 'completed': {
+          message += `Ended ${formattedEndDate}.`;
+          break;
+        }
+        default:
+          break;
       }
-      case 'upcoming': {
-        message += `Ends ${formattedEndDate}.`;
-        break;
-      }
-      case 'completed': {
-        message += `Ended ${formattedEndDate}.`;
-        break;
-      }
-      default:
-        break;
     }
     return message;
   };
@@ -75,13 +77,16 @@ class BaseCourseCard extends Component {
   getCourseMiscText = () => {
     const { pacing } = this.props;
     const isCourseEnded = this.isCourseEnded();
+    const dateMessage = this.getDateMessage();
     let message = '';
     if (pacing) {
       message += 'This course ';
       message += isCourseEnded ? 'was ' : 'is ';
       message += `${pacing}-paced. `;
     }
-    message += this.getDateMessage();
+    if (dateMessage) {
+      message += dateMessage;
+    }
     return message;
   };
 
