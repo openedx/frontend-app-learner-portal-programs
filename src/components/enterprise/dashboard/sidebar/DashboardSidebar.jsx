@@ -58,11 +58,6 @@ class DashboardSidebar extends React.Component {
         {hasOffers && (
           <SidebarBlock title={`Learning Benefits from ${enterpriseName}`} className="mb-5">
             {this.renderOffers(offers)}
-            <p>
-              {this.renderLearningCoordinatorHelpText(enterpriseName, enterpriseEmail)}
-              {' '}
-              for more benefits.
-            </p>
           </SidebarBlock>
         )}
         <SidebarBlock className="mb-5">
