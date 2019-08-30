@@ -16,6 +16,7 @@ module.exports = `
       hostname: String
       type: String
       branding: branding
+      contact_email: String
       program_documents: program_documents
       external_program_website: external_program_website
   }
