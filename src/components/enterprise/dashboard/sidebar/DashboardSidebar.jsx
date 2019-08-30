@@ -32,11 +32,12 @@ class DashboardSidebar extends React.Component {
     ));
   }
 
-  renderLearningCoordinatorHelpText(enterpriseName, enterpriseEmail) {
+  renderLearningCoordinatorHelpText() {
+    const { pageContext: { enterpriseName, enterpriseEmail } } = this.context;
     if (enterpriseEmail) {
       return (
         <a href={`mailto:${enterpriseEmail}`}>
-          Contact your {enterpriseName} learning coordinator
+          contact your {enterpriseName} learning coordinator
         </a>
       );
     }
@@ -44,7 +45,7 @@ class DashboardSidebar extends React.Component {
   }
 
   render() {
-    const { pageContext: { enterpriseName, enterpriseEmail } } = this.context;
+    const { pageContext: { enterpriseName } } = this.context;
     const {
       offers,
       isLoading,
@@ -53,7 +54,9 @@ class DashboardSidebar extends React.Component {
     return (
       <>
         {isLoading && (
-          <LoadingSpinner screenReaderText={`loading learning benefits for ${enterpriseName}`} />
+          <div className="mb-5">
+            <LoadingSpinner screenReaderText={`loading learning benefits for ${enterpriseName}`} />
+          </div>
         )}
         {hasOffers && (
           <SidebarBlock title={`Learning Benefits from ${enterpriseName}`} className="mb-5">
@@ -71,7 +74,7 @@ class DashboardSidebar extends React.Component {
             <p>
               To request more benefits or specific courses,
               {' '}
-              {this.renderLearningCoordinatorHelpText(enterpriseName, enterpriseEmail)}.
+              {this.renderLearningCoordinatorHelpText()}.
             </p>
           </div>
         </SidebarBlock>

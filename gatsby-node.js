@@ -18,6 +18,7 @@ exports.createPages = async ({ graphql, actions }) => graphql(`
         type
         uuid
         hostname
+        contact_email
         program_documents {
           header
           display
