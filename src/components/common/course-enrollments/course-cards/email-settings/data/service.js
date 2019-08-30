@@ -5,9 +5,11 @@ import apiClient from '../../../../../../apiClient';
 const updateEmailSettings = (courseRunId, hasEmailsEnabled) => {
   const queryParams = {
     course_id: courseRunId,
-    email_opt_in: hasEmailsEnabled,
+    // If emails are enabled, the API endpoint expects the string "on";
+    // otherwise, the `receive_emails` field should be omitted.
+    receive_emails: hasEmailsEnabled ? 'on' : undefined,
   };
-  const emailSettingsUrl = `${process.env.LMS_BASE_URL}/user_api/v1/preferences/email_opt_in/`;
+  const emailSettingsUrl = `${process.env.LMS_BASE_URL}/change_email_settings/`;
   return apiClient.post(
     emailSettingsUrl,
     qs.stringify(queryParams),
