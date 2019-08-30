@@ -17,6 +17,7 @@ describe('createPagesWithData', () => {
               program_documents: null,
               external_program_website: null,
               branding: {},
+              contact_email: 'hi@testorg.com',
             },
             {
               id: '0de66c11-6c9a-538b-aeb6-767f0013c96d',
@@ -28,6 +29,7 @@ describe('createPagesWithData', () => {
               program_documents: null,
               external_program_website: null,
               branding: {},
+              contact_email: null,
             },
           ],
         },
@@ -45,6 +47,7 @@ describe('createPagesWithData', () => {
         pageBranding: {},
         enterpriseName: 'Example Enterprise',
         enterpriseUUID: '47fc98b8-9a90-406d-854b-a4e91df0bc8c',
+        enterpriseEmail: 'hi@testorg.com',
       },
     };
     expect(actions.createPage.mock.calls.length).toEqual(1);
@@ -66,6 +69,7 @@ describe('createPagesWithData', () => {
               program_documents: null,
               external_program_website: null,
               branding: {},
+              contact_email: null,
             },
             {
               id: '0de66c11-6c9a-538b-aeb6-767f0013c96d',
@@ -77,6 +81,7 @@ describe('createPagesWithData', () => {
               program_documents: null,
               external_program_website: null,
               branding: {},
+              contact_email: 'hi@testorg.com',
             },
           ],
         },
@@ -127,6 +132,7 @@ describe('createPagesWithData', () => {
               program_documents: null,
               external_program_website: null,
               branding: {},
+              contact_email: null,
             },
             {
               id: '0de66c11-6c9a-538b-aeb6-767f0013c96a',
@@ -138,6 +144,7 @@ describe('createPagesWithData', () => {
               program_documents: null,
               external_program_website: null,
               branding: {},
+              contact_email: null,
             },
           ],
         },
@@ -195,6 +202,7 @@ describe('createPagesWithData', () => {
               program_documents: null,
               external_program_website: null,
               branding: {},
+              contact_email: null,
             },
             {
               id: '0de66c11-6c9a-538b-aeb6-767f0013c96a',
@@ -206,6 +214,7 @@ describe('createPagesWithData', () => {
               program_documents: null,
               external_program_website: null,
               branding: {},
+              contact_email: null,
             },
           ],
         },
