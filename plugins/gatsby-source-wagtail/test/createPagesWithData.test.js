@@ -41,7 +41,7 @@ describe('createPagesWithData', () => {
 
     const expectedArgs = {
       path: '/',
-      component: templates.enterpriseDashboardPage,
+      component: templates.enterpriseApp,
       context: {
         pageType: 'pages.EnterprisePage',
         pageBranding: {},

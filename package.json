@@ -5,11 +5,12 @@
   "version": "0.1.0",
   "author": "",
   "dependencies": {
-    "@edx/frontend-analytics": "^2.0.0",
+    "@edx/frontend-analytics": "file:../frontend-analytics",
+    "@edx/frontend-app-profile": "file:../frontend-app-profile",
     "@edx/frontend-auth": "^5.3.4",
     "@edx/frontend-component-footer": "^3.0.4",
     "@edx/frontend-component-site-header": "^2.5.0",
-    "@edx/frontend-i18n": "^2.1.1",
+    "@edx/frontend-i18n": "file:../frontend-i18n",
     "@edx/frontend-logging": "^2.0.1",
     "@edx/paragon": "^7.0.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.17",
@@ -45,6 +46,7 @@
     "redux": "^4.0.0",
     "redux-devtools-extension": "^2.13.2",
     "redux-logger": "^3.0.6",
+    "redux-saga": "^1.0.5",
     "redux-thunk": "^2.2.0",
     "reselect": "^4.0.0"
   },
@@ -62,7 +64,8 @@
     "node-sass": "^4.11.0",
     "prettier": "^1.16.4",
     "react-test-renderer": "^16.2.0",
-    "redux-mock-store": "^1.5.1"
+    "redux-mock-store": "^1.5.1",
+    "resolve-url-loader": "^3.1.0"
   },
   "keywords": [],
   "license": "GNU",

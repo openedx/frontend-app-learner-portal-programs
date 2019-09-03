@@ -29,6 +29,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-sass',
       options: {
+        useResolveUrlLoader: true,
         includePaths: [
           `${__dirname}/node_modules`,
         ],

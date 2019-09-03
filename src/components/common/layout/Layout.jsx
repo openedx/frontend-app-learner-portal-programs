@@ -5,6 +5,7 @@ import { IntlProvider } from 'react-intl';
 import SiteHeader from '@edx/frontend-component-site-header';
 import SiteFooter from '@edx/frontend-component-footer';
 import { connect } from 'react-redux';
+import { Link } from "@reach/router";
 
 import EdXLogo from '../../../images/edx-logo.svg';
 
@@ -73,6 +74,7 @@ class Layout extends Component {
           />
           <LayoutContext.Provider value={{ pageContext }}>
             <main id="content">
+              <Link to="u/edx">Profile</Link>
               {children}
             </main>
           </LayoutContext.Provider>

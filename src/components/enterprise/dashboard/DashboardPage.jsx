@@ -1,11 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Helmet } from 'react-helmet';
 import MediaQuery from 'react-responsive';
 import { breakpoints } from '@edx/paragon';
 
-import { withAuthentication } from '../../common/with-authentication';
-import { Layout, MainContent, Sidebar } from '../../common/layout';
+import { MainContent, Sidebar } from '../../common/layout';
 import { Hero } from '../../common/hero';
 import { DashboardMainContent } from './main-content';
 import { DashboardSidebar } from './sidebar';
@@ -14,8 +12,7 @@ const DashboardPage = (props) => {
   const { pageContext } = props;
   const { enterpriseName } = pageContext;
   return (
-    <Layout pageContext={pageContext}>
-      <Helmet title={enterpriseName} />
+    <>
       <Hero title={enterpriseName} />
       <div className="container py-5">
         <div className="row">
@@ -31,7 +28,7 @@ const DashboardPage = (props) => {
           </MediaQuery>
         </div>
       </div>
-    </Layout>
+    </>
   );
 };
 
@@ -41,4 +38,4 @@ DashboardPage.propTypes = {
   }).isRequired,
 };
 
-export default withAuthentication(DashboardPage);
+export default DashboardPage;

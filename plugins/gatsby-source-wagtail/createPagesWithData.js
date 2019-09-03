@@ -55,7 +55,8 @@ function createPagesWithData(result, actions) {
   if (isEnterprise) {
     createPage({
       path: '/',
-      component: templates.enterpriseDashboardPage,
+      matchPath: '/*',
+      component: templates.enterpriseApp,
       context: firstPageData,
     });
   } else {
