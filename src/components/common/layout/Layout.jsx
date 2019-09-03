@@ -51,14 +51,14 @@ class Layout extends Component {
 
   render() {
     const {
-      siteUrl, siteName, username, avatar, pageContext, children,
+      siteUrl, siteName, username, avatar, pageContext, children, headerLogo, footerLogo,
     } = this.props;
     return (
       <IntlProvider locale="en">
         <>
           <Helmet titleTemplate="%s - edX" defaultTitle="edX" />
           <SiteHeader
-            logo={EdXLogo}
+            logo={headerLogo || EdXLogo}
             logoDestination={siteUrl}
             logoAltText={siteName}
             loggedIn={!!username}
@@ -78,7 +78,7 @@ class Layout extends Component {
           </LayoutContext.Provider>
           <SiteFooter
             siteName={siteName}
-            siteLogo={EdXLogo}
+            siteLogo={footerLogo || EdXLogo}
             marketingSiteBaseUrl="https://www.edx.org"
             supportUrl="https://support.edx.org/hc/en-us"
             contactUrl="https://courses.edx.org/support/contact_us"
@@ -108,6 +108,8 @@ Layout.defaultProps = {
   siteName: 'edX',
   siteUrl: 'https://edx.org/',
   username: null,
+  headerLogo: null,
+  footerLogo: null,
 };
 
 Layout.propTypes = {
@@ -119,6 +121,8 @@ Layout.propTypes = {
   siteName: PropTypes.string,
   siteUrl: PropTypes.string,
   username: PropTypes.string,
+  headerLogo: PropTypes.string,
+  footerLogo: PropTypes.string,
 };
 
 const ConnectedLayout = connect(state => ({

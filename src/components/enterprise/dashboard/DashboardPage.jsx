@@ -14,7 +14,11 @@ const DashboardPage = (props) => {
   const { pageContext } = props;
   const { enterpriseName } = pageContext;
   return (
-    <Layout pageContext={pageContext}>
+    <Layout
+      pageContext={pageContext}
+      headerLogo={pageContext.pageBranding.organization_logo.url}
+      footerLogo={pageContext.pageBranding.organization_logo.url}
+    >
       <Helmet title={enterpriseName} />
       <Hero title={enterpriseName} />
       <div className="container py-5">
