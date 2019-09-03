@@ -36,7 +36,7 @@ const InProgressCourseCard = (props) => {
     return [{
       key: 'move-to-completed',
       type: 'button',
-      onClick: () => { console.log('whats up!'); },
+      onClick: () => {}, // TODO: noop for now
       children: (
         <>
           Move to completed
