@@ -28,6 +28,7 @@ describe('<BaseCourseCard />', () => {
         <Provider store={store}>
           <LayoutContext.Provider value={{ pageContext }}>
             <BaseCourseCard
+              type="completed"
               title="edX Demonstration Course"
               linkToCourse="https://edx.org"
               courseRunId="my+course+key"

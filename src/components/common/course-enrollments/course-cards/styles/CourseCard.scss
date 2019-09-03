@@ -62,7 +62,7 @@
     background-color: $white;
   }
 
-  @include media-breakpoint-down(sm) {
+  @include media-breakpoint-down(xs) {
     .btn-xs-block {
       width: 100%;
     }

@@ -144,7 +144,7 @@ class BaseCourseCard extends Component {
   renderSettingsDropdown = (menuItems) => {
     if (menuItems && menuItems.length > 0) {
       return (
-        <div className="col text-right">
+        <div className="flex-grow-0">
           <Dropdown>
             <Dropdown.Button className="btn-outline-secondary">
               <FontAwesomeIcon icon={faCog} />
@@ -261,7 +261,6 @@ class BaseCourseCard extends Component {
       hasViewCertificateLink,
     } = this.props;
     const dropdownMenuItems = this.getDropdownMenuItems();
-    const shouldDisplaySettingsDropdown = dropdownMenuItems.length > 0;
     return (
       <div
         className={classNames(
@@ -269,16 +268,8 @@ class BaseCourseCard extends Component {
           { 'is-micromasters': !!microMastersTitle },
         )}
       >
-        <div className="row no-gutters">
-          <div
-            className={classNames(
-              'mb-3',
-              {
-                'col-6 col-lg-8': shouldDisplaySettingsDropdown,
-                col: !shouldDisplaySettingsDropdown,
-              },
-            )}
-          >
+        <div className="d-flex">
+          <div className="flex-grow-1 mr-4 mb-3">
             {this.renderMicroMastersTitle()}
             <h4 className="course-title mb-1">
               <a href={linkToCourse}>{title}</a>
