@@ -6,6 +6,8 @@ import { sendTrackEvent } from '@edx/frontend-analytics';
 import BaseCourseCard from './BaseCourseCard';
 import Notification from './Notification';
 
+import { isFeatureEnabled } from '../../../../common/features';
+
 const InProgressCourseCard = (props) => {
   const renderButtons = () => (
     <a
@@ -26,8 +28,31 @@ const InProgressCourseCard = (props) => {
     return false;
   });
 
+  const getDropdownMenuItems = () => {
+    const isMoveToCompleteEnabled = isFeatureEnabled('move_to_completed');
+    if (!isMoveToCompleteEnabled) {
+      return [];
+    }
+    return [{
+      key: 'move-to-completed',
+      type: 'button',
+      onClick: () => { console.log('whats up!'); },
+      children: (
+        <>
+          Move to completed
+          <span className="sr-only">for {props.title}</span>
+        </>
+      ),
+    }];
+  };
+
   return (
-    <BaseCourseCard type="in_progress" buttons={renderButtons()} {...props}>
+    <BaseCourseCard
+      type="in_progress"
+      buttons={renderButtons()}
+      dropdownMenuItems={getDropdownMenuItems()}
+      {...props}
+    >
       {filteredNotifications.length > 0 && (
         <div className="notifications">
           <ul className="list-unstyled mb-0" aria-label="course due dates" role="alert">
