@@ -6,7 +6,6 @@ import { sendTrackEvent } from '@edx/frontend-analytics';
 import BaseCourseCard from './BaseCourseCard';
 import Notification from './Notification';
 
-import { isFeatureEnabled } from '../../../../common/features';
 import { LayoutContext } from '../../layout';
 
 const InProgressCourseCard = (props) => {
@@ -34,9 +33,8 @@ const InProgressCourseCard = (props) => {
   });
 
   const getDropdownMenuItems = () => {
-    const isMoveToCompleteEnabled = isFeatureEnabled('move_to_completed');
     const { pageContext: { pageType } } = useContext(LayoutContext);
-    if (!isMoveToCompleteEnabled || pageType !== 'pages.EnterprisePage') {
+    if (pageType !== 'pages.EnterprisePage') {
       return [];
     }
     return [{
