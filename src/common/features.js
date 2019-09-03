@@ -1,10 +1,18 @@
 /**
- * This files adds support for features enabled by a `features` query parameter
- * enables the following:
+ * This files adds support for enabling feature-specific code through
+ * a `features` query parameter that allows the following:
  *   - work in smaller increments on a single feature, without exposing
  *     released code of said feature to users prematurely.
  *   - enable testing & dark launch of full feature on stage/production before
  *     released to users.
+ *
+ * To use features:
+ *   1. Choose a name for the feature (e.g., "move_to_completed").
+ *   2. In the code where you want to do something when a feature
+ *      flag is truthy, use the function `isFeatureEnabled`, passing in
+ *      the chosen name. Example: `isFeatureEnabled('move_to_completed')`.
+ *   3. To see it in action, specify `?features=FEATURE_NAME` in the URL and refresh
+ *      the page. Example: `?features=move_to_completed`.
  */
 
 import qs from 'query-string';
