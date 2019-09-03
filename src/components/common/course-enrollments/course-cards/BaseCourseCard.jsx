@@ -27,10 +27,10 @@ class BaseCourseCard extends Component {
   };
 
   getDropdownMenuItems = () => {
-    const { hasEmailsEnabled, title } = this.props;
-    const dropdownMenuItems = [];
+    const { hasEmailsEnabled, title, dropdownMenuItems } = this.props;
+    let combinedMenuItems = [];
     if (hasEmailsEnabled !== null) {
-      dropdownMenuItems.push({
+      combinedMenuItems.push({
         key: 'email-settings',
         type: 'button',
         onClick: this.handleEmailSettingsButtonClick,
@@ -42,7 +42,10 @@ class BaseCourseCard extends Component {
         ),
       });
     }
-    return dropdownMenuItems;
+    if (dropdownMenuItems) {
+      combinedMenuItems = [...combinedMenuItems, ...dropdownMenuItems];
+    }
+    return combinedMenuItems;
   };
 
   getDateMessage = () => {
@@ -313,6 +316,12 @@ BaseCourseCard.propTypes = {
   orgName: PropTypes.string,
   pacing: PropTypes.oneOf(['instructor', 'self']),
   linkToCertificate: PropTypes.string,
+  dropdownMenuItems: PropTypes.arrayOf(PropTypes.shape({
+    key: PropTypes.string,
+    type: PropTypes.string,
+    onClick: PropTypes.func,
+    children: PropTypes.element,
+  })),
 };
 
 BaseCourseCard.defaultProps = {
@@ -326,6 +335,7 @@ BaseCourseCard.defaultProps = {
   buttons: null,
   linkToCertificate: null,
   hasViewCertificateLink: true,
+  dropdownMenuItems: null,
 };
 
 const mapStateToProps = state => ({

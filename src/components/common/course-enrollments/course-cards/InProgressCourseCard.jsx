@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import { sendTrackEvent } from '@edx/frontend-analytics';
@@ -6,12 +6,18 @@ import { sendTrackEvent } from '@edx/frontend-analytics';
 import BaseCourseCard from './BaseCourseCard';
 import Notification from './Notification';
 
+import { LayoutContext } from '../../layout';
+
 const InProgressCourseCard = (props) => {
   const renderButtons = () => (
     <a
       className="btn btn-outline-primary btn-xs-block"
       href={props.linkToCourse}
-      onClick={() => { sendTrackEvent('edx.learner_portal.course.continued', { course_run_id: props.courseRunId }); }}
+      onClick={() => {
+        sendTrackEvent('edx.learner_portal.course.continued', {
+          course_run_id: props.courseRunId,
+        });
+      }}
     >
       Continue Learning
       <span className="sr-only">for {props.title}</span>
@@ -26,8 +32,31 @@ const InProgressCourseCard = (props) => {
     return false;
   });
 
+  const getDropdownMenuItems = () => {
+    const { pageContext: { pageType } } = useContext(LayoutContext);
+    if (pageType !== 'pages.EnterprisePage') {
+      return [];
+    }
+    return [{
+      key: 'move-to-completed',
+      type: 'button',
+      onClick: () => {}, // TODO: noop for now
+      children: (
+        <>
+          Move to completed
+          <span className="sr-only">for {props.title}</span>
+        </>
+      ),
+    }];
+  };
+
   return (
-    <BaseCourseCard type="in_progress" buttons={renderButtons()} {...props}>
+    <BaseCourseCard
+      type="in_progress"
+      buttons={renderButtons()}
+      dropdownMenuItems={getDropdownMenuItems()}
+      {...props}
+    >
       {filteredNotifications.length > 0 && (
         <div className="notifications">
           <ul className="list-unstyled mb-0" aria-label="course due dates" role="alert">
