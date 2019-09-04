@@ -14,7 +14,11 @@ const DashboardPage = (props) => {
   const { pageContext } = props;
   const { enterpriseName } = pageContext;
   return (
-    <Layout pageContext={pageContext}>
+    <Layout
+      pageContext={pageContext}
+      headerLogo={pageContext.pageBranding.organization_logo.url}
+      footerLogo="https://files.edx.org/openedx-logos/edx-openedx-logo-tag.png"
+    >
       <Helmet title={enterpriseName} />
       <Hero title={enterpriseName} />
       <div className="container py-5">
