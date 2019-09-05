@@ -1,30 +1,41 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import { sendTrackEvent } from '@edx/frontend-analytics';
 
 import BaseCourseCard from './BaseCourseCard';
+import { MarkCompleteModal } from './mark-complete-modal';
 import Notification from './Notification';
 
 import { LayoutContext } from '../../layout';
+import { camelCaseObject } from '../../../../common/utils';
 
-const InProgressCourseCard = (props) => {
+const InProgressCourseCard = ({
+  linkToCourse,
+  courseRunId,
+  title,
+  notifications,
+  ...rest
+}) => {
+  const { pageContext: { pageType } } = useContext(LayoutContext);
+  const [isMarkCompleteModalOpen, setIsMarkCompleteModalOpen] = useState(false);
+
   const renderButtons = () => (
     <a
       className="btn btn-outline-primary btn-xs-block"
-      href={props.linkToCourse}
+      href={linkToCourse}
       onClick={() => {
         sendTrackEvent('edx.learner_portal.course.continued', {
-          course_run_id: props.courseRunId,
+          course_run_id: courseRunId,
         });
       }}
     >
       Continue Learning
-      <span className="sr-only">for {props.title}</span>
+      <span className="sr-only">for {title}</span>
     </a>
   );
 
-  const filteredNotifications = props.notifications.filter((notification) => {
+  const filteredNotifications = notifications.filter((notification) => {
     const now = moment();
     if (moment(notification.date).isBetween(now, moment(now).add('1', 'w'))) {
       return notification;
@@ -33,21 +44,69 @@ const InProgressCourseCard = (props) => {
   });
 
   const getDropdownMenuItems = () => {
-    const { pageContext: { pageType } } = useContext(LayoutContext);
+    // TODO: We should try to avoid this sort of conditional logic based on
+    // `pageType`. Instead, ideally, we'd be able to pull the dropdown
+    // menu items from a parent component's context or pass them down the
+    // component tree.
     if (pageType !== 'pages.EnterprisePage') {
       return [];
     }
     return [{
-      key: 'move-to-completed',
+      key: 'mark-complete',
       type: 'button',
-      onClick: () => {}, // TODO: noop for now
+      onClick: () => {
+        setIsMarkCompleteModalOpen(true);
+        sendTrackEvent('edx.learner_portal.course.mark_complete.modal.opened', {
+          course_run_id: courseRunId,
+        });
+      },
       children: (
         <>
-          Move to completed
-          <span className="sr-only">for {props.title}</span>
+          Mark as complete
+          <span className="sr-only">for {title}</span>
         </>
       ),
     }];
+  };
+
+  const handleMarkCompleteModalOnClose = () => {
+    setIsMarkCompleteModalOpen(false);
+    sendTrackEvent('edx.learner_portal.course.mark_complete.modal.closed', {
+      course_run_id: courseRunId,
+    });
+  };
+
+  const handleMarkCompleteModalOnSuccess = (response) => {
+    const transformedResponse = camelCaseObject(response);
+    sendTrackEvent('edx.learner_portal.course.mark_complete.saved', {
+      course_run_id: courseRunId,
+    });
+    // eslint-disable-next-line no-console
+    console.log(transformedResponse);
+    // TODO: use the response here
+  };
+
+  const renderNotifications = () => {
+    if (!filteredNotifications.length) {
+      return null;
+    }
+    return (
+      <div className="notifications">
+        <ul
+          className="list-unstyled mb-0"
+          aria-label="course due dates"
+          role="alert"
+        >
+          {filteredNotifications.map(notificationProps => (
+            <Notification
+              key={`notification-${notificationProps.url}-${notificationProps.date}`}
+              courseRunId={courseRunId}
+              {...notificationProps}
+            />
+          ))}
+        </ul>
+      </div>
+    );
   };
 
   return (
@@ -55,21 +114,20 @@ const InProgressCourseCard = (props) => {
       type="in_progress"
       buttons={renderButtons()}
       dropdownMenuItems={getDropdownMenuItems()}
-      {...props}
+      title={title}
+      linkToCourse={linkToCourse}
+      courseRunId={courseRunId}
+      {...rest}
     >
-      {filteredNotifications.length > 0 && (
-        <div className="notifications">
-          <ul className="list-unstyled mb-0" aria-label="course due dates" role="alert">
-            {filteredNotifications.map(notificationProps => (
-              <Notification
-                key={`notification-${notificationProps.url}-${notificationProps.date}`}
-                courseRunId={props.courseRunId}
-                {...notificationProps}
-              />
-            ))}
-          </ul>
-        </div>
-      )}
+      {renderNotifications()}
+      <MarkCompleteModal
+        isOpen={isMarkCompleteModalOpen}
+        courseTitle={title}
+        courseLink={linkToCourse}
+        courseId={courseRunId}
+        onClose={handleMarkCompleteModalOnClose}
+        onSuccess={handleMarkCompleteModalOnSuccess}
+      />
     </BaseCourseCard>
   );
 };
