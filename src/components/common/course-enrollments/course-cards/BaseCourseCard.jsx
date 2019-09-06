@@ -147,7 +147,7 @@ class BaseCourseCard extends Component {
   renderSettingsDropdown = (menuItems) => {
     if (menuItems && menuItems.length > 0) {
       return (
-        <div className="flex-grow-0">
+        <div className="ml-auto">
           <Dropdown>
             <Dropdown.Button className="btn-outline-secondary">
               <FontAwesomeIcon icon={faCog} />

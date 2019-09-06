@@ -4,6 +4,7 @@ import {
   FETCH_COURSE_ENROLLMENTS_REQUEST,
   FETCH_COURSE_ENROLLMENTS_SUCCESS,
   FETCH_COURSE_ENROLLMENTS_FAILURE,
+  UPDATE_COURSE_RUN_STATUS,
   CLEAR_COURSE_ENROLLMENTS,
 } from './constants';
 import * as service from './service';
@@ -27,6 +28,14 @@ const fetchCourseEnrollmentsFailure = error => ({
 });
 
 const clearCourseEnrollmentsFn = () => ({ type: CLEAR_COURSE_ENROLLMENTS });
+
+export const updateCourseRunStatus = ({ courseId, status }) => ({
+  type: UPDATE_COURSE_RUN_STATUS,
+  payload: {
+    courseId,
+    status,
+  },
+});
 
 const transformCourseEnrollmentsResponse = ({ responseData, options }) => {
   const camelCaseResponseData = camelCaseObject(responseData);

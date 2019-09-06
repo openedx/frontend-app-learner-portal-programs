@@ -3,6 +3,7 @@ import {
   FETCH_COURSE_ENROLLMENTS_SUCCESS,
   FETCH_COURSE_ENROLLMENTS_FAILURE,
   CLEAR_COURSE_ENROLLMENTS,
+  UPDATE_COURSE_RUN_STATUS,
 } from './constants';
 
 const initialState = {
@@ -32,6 +33,21 @@ const courseEnrollmentsReducer = (state = initialState, action) => {
         isLoading: false,
         error: action.payload.error,
       };
+    case UPDATE_COURSE_RUN_STATUS: {
+      const { courseId, status } = action.payload;
+      const courseRuns = [...state.courseRuns];
+      const courseRunIndex = courseRuns.findIndex(run => run.courseRunId === courseId);
+      if (courseRunIndex !== -1) {
+        courseRuns[courseRunIndex].courseRunStatus = status;
+        return {
+          ...state,
+          courseRuns,
+        };
+      }
+      return {
+        ...state,
+      };
+    }
     case CLEAR_COURSE_ENROLLMENTS:
       return initialState;
     default:
