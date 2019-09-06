@@ -5,12 +5,14 @@ import { Modal, StatefulButton } from '@edx/paragon';
 import ModalBody from './ModalBody';
 import { markCourseAsCompleteRequest } from './data/service';
 import { LayoutContext } from '../../../layout';
+import { camelCaseObject } from '../../../../../common/utils';
 
 export const MarkCompleteModalContext = createContext();
 
 const initialState = {
   confirmButtonState: 'default',
   confirmError: null,
+  confirmSuccessful: false,
 };
 
 const MarkCompleteModal = ({
@@ -23,7 +25,7 @@ const MarkCompleteModal = ({
 }) => {
   const { pageContext: { enterpriseUUID } } = useContext(LayoutContext);
   const [
-    { confirmButtonState, confirmError },
+    { confirmButtonState, confirmError, confirmSuccessful },
     setState,
   ] = useState(initialState);
 
@@ -35,8 +37,10 @@ const MarkCompleteModal = ({
         course_id: courseId,
         marked_done: true,
       });
-      setState({ confirmButtonState: 'complete' });
-      onSuccess(res);
+      onSuccess({
+        response: camelCaseObject(res.data),
+        resetModalState: () => setState({ ...initialState }),
+      });
     } catch (error) {
       setState({
         confirmButtonState: 'default',
@@ -66,16 +70,15 @@ const MarkCompleteModal = ({
             labels={{
               default: 'Mark as complete',
               pending: 'Marking as complete...',
-              complete: 'Marked as complete',
             }}
-            disabledStates={['pending', 'complete']}
+            disabledStates={['pending']}
             className="confirm-mark-complete-btn btn-primary"
             state={confirmButtonState}
             onClick={handleConfirmButtonClick}
             key="confirm-mark-complete-btn"
           />,
         ]}
-        open={isOpen}
+        open={isOpen && !confirmSuccessful}
         onClose={handleModalOnClose}
       />
     </MarkCompleteModalContext.Provider>

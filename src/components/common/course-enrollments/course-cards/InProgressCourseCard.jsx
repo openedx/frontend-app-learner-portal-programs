@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import moment from 'moment';
 import { sendTrackEvent } from '@edx/frontend-analytics';
 
@@ -8,13 +9,14 @@ import { MarkCompleteModal } from './mark-complete-modal';
 import Notification from './Notification';
 
 import { LayoutContext } from '../../layout';
-import { camelCaseObject } from '../../../../common/utils';
+import { updateCourseRunStatus } from '../data/actions';
 
 const InProgressCourseCard = ({
   linkToCourse,
   courseRunId,
   title,
   notifications,
+  modifyCourseRunStatus,
   ...rest
 }) => {
   const { pageContext: { pageType } } = useContext(LayoutContext);
@@ -76,14 +78,16 @@ const InProgressCourseCard = ({
     });
   };
 
-  const handleMarkCompleteModalOnSuccess = (response) => {
-    const transformedResponse = camelCaseObject(response);
+  const handleMarkCompleteModalOnSuccess = ({ response, resetModalState }) => {
     sendTrackEvent('edx.learner_portal.course.mark_complete.saved', {
       course_run_id: courseRunId,
     });
-    // eslint-disable-next-line no-console
-    console.log(transformedResponse);
-    // TODO: use the response here
+    setIsMarkCompleteModalOpen(false);
+    resetModalState();
+    modifyCourseRunStatus({
+      status: response.courseRunStatus,
+      courseId: response.courseRunId,
+    });
   };
 
   const renderNotifications = () => {
@@ -141,6 +145,13 @@ InProgressCourseCard.propTypes = {
     date: PropTypes.string.isRequired,
   })).isRequired,
   title: PropTypes.string.isRequired,
+  modifyCourseRunStatus: PropTypes.func.isRequired,
 };
 
-export default InProgressCourseCard;
+const mapDispatchToProps = dispatch => ({
+  modifyCourseRunStatus: (options) => {
+    dispatch(updateCourseRunStatus(options));
+  },
+});
+
+export default connect(null, mapDispatchToProps)(InProgressCourseCard);

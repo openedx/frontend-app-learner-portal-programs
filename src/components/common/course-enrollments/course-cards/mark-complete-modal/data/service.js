@@ -11,9 +11,13 @@ export const markCourseAsCompleteRequest = (options) => {
   }
 
   // Temporarily mock out API response
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
+    const { course_id: courseId } = options;
+    const response = { ...enterpriseCourseEnrollment };
+    response.data.course_run_id = courseId;
     setTimeout(() => {
-      resolve(enterpriseCourseEnrollment);
+      // resolve(response);
+      reject(new Error('oops'));
     }, 1200);
   });
 };
