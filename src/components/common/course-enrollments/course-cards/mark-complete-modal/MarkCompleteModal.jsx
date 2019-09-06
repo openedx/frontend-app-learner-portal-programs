@@ -39,6 +39,15 @@ const MarkCompleteModal = ({
       });
       onSuccess({
         response: camelCaseObject(res.data),
+        /**
+         * We're passing a function to reset the `MarkCompleteModal` state
+         * to its initial state here. That way, the consumer of this component
+         * can call this function to reset the modal state. When the `open` prop
+         * on the Paragon `Modal` component changes to false, it doesn't trigger
+         * the `onClose` callback, another place where we reset to initial state.
+         * Because of this, passing the `resetModalState` function gives control
+         * to the consumer of this component to reset to initial state as needed.
+         */
         resetModalState: () => setState({ ...initialState }),
       });
     } catch (error) {
