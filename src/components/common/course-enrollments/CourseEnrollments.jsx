@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
+import { faExclamationTriangle, faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import MediaQuery from 'react-responsive';
 import { breakpoints, StatusAlert } from '@edx/paragon';
@@ -26,7 +26,7 @@ export class CourseEnrollments extends Component {
       pageContext: {
         pageType,
         programUUID, // for Masters, empty for Enterprise
-        enterpriseUUID,
+        enterpriseUUID, // for Enterprise, empty for Masters
       },
     } = this.context;
     const { fetchCourseEnrollments } = this.props;
@@ -62,12 +62,36 @@ export class CourseEnrollments extends Component {
     />
   );
 
+  renderMarkCourseCompleteSuccessAlert = () => {
+    const { modifyIsMarkCourseCompleteSuccess } = this.props;
+    return (
+      <StatusAlert
+        alertType="success"
+        dialog={
+          <div className="d-flex">
+            <div>
+              <FontAwesomeIcon className="mr-2" icon={faCheckCircle} />
+            </div>
+            <div>
+              Your course was marked as complete.
+            </div>
+          </div>
+        }
+        onClose={() => {
+          modifyIsMarkCourseCompleteSuccess({ isSuccess: false });
+        }}
+        open
+      />
+    );
+  };
+
   render() {
     const {
       courseRuns,
       isLoading,
       error,
       sidebarComponent,
+      isMarkCourseCompleteSuccess,
     } = this.props;
 
     if (isLoading) {
@@ -75,8 +99,10 @@ export class CourseEnrollments extends Component {
     } else if (error) {
       return this.renderError();
     }
+
     return (
       <>
+        {isMarkCourseCompleteSuccess && this.renderMarkCourseCompleteSuccessAlert()}
         <CourseSection
           title="My courses in progress"
           component={InProgressCourseCard}
@@ -108,6 +134,7 @@ const mapStateToProps = state => ({
   courseRuns: selectors.getCourseRunsByStatus(state),
   isLoading: selectors.getIsLoading(state),
   error: selectors.getError(state),
+  isMarkCourseCompleteSuccess: selectors.getIsMarkCourseCompleteSuccess(state),
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -116,6 +143,9 @@ const mapDispatchToProps = dispatch => ({
   },
   clearCourseEnrollments: () => {
     dispatch(actions.clearCourseEnrollments());
+  },
+  modifyIsMarkCourseCompleteSuccess: (options) => {
+    dispatch(actions.updateIsMarkCourseCompleteSuccess(options));
   },
 });
 
@@ -129,6 +159,8 @@ CourseEnrollments.propTypes = {
   }).isRequired,
   isLoading: PropTypes.bool.isRequired,
   sidebarComponent: PropTypes.element.isRequired,
+  isMarkCourseCompleteSuccess: PropTypes.bool.isRequired,
+  modifyIsMarkCourseCompleteSuccess: PropTypes.func.isRequired,
   error: PropTypes.instanceOf(Error),
 };
 

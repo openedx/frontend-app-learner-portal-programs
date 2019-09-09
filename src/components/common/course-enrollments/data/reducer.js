@@ -4,12 +4,14 @@ import {
   FETCH_COURSE_ENROLLMENTS_FAILURE,
   CLEAR_COURSE_ENROLLMENTS,
   UPDATE_COURSE_RUN_STATUS,
+  UPDATE_IS_MARK_COURSE_COMPLETE_SUCCESS,
 } from './constants';
 
 const initialState = {
   isLoading: false,
   courseRuns: [],
   error: null,
+  isMarkCourseCompleteSuccess: false,
 };
 
 const courseEnrollmentsReducer = (state = initialState, action) => {
@@ -48,6 +50,11 @@ const courseEnrollmentsReducer = (state = initialState, action) => {
         ...state,
       };
     }
+    case UPDATE_IS_MARK_COURSE_COMPLETE_SUCCESS:
+      return {
+        ...state,
+        isMarkCourseCompleteSuccess: action.payload.isSuccess,
+      };
     case CLEAR_COURSE_ENROLLMENTS:
       return initialState;
     default:

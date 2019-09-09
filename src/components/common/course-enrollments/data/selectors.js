@@ -3,6 +3,8 @@ import { createSelector } from 'reselect';
 export const getIsLoading = state => state.courseEnrollments.isLoading;
 export const getCourseRuns = state => state.courseEnrollments.courseRuns;
 export const getError = state => state.courseEnrollments.error;
+export const getIsMarkCourseCompleteSuccess = state =>
+  state.courseEnrollments.isMarkCourseCompleteSuccess;
 
 const transformCourseRun = (originalCourseRun) => {
   const courseRun = { ...originalCourseRun };

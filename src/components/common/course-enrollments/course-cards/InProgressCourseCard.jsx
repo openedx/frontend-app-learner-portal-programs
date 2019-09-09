@@ -9,7 +9,10 @@ import { MarkCompleteModal } from './mark-complete-modal';
 import Notification from './Notification';
 
 import { LayoutContext } from '../../layout';
-import { updateCourseRunStatus } from '../data/actions';
+import {
+  updateCourseRunStatus,
+  updateIsMarkCourseCompleteSuccess,
+} from '../data/actions';
 
 const InProgressCourseCard = ({
   linkToCourse,
@@ -17,6 +20,7 @@ const InProgressCourseCard = ({
   title,
   notifications,
   modifyCourseRunStatus,
+  modifyIsMarkCourseCompleteSuccess,
   ...rest
 }) => {
   const { pageContext: { pageType } } = useContext(LayoutContext);
@@ -88,6 +92,9 @@ const InProgressCourseCard = ({
       status: response.courseRunStatus,
       courseId: response.courseRunId,
     });
+    modifyIsMarkCourseCompleteSuccess({
+      isSuccess: true,
+    });
   };
 
   const renderNotifications = () => {
@@ -146,11 +153,15 @@ InProgressCourseCard.propTypes = {
   })).isRequired,
   title: PropTypes.string.isRequired,
   modifyCourseRunStatus: PropTypes.func.isRequired,
+  modifyIsMarkCourseCompleteSuccess: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = dispatch => ({
   modifyCourseRunStatus: (options) => {
     dispatch(updateCourseRunStatus(options));
+  },
+  modifyIsMarkCourseCompleteSuccess: (options) => {
+    dispatch(updateIsMarkCourseCompleteSuccess(options));
   },
 });
 
