@@ -6,6 +6,7 @@ import {
   FETCH_COURSE_ENROLLMENTS_FAILURE,
   UPDATE_COURSE_RUN_STATUS,
   CLEAR_COURSE_ENROLLMENTS,
+  UPDATE_IS_MARK_COURSE_COMPLETE_SUCCESS,
 } from './constants';
 import * as service from './service';
 
@@ -34,6 +35,13 @@ export const updateCourseRunStatus = ({ courseId, status }) => ({
   payload: {
     courseId,
     status,
+  },
+});
+
+export const updateIsMarkCourseCompleteSuccess = ({ isSuccess }) => ({
+  type: UPDATE_IS_MARK_COURSE_COMPLETE_SUCCESS,
+  payload: {
+    isSuccess,
   },
 });
 
