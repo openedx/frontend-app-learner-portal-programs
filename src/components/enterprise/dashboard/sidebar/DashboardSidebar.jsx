@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import { connect } from 'react-redux';
 
 import { LayoutContext, SidebarBlock } from '../../../common/layout';
@@ -15,21 +14,31 @@ class DashboardSidebar extends React.Component {
   }
 
   renderOffers(offers) {
-    return offers.map(({
-      usageType,
-      benefitValue,
-      redemptionsRemaining,
-      code,
-      couponEndDate,
-    }) => (
-      <Offer
-        usageType={usageType}
-        benefitValue={benefitValue}
-        redemptionsRemaining={redemptionsRemaining}
-        code={code}
-        couponEndDate={couponEndDate}
-      />
-    ));
+    const hasOffers = offers && offers.length > 0;
+    if (hasOffers) {
+      return offers.map(({
+        usageType,
+        benefitValue,
+        redemptionsRemaining,
+        code,
+        couponEndDate,
+      }) => (
+        <Offer
+          usageType={usageType}
+          benefitValue={benefitValue}
+          redemptionsRemaining={redemptionsRemaining}
+          code={code}
+          couponEndDate={couponEndDate}
+        />
+      ));
+    }
+    return (
+      <p>
+        To request more benefits,
+        {' '}
+        {this.renderLearningCoordinatorHelpText()}.
+      </p>
+    );
   }
 
   renderLearningCoordinatorHelpText() {
@@ -50,21 +59,18 @@ class DashboardSidebar extends React.Component {
       offers,
       isLoading,
     } = this.props;
-    const hasOffers = offers && offers.length > 0;
     return (
       <>
-        {isLoading && (
-          <div className="mb-5">
-            <LoadingSpinner screenReaderText={`loading learning benefits for ${enterpriseName}`} />
-          </div>
-        )}
-        {hasOffers && (
-          <SidebarBlock title={`Learning Benefits from ${enterpriseName}`} className="mb-5">
-            {this.renderOffers(offers)}
-          </SidebarBlock>
-        )}
+        <SidebarBlock title={`Learning Benefits from ${enterpriseName}`} className="mb-5">
+          {isLoading && (
+            <div className="mb-5">
+              <LoadingSpinner screenReaderText={`loading learning benefits for ${enterpriseName}`} />
+            </div>
+          )}
+          {this.renderOffers(offers)}
+        </SidebarBlock>
         <SidebarBlock className="mb-5">
-          <div className={classNames({ 'mt-5': hasOffers })}>
+          <div className="mt-5">
             <h5>Need help?</h5>
             <p>
               For technical support, visit the
