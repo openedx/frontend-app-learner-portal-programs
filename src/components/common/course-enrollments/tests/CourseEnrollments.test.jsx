@@ -16,6 +16,7 @@ const mockStore = configureMockStore([thunk]);
 describe('<CourseEnrollments />', () => {
   const mockFetchCourseEnrollments = jest.fn();
   const mockClearCourseEnrollments = jest.fn();
+  const mockModifyIsMarkCourseCompleteSuccess = jest.fn();
   const initialProps = {
     courseRuns: {
       in_progress: [],
@@ -27,6 +28,8 @@ describe('<CourseEnrollments />', () => {
     sidebarComponent: <div className="sidebar-example" />,
     fetchCourseEnrollments: mockFetchCourseEnrollments,
     clearCourseEnrollments: mockClearCourseEnrollments,
+    isMarkCourseCompleteSuccess: false,
+    modifyIsMarkCourseCompleteSuccess: mockModifyIsMarkCourseCompleteSuccess,
   };
   describe('renders course enrollments correctly', () => {
     it('with no course enrollments', () => {
@@ -132,6 +135,23 @@ describe('<CourseEnrollments />', () => {
         .toJSON();
       expect(tree).toMatchSnapshot();
     });
+
+    it('with mark course as complete success status alert', () => {
+      const pageContext = {
+        pageType: 'pages.EnterpsrisePage',
+      };
+      const tree = renderer
+        .create((
+          <LayoutContext.Provider value={{ pageContext }}>
+            <CourseEnrollments
+              {...initialProps}
+              isMarkCourseCompleteSuccess
+            />
+          </LayoutContext.Provider>
+        ))
+        .toJSON();
+      expect(tree).toMatchSnapshot();
+    });
   });
 
   describe('sidebar', () => {
@@ -205,5 +225,21 @@ describe('<CourseEnrollments />', () => {
         enterpriseUUID,
       });
     });
+  });
+
+  it('properly closes mark course as complete success status alert', () => {
+    const pageContext = {
+      pageType: 'pages.EnterpsrisePage',
+    };
+    const wrapper = mount((
+      <LayoutContext.Provider value={{ pageContext }}>
+        <CourseEnrollments
+          {...initialProps}
+          isMarkCourseCompleteSuccess
+        />
+      </LayoutContext.Provider>
+    ));
+    wrapper.find('.alert .btn.close').simulate('click');
+    expect(mockModifyIsMarkCourseCompleteSuccess).toBeCalledTimes(1);
   });
 });
