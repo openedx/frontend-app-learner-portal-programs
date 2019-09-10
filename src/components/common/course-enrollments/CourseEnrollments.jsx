@@ -44,6 +44,17 @@ export class CourseEnrollments extends Component {
     clearCourseEnrollments();
   }
 
+  hasCourseRunsWithStatus = (status) => {
+    const { courseRuns } = this.props;
+    return courseRuns && courseRuns[status] && courseRuns[status].length > 0;
+  }
+
+  hasCourseRuns = () => (
+    this.hasCourseRunsWithStatus('completed') ||
+    this.hasCourseRunsWithStatus('in_progress') ||
+    this.hasCourseRunsWithStatus('upcoming')
+  )
+
   renderError = () => (
     <StatusAlert
       alertType="danger"
@@ -87,6 +98,7 @@ export class CourseEnrollments extends Component {
 
   render() {
     const {
+      children,
       courseRuns,
       isLoading,
       error,
@@ -103,6 +115,12 @@ export class CourseEnrollments extends Component {
     return (
       <>
         {isMarkCourseCompleteSuccess && this.renderMarkCourseCompleteSuccessAlert()}
+        {/*
+          Only render children if there are no course runs.
+          This allows the parent component to customize what
+          gets displayed if the user does not have any course runs.
+        */}
+        {!this.hasCourseRuns() && children}
         <CourseSection
           title="My courses in progress"
           component={InProgressCourseCard}
@@ -162,10 +180,15 @@ CourseEnrollments.propTypes = {
   isMarkCourseCompleteSuccess: PropTypes.bool.isRequired,
   modifyIsMarkCourseCompleteSuccess: PropTypes.func.isRequired,
   error: PropTypes.instanceOf(Error),
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]),
 };
 
 CourseEnrollments.defaultProps = {
   error: null,
+  children: null,
 };
 
 export default connect(
