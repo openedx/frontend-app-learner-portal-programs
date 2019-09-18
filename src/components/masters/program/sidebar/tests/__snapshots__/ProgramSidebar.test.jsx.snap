@@ -2,11 +2,11 @@
 
 exports[`<ProgramSidebar /> renders correctly 1`] = `
 <div>
-  <h2
+  <h4
     className="mb-2"
   >
     Get Technical Support
-  </h2>
+  </h4>
   <p>
     <a
       href="https://support.edx.org/hc/en-us"
@@ -43,11 +43,11 @@ Array [
   <div
     className="mb-5"
   >
-    <h2
+    <h4
       className="mb-2"
     >
       Program Documents
-    </h2>
+    </h4>
     <nav
       aria-label="program documents"
     >
@@ -146,11 +146,11 @@ Array [
     </nav>
   </div>,
   <div>
-    <h2
+    <h4
       className="mb-2"
     >
       Get Technical Support
-    </h2>
+    </h4>
     <p>
       <a
         href="https://support.edx.org/hc/en-us"
