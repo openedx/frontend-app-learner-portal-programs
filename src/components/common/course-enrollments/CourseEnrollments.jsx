@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import MediaQuery from 'react-responsive';
 import { breakpoints, StatusAlert } from '@edx/paragon';
 
-import { LayoutContext } from '../layout';
+import { AppContext } from '../app-context';
 import { LoadingSpinner } from '../loading-spinner';
 import CourseSection from './CourseSection';
 import {
@@ -19,21 +19,20 @@ import * as selectors from './data/selectors';
 import * as actions from './data/actions';
 
 export class CourseEnrollments extends Component {
-  static contextType = LayoutContext;
+  static contextType = AppContext;
 
   componentDidMount() {
     const {
       pageContext: {
-        pageType,
         programUUID, // for Masters, empty for Enterprise
         enterpriseUUID, // for Enterprise, empty for Masters
       },
     } = this.context;
     const { fetchCourseEnrollments } = this.props;
-    const options = { pageType };
-    if (pageType === 'pages.ProgramPage') {
+    const options = {};
+    if (programUUID) {
       options.programUUID = programUUID;
-    } else if (pageType === 'pages.EnterprisePage') {
+    } else if (enterpriseUUID) {
       options.enterpriseUUID = enterpriseUUID;
     }
     fetchCourseEnrollments(options);

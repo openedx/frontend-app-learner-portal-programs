@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { withAuthentication } from '../../common/with-authentication';
 import { Layout } from '../../common/layout';
 import { LoadingSpinner } from '../../common/loading-spinner';
+import { MastersPage } from '../masters-page';
 
 import { fetchUserProgramEnrollments } from '../user-program-enrollments';
 
@@ -85,11 +86,11 @@ export class ProgramListPage extends Component {
   );
 
   render() {
-    const { isLoading, error } = this.props;
+    const { isLoading, error, pageContext } = this.props;
     const { validPrograms } = this.state;
 
     return (
-      <>
+      <MastersPage pageContext={pageContext}>
         {isLoading ? (
           <Layout>
             <div className="container my-4">
@@ -152,7 +153,7 @@ export class ProgramListPage extends Component {
             )}
           </>
         )}
-      </>
+      </MastersPage>
     );
   }
 }

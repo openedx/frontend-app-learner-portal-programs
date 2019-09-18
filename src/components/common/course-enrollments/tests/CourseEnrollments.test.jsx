@@ -8,7 +8,7 @@ import { breakpoints } from '@edx/paragon';
 
 import '../../../../__mocks__/reactResponsive.mock';
 
-import { LayoutContext } from '../../../common/layout';
+import { AppContext } from '../../../common/app-context';
 import { CourseEnrollments } from '../CourseEnrollments';
 
 const mockStore = configureMockStore([thunk]);
@@ -31,15 +31,16 @@ describe('<CourseEnrollments />', () => {
     isMarkCourseCompleteSuccess: false,
     modifyIsMarkCourseCompleteSuccess: mockModifyIsMarkCourseCompleteSuccess,
   };
+
   describe('renders course enrollments correctly', () => {
     it('with no course enrollments', () => {
       const pageContext = {
-        pageType: 'pages.EnterprisePage',
+        enterpriseUUID: 'test-enterprise-uuid',
       };
       const wrapper = mount((
-        <LayoutContext.Provider value={{ pageContext }}>
+        <AppContext.Provider value={{ pageContext }}>
           <CourseEnrollments {...initialProps} />
-        </LayoutContext.Provider>
+        </AppContext.Provider>
       ));
       expect(wrapper.exists('.course-section')).toBeFalsy();
     });
@@ -72,7 +73,6 @@ describe('<CourseEnrollments />', () => {
         completed: [sampleCourseRun],
       };
       const pageContext = {
-        pageType: 'pages.ProgramPage',
         programUUID: 'test-program-uuid',
       };
       const store = mockStore({
@@ -87,12 +87,12 @@ describe('<CourseEnrollments />', () => {
       });
       const wrapper = mount((
         <Provider store={store}>
-          <LayoutContext.Provider value={{ pageContext }}>
+          <AppContext.Provider value={{ pageContext }}>
             <CourseEnrollments
               {...initialProps}
               courseRuns={courseRuns}
             />
-          </LayoutContext.Provider>
+          </AppContext.Provider>
         </Provider>
       ));
 
@@ -104,16 +104,16 @@ describe('<CourseEnrollments />', () => {
 
     it('with error', () => {
       const pageContext = {
-        pageType: 'pages.EnterprisePage',
+        enterpriseUUID: 'test-enterprise-uuid',
       };
       const tree = renderer
         .create((
-          <LayoutContext.Provider value={{ pageContext }}>
+          <AppContext.Provider value={{ pageContext }}>
             <CourseEnrollments
               {...initialProps}
               error={new Error('Network Error')}
             />
-          </LayoutContext.Provider>
+          </AppContext.Provider>
         ))
         .toJSON();
       expect(tree).toMatchSnapshot();
@@ -121,16 +121,16 @@ describe('<CourseEnrollments />', () => {
 
     it('with loading', () => {
       const pageContext = {
-        pageType: 'pages.EnterprisePage',
+        enterpriseUUID: 'test-enterprise-uuid',
       };
       const tree = renderer
         .create((
-          <LayoutContext.Provider value={{ pageContext }}>
+          <AppContext.Provider value={{ pageContext }}>
             <CourseEnrollments
               {...initialProps}
               isLoading
             />
-          </LayoutContext.Provider>
+          </AppContext.Provider>
         ))
         .toJSON();
       expect(tree).toMatchSnapshot();
@@ -138,16 +138,16 @@ describe('<CourseEnrollments />', () => {
 
     it('with mark course as complete success status alert', () => {
       const pageContext = {
-        pageType: 'pages.EnterpsrisePage',
+        enterpriseUUID: 'test-enterprise-uuid',
       };
       const tree = renderer
         .create((
-          <LayoutContext.Provider value={{ pageContext }}>
+          <AppContext.Provider value={{ pageContext }}>
             <CourseEnrollments
               {...initialProps}
               isMarkCourseCompleteSuccess
             />
-          </LayoutContext.Provider>
+          </AppContext.Provider>
         ))
         .toJSON();
       expect(tree).toMatchSnapshot();
@@ -160,12 +160,12 @@ describe('<CourseEnrollments />', () => {
     it('is not shown at screen widths greater than or equal to large breakpoint', () => {
       global.innerWidth = breakpoints.large.minWidth;
       const pageContext = {
-        pageType: 'pages.EnterprisePage',
+        enterpriseUUID: 'test-enterprise-uuid',
       };
       wrapper = mount((
-        <LayoutContext.Provider value={{ pageContext }}>
+        <AppContext.Provider value={{ pageContext }}>
           <CourseEnrollments {...initialProps} />
-        </LayoutContext.Provider>
+        </AppContext.Provider>
       ));
       expect(wrapper.find('.sidebar-example').exists()).toBeFalsy();
     });
@@ -173,12 +173,12 @@ describe('<CourseEnrollments />', () => {
     it('is shown at screen widths less than large breakpoint', () => {
       global.innerWidth = breakpoints.small.minWidth;
       const pageContext = {
-        pageType: 'pages.EnterprisePage',
+        enterpriseUUID: 'test-enterprise-uuid',
       };
       wrapper = mount((
-        <LayoutContext.Provider value={{ pageContext }}>
+        <AppContext.Provider value={{ pageContext }}>
           <CourseEnrollments {...initialProps} />
-        </LayoutContext.Provider>
+        </AppContext.Provider>
       ));
       expect(wrapper.find('.sidebar-example').exists()).toBeTruthy();
     });
@@ -192,18 +192,14 @@ describe('<CourseEnrollments />', () => {
 
     it('for program page', () => {
       const programUUID = 'test-program-uuid';
-      const pageContext = {
-        pageType: 'pages.ProgramPage',
-        programUUID,
-      };
+      const pageContext = { programUUID };
       mount((
-        <LayoutContext.Provider value={{ pageContext }}>
+        <AppContext.Provider value={{ pageContext }}>
           <CourseEnrollments {...initialProps} />
-        </LayoutContext.Provider>
+        </AppContext.Provider>
       ));
       expect(mockFetchCourseEnrollments.mock.calls.length).toEqual(1);
       expect(mockFetchCourseEnrollments).toBeCalledWith({
-        pageType: 'pages.ProgramPage',
         programUUID,
       });
     });
@@ -211,17 +207,15 @@ describe('<CourseEnrollments />', () => {
     it('for enterprise page', () => {
       const enterpriseUUID = 'test-enterprise-uuid';
       const pageContext = {
-        pageType: 'pages.EnterprisePage',
         enterpriseUUID,
       };
       mount((
-        <LayoutContext.Provider value={{ pageContext }}>
+        <AppContext.Provider value={{ pageContext }}>
           <CourseEnrollments {...initialProps} />
-        </LayoutContext.Provider>
+        </AppContext.Provider>
       ));
       expect(mockFetchCourseEnrollments.mock.calls.length).toEqual(1);
       expect(mockFetchCourseEnrollments).toBeCalledWith({
-        pageType: 'pages.EnterprisePage',
         enterpriseUUID,
       });
     });
@@ -229,15 +223,15 @@ describe('<CourseEnrollments />', () => {
 
   it('properly closes mark course as complete success status alert', () => {
     const pageContext = {
-      pageType: 'pages.EnterpsrisePage',
+      enterpriseUUID: 'test-enterprise-uuid',
     };
     const wrapper = mount((
-      <LayoutContext.Provider value={{ pageContext }}>
+      <AppContext.Provider value={{ pageContext }}>
         <CourseEnrollments
           {...initialProps}
           isMarkCourseCompleteSuccess
         />
-      </LayoutContext.Provider>
+      </AppContext.Provider>
     ));
     wrapper.find('.alert .btn.close').simulate('click');
     expect(mockModifyIsMarkCourseCompleteSuccess).toBeCalledTimes(1);

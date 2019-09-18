@@ -40,6 +40,7 @@ module.exports = {
         whitelist: [
           'BASE_URL',
           'ENTERPRISE_CATALOG_MFE_URL',
+          'ORDERS_MFE_URL',
           'LMS_BASE_URL',
           'ECOMMERCE_BASE_URL',
           'LOGIN_URL',

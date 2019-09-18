@@ -3,7 +3,8 @@ import { sendTrackEvent } from '@edx/frontend-analytics';
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { LayoutContext, SidebarBlock } from '../../../common/layout';
+import { AppContext } from '../../../common/app-context';
+import { SidebarBlock } from '../../../common/layout';
 import Links from './Links';
 
 const ProgramSidebar = () => {
@@ -11,7 +12,7 @@ const ProgramSidebar = () => {
     pageContext: {
       programDocuments, externalProgramWebsite,
     },
-  } = useContext(LayoutContext);
+  } = useContext(AppContext);
 
   return (
     <>

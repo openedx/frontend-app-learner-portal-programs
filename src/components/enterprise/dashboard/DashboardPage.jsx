@@ -10,32 +10,36 @@ import { Hero } from '../../common/hero';
 import { DashboardMainContent } from './main-content';
 import { DashboardSidebar } from './sidebar';
 
+import { EnterprisePage } from '../enterprise-page';
+
 const DashboardPage = (props) => {
   const { pageContext } = props;
   const { enterpriseName } = pageContext;
   return (
-    <Layout
-      pageContext={pageContext}
-      headerLogo={pageContext.pageBranding.organization_logo.url}
-      footerLogo="https://files.edx.org/openedx-logos/edx-openedx-logo-tag.png"
-    >
-      <Helmet title={enterpriseName} />
-      <Hero title={enterpriseName} />
-      <div className="container py-5">
-        <div className="row">
-          <MainContent>
-            <DashboardMainContent />
-          </MainContent>
-          <MediaQuery minWidth={breakpoints.large.minWidth}>
-            {matches => matches && (
-              <Sidebar>
-                <DashboardSidebar />
-              </Sidebar>
-            )}
-          </MediaQuery>
+    <EnterprisePage pageContext={pageContext}>
+      <Layout
+        pageContext={pageContext}
+        headerLogo={pageContext.pageBranding.organization_logo.url}
+        footerLogo="https://files.edx.org/openedx-logos/edx-openedx-logo-tag.png"
+      >
+        <Helmet title={enterpriseName} />
+        <Hero title={enterpriseName} />
+        <div className="container py-5">
+          <div className="row">
+            <MainContent>
+              <DashboardMainContent />
+            </MainContent>
+            <MediaQuery minWidth={breakpoints.large.minWidth}>
+              {matches => matches && (
+                <Sidebar>
+                  <DashboardSidebar />
+                </Sidebar>
+              )}
+            </MediaQuery>
+          </div>
         </div>
-      </div>
-    </Layout>
+      </Layout>
+    </EnterprisePage>
   );
 };
 

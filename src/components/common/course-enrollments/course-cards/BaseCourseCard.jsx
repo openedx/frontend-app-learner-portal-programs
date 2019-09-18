@@ -8,13 +8,13 @@ import { faCog } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Dropdown } from '@edx/paragon';
 
-import { LayoutContext } from '../../layout';
+import { AppContext } from '../../app-context';
 import { EmailSettingsModal } from './email-settings';
 
 import './styles/CourseCard.scss';
 
 class BaseCourseCard extends Component {
-  static contextType = LayoutContext;
+  static contextType = AppContext;
 
   state = {
     modals: {
@@ -187,8 +187,8 @@ class BaseCourseCard extends Component {
   };
 
   renderSponsoredByEnterpriseMessage = () => {
-    const { pageContext: { pageType, enterpriseName } } = this.context;
-    if (pageType === 'pages.EnterprisePage') {
+    const { pageContext: { enterpriseName } } = this.context;
+    if (enterpriseName) {
       return <small>Sponsored by {enterpriseName}.</small>;
     }
     return null;

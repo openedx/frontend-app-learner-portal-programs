@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import { LayoutContext } from '../../layout';
+import { AppContext } from '../../app-context';
 import Hero from '../Hero';
 
 describe('<Hero />', () => {
@@ -20,9 +20,9 @@ describe('<Hero />', () => {
 
     const tree = renderer
       .create((
-        <LayoutContext.Provider value={{ pageContext }}>
+        <AppContext.Provider value={{ pageContext }}>
           <Hero title="Example Title" />
-        </LayoutContext.Provider>
+        </AppContext.Provider>
       ))
       .toJSON();
     expect(tree).toMatchSnapshot();

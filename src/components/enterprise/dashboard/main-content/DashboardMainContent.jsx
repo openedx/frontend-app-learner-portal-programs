@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
 
-import { LayoutContext } from '../../../common/layout';
+import { AppContext } from '../../../common/app-context';
 import { CourseEnrollments } from '../../../common/course-enrollments';
 import { DashboardSidebar } from '../sidebar';
 
 const DashboardMainContent = () => {
-  const { pageContext: { enterpriseName } } = useContext(LayoutContext);
+  const { pageContext: { enterpriseName } } = useContext(AppContext);
   return (
     <CourseEnrollments sidebarComponent={<DashboardSidebar />}>
       <h3>Browse courses</h3>

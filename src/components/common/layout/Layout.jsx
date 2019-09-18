@@ -6,52 +6,28 @@ import SiteHeader from '@edx/frontend-component-site-header';
 import SiteFooter from '@edx/frontend-component-footer';
 import { connect } from 'react-redux';
 
+import { AppContext } from '../app-context';
+
 import EdXLogo from '../../../images/edx-logo.svg';
 
 import './styles/Layout.scss';
 
-const LayoutContext = React.createContext();
-
 class Layout extends Component {
+  static contextType = AppContext;
+
   getUserMenuItems = () => {
-    const { pageContext: { pageType }, username } = this.props;
-    const menuItems = [
-      {
-        type: 'item',
-        href: process.env.LMS_BASE_URL,
-        content: 'Dashboard',
-      },
-      {
-        type: 'item',
-        href: `${process.env.LMS_BASE_URL}/u/${username}`,
-        content: 'Profile',
-      },
-      {
-        type: 'item',
-        href: `${process.env.LMS_BASE_URL}/account/settings`,
-        content: 'Account Settings',
-      },
-      {
-        type: 'item',
-        href: process.env.LOGOUT_URL,
-        content: 'Sign out',
-      },
-    ];
+    const { header: { userMenu } } = this.context;
+    return userMenu || [];
+  };
 
-    if (pageType !== 'pages.EnterprisePage') {
-      menuItems.splice(1, 0, {
-        type: 'item',
-        href: '/',
-        content: 'My Masters Degree',
-      });
-    }
-
-    return menuItems;
+  getMainMenuItems = () => {
+    const { header: { mainMenu } } = this.context;
+    return mainMenu || [];
   };
 
   render() {
     const {
-      siteUrl, siteName, username, avatar, pageContext, children, headerLogo, footerLogo,
+      siteUrl, siteName, username, avatar, children, headerLogo, footerLogo,
     } = this.props;
     return (
       <IntlProvider locale="en">
@@ -64,6 +40,7 @@ class Layout extends Component {
             loggedIn={!!username}
             username={username}
             avatar={avatar}
+            mainMenu={this.getMainMenuItems()}
             userMenu={this.getUserMenuItems()}
             loggedOutItems={[
               { type: 'item', href: '#', content: 'Login' },
@@ -71,11 +48,9 @@ class Layout extends Component {
             ]}
             skipNavId="content"
           />
-          <LayoutContext.Provider value={{ pageContext }}>
-            <main id="content">
-              {children}
-            </main>
-          </LayoutContext.Provider>
+          <main id="content">
+            {children}
+          </main>
           <SiteFooter
             siteName={siteName}
             siteLogo={footerLogo || EdXLogo}
@@ -102,7 +77,6 @@ class Layout extends Component {
 }
 
 Layout.defaultProps = {
-  pageContext: {},
   avatar: null,
   children: [],
   siteName: 'edX',
@@ -113,9 +87,6 @@ Layout.defaultProps = {
 };
 
 Layout.propTypes = {
-  pageContext: PropTypes.shape({
-    pageType: PropTypes.string,
-  }),
   avatar: PropTypes.string,
   children: PropTypes.node,
   siteName: PropTypes.string,
@@ -129,7 +100,5 @@ const ConnectedLayout = connect(state => ({
   avatar: state.userAccount.profileImage.imageUrlMedium,
   username: state.authentication.username,
 }))(Layout);
-
-export { LayoutContext };
 
 export default ConnectedLayout;

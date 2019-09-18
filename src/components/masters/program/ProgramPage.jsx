@@ -12,6 +12,7 @@ import { Hero } from '../../common/hero';
 import { withAuthentication } from '../../common/with-authentication';
 import { Layout, MainContent, Sidebar } from '../../common/layout';
 import { LoadingSpinner } from '../../common/loading-spinner';
+import { MastersPage } from '../masters-page';
 import { ProgramMainContent } from './main-content';
 import { ProgramSidebar } from './sidebar';
 
@@ -80,40 +81,42 @@ class ProgramPage extends Component {
     const { programName } = pageContext;
 
     return (
-      <Layout pageContext={pageContext}>
-        {isLoading ? (
-          <div className="container py-5">
-            <div className="col">
-              <LoadingSpinner screenReaderText="loading program enrollments" />
+      <MastersPage pageContext={pageContext}>
+        <Layout>
+          {isLoading ? (
+            <div className="container py-5">
+              <div className="col">
+                <LoadingSpinner screenReaderText="loading program enrollments" />
+              </div>
             </div>
-          </div>
-        ) : (
-          <>
-            {hasProgramAccess ? (
-              <>
-                <Helmet title={programName} />
-                <Hero title={programName} />
-                <div className="container py-5">
-                  <div className="row">
-                    <MainContent>
-                      <ProgramMainContent />
-                    </MainContent>
-                    <MediaQuery minWidth={breakpoints.large.minWidth}>
-                      {matches => matches && (
-                        <Sidebar>
-                          <ProgramSidebar />
-                        </Sidebar>
-                      )}
-                    </MediaQuery>
+          ) : (
+            <>
+              {hasProgramAccess ? (
+                <>
+                  <Helmet title={programName} />
+                  <Hero title={programName} />
+                  <div className="container py-5">
+                    <div className="row">
+                      <MainContent>
+                        <ProgramMainContent />
+                      </MainContent>
+                      <MediaQuery minWidth={breakpoints.large.minWidth}>
+                        {matches => matches && (
+                          <Sidebar>
+                            <ProgramSidebar />
+                          </Sidebar>
+                        )}
+                      </MediaQuery>
+                    </div>
                   </div>
-                </div>
-              </>
-            ) : (
-              this.renderError()
-            )}
-          </>
-        )}
-      </Layout>
+                </>
+              ) : (
+                this.renderError()
+              )}
+            </>
+          )}
+        </Layout>
+      </MastersPage>
     );
   }
 }

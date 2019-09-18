@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 
-import { LayoutContext } from '../layout';
+import { AppContext } from '../app-context';
 
 import './styles/Hero.scss';
 
@@ -10,7 +10,7 @@ const Hero = (props) => {
     pageContext: {
       pageBranding,
     },
-  } = useContext(LayoutContext);
+  } = useContext(AppContext);
   const { title } = props;
 
   return (

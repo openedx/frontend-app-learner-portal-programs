@@ -4,7 +4,7 @@ import { Modal, StatefulButton } from '@edx/paragon';
 
 import ModalBody from './ModalBody';
 import { markCourseAsCompleteRequest } from './data/service';
-import { LayoutContext } from '../../../layout';
+import { AppContext } from '../../../app-context';
 import { camelCaseObject } from '../../../../../common/utils';
 
 export const MarkCompleteModalContext = createContext();
@@ -23,7 +23,7 @@ const MarkCompleteModal = ({
   onSuccess,
   onClose,
 }) => {
-  const { pageContext: { enterpriseUUID } } = useContext(LayoutContext);
+  const { pageContext: { enterpriseUUID } } = useContext(AppContext);
   const [
     { confirmButtonState, confirmError, confirmSuccessful },
     setState,
