@@ -13,6 +13,8 @@
  *      the chosen name. Example: `isFeatureEnabled('move_to_completed')`.
  *   3. To see it in action, specify `?features=FEATURE_NAME` in the URL and refresh
  *      the page. Example: `?features=move_to_completed`.
+ *   4. To enable multiple feature flags at once, use a comma-separated list of features
+ *      in the query parameter. Example: `?features=move_to_completed,enterprise_offers`.
  */
 
 import qs from 'query-string';

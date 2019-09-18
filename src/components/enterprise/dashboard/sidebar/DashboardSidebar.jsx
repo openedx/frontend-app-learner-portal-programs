@@ -6,6 +6,8 @@ import { LayoutContext, SidebarBlock } from '../../../common/layout';
 import { LoadingSpinner } from '../../../common/loading-spinner';
 import { fetchOffers, Offer } from './offers';
 
+import { isFeatureEnabled } from '../../../../common/features';
+
 class DashboardSidebar extends React.Component {
   static contextType = LayoutContext;
 
@@ -57,32 +59,31 @@ class DashboardSidebar extends React.Component {
     const { pageContext: { enterpriseName } } = this.context;
     const {
       offers,
-      isLoading,
+      isOffersLoading,
     } = this.props;
     return (
       <>
-        <SidebarBlock title={`Learning Benefits from ${enterpriseName}`} className="mb-5">
-          {isLoading && (
-            <div className="mb-5">
-              <LoadingSpinner screenReaderText={`loading learning benefits for ${enterpriseName}`} />
-            </div>
-          )}
-          {this.renderOffers(offers)}
-        </SidebarBlock>
-        <SidebarBlock className="mb-5">
-          <div className="mt-5">
-            <h5>Need help?</h5>
-            <p>
-              For technical support, visit the
-              {' '}
-              <a href="https://support.edx.org/hc/en-us">edX Help Center</a>.
-            </p>
-            <p>
-              To request more benefits or specific courses,
-              {' '}
-              {this.renderLearningCoordinatorHelpText()}.
-            </p>
-          </div>
+        {isFeatureEnabled('enterprise_offers') && (
+          <SidebarBlock title={`Learning Benefits from ${enterpriseName}`} className="mb-5">
+            {isOffersLoading && (
+              <div className="mb-5">
+                <LoadingSpinner screenReaderText={`loading learning benefits for ${enterpriseName}`} />
+              </div>
+            )}
+            {this.renderOffers(offers)}
+          </SidebarBlock>
+        )}
+        <SidebarBlock title="Need help?" className="mb-5">
+          <p>
+            For technical support, visit the
+            {' '}
+            <a href="https://support.edx.org/hc/en-us">edX Help Center</a>.
+          </p>
+          <p>
+            To request more benefits or specific courses,
+            {' '}
+            {this.renderLearningCoordinatorHelpText()}.
+          </p>
         </SidebarBlock>
       </>
     );
@@ -91,13 +92,13 @@ class DashboardSidebar extends React.Component {
 
 DashboardSidebar.defaultProps = {
   fetchOffers: null,
-  isLoading: false,
+  isOffersLoading: false,
   offers: [],
 };
 
 DashboardSidebar.propTypes = {
   fetchOffers: PropTypes.func,
-  isLoading: PropTypes.bool,
+  isOffersLoading: PropTypes.bool,
   offers: PropTypes.arrayOf(PropTypes.shape({
     usageType: PropTypes.string,
     benefitValue: PropTypes.number,
@@ -108,7 +109,7 @@ DashboardSidebar.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  isLoading: state.offers.loading,
+  isOffersLoading: state.offers.loading,
   offers: state.offers.offers,
 });
 

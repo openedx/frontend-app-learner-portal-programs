@@ -1,6 +1,9 @@
 @import "~@edx/paragon/scss/edx/theme.scss";
 
-.collapsible-trigger,
-.collapsible-body {
+.collapsible-trigger {
   @extend .px-0;
+}
+
+.collapsible-body {
+  @extend .p-0;
 }
