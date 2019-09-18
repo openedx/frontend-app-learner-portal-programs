@@ -37,6 +37,8 @@
   }
 
   .course-title > a {
+    @extend .h4;
+    @extend .m-0;
     @extend .text-dark;
     text-decoration: none;
   }

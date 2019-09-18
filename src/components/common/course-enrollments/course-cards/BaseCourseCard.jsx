@@ -274,9 +274,9 @@ class BaseCourseCard extends Component {
         <div className="d-flex">
           <div className="flex-grow-1 mr-4 mb-3">
             {this.renderMicroMastersTitle()}
-            <h4 className="course-title mb-1">
+            <h3 className="course-title mb-1">
               <a href={linkToCourse}>{title}</a>
-            </h4>
+            </h3>
             {this.renderOrganizationName()}
           </div>
           {this.renderSettingsDropdown(dropdownMenuItems)}
