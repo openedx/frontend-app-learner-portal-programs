@@ -18,7 +18,6 @@ const DashboardPage = (props) => {
   return (
     <EnterprisePage pageContext={pageContext}>
       <Layout
-        pageContext={pageContext}
         headerLogo={pageContext.pageBranding.organization_logo.url}
         footerLogo="https://files.edx.org/openedx-logos/edx-openedx-logo-tag.png"
       >
