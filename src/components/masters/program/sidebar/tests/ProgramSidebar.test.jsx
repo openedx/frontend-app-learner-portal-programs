@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import { LayoutContext } from '../../../../common/layout';
+import { AppContext } from '../../../../common/app-context';
 
 import ProgramSidebar from '../ProgramSidebar';
 
@@ -13,9 +13,9 @@ describe('<ProgramSidebar />', () => {
     };
     const tree = renderer
       .create((
-        <LayoutContext.Provider value={{ pageContext }}>
+        <AppContext.Provider value={{ pageContext }}>
           <ProgramSidebar />
-        </LayoutContext.Provider>
+        </AppContext.Provider>
       ))
       .toJSON();
     expect(tree).toMatchSnapshot();
@@ -44,9 +44,9 @@ describe('<ProgramSidebar />', () => {
       externalProgramWebsite: 'https://edx.org',
     };
     const tree = renderer.create((
-      <LayoutContext.Provider value={{ pageContext }}>
+      <AppContext.Provider value={{ pageContext }}>
         <ProgramSidebar />
-      </LayoutContext.Provider>
+      </AppContext.Provider>
     )).toJSON();
     expect(tree).toMatchSnapshot();
   });

@@ -2,14 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { LayoutContext, SidebarBlock } from '../../../common/layout';
+import { AppContext } from '../../../common/app-context';
+import { SidebarBlock } from '../../../common/layout';
 import { LoadingSpinner } from '../../../common/loading-spinner';
 import { fetchOffers, Offer } from './offers';
 
 import { isFeatureEnabled } from '../../../../common/features';
 
 class DashboardSidebar extends React.Component {
-  static contextType = LayoutContext;
+  static contextType = AppContext;
 
   componentDidMount() {
     this.props.fetchOffers();

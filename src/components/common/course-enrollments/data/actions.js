@@ -57,22 +57,25 @@ export const fetchCourseEnrollments = options => (
   (dispatch) => {
     dispatch(fetchCourseEnrollmentsRequest());
     let serviceMethod;
-    if (options.pageType === 'pages.EnterprisePage') {
+    if (options.enterpriseUUID) {
       serviceMethod = () => service.fetchEnterpriseCourseEnrollments(options.enterpriseUUID);
-    } else {
+    } else if (options.programUUID) {
       serviceMethod = () => service.fetchProgramCourseEnrollments(options.programUUID);
     }
-    return serviceMethod()
-      .then((response) => {
-        const transformedResponse = transformCourseEnrollmentsResponse({
-          responseData: response.data,
-          options,
+    if (serviceMethod) {
+      return serviceMethod()
+        .then((response) => {
+          const transformedResponse = transformCourseEnrollmentsResponse({
+            responseData: response.data,
+            options,
+          });
+          dispatch(fetchCourseEnrollmentsSuccess(transformedResponse));
+        })
+        .catch((error) => {
+          dispatch(fetchCourseEnrollmentsFailure(error));
         });
-        dispatch(fetchCourseEnrollmentsSuccess(transformedResponse));
-      })
-      .catch((error) => {
-        dispatch(fetchCourseEnrollmentsFailure(error));
-      });
+    }
+    return undefined;
   }
 );
 

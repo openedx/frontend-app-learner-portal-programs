@@ -8,7 +8,7 @@ import BaseCourseCard from './BaseCourseCard';
 import { MarkCompleteModal } from './mark-complete-modal';
 import Notification from './Notification';
 
-import { LayoutContext } from '../../layout';
+import { AppContext } from '../../app-context';
 import {
   updateCourseRunStatus,
   updateIsMarkCourseCompleteSuccess,
@@ -23,7 +23,6 @@ const InProgressCourseCard = ({
   modifyIsMarkCourseCompleteSuccess,
   ...rest
 }) => {
-  const { pageContext: { pageType } } = useContext(LayoutContext);
   const [isMarkCompleteModalOpen, setIsMarkCompleteModalOpen] = useState(false);
 
   const renderButtons = () => (
@@ -50,29 +49,30 @@ const InProgressCourseCard = ({
   });
 
   const getDropdownMenuItems = () => {
-    // TODO: We should try to avoid this sort of conditional logic based on
-    // `pageType`. Instead, ideally, we'd be able to pull the dropdown
-    // menu items from a parent component's context or pass them down the
-    // component tree.
-    if (pageType !== 'pages.EnterprisePage') {
-      return [];
+    const { courseCards } = useContext(AppContext);
+    const cardConfig = courseCards && courseCards['in-progress'];
+    const settingsMenu = cardConfig ? cardConfig.settingsMenu : undefined;
+    const hasMarkComplete = settingsMenu ? settingsMenu.hasMarkComplete : false;
+
+    if (hasMarkComplete) {
+      return [{
+        key: 'mark-complete',
+        type: 'button',
+        onClick: () => {
+          setIsMarkCompleteModalOpen(true);
+          sendTrackEvent('edx.learner_portal.course.mark_complete.modal.opened', {
+            course_run_id: courseRunId,
+          });
+        },
+        children: (
+          <>
+            Mark as complete
+            <span className="sr-only">for {title}</span>
+          </>
+        ),
+      }];
     }
-    return [{
-      key: 'mark-complete',
-      type: 'button',
-      onClick: () => {
-        setIsMarkCompleteModalOpen(true);
-        sendTrackEvent('edx.learner_portal.course.mark_complete.modal.opened', {
-          course_run_id: courseRunId,
-        });
-      },
-      children: (
-        <>
-          Mark as complete
-          <span className="sr-only">for {title}</span>
-        </>
-      ),
-    }];
+    return [];
   };
 
   const handleMarkCompleteModalOnClose = () => {

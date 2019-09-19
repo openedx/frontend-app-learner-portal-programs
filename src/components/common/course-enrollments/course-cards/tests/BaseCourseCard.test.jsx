@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import configureMockStore from 'redux-mock-store';
 import * as analytics from '@edx/frontend-analytics';
 
-import { LayoutContext } from '../../../layout';
+import { AppContext } from '../../../app-context';
 import BaseCourseCard from '../BaseCourseCard';
 
 const mockStore = configureMockStore([thunk]);
@@ -22,11 +22,11 @@ describe('<BaseCourseCard />', () => {
 
     beforeEach(() => {
       const pageContext = {
-        pageType: 'pages.EnterprisePage',
+        enterpriseName: 'test-enterprise-name',
       };
       wrapper = mount((
         <Provider store={store}>
-          <LayoutContext.Provider value={{ pageContext }}>
+          <AppContext.Provider value={{ pageContext }}>
             <BaseCourseCard
               type="completed"
               title="edX Demonstration Course"
@@ -34,7 +34,7 @@ describe('<BaseCourseCard />', () => {
               courseRunId="my+course+key"
               hasEmailsEnabled
             />
-          </LayoutContext.Provider>
+          </AppContext.Provider>
         </Provider>
       ));
       // open email settings modal
