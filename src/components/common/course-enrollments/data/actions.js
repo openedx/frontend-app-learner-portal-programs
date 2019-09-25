@@ -47,7 +47,7 @@ export const updateIsMarkCourseCompleteSuccess = ({ isSuccess }) => ({
 
 const transformCourseEnrollmentsResponse = ({ responseData, options }) => {
   const camelCaseResponseData = camelCaseObject(responseData);
-  if (options.pageType === 'pages.ProgramPage') {
+  if (options.programUUID) {
     return camelCaseResponseData.courseRuns;
   }
   return [...camelCaseResponseData];
