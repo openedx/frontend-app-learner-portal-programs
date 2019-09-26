@@ -1,7 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import { shallow } from 'enzyme';
-import { StaticQuery } from 'gatsby';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import { StatusAlert } from '@edx/paragon';
