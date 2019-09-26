@@ -214,12 +214,12 @@ class BaseCourseCard extends Component {
     return null;
   };
 
-  renderChidren = () => {
+  renderChildren = () => {
     const { children } = this.props;
     if (children) {
       return (
         <div className="row">
-          <div className="col mb-3">
+          <div className="col">
             {children}
           </div>
         </div>
@@ -282,7 +282,7 @@ class BaseCourseCard extends Component {
           {this.renderSettingsDropdown(dropdownMenuItems)}
         </div>
         {this.renderButtons()}
-        {this.renderChidren()}
+        {this.renderChildren()}
         <div className="course-misc-text row">
           <div className="col text-gray">
             <small className="mb-0">

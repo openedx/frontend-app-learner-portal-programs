@@ -12,18 +12,6 @@ import { ProgramListPage } from '../ProgramListPage';
 const mockStore = configureMockStore([thunk]);
 
 describe('ProgramListPage', () => {
-  beforeEach(() => {
-    StaticQuery.mockImplementationOnce(({ render }) => (
-      render({
-        site: {
-          siteMetadata: {
-            programUUID: 'aa7316ce-1b06-4d4a-b612-7a9c652f2990',
-          },
-        },
-      })
-    ));
-  });
-
   const pageContext = {
     programs: [
       {

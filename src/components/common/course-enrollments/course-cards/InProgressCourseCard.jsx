@@ -102,7 +102,7 @@ const InProgressCourseCard = ({
       return null;
     }
     return (
-      <div className="notifications">
+      <div className="notifications mb-3">
         <ul
           className="list-unstyled mb-0"
           aria-label="course due dates"
