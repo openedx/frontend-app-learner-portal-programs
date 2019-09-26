@@ -9,7 +9,7 @@ import CertificateImg from './images/edx-verified-mini-cert.png';
 const CompletedCourseCard = props => (
   <BaseCourseCard type="completed" hasViewCertificateLink={false} {...props}>
     {props.linkToCertificate ? (
-      <div className="d-flex">
+      <div className="d-flex mb-3">
         <div className="mr-3">
           <img src={CertificateImg} alt="verified certificate preview" />
         </div>
@@ -22,7 +22,7 @@ const CompletedCourseCard = props => (
         </div>
       </div>
     ) : (
-      <p className="lead mb-0">
+      <p className="lead mb-3">
         To earn a certificate,
         {' '}
         <a href={props.linkToCourse}>retake this course →</a>
