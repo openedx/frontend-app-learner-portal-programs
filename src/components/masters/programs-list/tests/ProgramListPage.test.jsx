@@ -1,7 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import { shallow } from 'enzyme';
-import { StaticQuery } from 'gatsby';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import { StatusAlert } from '@edx/paragon';
@@ -12,18 +11,6 @@ import { ProgramListPage } from '../ProgramListPage';
 const mockStore = configureMockStore([thunk]);
 
 describe('ProgramListPage', () => {
-  beforeEach(() => {
-    StaticQuery.mockImplementationOnce(({ render }) => (
-      render({
-        site: {
-          siteMetadata: {
-            programUUID: 'aa7316ce-1b06-4d4a-b612-7a9c652f2990',
-          },
-        },
-      })
-    ));
-  });
-
   const pageContext = {
     programs: [
       {
