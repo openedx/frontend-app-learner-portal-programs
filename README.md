@@ -1,7 +1,7 @@
-# frontend-app-learner-portal
+# frontend-app-learner-portal-programs
 
 ## Overview
-The learner portal allows a customized experience of learner-facing micro-frontend page components.
+The edX learning platform's frontend for program-affiliated learners.
 
 ## Getting started
 
