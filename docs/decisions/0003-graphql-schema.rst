@@ -13,7 +13,7 @@ Decision
 --------
 For each new type of query made, a coinciding `.gql` schema must be created with all the possible fields being made available in that query. All types must be named, and either made required or not. If a field is not required, that field should be `null`-able, as to not create situations where missing data will cause pages created by Gatsby to fail building.
 
-These `.gql`  files should live in the `schema` folder found within the `gatsby-source-wagtail` plugin folder. A new file should be created each time a new query is needed. If new fields are needed in a query already created, they should be added to the file for the query.
+These `.gql`  files should live in the `schema` folder found within the `@edx/gatsby-source-portal-designer` plugin package. A new file should be created each time a new query is needed. If new fields are needed in a query already created, they should be added to the file for the query.
 
 Consequences
 ------------

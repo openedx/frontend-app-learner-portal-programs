@@ -21,7 +21,7 @@ module.exports = {
   pathPrefix: `${process.env.ENABLE_PATH_PREFIX ? process.env.HOSTNAME : '/'}`,
   plugins: [
     {
-      resolve: 'gatsby-source-wagtail',
+      resolve: '@edx/gatsby-source-portal-designer',
       options: {
         pagesApiUrl,
       },

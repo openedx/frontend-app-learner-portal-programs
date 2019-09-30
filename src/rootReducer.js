@@ -1,10 +1,9 @@
 import { combineReducers } from 'redux';
 import { userAccount } from '@edx/frontend-auth';
+import { reducer as courseEnrollments } from '@edx/frontend-learner-portal-base/src/components/course-enrollments';
+import { reducer as emailSettings } from '@edx/frontend-learner-portal-base/src/components/course-enrollments/course-cards/email-settings';
 
-import { reducer as enrolledPrograms } from './components/masters/user-program-enrollments';
-import { reducer as courseEnrollments } from './components/common/course-enrollments';
-import { reducer as emailSettings } from './components/common/course-enrollments/course-cards/email-settings';
-import { reducer as offers } from './components/enterprise/dashboard/sidebar/offers';
+import { reducer as enrolledPrograms } from './components/user-program-enrollments';
 
 const identityReducer = (state) => {
   const newState = { ...state };
@@ -19,7 +18,6 @@ const rootReducer = combineReducers({
   emailSettings,
   enrolledPrograms,
   courseEnrollments,
-  offers,
 });
 
 export default rootReducer;
