@@ -1,0 +1,64 @@
+@import "~@edx/paragon/scss/edx/theme.scss";
+
+.hero {
+  position: relative;
+  overflow: hidden;
+
+  .container {
+    padding-left: 0;
+
+    @include media-breakpoint-up(sm) {
+      & {
+        padding-left: 2rem;
+      }
+    }
+  }
+
+  .background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+    .hero-texture,
+    .hero-img {
+      background-color: #ffffff;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    .hero-texture {
+      flex: 1;
+      flex-grow: 0;
+      flex-basis: 33.33%;
+      border-right-width: 20px;
+      border-right-style: solid;
+    }
+
+    .hero-img {
+      flex: 1;
+    }
+  }
+
+  .hero-box {
+    border-left-width: 20px;
+    border-left-style: solid;
+  }
+
+  .hero-logo-wrapper {
+    @include media-breakpoint-between(sm, lg) {
+      & {
+        margin-top: 20px;
+      }
+    }
+
+    .hero-logo {
+      border-left-width: 20px;
+      border-left-style: solid;
+
+      img {
+        max-width: 130px;
+      }
+    }
+  }
+}
