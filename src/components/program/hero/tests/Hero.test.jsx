@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
+import { AppContext } from '@edx/frontend-learner-portal-base/src/components/app-context';
 
-import { AppContext } from '../../app-context';
 import Hero from '../Hero';
 
 describe('<Hero />', () => {
