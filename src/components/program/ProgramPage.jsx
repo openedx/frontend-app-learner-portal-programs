@@ -7,7 +7,6 @@ import MediaQuery from 'react-responsive';
 import { breakpoints, StatusAlert } from '@edx/paragon';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Hero } from '@edx/frontend-learner-portal-base/src/components/hero';
 import { withAuthentication } from '@edx/frontend-learner-portal-base/src/components/with-authentication';
 import { Layout, MainContent, Sidebar } from '@edx/frontend-learner-portal-base/src/components/layout';
 import { LoadingSpinner } from '@edx/frontend-learner-portal-base/src/components/loading-spinner';
@@ -15,6 +14,7 @@ import { LoadingSpinner } from '@edx/frontend-learner-portal-base/src/components
 import { MastersPage } from '../masters-page';
 import { ProgramMainContent } from './main-content';
 import { ProgramSidebar } from './sidebar';
+import { Hero } from './hero';
 
 import { fetchUserProgramEnrollments } from '../user-program-enrollments';
 

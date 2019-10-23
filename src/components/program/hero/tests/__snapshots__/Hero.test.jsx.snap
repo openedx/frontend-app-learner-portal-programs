@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Hero /> renders correctly 1`] = `
+<div
+  className="hero"
+>
+  <div
+    className="background d-flex"
+  >
+    <div
+      className="hero-texture d-none d-lg-block"
+      style={
+        Object {
+          "backgroundImage": "url(https://example.com/avengersx-texture-image-440x400.png)",
+          "borderColor": "#FFFFFF",
+        }
+      }
+    />
+    <div
+      className="hero-img"
+      style={
+        Object {
+          "backgroundImage": "url(https://example.com/avengersx-cover-image-1000x400.png)",
+          "borderColor": "#FFFFFF",
+        }
+      }
+    />
+  </div>
+  <div
+    className="container py-3"
+  >
+    <div
+      className="row"
+    >
+      <div
+        className="col-xs-9 col-lg-6"
+      >
+        <div
+          className="hero-box bg-white p-4 d-sm-inline-block"
+          style={
+            Object {
+              "borderColor": "#FFFFFF",
+            }
+          }
+        >
+          <h1
+            className="hero-heading m-0"
+          >
+            Example Title
+          </h1>
+        </div>
+      </div>
+    </div>
+    <div
+      className="row hero-logo-wrapper"
+    >
+      <div
+        className="col-12 col-lg-4 offset-lg-8 text-lg-right"
+      >
+        <div
+          className="hero-logo bg-white pl-3 pr-5 d-sm-inline-block text-left"
+          style={
+            Object {
+              "borderColor": "#FFFFFF",
+            }
+          }
+        >
+          <img
+            alt="Avengers logo"
+            src="https://example.com/avengersx-logo-200x101.png"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
