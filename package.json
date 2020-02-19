@@ -53,7 +53,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^9.4.5",
-    "codecov": "^3.1.0",
+    "codecov": "^3.6.5",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.11.2",
     "es-check": "^5.0.0",
