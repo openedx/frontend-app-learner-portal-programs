@@ -53,7 +53,7 @@ const ProgramSidebar = () => {
       <SidebarBlock title="Get Technical Support">
         <p>
           <a
-            href="https://support.edx.org/hc/en-us"
+            href="https://support.edx.org/hc/en-us/sections/360007968853-Master-s-student-help"
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => {

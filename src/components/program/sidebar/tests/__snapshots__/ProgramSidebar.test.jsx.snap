@@ -9,7 +9,7 @@ exports[`<ProgramSidebar /> renders correctly 1`] = `
   </h4>
   <p>
     <a
-      href="https://support.edx.org/hc/en-us"
+      href="https://support.edx.org/hc/en-us/sections/360007968853-Master-s-student-help"
       onClick={[Function]}
       rel="noopener noreferrer"
       target="_blank"
@@ -153,7 +153,7 @@ Array [
     </h4>
     <p>
       <a
-        href="https://support.edx.org/hc/en-us"
+        href="https://support.edx.org/hc/en-us/sections/360007968853-Master-s-student-help"
         onClick={[Function]}
         rel="noopener noreferrer"
         target="_blank"
