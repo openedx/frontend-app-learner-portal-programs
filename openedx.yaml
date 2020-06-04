@@ -2,7 +2,9 @@
 # https://open-edx-proposals.readthedocs.io/en/latest/oep-0002-bp-repo-metadata.html#specification
 
 nick: frontend-app-learner
-owner: mattcarter
+owner:
+  type: team
+  value: masters-devs
 
 oeps:
   oep-2: true
