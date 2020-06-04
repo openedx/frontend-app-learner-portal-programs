@@ -4,18 +4,12 @@
 nick: frontend-app-learner
 owner:
   type: team
-  value: masters-devs
+  team: masters-devs
 
 oeps:
-  oep-2: true
-  oep-7: true
-  oep-18: true
+  oep-2: True
+  oep-7: True
+  oep-18: True
   oep-30:
     state: False
     reason: TODO - Implement for this application if appropriate
-
-tags:
-  - portal
-
-supporting_teams:
-  - masters-devs
