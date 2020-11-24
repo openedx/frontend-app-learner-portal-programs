@@ -1,4 +1,6 @@
-@import "~@edx/paragon/scss/edx/theme.scss";
+@import "@edx/brand/paragon/variables";
+@import "@edx/paragon/scss/core/core";
+@import "@edx/brand/paragon/overrides";
 
 .hero {
   position: relative;

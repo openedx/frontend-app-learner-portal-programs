@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { AppContext } from '@edx/frontend-learner-portal-base/src/components/app-context';
+import { getConfig } from '@edx/frontend-platform';
 
 const MastersPage = ({
   children,
@@ -11,10 +12,11 @@ const MastersPage = ({
   <AppContext.Provider
     value={{
       header: {
+        logo: getConfig().LOGO_TRADEMARK_URL,
         userMenu: [
           {
             type: 'item',
-            href: process.env.LMS_BASE_URL,
+            href: getConfig().LMS_BASE_URL,
             content: 'Dashboard',
           },
           {
@@ -24,17 +26,17 @@ const MastersPage = ({
           },
           {
             type: 'item',
-            href: `${process.env.LMS_BASE_URL}/u/${username}`,
+            href: `${getConfig().LMS_BASE_URL}/u/${username}`,
             content: 'My Profile',
           },
           {
             type: 'item',
-            href: `${process.env.LMS_BASE_URL}/account/settings`,
+            href: `${getConfig().LMS_BASE_URL}/account/settings`,
             content: 'Account Settings',
           },
           {
             type: 'item',
-            href: process.env.LOGOUT_URL,
+            href: getConfig().LOGOUT_URL,
             content: 'Sign Out',
           },
         ],
