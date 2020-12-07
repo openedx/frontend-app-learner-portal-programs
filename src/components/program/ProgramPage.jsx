@@ -10,6 +10,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { withAuthentication } from '@edx/frontend-learner-portal-base/src/components/with-authentication';
 import { Layout, MainContent, Sidebar } from '@edx/frontend-learner-portal-base/src/components/layout';
 import { LoadingSpinner } from '@edx/frontend-learner-portal-base/src/components/loading-spinner';
+import { getConfig } from '@edx/frontend-platform';
 
 import { MastersPage } from '../masters-page';
 import { ProgramMainContent } from './main-content';
@@ -19,6 +20,8 @@ import { Hero } from './hero';
 import { fetchUserProgramEnrollments } from '../user-program-enrollments';
 
 import './styles/ProgramPage.scss';
+
+const logo = getConfig().LOGO_TRADEMARK_URL;
 
 class ProgramPage extends Component {
   constructor(props) {
@@ -82,7 +85,7 @@ class ProgramPage extends Component {
 
     return (
       <MastersPage pageContext={pageContext}>
-        <Layout>
+        <Layout headerLogo={logo}>
           {isLoading ? (
             <div className="container py-5">
               <div className="col">

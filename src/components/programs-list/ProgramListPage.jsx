@@ -8,10 +8,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { withAuthentication } from '@edx/frontend-learner-portal-base/src/components/with-authentication';
 import { Layout } from '@edx/frontend-learner-portal-base/src/components/layout';
 import { LoadingSpinner } from '@edx/frontend-learner-portal-base/src/components/loading-spinner';
+import { getConfig } from '@edx/frontend-platform';
 
 import { MastersPage } from '../masters-page';
 
 import { fetchUserProgramEnrollments } from '../user-program-enrollments';
+
+const logo = getConfig().LOGO_TRADEMARK_URL;
 
 export class ProgramListPage extends Component {
   constructor(props) {
@@ -92,7 +95,7 @@ export class ProgramListPage extends Component {
     return (
       <MastersPage pageContext={pageContext}>
         {isLoading ? (
-          <Layout>
+          <Layout headerLogo={logo}>
             <div className="container my-4">
               <LoadingSpinner screenReaderText="loading program enrollments" />
             </div>
@@ -100,7 +103,7 @@ export class ProgramListPage extends Component {
         ) : (
           <>
             {error ? (
-              <Layout>
+              <Layout headerLogo={logo}>
                 <div className="container my-4">
                   {this.renderError({
                     message: 'An error occurred while fetching your program enrollments. Please try again later.',
@@ -110,7 +113,7 @@ export class ProgramListPage extends Component {
             ) : (
               <>
                 {validPrograms && (
-                  <Layout>
+                  <Layout headerLogo={logo}>
                     {!validPrograms.length ? (
                       <div className="container my-3">
                         {this.renderError({
@@ -157,7 +160,6 @@ export class ProgramListPage extends Component {
     );
   }
 }
-
 ProgramListPage.propTypes = {
   pageContext: PropTypes.shape({
     programs: PropTypes.arrayOf(PropTypes.shape({
@@ -174,22 +176,18 @@ ProgramListPage.propTypes = {
   })),
   error: PropTypes.instanceOf(Error),
 };
-
 ProgramListPage.defaultProps = {
   enrolledPrograms: null,
   error: null,
 };
-
 const mapStateToProps = state => ({
   isLoading: state.enrolledPrograms.loading,
   enrolledPrograms: state.enrolledPrograms.data,
   error: state.enrolledPrograms.error,
 });
-
 const mapDispatchToProps = dispatch => ({
   fetchUserProgramEnrollments: () => dispatch(fetchUserProgramEnrollments()),
 });
-
 const ConnectedProgramListPage = compose(
   withAuthentication,
   connect(
@@ -197,5 +195,4 @@ const ConnectedProgramListPage = compose(
     mapDispatchToProps,
   ),
 )(ProgramListPage);
-
 export default ConnectedProgramListPage;
