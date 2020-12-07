@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { sendTrackEvent } from '@edx/frontend-analytics';
-import { faFile, faChevronCircleDown, faChevronCircleUp } from '@fortawesome/free-solid-svg-icons';
+import { faFile, faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Button } from '@edx/paragon';
 
@@ -20,7 +20,7 @@ class Links extends Component {
 
     return links.map(link => (
       <li key={link.document || link.url} className="mb-1">
-        <FontAwesomeIcon className="mr-2 text-primary" icon={faFile} />
+        <FontAwesomeIcon className="mr-2 text-info" icon={faFile} />
         <a
           href={link.document || link.url}
           target="_blank"
@@ -56,7 +56,7 @@ class Links extends Component {
         </nav>
         {links.length > defaultNumLinksDisplayed && (
           <Button
-            buttonType="link"
+            variant="link"
             className="toggle-show-all-btn px-0"
             onClick={this.handleToggleExpandedClick}
             aria-controls={id}
@@ -64,7 +64,7 @@ class Links extends Component {
           >
             <FontAwesomeIcon
               className="mr-2"
-              icon={isExpanded ? faChevronCircleUp : faChevronCircleDown}
+              icon={isExpanded ? faChevronUp : faChevronDown}
             />
             <span>{isExpanded ? 'show less' : `show all ${links.length}`}</span>
           </Button>
