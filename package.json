@@ -28,6 +28,7 @@
     "font-awesome": "^4.7.0",
     "gatsby": "^2.1.31",
     "gatsby-plugin-env-variables": "^1.0.1",
+    "gatsby-plugin-fontawesome-css": "^1.0.0",
     "gatsby-plugin-google-fonts": "^1.0.1",
     "gatsby-plugin-react-helmet": "^3.1.0",
     "gatsby-plugin-sass": "^2.0.11",
