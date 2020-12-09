@@ -20,6 +20,9 @@ import { fetchUserProgramEnrollments } from '../user-program-enrollments';
 
 import './styles/ProgramPage.scss';
 
+const headerLogo = process.env.LOGO_URL;
+const footerLogo = process.env.LOGO_TRADEMARK_URL;
+
 class ProgramPage extends Component {
   constructor(props) {
     super(props);
@@ -82,7 +85,7 @@ class ProgramPage extends Component {
 
     return (
       <MastersPage pageContext={pageContext}>
-        <Layout>
+        <Layout headerLogo={headerLogo} footerLogo={footerLogo}>
           {isLoading ? (
             <div className="container py-5">
               <div className="col">

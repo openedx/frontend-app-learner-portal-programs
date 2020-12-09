@@ -13,6 +13,9 @@ import { MastersPage } from '../masters-page';
 
 import { fetchUserProgramEnrollments } from '../user-program-enrollments';
 
+const headerLogo = process.env.LOGO_URL;
+const footerLogo = process.env.LOGO_TRADEMARK_URL;
+
 export class ProgramListPage extends Component {
   constructor(props) {
     super(props);
@@ -92,7 +95,7 @@ export class ProgramListPage extends Component {
     return (
       <MastersPage pageContext={pageContext}>
         {isLoading ? (
-          <Layout>
+          <Layout headerLogo={headerLogo} footerLogo={footerLogo}>
             <div className="container my-4">
               <LoadingSpinner screenReaderText="loading program enrollments" />
             </div>
@@ -100,7 +103,7 @@ export class ProgramListPage extends Component {
         ) : (
           <>
             {error ? (
-              <Layout>
+              <Layout headerLogo={headerLogo} footerLogo={footerLogo}>
                 <div className="container my-4">
                   {this.renderError({
                     message: 'An error occurred while fetching your program enrollments. Please try again later.',
@@ -110,7 +113,7 @@ export class ProgramListPage extends Component {
             ) : (
               <>
                 {validPrograms && (
-                  <Layout>
+                  <Layout headerLogo={headerLogo} footerLogo={footerLogo}>
                     {!validPrograms.length ? (
                       <div className="container my-3">
                         {this.renderError({
