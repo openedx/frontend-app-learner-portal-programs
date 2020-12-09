@@ -1,5 +1,5 @@
 import React from 'react';
-import { CourseEnrollments } from '@edx/frontend-learner-portal-base/src/components/course-enrollments';
+import { CourseEnrollments } from '../../course-enrollments';
 
 import { ProgramSidebar } from '../sidebar';
 

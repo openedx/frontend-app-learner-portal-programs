@@ -13,6 +13,8 @@ import { MastersPage } from '../masters-page';
 
 import { fetchUserProgramEnrollments } from '../user-program-enrollments';
 
+import './styles/ProgramListPage.scss';
+
 const headerLogo = process.env.LOGO_URL;
 const footerLogo = process.env.LOGO_TRADEMARK_URL;
 
@@ -131,7 +133,7 @@ export class ProgramListPage extends Component {
                       </div>
                     ) : (
                       <div className="container my-3">
-                        <h1>My Programs</h1>
+                        <h1 className="title-override">My Programs</h1>
                         <div className="table-responsive mt-3">
                           <table className="table table-sm table-striped">
                             <thead>
