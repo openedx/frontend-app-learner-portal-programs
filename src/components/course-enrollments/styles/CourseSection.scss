@@ -2,10 +2,10 @@
 @import "@edx/paragon/scss/core/core";
 @import "@edx/brand/paragon/overrides";
 
-.course-section {
-  @extend .mb-5;
+.collapsible-trigger {
+  @extend .px-0;
+}
 
-  &:last-child {
-    @extend .mb-0;
-  }
+.collapsible-body {
+  @extend .p-0;
 }

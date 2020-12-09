@@ -61,6 +61,16 @@ module.exports = {
       },
     },
     {
+      resolve: 'gatsby-plugin-google-fonts',
+      options: {
+        fonts: [
+          'Inter:400,500,700',
+          'Roboto Mono',
+        ],
+        display: 'swap',
+      },
+    },
+    {
       resolve: 'gatsby-plugin-react-helmet',
     },
   ],

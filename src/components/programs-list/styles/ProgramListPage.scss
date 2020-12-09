@@ -2,10 +2,7 @@
 @import "@edx/paragon/scss/core/core";
 @import "@edx/brand/paragon/overrides";
 
-.course-section {
-  @extend .mb-5;
-
-  &:last-child {
-    @extend .mb-0;
-  }
+.title-override {
+  font-family: 'Inter';
+  font-weight: 700;
 }
