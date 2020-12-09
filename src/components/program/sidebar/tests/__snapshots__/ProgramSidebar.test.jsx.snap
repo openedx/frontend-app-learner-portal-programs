@@ -18,7 +18,7 @@ exports[`<ProgramSidebar /> renders correctly 1`] = `
       <svg
         aria-hidden={false}
         aria-label="opens in a new window"
-        className="svg-inline--fa fa-external-link-alt fa-w-18 fa-sm ml-2 text-info"
+        className="svg-inline--fa fa-external-link-alt fa-w-18 fa-sm ml-2 text-primary"
         data-icon="external-link-alt"
         data-prefix="fas"
         focusable="false"
@@ -60,7 +60,7 @@ Array [
         >
           <svg
             aria-hidden="true"
-            className="svg-inline--fa fa-file fa-w-12 mr-2 text-info"
+            className="svg-inline--fa fa-file fa-w-12 mr-2 text-primary"
             data-icon="file"
             data-prefix="fas"
             focusable="false"
@@ -89,7 +89,7 @@ Array [
         >
           <svg
             aria-hidden="true"
-            className="svg-inline--fa fa-file fa-w-12 mr-2 text-info"
+            className="svg-inline--fa fa-file fa-w-12 mr-2 text-primary"
             data-icon="file"
             data-prefix="fas"
             focusable="false"
@@ -118,7 +118,7 @@ Array [
         >
           <svg
             aria-hidden="true"
-            className="svg-inline--fa fa-file fa-w-12 mr-2 text-info"
+            className="svg-inline--fa fa-file fa-w-12 mr-2 text-primary"
             data-icon="file"
             data-prefix="fas"
             focusable="false"
@@ -162,7 +162,7 @@ Array [
         <svg
           aria-hidden={false}
           aria-label="opens in a new window"
-          className="svg-inline--fa fa-external-link-alt fa-w-18 fa-sm ml-2 text-info"
+          className="svg-inline--fa fa-external-link-alt fa-w-18 fa-sm ml-2 text-primary"
           data-icon="external-link-alt"
           data-prefix="fas"
           focusable="false"
