@@ -40,7 +40,7 @@ const ProgramSidebar = () => {
             >
               {externalProgramWebsite.link.display_text}
               <FontAwesomeIcon
-                className="ml-2 text-info"
+                className="ml-2 text-primary"
                 icon={faExternalLinkAlt}
                 size="sm"
                 aria-hidden={false}
@@ -62,7 +62,7 @@ const ProgramSidebar = () => {
           >
             Go to edX help center
             <FontAwesomeIcon
-              className="ml-2 text-info"
+              className="ml-2 text-primary"
               icon={faExternalLinkAlt}
               size="sm"
               aria-hidden={false}

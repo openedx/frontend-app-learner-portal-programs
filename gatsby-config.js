@@ -20,7 +20,6 @@ if (process.env.UNBRANDED_LANDING_PAGE === 'True') {
 module.exports = {
   pathPrefix: `${process.env.ENABLE_PATH_PREFIX ? process.env.HOSTNAME : '/'}`,
   plugins: [
-    'gatsby-plugin-fontawesome-css',
     {
       resolve: '@edx/gatsby-source-portal-designer',
       options: {
@@ -33,16 +32,6 @@ module.exports = {
         includePaths: [
           `${__dirname}/node_modules`,
         ],
-      },
-    },
-    {
-      resolve: 'gatsby-plugin-google-fonts',
-      options: {
-        fonts: [
-          'Inter:400,500,700',
-          'Roboto Mono',
-        ],
-        display: 'swap',
       },
     },
     {
