@@ -56,7 +56,7 @@ class Links extends Component {
         </nav>
         {links.length > defaultNumLinksDisplayed && (
           <Button
-            buttonType="link"
+            variant="link"
             className="toggle-show-all-btn px-0"
             onClick={this.handleToggleExpandedClick}
             aria-controls={id}

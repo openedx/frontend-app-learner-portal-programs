@@ -2,6 +2,11 @@
 @import "@edx/paragon/scss/core/core";
 @import "@edx/brand/paragon/overrides";
 
+// temporary override
+div.menu button.menu-trigger {
+  @extend .btn-outline-primary;
+}
+
 .course-section {
   @extend .mb-5;
 
