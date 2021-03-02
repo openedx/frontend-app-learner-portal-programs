@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 
 import BaseCourseCard from './BaseCourseCard';
 
 import CertificateImg from './images/edx-verified-mini-cert.png';
+import { getAuthenticatedUser } from '@edx/frontend-platform/auth';
 
 const CompletedCourseCard = props => (
   <BaseCourseCard type="completed" hasViewCertificateLink={false} {...props}>
@@ -17,7 +17,7 @@ const CompletedCourseCard = props => (
           <p className="mb-0 lead">
             View your certificate on
             {' '}
-            <a className="text-underline" href={`${process.env.LMS_BASE_URL}/u/${props.username}`}>your profile →</a>
+            <a className="text-underline" href={`${process.env.LMS_BASE_URL}/u/${getAuthenticatedUser().username}`}>your profile →</a>
           </p>
         </div>
       </div>
@@ -35,7 +35,6 @@ CompletedCourseCard.propTypes = {
   linkToCourse: PropTypes.string.isRequired,
   courseRunId: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  username: PropTypes.string.isRequired,
   linkToCertificate: PropTypes.string,
 };
 
@@ -43,8 +42,4 @@ CompletedCourseCard.defaultProps = {
   linkToCertificate: null,
 };
 
-const mapStateToProps = state => ({
-  username: state.userAccount.username,
-});
-
-export default connect(mapStateToProps)(CompletedCourseCard);
+export default CompletedCourseCard;

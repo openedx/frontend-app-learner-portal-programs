@@ -5,9 +5,8 @@ import { connect } from 'react-redux';
 import { StatusAlert } from '@edx/paragon';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { withAuthentication } from '@edx/frontend-learner-portal-base/src/components/with-authentication';
-import { Layout } from '@edx/frontend-learner-portal-base/src/components/layout';
-import { LoadingSpinner } from '@edx/frontend-learner-portal-base/src/components/loading-spinner';
+import { Layout } from '../layout';
+import { LoadingSpinner } from '../loading-spinner';
 
 import { MastersPage } from '../masters-page';
 
@@ -46,7 +45,7 @@ export class ProgramListPage extends Component {
     if (enrolledPrograms && enrolledPrograms !== prevProps.enrolledPrograms) {
       const validEnrolledPrograms = this.validateUserEnrolledPrograms(enrolledPrograms);
 
-      if (validEnrolledPrograms.length === 1) {
+      if (false && validEnrolledPrograms.length === 1) {
         const program = validEnrolledPrograms[0];
         window.location.replace(`/${program.hostname}/${program.slug}`);
       } else {
@@ -195,12 +194,9 @@ const mapDispatchToProps = dispatch => ({
   fetchUserProgramEnrollments: () => dispatch(fetchUserProgramEnrollments()),
 });
 
-const ConnectedProgramListPage = compose(
-  withAuthentication,
-  connect(
-    mapStateToProps,
-    mapDispatchToProps,
-  ),
+const ConnectedProgramListPage = connect(
+  mapStateToProps,
+  mapDispatchToProps,
 )(ProgramListPage);
 
 export default ConnectedProgramListPage;

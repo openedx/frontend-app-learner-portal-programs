@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { sendTrackEvent } from '@edx/frontend-analytics';
+import { sendTrackEvent } from '@edx/frontend-platform/analytics';
 import { Collapsible } from '@edx/paragon';
 import { faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 

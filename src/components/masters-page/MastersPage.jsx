@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { AppContext } from '@edx/frontend-learner-portal-base/src/components/app-context';
+import { AppContext } from '../../app-context';
+import { getAuthenticatedUser } from '@edx/frontend-platform/auth';
 
 const MastersPage = ({
   children,
   pageContext,
-  username,
 }) => (
   <AppContext.Provider
     value={{
@@ -24,7 +24,7 @@ const MastersPage = ({
           },
           {
             type: 'item',
-            href: `${process.env.LMS_BASE_URL}/u/${username}`,
+            href: `${process.env.LMS_BASE_URL}/u/${getAuthenticatedUser().username}`,
             content: 'My Profile',
           },
           {
@@ -49,12 +49,7 @@ const MastersPage = ({
 MastersPage.propTypes = {
   children: PropTypes.element.isRequired,
   pageContext: PropTypes.shape({}).isRequired,
-  username: PropTypes.string.isRequired,
 };
 
-const mapStateToProps = state => ({
-  username: state.userAccount.username,
-});
-
-export default connect(mapStateToProps)(MastersPage);
+export default MastersPage;
 

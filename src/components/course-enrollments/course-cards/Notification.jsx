@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-import { sendTrackEvent } from '@edx/frontend-analytics';
+import { sendTrackEvent } from '@edx/frontend-platform/analytics';
 
 const Notification = props => (
   <li>

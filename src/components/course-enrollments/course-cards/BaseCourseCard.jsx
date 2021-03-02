@@ -3,15 +3,16 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { connect } from 'react-redux';
 import moment from 'moment';
-import { sendTrackEvent } from '@edx/frontend-analytics';
+import { sendTrackEvent } from '@edx/frontend-platform/analytics';
 import { faCog } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { AppContext } from '@edx/frontend-learner-portal-base/src/components/app-context';
+import { AppContext } from '../../../app-context';
 import { Dropdown } from '@edx/paragon';
 
 import { EmailSettingsModal } from './email-settings';
 
 import './styles/CourseCard.scss';
+import { getAuthenticatedUser } from '@edx/frontend-platform/auth';
 
 class BaseCourseCard extends Component {
   state = {
@@ -252,7 +253,7 @@ class BaseCourseCard extends Component {
         <small className="mb-0">
           View your certificate on
           {' '}
-          <a className="text-underline" href={`${process.env.LMS_BASE_URL}/u/${username}`}>your profile →</a>
+          <a className="text-underline" href={`${process.env.LMS_BASE_URL}/u/${getAuthenticatedUser().username}`}>your profile →</a>
         </small>
       );
     }
@@ -310,7 +311,6 @@ BaseCourseCard.propTypes = {
   title: PropTypes.string.isRequired,
   linkToCourse: PropTypes.string.isRequired,
   courseRunId: PropTypes.string.isRequired,
-  username: PropTypes.string.isRequired,
   hasViewCertificateLink: PropTypes.bool,
   buttons: PropTypes.element,
   children: PropTypes.node,
@@ -343,8 +343,4 @@ BaseCourseCard.defaultProps = {
   dropdownMenuItems: null,
 };
 
-const mapStateToProps = state => ({
-  username: state.userAccount.username,
-});
-
-export default connect(mapStateToProps)(BaseCourseCard);
+export default BaseCourseCard;

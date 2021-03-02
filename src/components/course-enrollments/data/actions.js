@@ -1,4 +1,4 @@
-import { camelCaseObject } from '@edx/frontend-learner-portal-base/src/utils';
+import { camelCaseObject } from '@edx/frontend-platform/utils';
 
 import {
   FETCH_COURSE_ENROLLMENTS_REQUEST,
@@ -57,11 +57,7 @@ export const fetchCourseEnrollments = options => (
   (dispatch) => {
     dispatch(fetchCourseEnrollmentsRequest());
     let serviceMethod;
-    if (options.enterpriseUUID) {
-      serviceMethod = () => service.fetchEnterpriseCourseEnrollments(options.enterpriseUUID);
-    } else if (options.programUUID) {
-      serviceMethod = () => service.fetchProgramCourseEnrollments(options.programUUID);
-    }
+    serviceMethod = () => service.fetchProgramCourseEnrollments(options.programUUID);
     if (serviceMethod) {
       return serviceMethod()
         .then((response) => {

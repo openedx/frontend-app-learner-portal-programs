@@ -1,0 +1,66 @@
+import React, { Component } from 'react';
+import { Helmet } from 'react-helmet';
+import PropTypes from 'prop-types';
+import { IntlProvider } from '@edx/frontend-platform/i18n';
+import { SiteHeader } from '../site-header';
+import SiteFooter, {messages} from '@edx/frontend-component-footer-edx';
+
+import { AppContext } from '../../app-context';
+
+import './styles/Layout.scss';
+
+
+class Layout extends Component {
+  getUserMenuItems = () => {
+    const { header: { userMenu } } = this.context;
+    return userMenu || [];
+  };
+
+  getMainMenuItems = () => {
+    const { header: { mainMenu } } = this.context;
+    return mainMenu || [];
+  };
+
+  render() {
+    const {
+      siteUrl, siteName, children, headerLogo,
+    } = this.props;
+    return (
+      <IntlProvider locale="en">
+        <>
+          <Helmet titleTemplate="%s - edX" defaultTitle="edX">
+            <html lang="en" />
+          </Helmet>
+          <SiteHeader
+            headerLogo={headerLogo}
+            logoAltText={siteName}
+            logoDestination={siteUrl}
+            userMenu={this.getUserMenuItems()}
+          />
+          <main id="content">
+            {children}
+          </main>
+          <SiteFooter/>
+        </>
+      </IntlProvider>
+    );
+  }
+}
+
+Layout.contextType = AppContext;
+
+Layout.defaultProps = {
+  children: [],
+  siteName: 'edX',
+  siteUrl: 'https://edx.org/',
+  headerLogo: null,
+};
+
+Layout.propTypes = {
+  children: PropTypes.node,
+  siteName: PropTypes.string,
+  siteUrl: PropTypes.string,
+  headerLogo: PropTypes.string,
+};
+
+export default Layout;

@@ -1,0 +1,8 @@
+@import "@edx/brand/paragon/variables";
+@import "@edx/paragon/scss/core/core";
+@import "@edx/brand/paragon/overrides";
+
+$fa-font-path: "~font-awesome/fonts";
+@import "~font-awesome/scss/font-awesome";
+
+@import "~@edx/frontend-component-footer-edx/dist/footer";

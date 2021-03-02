@@ -7,9 +7,8 @@ import MediaQuery from 'react-responsive';
 import { breakpoints, StatusAlert } from '@edx/paragon';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { withAuthentication } from '@edx/frontend-learner-portal-base/src/components/with-authentication';
-import { Layout, MainContent, Sidebar } from '@edx/frontend-learner-portal-base/src/components/layout';
-import { LoadingSpinner } from '@edx/frontend-learner-portal-base/src/components/loading-spinner';
+import { Layout, MainContent, Sidebar } from '../layout';
+import { LoadingSpinner } from '../loading-spinner';
 
 import { MastersPage } from '../masters-page';
 import { ProgramMainContent } from './main-content';
@@ -18,10 +17,18 @@ import { Hero } from './hero';
 
 import { fetchUserProgramEnrollments } from '../user-program-enrollments';
 
+import {
+  APP_INIT_ERROR,
+  APP_READY,
+  subscribe,
+} from '@edx/frontend-platform'
+
 import './styles/ProgramPage.scss';
+import { getAuthenticatedUser } from '@edx/frontend-platform/auth';
 
 const headerLogo = process.env.LOGO_URL;
 const footerLogo = process.env.LOGO_TRADEMARK_URL;
+
 
 class ProgramPage extends Component {
   constructor(props) {
@@ -179,12 +186,9 @@ const mapDispatchToProps = dispatch => ({
   fetchUserProgramEnrollments: () => dispatch(fetchUserProgramEnrollments()),
 });
 
-const ConnectedProgramPage = compose(
-  withAuthentication,
-  connect(
-    mapStateToProps,
-    mapDispatchToProps,
-  ),
+const ConnectedProgramPage = connect(
+  mapStateToProps,
+  mapDispatchToProps,
 )(ProgramPage);
 
 export default ConnectedProgramPage;
