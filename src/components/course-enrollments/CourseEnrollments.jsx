@@ -22,16 +22,13 @@ export class CourseEnrollments extends Component {
   componentDidMount() {
     const {
       pageContext: {
-        programUUID, // for Masters, empty for Enterprise
-        enterpriseUUID, // for Enterprise, empty for Masters
+        programUUID
       },
     } = this.context;
     const { fetchCourseEnrollments } = this.props;
     const options = {};
     if (programUUID) {
       options.programUUID = programUUID;
-    } else if (enterpriseUUID) {
-      options.enterpriseUUID = enterpriseUUID;
     }
     fetchCourseEnrollments(options);
   }

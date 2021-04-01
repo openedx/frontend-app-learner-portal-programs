@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { connect } from 'react-redux';
 import moment from 'moment';
 import { sendTrackEvent } from '@edx/frontend-platform/analytics';
 import { faCog } from '@fortawesome/free-solid-svg-icons';
@@ -190,14 +189,6 @@ class BaseCourseCard extends Component {
     return null;
   };
 
-  renderSponsoredByEnterpriseMessage = () => {
-    const { pageContext: { enterpriseName } } = this.context;
-    if (enterpriseName) {
-      return <small>Sponsored by {enterpriseName}.</small>;
-    }
-    return null;
-  };
-
   renderMicroMastersTitle = () => {
     const { microMastersTitle } = this.props;
     if (microMastersTitle) {
@@ -292,7 +283,6 @@ class BaseCourseCard extends Component {
             <small className="mb-0">
               {this.getCourseMiscText()}
             </small>
-            {this.renderSponsoredByEnterpriseMessage()}
             {hasViewCertificateLink && this.renderViewCertificateText()}
           </div>
         </div>
