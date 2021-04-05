@@ -31,7 +31,7 @@ describe('ProgramListPage', () => {
 
   it('correctly renders the loading page', () => {
     const tree = renderer
-      .create((
+      .create(
         <IntlProvider locale="en">
           <ProgramListPage
             isLoading
@@ -39,9 +39,9 @@ describe('ProgramListPage', () => {
             fetchUserProgramEnrollments={jest.fn()}
           />
         </IntlProvider>
-      ))
+      )
       .toJSON();
-    // expect(tree).toMatchSnapshot();
+    expect(tree).toMatchSnapshot();
   });
 
   it('renders fetching program error page when there are issues fetching the user programs', () => {
@@ -57,7 +57,7 @@ describe('ProgramListPage', () => {
         </IntlProvider>
       ))
       .toJSON();
-    // expect(tree).toMatchSnapshot();
+    expect(tree).toMatchSnapshot();
   });
 
   it('renders table when there are valid programs', () => {

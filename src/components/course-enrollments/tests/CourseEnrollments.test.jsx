@@ -113,7 +113,7 @@ describe('<CourseEnrollments />', () => {
           </AppContext.Provider>
         ))
         .toJSON();
-      // expect(tree).toMatchSnapshot();
+      expect(tree).toMatchSnapshot();
     });
 
     it('with loading', () => {
@@ -128,22 +128,23 @@ describe('<CourseEnrollments />', () => {
           </AppContext.Provider>
         ))
         .toJSON();
-      // expect(tree).toMatchSnapshot();
+      expect(tree).toMatchSnapshot();
     });
 
     it('with mark course as complete success status alert', () => {
       const pageContext = {};
       const tree = renderer
-        .create((
+        .create(
           <AppContext.Provider value={{ pageContext }}>
             <CourseEnrollments
               {...initialProps}
               isMarkCourseCompleteSuccess
             />
           </AppContext.Provider>
-        ))
+        )
         .toJSON();
-      // expect(tree).toMatchSnapshot();
+      // TODO: why is this an array?
+      expect(tree[0]).toMatchSnapshot();
     });
   });
 

@@ -2,16 +2,6 @@
 
 exports[`ProgramListPage correctly renders the loading page 1`] = `
 Array [
-  <div
-    className="position-absolute"
-  >
-    <a
-      className="skip-nav-link sr-only sr-only-focusable btn btn-primary px-2 py-1 mt-3 ml-2"
-      href="#content"
-    >
-      Skip to main content
-    </a>
-  </div>,
   <main
     id="content"
   >
@@ -19,7 +9,7 @@ Array [
       className="container my-4"
     >
       <div
-        className="d-flex justify-content-center align-items-center"
+        className="loading-spinner d-flex justify-content-center align-items-center"
       >
         <div
           className="spinner-border text-primary"
@@ -35,25 +25,25 @@ Array [
     </div>
   </main>,
   <footer
-    aria-label="Page Footer"
+    aria-label="edX Home"
     className="footer d-flex justify-content-center border-top py-3 px-4"
     role="contentinfo"
   >
     <div
-      className="max-width-1180 d-grid"
+      className="container-fluid d-grid"
     >
       <div
         className="area-1"
       >
         <a
-          aria-label="edX"
-          href="https://www.edx.org"
+          aria-label="edX Home"
+          href="https://edx.org"
         >
           <img
-            alt="edX"
-            src={
+            alt="edX Logo"
+            style={
               Object {
-                "process": [Function],
+                "maxHeight": 45,
               }
             }
           />
@@ -70,42 +60,42 @@ Array [
         >
           <li>
             <a
-              href="https://www.edx.org/about-us"
+              href="https://edx.org/about-us"
             >
               About
             </a>
           </li>
           <li>
             <a
-              href="https://business.edx.org/?utm_campaign=edX.org+Referral&utm_medium=Footer&utm_source=edX.org"
-            >
-              edX for Business
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://www.edx.org/affiliate-program"
+              href="https://edx.org/affiliate-program"
             >
               Affiliates
             </a>
           </li>
           <li>
             <a
-              href="http://open.edx.org/"
+              href="https://business.edx.org/?utm_campaign=edX.org+Referral&utm_medium=Footer&utm_source=localhost"
+            >
+              edX for Business
+            </a>
+          </li>
+          <li>
+            <a
+              href="http://open.edx.org"
             >
               Open edX
             </a>
           </li>
           <li>
             <a
-              href="https://www.edx.org/careers"
+              href="https://edx.org/careers"
             >
               Careers
             </a>
           </li>
           <li>
             <a
-              href="https://www.edx.org/news-announcements"
+              href="https://edx.org/news-announcements"
             >
               News
             </a>
@@ -123,35 +113,35 @@ Array [
         >
           <li>
             <a
-              href="https://www.edx.org/edx-terms-service"
+              href="https://edx.org/edx-terms-service"
             >
               Terms of Service & Honor Code
             </a>
           </li>
           <li>
             <a
-              href="https://www.edx.org/edx-privacy-policy"
+              href="https://edx.org/edx-privacy-policy"
             >
               Privacy Policy
             </a>
           </li>
           <li>
             <a
-              href="https://www.edx.org/accessibility"
+              href="https://edx.org/accessibility"
             >
               Accessibility Policy
             </a>
           </li>
           <li>
             <a
-              href="https://www.edx.org/trademarks"
+              href="https://edx.org/trademarks"
             >
               Trademark Policy
             </a>
           </li>
           <li>
             <a
-              href="https://www.edx.org/sitemap"
+              href="https://edx.org/sitemap"
             >
               Sitemap
             </a>
@@ -169,7 +159,7 @@ Array [
         >
           <li>
             <a
-              href="https://www.edx.org/blog"
+              href="https://blog.edx.org"
             >
               Blog
             </a>
@@ -183,21 +173,21 @@ Array [
           </li>
           <li>
             <a
-              href="https://support.edx.org/hc/en-us"
+              href="https://support.edx.org"
             >
               Help Center
             </a>
           </li>
           <li>
             <a
-              href="https://www.edx.org/media-kit"
+              href="https://edx.org/media-kit"
             >
               Media Kit
             </a>
           </li>
           <li>
             <a
-              href="https://www.edx.org/donate"
+              href="https://edx.org/donate"
             >
               Donate
             </a>
@@ -212,7 +202,7 @@ Array [
         >
           <li>
             <a
-              href="https://www.facebook.com/edX"
+              href="http://www.facebook.com/EdxOnline"
               onClick={[Function]}
               rel="noopener noreferrer"
               target="_blank"
@@ -220,7 +210,7 @@ Array [
             >
               <svg
                 aria-hidden="true"
-                className="svg-inline--fa fa-facebook-square fa-w-14 fa-2x social-icon"
+                className="svg-inline--fa fa-facebook-square fa-w-14 fa-2x fa-rotate-null fa-pull-null social-icon"
                 data-icon="facebook-square"
                 data-prefix="fab"
                 focusable="false"
@@ -252,7 +242,7 @@ Array [
             >
               <svg
                 aria-hidden="true"
-                className="svg-inline--fa fa-twitter-square fa-w-14 fa-2x social-icon"
+                className="svg-inline--fa fa-twitter-square fa-w-14 fa-2x fa-rotate-null fa-pull-null social-icon"
                 data-icon="twitter-square"
                 data-prefix="fab"
                 focusable="false"
@@ -284,7 +274,7 @@ Array [
             >
               <svg
                 aria-hidden="true"
-                className="svg-inline--fa fa-linkedin fa-w-14 fa-2x social-icon"
+                className="svg-inline--fa fa-linkedin fa-w-14 fa-2x fa-rotate-null fa-pull-null social-icon"
                 data-icon="linkedin"
                 data-prefix="fab"
                 focusable="false"
@@ -308,7 +298,39 @@ Array [
           </li>
           <li>
             <a
-              href="https://www.reddit.com/r/edX/"
+              href="https://www.instagram.com/edxonline/"
+              onClick={[Function]}
+              rel="noopener noreferrer"
+              target="_blank"
+              title="Instagram"
+            >
+              <svg
+                aria-hidden="true"
+                className="svg-inline--fa fa-instagram fa-w-14 fa-2x fa-rotate-null fa-pull-null social-icon"
+                data-icon="instagram"
+                data-prefix="fab"
+                focusable="false"
+                role="img"
+                style={Object {}}
+                viewBox="0 0 448 512"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"
+                  fill="currentColor"
+                  style={Object {}}
+                />
+              </svg>
+              <span
+                className="sr-only"
+              >
+                Follow edX on Instagram
+              </span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="http://www.reddit.com/r/edx"
               onClick={[Function]}
               rel="noopener noreferrer"
               target="_blank"
@@ -316,7 +338,7 @@ Array [
             >
               <svg
                 aria-hidden="true"
-                className="svg-inline--fa fa-reddit-square fa-w-14 fa-2x social-icon"
+                className="svg-inline--fa fa-reddit-square fa-w-14 fa-2x fa-rotate-null fa-pull-null social-icon"
                 data-icon="reddit-square"
                 data-prefix="fab"
                 focusable="false"
@@ -344,20 +366,6 @@ Array [
         >
           <li>
             <a
-              href="https://apps.apple.com/us/app/edx/id945480667"
-              onClick={[Function]}
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              <img
-                alt="Download the edX mobile app from the Apple App Store"
-                className="max-height-39"
-                src="https://prod-edxapp.edx-cdn.org/static/images/app/app_store_badge_135x40.d0558d910630.svg"
-              />
-            </a>
-          </li>
-          <li>
-            <a
               href="https://play.google.com/store/apps/details?id=org.edx.mobile"
               onClick={[Function]}
               rel="noopener noreferrer"
@@ -370,16 +378,39 @@ Array [
               />
             </a>
           </li>
+          <li>
+            <a
+              href="https://itunes.apple.com/us/app/edx/id945480667?mt=8"
+              onClick={[Function]}
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <img
+                alt="Download the edX mobile app from the Apple App Store"
+                className="max-height-39"
+                src="https://prod-edxapp.edx-cdn.org/static/images/app/app_store_badge_135x40.d0558d910630.svg"
+              />
+            </a>
+          </li>
         </ul>
         <p>
-          © 2012–2019 edX Inc.
+          © 
+          2021
+           edX Inc. All rights reserved.
           <br />
-          EdX, Open edX, and MicroMasters are registered trademarks of edX Inc. | 深圳市恒宇博科技有限公司 
-          <a
-            href="http://www.beian.miit.gov.cn"
-          >
-            粤ICP备17044299号-2
-          </a>
+          <span>
+            深圳市恒宇博科技有限公司 
+            <a
+              href="http://www.beian.miit.gov.cn"
+              style={
+                Object {
+                  "textDecoration": "underline",
+                }
+              }
+            >
+              粤ICP备17044299号-2
+            </a>
+          </span>
         </p>
       </div>
     </div>
@@ -389,16 +420,6 @@ Array [
 
 exports[`ProgramListPage renders fetching program error page when there are issues fetching the user programs 1`] = `
 Array [
-  <div
-    className="position-absolute"
-  >
-    <a
-      className="skip-nav-link sr-only sr-only-focusable btn btn-primary px-2 py-1 mt-3 ml-2"
-      href="#content"
-    >
-      Skip to main content
-    </a>
-  </div>,
   <main
     id="content"
   >
@@ -444,25 +465,25 @@ Array [
     </div>
   </main>,
   <footer
-    aria-label="Page Footer"
+    aria-label="edX Home"
     className="footer d-flex justify-content-center border-top py-3 px-4"
     role="contentinfo"
   >
     <div
-      className="max-width-1180 d-grid"
+      className="container-fluid d-grid"
     >
       <div
         className="area-1"
       >
         <a
-          aria-label="edX"
-          href="https://www.edx.org"
+          aria-label="edX Home"
+          href="https://edx.org"
         >
           <img
-            alt="edX"
-            src={
+            alt="edX Logo"
+            style={
               Object {
-                "process": [Function],
+                "maxHeight": 45,
               }
             }
           />
@@ -479,42 +500,42 @@ Array [
         >
           <li>
             <a
-              href="https://www.edx.org/about-us"
+              href="https://edx.org/about-us"
             >
               About
             </a>
           </li>
           <li>
             <a
-              href="https://business.edx.org/?utm_campaign=edX.org+Referral&utm_medium=Footer&utm_source=edX.org"
-            >
-              edX for Business
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://www.edx.org/affiliate-program"
+              href="https://edx.org/affiliate-program"
             >
               Affiliates
             </a>
           </li>
           <li>
             <a
-              href="http://open.edx.org/"
+              href="https://business.edx.org/?utm_campaign=edX.org+Referral&utm_medium=Footer&utm_source=localhost"
+            >
+              edX for Business
+            </a>
+          </li>
+          <li>
+            <a
+              href="http://open.edx.org"
             >
               Open edX
             </a>
           </li>
           <li>
             <a
-              href="https://www.edx.org/careers"
+              href="https://edx.org/careers"
             >
               Careers
             </a>
           </li>
           <li>
             <a
-              href="https://www.edx.org/news-announcements"
+              href="https://edx.org/news-announcements"
             >
               News
             </a>
@@ -532,35 +553,35 @@ Array [
         >
           <li>
             <a
-              href="https://www.edx.org/edx-terms-service"
+              href="https://edx.org/edx-terms-service"
             >
               Terms of Service & Honor Code
             </a>
           </li>
           <li>
             <a
-              href="https://www.edx.org/edx-privacy-policy"
+              href="https://edx.org/edx-privacy-policy"
             >
               Privacy Policy
             </a>
           </li>
           <li>
             <a
-              href="https://www.edx.org/accessibility"
+              href="https://edx.org/accessibility"
             >
               Accessibility Policy
             </a>
           </li>
           <li>
             <a
-              href="https://www.edx.org/trademarks"
+              href="https://edx.org/trademarks"
             >
               Trademark Policy
             </a>
           </li>
           <li>
             <a
-              href="https://www.edx.org/sitemap"
+              href="https://edx.org/sitemap"
             >
               Sitemap
             </a>
@@ -578,7 +599,7 @@ Array [
         >
           <li>
             <a
-              href="https://www.edx.org/blog"
+              href="https://blog.edx.org"
             >
               Blog
             </a>
@@ -592,21 +613,21 @@ Array [
           </li>
           <li>
             <a
-              href="https://support.edx.org/hc/en-us"
+              href="https://support.edx.org"
             >
               Help Center
             </a>
           </li>
           <li>
             <a
-              href="https://www.edx.org/media-kit"
+              href="https://edx.org/media-kit"
             >
               Media Kit
             </a>
           </li>
           <li>
             <a
-              href="https://www.edx.org/donate"
+              href="https://edx.org/donate"
             >
               Donate
             </a>
@@ -621,7 +642,7 @@ Array [
         >
           <li>
             <a
-              href="https://www.facebook.com/edX"
+              href="http://www.facebook.com/EdxOnline"
               onClick={[Function]}
               rel="noopener noreferrer"
               target="_blank"
@@ -629,7 +650,7 @@ Array [
             >
               <svg
                 aria-hidden="true"
-                className="svg-inline--fa fa-facebook-square fa-w-14 fa-2x social-icon"
+                className="svg-inline--fa fa-facebook-square fa-w-14 fa-2x fa-rotate-null fa-pull-null social-icon"
                 data-icon="facebook-square"
                 data-prefix="fab"
                 focusable="false"
@@ -661,7 +682,7 @@ Array [
             >
               <svg
                 aria-hidden="true"
-                className="svg-inline--fa fa-twitter-square fa-w-14 fa-2x social-icon"
+                className="svg-inline--fa fa-twitter-square fa-w-14 fa-2x fa-rotate-null fa-pull-null social-icon"
                 data-icon="twitter-square"
                 data-prefix="fab"
                 focusable="false"
@@ -693,7 +714,7 @@ Array [
             >
               <svg
                 aria-hidden="true"
-                className="svg-inline--fa fa-linkedin fa-w-14 fa-2x social-icon"
+                className="svg-inline--fa fa-linkedin fa-w-14 fa-2x fa-rotate-null fa-pull-null social-icon"
                 data-icon="linkedin"
                 data-prefix="fab"
                 focusable="false"
@@ -717,7 +738,39 @@ Array [
           </li>
           <li>
             <a
-              href="https://www.reddit.com/r/edX/"
+              href="https://www.instagram.com/edxonline/"
+              onClick={[Function]}
+              rel="noopener noreferrer"
+              target="_blank"
+              title="Instagram"
+            >
+              <svg
+                aria-hidden="true"
+                className="svg-inline--fa fa-instagram fa-w-14 fa-2x fa-rotate-null fa-pull-null social-icon"
+                data-icon="instagram"
+                data-prefix="fab"
+                focusable="false"
+                role="img"
+                style={Object {}}
+                viewBox="0 0 448 512"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"
+                  fill="currentColor"
+                  style={Object {}}
+                />
+              </svg>
+              <span
+                className="sr-only"
+              >
+                Follow edX on Instagram
+              </span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="http://www.reddit.com/r/edx"
               onClick={[Function]}
               rel="noopener noreferrer"
               target="_blank"
@@ -725,7 +778,7 @@ Array [
             >
               <svg
                 aria-hidden="true"
-                className="svg-inline--fa fa-reddit-square fa-w-14 fa-2x social-icon"
+                className="svg-inline--fa fa-reddit-square fa-w-14 fa-2x fa-rotate-null fa-pull-null social-icon"
                 data-icon="reddit-square"
                 data-prefix="fab"
                 focusable="false"
@@ -753,20 +806,6 @@ Array [
         >
           <li>
             <a
-              href="https://apps.apple.com/us/app/edx/id945480667"
-              onClick={[Function]}
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              <img
-                alt="Download the edX mobile app from the Apple App Store"
-                className="max-height-39"
-                src="https://prod-edxapp.edx-cdn.org/static/images/app/app_store_badge_135x40.d0558d910630.svg"
-              />
-            </a>
-          </li>
-          <li>
-            <a
               href="https://play.google.com/store/apps/details?id=org.edx.mobile"
               onClick={[Function]}
               rel="noopener noreferrer"
@@ -779,16 +818,39 @@ Array [
               />
             </a>
           </li>
+          <li>
+            <a
+              href="https://itunes.apple.com/us/app/edx/id945480667?mt=8"
+              onClick={[Function]}
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <img
+                alt="Download the edX mobile app from the Apple App Store"
+                className="max-height-39"
+                src="https://prod-edxapp.edx-cdn.org/static/images/app/app_store_badge_135x40.d0558d910630.svg"
+              />
+            </a>
+          </li>
         </ul>
         <p>
-          © 2012–2019 edX Inc.
+          © 
+          2021
+           edX Inc. All rights reserved.
           <br />
-          EdX, Open edX, and MicroMasters are registered trademarks of edX Inc. | 深圳市恒宇博科技有限公司 
-          <a
-            href="http://www.beian.miit.gov.cn"
-          >
-            粤ICP备17044299号-2
-          </a>
+          <span>
+            深圳市恒宇博科技有限公司 
+            <a
+              href="http://www.beian.miit.gov.cn"
+              style={
+                Object {
+                  "textDecoration": "underline",
+                }
+              }
+            >
+              粤ICP备17044299号-2
+            </a>
+          </span>
         </p>
       </div>
     </div>

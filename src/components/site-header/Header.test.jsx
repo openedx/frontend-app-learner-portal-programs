@@ -8,6 +8,7 @@ import Header from './Header';
 
 describe('<Header />', () => {
   const initialProps = {
+    headerLogo: 'logo.jpg',
     logoDestination: 'mysite.com',
     logoAltText: 'mysite',
     userMenu: [
@@ -53,7 +54,7 @@ describe('<Header />', () => {
 
     const wrapper = renderer.create(component);
 
-    // expect(wrapper.toJSON()).toMatchSnapshot();
+    expect(wrapper.toJSON()).toMatchSnapshot();
   });
 
   it('renders correctly for authenticated mobile', () => {
@@ -85,6 +86,6 @@ describe('<Header />', () => {
 
     const wrapper = renderer.create(component);
 
-    // expect(wrapper.toJSON()).toMatchSnapshot();
+    expect(wrapper.toJSON()).toMatchSnapshot();
   });
 });
