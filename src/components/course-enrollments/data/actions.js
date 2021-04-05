@@ -8,7 +8,7 @@ import {
   CLEAR_COURSE_ENROLLMENTS,
   UPDATE_IS_MARK_COURSE_COMPLETE_SUCCESS,
 } from './constants';
-import * as service from './service';
+import fetchProgramCourseEnrollments from './service';
 
 const fetchCourseEnrollmentsRequest = () => ({
   type: FETCH_COURSE_ENROLLMENTS_REQUEST,
@@ -56,8 +56,7 @@ const transformCourseEnrollmentsResponse = ({ responseData, options }) => {
 export const fetchCourseEnrollments = options => (
   (dispatch) => {
     dispatch(fetchCourseEnrollmentsRequest());
-    let serviceMethod;
-    serviceMethod = () => service.fetchProgramCourseEnrollments(options.programUUID);
+    const serviceMethod = () => fetchProgramCourseEnrollments(options.programUUID);
     if (serviceMethod) {
       return serviceMethod()
         .then((response) => {

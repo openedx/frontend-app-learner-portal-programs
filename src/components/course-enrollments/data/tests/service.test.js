@@ -1,5 +1,5 @@
 import axios from 'axios';
-import MockAdapter from 'axios-mock-adapter'
+import MockAdapter from 'axios-mock-adapter';
 import { getAuthenticatedHttpClient } from '@edx/frontend-platform/auth';
 
 import {

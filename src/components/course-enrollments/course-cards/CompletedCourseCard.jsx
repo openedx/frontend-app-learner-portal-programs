@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { getAuthenticatedUser } from '@edx/frontend-platform/auth';
 
 import BaseCourseCard from './BaseCourseCard';
 
 import CertificateImg from './images/edx-verified-mini-cert.png';
-import { getAuthenticatedUser } from '@edx/frontend-platform/auth';
 
 const CompletedCourseCard = props => (
   <BaseCourseCard type="completed" hasViewCertificateLink={false} {...props}>

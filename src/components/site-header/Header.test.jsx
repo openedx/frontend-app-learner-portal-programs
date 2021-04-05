@@ -1,8 +1,8 @@
 import React from 'react';
 import { IntlProvider } from '@edx/frontend-platform/i18n';
 import renderer from 'react-test-renderer';
-import { AppContext } from "../../app-context/AppContext";
 import { Context as ResponsiveContext } from 'react-responsive';
+import { AppContext } from '@edx/frontend-platform/react';
 
 import Header from './Header';
 
@@ -22,8 +22,8 @@ describe('<Header />', () => {
         href: '/',
         content: 'My Masters Degree',
       },
-    ]
-  }
+    ],
+  };
 
   it('renders correctly for authenticated desktop', () => {
     const component = (
@@ -46,7 +46,7 @@ describe('<Header />', () => {
               },
             }}
           >
-            <Header {...initialProps}/>
+            <Header {...initialProps} />
           </AppContext.Provider>
         </IntlProvider>
       </ResponsiveContext.Provider>
@@ -78,7 +78,7 @@ describe('<Header />', () => {
               },
             }}
           >
-            <Header {...initialProps}/>
+            <Header {...initialProps} />
           </AppContext.Provider>
         </IntlProvider>
       </ResponsiveContext.Provider>

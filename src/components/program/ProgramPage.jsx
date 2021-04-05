@@ -1,30 +1,21 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { compose } from 'recompose';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import MediaQuery from 'react-responsive';
 import { breakpoints, StatusAlert } from '@edx/paragon';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import { Layout, MainContent, Sidebar } from '../layout';
 import { LoadingSpinner } from '../loading-spinner';
-
 import { MastersPage } from '../masters-page';
 import { ProgramMainContent } from './main-content';
 import { ProgramSidebar } from './sidebar';
 import { Hero } from './hero';
-
 import { fetchUserProgramEnrollments } from '../user-program-enrollments';
 
-import {
-  APP_INIT_ERROR,
-  APP_READY,
-  subscribe,
-} from '@edx/frontend-platform'
-
 import './styles/ProgramPage.scss';
-import { getAuthenticatedUser } from '@edx/frontend-platform/auth';
 
 const headerLogo = process.env.LOGO_URL;
 const footerLogo = process.env.LOGO_TRADEMARK_URL;

@@ -1,4 +1,4 @@
-import React, { useContext, useDebugValue, useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import moment from 'moment';
@@ -9,7 +9,6 @@ import Notification from './Notification';
 
 import {
   updateCourseRunStatus,
-  updateIsMarkCourseCompleteSuccess,
 } from '../data/actions';
 
 const InProgressCourseCard = ({
@@ -18,7 +17,6 @@ const InProgressCourseCard = ({
   title,
   notifications,
   modifyCourseRunStatus,
-  modifyIsMarkCourseCompleteSuccess,
   ...rest
 }) => {
   const renderButtons = () => (

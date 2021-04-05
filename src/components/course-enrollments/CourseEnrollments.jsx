@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { breakpoints, StatusAlert } from '@edx/paragon';
 import { faExclamationTriangle, faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import MediaQuery from 'react-responsive';
 import { AppContext } from '../../app-context';
 import { LoadingSpinner } from '../loading-spinner';
-import { breakpoints, StatusAlert } from '@edx/paragon';
 
 import CourseSection from './CourseSection';
 import {
@@ -22,7 +22,7 @@ export class CourseEnrollments extends Component {
   componentDidMount() {
     const {
       pageContext: {
-        programUUID
+        programUUID,
       },
     } = this.context;
     const { fetchCourseEnrollments } = this.props;

@@ -134,14 +134,14 @@ describe('<CourseEnrollments />', () => {
     it('with mark course as complete success status alert', () => {
       const pageContext = {};
       const tree = renderer
-        .create(
+        .create((
           <AppContext.Provider value={{ pageContext }}>
             <CourseEnrollments
               {...initialProps}
               isMarkCourseCompleteSuccess
             />
           </AppContext.Provider>
-        )
+        ))
         .toJSON();
       // TODO: why is this an array?
       expect(tree[0]).toMatchSnapshot();

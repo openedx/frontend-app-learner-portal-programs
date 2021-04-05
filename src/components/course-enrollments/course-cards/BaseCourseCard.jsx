@@ -3,15 +3,15 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import moment from 'moment';
 import { sendTrackEvent } from '@edx/frontend-platform/analytics';
+import { getAuthenticatedUser } from '@edx/frontend-platform/auth';
 import { faCog } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { AppContext } from '../../../app-context';
 import { Dropdown } from '@edx/paragon';
 
+import { AppContext } from '../../../app-context';
 import { EmailSettingsModal } from './email-settings';
 
 import './styles/CourseCard.scss';
-import { getAuthenticatedUser } from '@edx/frontend-platform/auth';
 
 class BaseCourseCard extends Component {
   state = {
@@ -238,7 +238,7 @@ class BaseCourseCard extends Component {
   };
 
   renderViewCertificateText = () => {
-    const { linkToCertificate, username } = this.props;
+    const { linkToCertificate } = this.props;
     if (linkToCertificate) {
       return (
         <small className="mb-0">

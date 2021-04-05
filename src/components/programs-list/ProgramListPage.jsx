@@ -44,7 +44,7 @@ export class ProgramListPage extends Component {
     if (enrolledPrograms && enrolledPrograms !== prevProps.enrolledPrograms) {
       const validEnrolledPrograms = this.validateUserEnrolledPrograms(enrolledPrograms);
 
-      if (false && validEnrolledPrograms.length === 1) {
+      if (validEnrolledPrograms.length === 1) {
         const program = validEnrolledPrograms[0];
         window.location.replace(`/${program.hostname}/${program.slug}`);
       } else {

@@ -3,13 +3,13 @@ import renderer from 'react-test-renderer';
 import { shallow } from 'enzyme';
 import { StatusAlert } from '@edx/paragon';
 import { IntlProvider } from 'react-intl';
-import { getAuthenticatedUser } from "@edx/frontend-platform/auth";
+import { getAuthenticatedUser } from '@edx/frontend-platform/auth';
 import { ProgramListPage } from '../ProgramListPage';
 
 jest.mock('@edx/frontend-platform/auth');
 getAuthenticatedUser.mockReturnValue({
-  username: 'edx'
-})
+  username: 'edx',
+});
 
 describe('ProgramListPage', () => {
   const pageContext = {
@@ -31,7 +31,7 @@ describe('ProgramListPage', () => {
 
   it('correctly renders the loading page', () => {
     const tree = renderer
-      .create(
+      .create((
         <IntlProvider locale="en">
           <ProgramListPage
             isLoading
@@ -39,7 +39,7 @@ describe('ProgramListPage', () => {
             fetchUserProgramEnrollments={jest.fn()}
           />
         </IntlProvider>
-      )
+      ))
       .toJSON();
     expect(tree).toMatchSnapshot();
   });

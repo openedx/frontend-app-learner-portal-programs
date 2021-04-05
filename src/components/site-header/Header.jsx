@@ -19,19 +19,20 @@ ensureConfig([
   'LOGIN_URL',
 ], 'Header component');
 
-function Header({ intl, headerLogo, logoAltText, logoDestination, userMenu, mainMenu, loggedOutItems }) {
+function Header({
+  headerLogo, logoAltText, logoDestination, userMenu, mainMenu,
+}) {
   const { authenticatedUser } = useContext(AppContext);
 
   const props = {
     logo: headerLogo,
-    logoAltText: logoAltText,
-    logoDestination: logoDestination,
+    logoAltText,
+    logoDestination,
     loggedIn: authenticatedUser !== null,
     username: authenticatedUser !== null ? authenticatedUser.username : null,
     avatar: authenticatedUser !== null ? authenticatedUser.avatar : null,
-    mainMenu: mainMenu,
-    userMenu: userMenu,
-    loggedOutItems: loggedOutItems,
+    mainMenu,
+    userMenu,
   };
 
   return (
@@ -49,6 +50,7 @@ function Header({ intl, headerLogo, logoAltText, logoDestination, userMenu, main
 Header.propTypes = {
   intl: intlShape.isRequired,
   headerLogo: PropTypes.string,
+  logoAltText: PropTypes.string,
   logoDestination: PropTypes.string,
   mainMenu: PropTypes.oneOfType([
     PropTypes.node,
@@ -67,7 +69,6 @@ Header.defaultProps = {
   logoDestination: null,
   mainMenu: [],
   userMenu: [],
-  loggedOutItems: [],
-}
+};
 
 export default injectIntl(Header);

@@ -84,7 +84,7 @@ exports.onCreateWebpackConfig = ({ actions, loaders, getConfig }) => {
       test: /\.jsx?$/,
       // Exclude all node_modules from transpilation, except for 'swiper' and 'dom7'
       exclude: modulePath =>
-        /node_modules/.test(modulePath)
+        /node_modules/.test(modulePath),
     },
   ];
   // This will completely replace the webpack config with the modified object.

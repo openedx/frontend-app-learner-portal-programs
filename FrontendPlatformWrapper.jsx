@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 
 import 'regenerator-runtime/runtime';
 import { messages } from '@edx/frontend-component-footer-edx';
-import { AppProvider } from '@edx/frontend-platform/react'; 
+import { AppProvider } from '@edx/frontend-platform/react';
 import {
   configure as configureAuth,
   AxiosJwtAuthService,
   getAuthenticatedHttpClient,
   ensureAuthenticatedUser,
-  hydrateAuthenticatedUser
+  hydrateAuthenticatedUser,
 } from '@edx/frontend-platform/auth';
 import { getConfig } from '@edx/frontend-platform/config';
 import {
@@ -18,18 +18,17 @@ import {
 } from '@edx/frontend-platform/logging';
 import {
   configure as configureAnalytics,
-  SegmentAnalyticsService
+  SegmentAnalyticsService,
 } from '@edx/frontend-platform/analytics';
 
 import {
   configure as configureI18n,
-} from '@edx/frontend-platform/i18n'
+} from '@edx/frontend-platform/i18n';
 
 import store from './src/store';
 
 // eslint-disable-next-line react/display-name,react/prop-types
 export default ({ children }) => {
-
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
@@ -51,7 +50,7 @@ export default ({ children }) => {
 
     // Internationalization
     configureI18n({
-      messages: messages,
+      messages,
       config: getConfig(),
       loggingService: getLoggingService(),
     });
@@ -59,8 +58,8 @@ export default ({ children }) => {
     ensureAuthenticatedUser().then(() => {
       hydrateAuthenticatedUser().then(() => {
         setReady(true);
-      })
-    })
+      });
+    });
   }, []);
 
   if (!ready) {
@@ -70,5 +69,4 @@ export default ({ children }) => {
   return (
     <AppProvider store={store}>{children}</AppProvider>
   );
-
-}
+};
