@@ -30,7 +30,7 @@ function Header({
     logoDestination,
     loggedIn: authenticatedUser !== null,
     username: authenticatedUser !== null ? authenticatedUser.username : null,
-    avatar: authenticatedUser !== null ? authenticatedUser.avatar : null,
+    avatar: authenticatedUser !== null ? authenticatedUser.profileImage.imageUrlMedium : null,
     mainMenu,
     userMenu,
   };
