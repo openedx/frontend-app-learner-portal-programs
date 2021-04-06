@@ -2,9 +2,7 @@ import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 import { getAuthenticatedHttpClient } from '@edx/frontend-platform/auth';
 
-import {
-  fetchProgramCourseEnrollments,
-} from '../service';
+import fetchProgramCourseEnrollments from '../service';
 
 jest.mock('@edx/frontend-platform/auth');
 const axiosMock = new MockAdapter(axios);
