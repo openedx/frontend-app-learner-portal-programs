@@ -4,7 +4,7 @@ import { injectIntl, intlShape } from '@edx/frontend-platform/i18n';
 import { getConfig } from '@edx/frontend-platform';
 
 // Local Components
-import { Menu, MenuTrigger, MenuContent } from './Menu';
+import { Menu, MenuTrigger, MenuContent } from './menu';
 import Avatar from './Avatar';
 import { LinkedLogo, Logo } from './Logo';
 
