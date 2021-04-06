@@ -5,11 +5,11 @@ import renderer from 'react-test-renderer';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import { breakpoints } from '@edx/paragon';
+import { AppContext } from '@edx/frontend-platform/react';
 import { Context as ResponsiveContext } from 'react-responsive';
 
 import '../../../__mocks__/reactResponsive.mock';
 
-import { AppContext } from '../../../app-context/AppContext';
 import { CourseEnrollments } from '../CourseEnrollments';
 
 const mockStore = configureMockStore([thunk]);

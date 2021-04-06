@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { getAuthenticatedUser } from '@edx/frontend-platform/auth';
-import { AppContext } from '../../app-context';
+import { AppContext } from '@edx/frontend-platform/react';
+import { getConfig } from '@edx/frontend-platform';
 
 const MastersPage = ({
   children,
@@ -9,6 +10,8 @@ const MastersPage = ({
 }) => (
   <AppContext.Provider
     value={{
+      authenticatedUser: getAuthenticatedUser(),
+      config: getConfig(),
       header: {
         userMenu: [
           {

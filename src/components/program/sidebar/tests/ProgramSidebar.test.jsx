@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import { AppContext } from '../../../../app-context/AppContext';
+import { AppContext } from '@edx/frontend-platform/react';
 
 import ProgramSidebar from '../ProgramSidebar';
 

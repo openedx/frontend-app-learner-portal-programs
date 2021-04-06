@@ -4,11 +4,11 @@ import classNames from 'classnames';
 import moment from 'moment';
 import { sendTrackEvent } from '@edx/frontend-platform/analytics';
 import { getAuthenticatedUser } from '@edx/frontend-platform/auth';
+import { AppContext } from '@edx/frontend-platform/react';
 import { faCog } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Dropdown } from '@edx/paragon';
 
-import { AppContext } from '../../../app-context';
 import { EmailSettingsModal } from './email-settings';
 
 import './styles/CourseCard.scss';

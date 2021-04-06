@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { breakpoints, StatusAlert } from '@edx/paragon';
+import { AppContext } from '@edx/frontend-platform/react';
 import { faExclamationTriangle, faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import MediaQuery from 'react-responsive';
-import { AppContext } from '../../app-context';
 import { LoadingSpinner } from '../loading-spinner';
 
 import CourseSection from './CourseSection';

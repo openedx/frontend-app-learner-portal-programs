@@ -29,8 +29,10 @@ function Header({
     logoAltText,
     logoDestination,
     loggedIn: authenticatedUser !== null,
-    username: authenticatedUser !== null ? authenticatedUser.username : null,
-    avatar: authenticatedUser !== null ? authenticatedUser.profileImage.imageUrlMedium : null,
+    username: authenticatedUser ? authenticatedUser.username : null,
+    avatar: authenticatedUser && authenticatedUser.profileImage
+      ? authenticatedUser.profileImage.imageUrlMedium
+      : null,
     mainMenu,
     userMenu,
   };

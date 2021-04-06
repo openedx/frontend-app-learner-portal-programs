@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import { sendTrackEvent } from '@edx/frontend-platform/analytics';
+import { AppContext } from '@edx/frontend-platform/react';
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { AppContext } from '../../../app-context';
 import { SidebarBlock } from '../../layout';
 
 import Links from './Links';
