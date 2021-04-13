@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 
-import { AppContext } from '@edx/frontend-learner-portal-base/src/components/app-context';
+import { AppContext } from '@edx/frontend-platform/react';
 
 import './styles/Hero.scss';
 

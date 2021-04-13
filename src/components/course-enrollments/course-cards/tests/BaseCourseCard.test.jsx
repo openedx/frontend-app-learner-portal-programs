@@ -3,8 +3,8 @@ import { mount } from 'enzyme';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import configureMockStore from 'redux-mock-store';
-import * as analytics from '@edx/frontend-analytics';
-import { AppContext } from '@edx/frontend-learner-portal-base/src/components/app-context';
+import * as analytics from '@edx/frontend-platform/analytics';
+import { AppContext } from '@edx/frontend-platform/react';
 
 import BaseCourseCard from '../BaseCourseCard';
 

@@ -1,14 +1,15 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import { shallow } from 'enzyme';
-import configureMockStore from 'redux-mock-store';
-import thunk from 'redux-thunk';
 import { StatusAlert } from '@edx/paragon';
-import { Provider } from 'react-redux';
 import { IntlProvider } from 'react-intl';
+import { getAuthenticatedUser } from '@edx/frontend-platform/auth';
 import { ProgramListPage } from '../ProgramListPage';
 
-const mockStore = configureMockStore([thunk]);
+jest.mock('@edx/frontend-platform/auth');
+getAuthenticatedUser.mockReturnValue({
+  username: 'edx',
+});
 
 describe('ProgramListPage', () => {
   const pageContext = {
@@ -29,26 +30,14 @@ describe('ProgramListPage', () => {
   };
 
   it('correctly renders the loading page', () => {
-    const store = mockStore({
-      authentication: {
-        username: 'edx',
-      },
-      userAccount: {
-        profileImage: {
-          imageUrlMedium: 'someImageData',
-        },
-      },
-    });
     const tree = renderer
       .create((
         <IntlProvider locale="en">
-          <Provider store={store}>
-            <ProgramListPage
-              isLoading
-              pageContext={pageContext}
-              fetchUserProgramEnrollments={jest.fn()}
-            />
-          </Provider>
+          <ProgramListPage
+            isLoading
+            pageContext={pageContext}
+            fetchUserProgramEnrollments={jest.fn()}
+          />
         </IntlProvider>
       ))
       .toJSON();
@@ -56,27 +45,15 @@ describe('ProgramListPage', () => {
   });
 
   it('renders fetching program error page when there are issues fetching the user programs', () => {
-    const store = mockStore({
-      authentication: {
-        username: 'edx',
-      },
-      userAccount: {
-        profileImage: {
-          imageUrlMedium: 'someImageData',
-        },
-      },
-    });
     const tree = renderer
       .create((
         <IntlProvider locale="en">
-          <Provider store={store}>
-            <ProgramListPage
-              isLoading={false}
-              error={new Error()}
-              pageContext={pageContext}
-              fetchUserProgramEnrollments={jest.fn()}
-            />
-          </Provider>
+          <ProgramListPage
+            isLoading={false}
+            error={new Error()}
+            pageContext={pageContext}
+            fetchUserProgramEnrollments={jest.fn()}
+          />
         </IntlProvider>
       ))
       .toJSON();
@@ -99,7 +76,6 @@ describe('ProgramListPage', () => {
 
     const wrapper = shallow((
       <ProgramListPage
-        store={mockStore()}
         pageContext={pageContext}
         isLoading={false}
         fetchUserProgramEnrollments={jest.fn()}
@@ -128,7 +104,6 @@ describe('ProgramListPage', () => {
 
     const wrapper = shallow((
       <ProgramListPage
-        store={mockStore()}
         pageContext={pageContext}
         isLoading={false}
         fetchUserProgramEnrollments={jest.fn()}

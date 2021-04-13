@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { breakpoints, StatusAlert } from '@edx/paragon';
+import { AppContext } from '@edx/frontend-platform/react';
 import { faExclamationTriangle, faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import MediaQuery from 'react-responsive';
-import { AppContext } from '@edx/frontend-learner-portal-base/src/components/app-context';
-import { LoadingSpinner } from '@edx/frontend-learner-portal-base/src/components/loading-spinner';
-import { breakpoints, StatusAlert } from '@edx/paragon';
+import { LoadingSpinner } from '../loading-spinner';
 
 import CourseSection from './CourseSection';
 import {
@@ -22,16 +22,13 @@ export class CourseEnrollments extends Component {
   componentDidMount() {
     const {
       pageContext: {
-        programUUID, // for Masters, empty for Enterprise
-        enterpriseUUID, // for Enterprise, empty for Masters
+        programUUID,
       },
     } = this.context;
     const { fetchCourseEnrollments } = this.props;
     const options = {};
     if (programUUID) {
       options.programUUID = programUUID;
-    } else if (enterpriseUUID) {
-      options.enterpriseUUID = enterpriseUUID;
     }
     fetchCourseEnrollments(options);
   }

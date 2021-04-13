@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
-import { sendTrackEvent } from '@edx/frontend-analytics';
+import { sendTrackEvent } from '@edx/frontend-platform/analytics';
+import { AppContext } from '@edx/frontend-platform/react';
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { AppContext } from '@edx/frontend-learner-portal-base/src/components/app-context';
-import { SidebarBlock } from '@edx/frontend-learner-portal-base/src/components/layout';
+import { SidebarBlock } from '../../layout';
 
 import Links from './Links';
 

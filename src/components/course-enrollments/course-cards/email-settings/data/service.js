@@ -1,6 +1,6 @@
 import qs from 'query-string';
 
-import apiClient from '@edx/frontend-learner-portal-base/src/apiClient';
+import { getAuthenticatedHttpClient } from '@edx/frontend-platform/auth';
 
 const updateEmailSettings = (courseRunId, hasEmailsEnabled) => {
   const queryParams = {
@@ -10,7 +10,8 @@ const updateEmailSettings = (courseRunId, hasEmailsEnabled) => {
     receive_emails: hasEmailsEnabled ? 'on' : undefined,
   };
   const emailSettingsUrl = `${process.env.LMS_BASE_URL}/change_email_settings`;
-  return apiClient.post(
+  const authenticatedHttpClient = getAuthenticatedHttpClient();
+  return authenticatedHttpClient.post(
     emailSettingsUrl,
     qs.stringify(queryParams),
     {

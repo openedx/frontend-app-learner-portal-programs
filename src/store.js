@@ -3,17 +3,23 @@ import thunkMiddleware from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension/logOnlyInProduction';
 import { createLogger } from 'redux-logger';
 import { routerMiddleware } from 'react-router-redux';
-import apiClient from '@edx/frontend-learner-portal-base/src/apiClient';
-import history from '@edx/frontend-learner-portal-base/src/history';
+import { createBrowserHistory, createMemoryHistory } from 'history';
 
 import rootReducer from './rootReducer';
 
 const loggerMiddleware = createLogger();
+
+const isServer = !(
+  typeof window !== 'undefined' &&
+  window.document &&
+  window.document.createElement
+);
+const history = isServer ? createMemoryHistory({}) : createBrowserHistory();
 const routerHistoryMiddleware = routerMiddleware(history);
 
 const middleware = [thunkMiddleware, loggerMiddleware, routerHistoryMiddleware];
 
-const initialState = apiClient.getAuthenticationState();
+const initialState = {};
 
 const store = createStore(
   rootReducer,
