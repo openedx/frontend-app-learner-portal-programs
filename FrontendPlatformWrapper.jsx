@@ -10,7 +10,7 @@ import {
   ensureAuthenticatedUser,
   hydrateAuthenticatedUser,
 } from '@edx/frontend-platform/auth';
-import { getConfig } from '@edx/frontend-platform/config';
+import { mergeConfig, getConfig } from '@edx/frontend-platform/config';
 import {
   configure as configureLogging,
   getLoggingService,
@@ -32,6 +32,12 @@ export default ({ children }) => {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
+    if (process.env.IDP_SLUG) {
+      mergeConfig({
+        LOGIN_URL: `${process.env.LMS_BASE_URL}/auth/idp_redirect/${process.env.IDP_SLUG}`,
+      });
+    }
+
     configureLogging(NewRelicLoggingService, {
       config: getConfig(),
     });
