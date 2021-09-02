@@ -10,6 +10,7 @@ jest.mock('@edx/frontend-platform/auth');
 getAuthenticatedUser.mockReturnValue({
   username: 'edx',
 });
+jest.mock('@edx/frontend-platform/analytics');
 
 describe('ProgramListPage', () => {
   const pageContext = {
