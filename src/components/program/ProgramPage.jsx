@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import MediaQuery from 'react-responsive';
 import { breakpoints, StatusAlert } from '@edx/paragon';
+import { sendPageEvent } from '@edx/frontend-platform/analytics';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -30,6 +31,7 @@ class ProgramPage extends Component {
   }
 
   componentDidMount() {
+    sendPageEvent();
     this.props.fetchUserProgramEnrollments();
   }
 
