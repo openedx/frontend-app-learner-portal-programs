@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Helmet } from 'react-helmet';
 import PropTypes from 'prop-types';
+import { sendPageEvent } from '@edx/frontend-platform/analytics';
 import { IntlProvider } from '@edx/frontend-platform/i18n';
 import { AppContext } from '@edx/frontend-platform/react';
 import SiteFooter from '@edx/frontend-component-footer-edx';
@@ -10,6 +11,10 @@ import { SiteHeader } from '../site-header';
 import './styles/Layout.scss';
 
 class Layout extends Component {
+  componentDidMount() {
+    sendPageEvent();
+  }
+
   getUserMenuItems = () => {
     const { header: { userMenu } = {} } = this.context;
     return userMenu || [];

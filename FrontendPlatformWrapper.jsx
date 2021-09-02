@@ -9,6 +9,7 @@ import {
   getAuthenticatedHttpClient,
   ensureAuthenticatedUser,
   hydrateAuthenticatedUser,
+  getAuthenticatedUser,
 } from '@edx/frontend-platform/auth';
 import { mergeConfig, getConfig } from '@edx/frontend-platform/config';
 import {
@@ -19,6 +20,7 @@ import {
 import {
   configure as configureAnalytics,
   SegmentAnalyticsService,
+  identifyAuthenticatedUser,
 } from '@edx/frontend-platform/analytics';
 
 import {
@@ -63,6 +65,8 @@ export default ({ children }) => {
 
     ensureAuthenticatedUser().then(() => {
       hydrateAuthenticatedUser().then(() => {
+        const authUser = getAuthenticatedUser();
+        identifyAuthenticatedUser(authUser.userId);
         setReady(true);
       });
     });
