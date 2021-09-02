@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { sendPageEvent } from '@edx/frontend-platform/analytics';
 import { StatusAlert } from '@edx/paragon';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -35,6 +36,7 @@ export class ProgramListPage extends Component {
   };
 
   componentDidMount() {
+    sendPageEvent();
     this.props.fetchUserProgramEnrollments();
   }
 
