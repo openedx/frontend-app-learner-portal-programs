@@ -57,6 +57,7 @@ module.exports = {
           'UNBRANDED_LANDING_PAGE',
           'IDP_SLUG',
           'ENABLE_PATH_PREFIX',
+          'ENABLE_NOTICES',
         ],
       },
     },
