@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ProgramListPage correctly renders the loading page 1`] = `
-Array [
+<div>
   <main
     id="content"
   >
@@ -23,7 +23,7 @@ Array [
         </div>
       </div>
     </div>
-  </main>,
+  </main>
   <footer
     aria-label="edX Home"
     className="footer d-flex justify-content-center border-top py-3 px-4"
@@ -414,12 +414,12 @@ Array [
         </p>
       </div>
     </div>
-  </footer>,
-]
+  </footer>
+</div>
 `;
 
 exports[`ProgramListPage renders fetching program error page when there are issues fetching the user programs 1`] = `
-Array [
+<div>
   <main
     id="content"
   >
@@ -463,7 +463,7 @@ Array [
         </div>
       </div>
     </div>
-  </main>,
+  </main>
   <footer
     aria-label="edX Home"
     className="footer d-flex justify-content-center border-top py-3 px-4"
@@ -854,6 +854,6 @@ Array [
         </p>
       </div>
     </div>
-  </footer>,
-]
+  </footer>
+</div>
 `;
