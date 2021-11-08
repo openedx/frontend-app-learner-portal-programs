@@ -1,0 +1,36 @@
+name: node_js CI
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - '**'
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Setup Nodejs
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Pre-Tests setup
+      run: npm i -g gatsby
+
+    - name: Lint
+      run: npm run lint
+
+    - name: Test
+      run: npm run test
+
+    - name: Build
+      run: ACTIVE_ENV=development npm run build
