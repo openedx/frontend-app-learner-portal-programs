@@ -15,8 +15,11 @@ import { ProgramMainContent } from './main-content';
 import { ProgramSidebar } from './sidebar';
 import { Hero } from './hero';
 import { fetchUserProgramEnrollments } from '../user-program-enrollments';
+import { fetchProgramDiscussions } from './data/actions';
+import TabularView from './TabularView';
 
 import './styles/ProgramPage.scss';
+
 
 const headerLogo = process.env.LOGO_URL;
 const footerLogo = process.env.LOGO_TRADEMARK_URL;
@@ -27,19 +30,24 @@ class ProgramPage extends Component {
     super(props);
     this.state = {
       hasProgramAccess: false,
+      showLegacyView: false,
     };
   }
 
   componentDidMount() {
     sendPageEvent();
+    const { programUUID } = this.props.pageContext;
     this.props.fetchUserProgramEnrollments();
+    this.props.fetchProgramDiscussions(programUUID);
   }
 
   componentDidUpdate(prevProps) {
-    const { enrolledPrograms } = this.props;
-
+    const { enrolledPrograms, programDiscussions } = this.props;
     if (enrolledPrograms && enrolledPrograms !== prevProps.enrolledPrograms) {
       this.validateProgramAccess(enrolledPrograms);
+    }
+    if (programDiscussions && programDiscussions !== prevProps.programDiscussions) {
+      this.switchView(programDiscussions);
     }
   }
 
@@ -50,6 +58,12 @@ class ProgramPage extends Component {
         hasProgramAccess: true,
       });
     }
+  }
+
+  switchView = (programDiscussions) => {
+    this.setState({
+      showLegacyView: !programDiscussions.tabViewEnabled,
+    });
   }
 
   renderError = () => (
@@ -79,8 +93,8 @@ class ProgramPage extends Component {
   );
 
   render() {
-    const { hasProgramAccess } = this.state;
-    const { pageContext, isLoading } = this.props;
+    const { hasProgramAccess, showLegacyView } = this.state;
+    const { pageContext, isLoading, programDiscussions } = this.props;
     const { programName } = pageContext;
 
     return (
@@ -98,20 +112,23 @@ class ProgramPage extends Component {
                 <>
                   <Helmet title={programName} />
                   <Hero title={programName} />
-                  <div className="container py-5">
-                    <div className="row">
-                      <MainContent>
-                        <ProgramMainContent />
-                      </MainContent>
-                      <MediaQuery minWidth={breakpoints.large.minWidth}>
-                        {matches => matches && (
-                          <Sidebar>
-                            <ProgramSidebar />
-                          </Sidebar>
-                        )}
-                      </MediaQuery>
-                    </div>
-                  </div>
+                  {showLegacyView ?
+                    <div className="container py-5">
+                      <div className="row">
+                        <MainContent>
+                          <ProgramMainContent />
+                        </MainContent>
+                        <MediaQuery minWidth={breakpoints.large.minWidth}>
+                          {matches => matches && (
+                            <Sidebar>
+                              <ProgramSidebar />
+                            </Sidebar>
+                          )}
+                        </MediaQuery>
+                      </div>
+                    </div> :
+                    <TabularView programDiscussions={programDiscussions} />
+                  }
                 </>
               ) : (
                 this.renderError()
@@ -159,6 +176,14 @@ ProgramPage.propTypes = {
   }).isRequired,
   isLoading: PropTypes.bool.isRequired,
   fetchUserProgramEnrollments: PropTypes.func.isRequired,
+  fetchProgramDiscussions: PropTypes.func.isRequired,
+  programDiscussions: PropTypes.shape({
+    tabViewEnabled: PropTypes.bool,
+    discussion: PropTypes.shape({
+      configured: PropTypes.bool,
+      iframe: PropTypes.string,
+    }),
+  }),
   enrolledPrograms: PropTypes.arrayOf(PropTypes.shape({
     uuid: PropTypes.string.isRequired,
     slug: PropTypes.string.isRequired,
@@ -167,16 +192,19 @@ ProgramPage.propTypes = {
 
 ProgramPage.defaultProps = {
   enrolledPrograms: null,
+  programDiscussions: null,
 };
 
 const mapStateToProps = state => ({
-  isLoading: state.enrolledPrograms.loading,
+  isLoading: state.enrolledPrograms.loading || state.programDiscussions.loading,
   enrolledPrograms: state.enrolledPrograms.data,
+  programDiscussions: state.programDiscussions.data,
   error: state.enrolledPrograms.error,
 });
 
 const mapDispatchToProps = dispatch => ({
   fetchUserProgramEnrollments: () => dispatch(fetchUserProgramEnrollments()),
+  fetchProgramDiscussions: programUUID => dispatch(fetchProgramDiscussions(programUUID)),
 });
 
 const ConnectedProgramPage = connect(
