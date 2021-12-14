@@ -5,7 +5,7 @@ import {
 } from './constants';
 
 const initialState = {
-  loading: 0,
+  loading: false,
   data: null,
   error: null,
 };

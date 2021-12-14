@@ -10,13 +10,22 @@ function TabularView({ programDiscussions, intl }) {
   const { discussion: { configured, iframe } } = programDiscussions;
   const courseTabs = [
     {
-      key: 'JourneyTab', label: intl.formatMessage(messages['tab.name.journey']), isHidden: false, component: <ProgramTabs.JourneyTab />,
+      key: 'JourneyTab',
+      label: intl.formatMessage(messages['tab.name.journey']),
+      isHidden: false,
+      component: <ProgramTabs.JourneyTab />,
     },
     {
-      key: 'CommunityTab', label: intl.formatMessage(messages['tab.name.community']), isHidden: !configured, component: <ProgramTabs.CommunityTab iframeComponent={iframe} />,
+      key: 'CommunityTab',
+      label: intl.formatMessage(messages['tab.name.community']),
+      isHidden: !configured,
+      component: <ProgramTabs.CommunityTab iframeComponent={iframe} />,
     },
     {
-      key: 'LiveTab', label: intl.formatMessage(messages['tab.name.live']), isHidden: true, component: <ProgramTabs.LiveTab />,
+      key: 'LiveTab',
+      label: intl.formatMessage(messages['tab.name.live']),
+      isHidden: true,
+      component: <ProgramTabs.LiveTab />,
     },
   ];
 
@@ -26,7 +35,7 @@ function TabularView({ programDiscussions, intl }) {
     <Tabs activeKey={activeTab.key} id="controlled-tab-example" onSelect={tab => setActiveTab(tab)}>
       {courseTabs.map(tab =>
           !tab.isHidden &&
-          <Tab eventKey={tab.key} title={tab.label} >
+          <Tab eventKey={tab.key} title={tab.label} key={tab.key}>
             {tab.component}
           </Tab>)
       }
