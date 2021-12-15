@@ -6,7 +6,10 @@ import {
 
 const initialState = {
   loading: false,
-  data: null,
+  data: {
+    tabViewEnabled: false,
+    discussion: {},
+  },
   error: null,
 };
 

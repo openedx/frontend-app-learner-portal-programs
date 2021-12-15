@@ -42,12 +42,12 @@ class ProgramPage extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { enrolledPrograms, programDiscussions } = this.props;
+    const { enrolledPrograms, tabViewEnabled } = this.props;
     if (enrolledPrograms && enrolledPrograms !== prevProps.enrolledPrograms) {
       this.validateProgramAccess(enrolledPrograms);
     }
-    if (programDiscussions && programDiscussions !== prevProps.programDiscussions) {
-      this.switchView(programDiscussions);
+    if (tabViewEnabled && tabViewEnabled !== prevProps.tabViewEnabled) {
+      this.switchView(tabViewEnabled);
     }
   }
 
@@ -60,9 +60,9 @@ class ProgramPage extends Component {
     }
   }
 
-  switchView = (programDiscussions) => {
+  switchView = (tabViewEnabled) => {
     this.setState({
-      showLegacyView: !programDiscussions.tabViewEnabled,
+      showLegacyView: !tabViewEnabled,
     });
   }
 
@@ -177,12 +177,10 @@ ProgramPage.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   fetchUserProgramEnrollments: PropTypes.func.isRequired,
   fetchProgramDiscussions: PropTypes.func.isRequired,
+  tabViewEnabled: PropTypes.bool,
   programDiscussions: PropTypes.shape({
-    tabViewEnabled: PropTypes.bool,
-    discussion: PropTypes.shape({
-      configured: PropTypes.bool,
-      iframe: PropTypes.string,
-    }),
+    configured: PropTypes.bool,
+    iframe: PropTypes.string,
   }),
   enrolledPrograms: PropTypes.arrayOf(PropTypes.shape({
     uuid: PropTypes.string.isRequired,
@@ -191,14 +189,16 @@ ProgramPage.propTypes = {
 };
 
 ProgramPage.defaultProps = {
+  tabViewEnabled: false,
   enrolledPrograms: null,
-  programDiscussions: null,
+  programDiscussions: { },
 };
 
 const mapStateToProps = state => ({
   isLoading: state.enrolledPrograms.loading || state.programDiscussions.loading,
   enrolledPrograms: state.enrolledPrograms.data,
-  programDiscussions: state.programDiscussions.data,
+  programDiscussions: state.programDiscussions.data.discussion,
+  tabViewEnabled: state.programDiscussions.data.tabViewEnabled,
   error: state.enrolledPrograms.error,
 });
 
