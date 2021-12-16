@@ -5,8 +5,11 @@ import {
 } from './constants';
 
 const initialState = {
-  loading: 0,
-  data: null,
+  loading: false,
+  data: {
+    tabViewEnabled: false,
+    discussion: {},
+  },
   error: null,
 };
 
