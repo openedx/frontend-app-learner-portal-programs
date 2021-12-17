@@ -30,7 +30,7 @@ class ProgramPage extends Component {
     super(props);
     this.state = {
       hasProgramAccess: false,
-      showLegacyView: false,
+      showLegacyView: true,
     };
   }
 
