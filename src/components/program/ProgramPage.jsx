@@ -42,12 +42,13 @@ class ProgramPage extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { enrolledPrograms, tabViewEnabled } = this.props;
+    const { enrolledPrograms, tabViewEnabled, programDiscussions } = this.props;
     if (enrolledPrograms && enrolledPrograms !== prevProps.enrolledPrograms) {
       this.validateProgramAccess(enrolledPrograms);
     }
     if (tabViewEnabled && tabViewEnabled !== prevProps.tabViewEnabled) {
-      this.switchView(tabViewEnabled);
+      const switchTabView = programDiscussions.configured && tabViewEnabled;
+      this.switchView(switchTabView);
     }
   }
 
