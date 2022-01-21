@@ -6,8 +6,9 @@ import * as ProgramTabs from './tab-components';
 // i18n
 import messages from './TabularView.messages';
 
-function TabularView({ programDiscussions, intl }) {
+function TabularView({ programDiscussions, liveSettings, intl }) {
   const { configured, iframe } = programDiscussions;
+  const { configured: liveConfigured, iframe: liveIframe } = liveSettings;
   const courseTabs = [
     {
       key: 'JourneyTab',
@@ -24,8 +25,8 @@ function TabularView({ programDiscussions, intl }) {
     {
       key: 'LiveTab',
       label: intl.formatMessage(messages['tab.name.live']),
-      isHidden: true,
-      component: <ProgramTabs.LiveTab />,
+      isHidden: !liveConfigured,
+      component: <ProgramTabs.CommunityTab iframeComponent={liveIframe} />,
     },
   ];
 
@@ -46,6 +47,10 @@ function TabularView({ programDiscussions, intl }) {
 TabularView.propTypes = {
   intl: intlShape.isRequired,
   programDiscussions: PropTypes.shape({
+    configured: PropTypes.bool,
+    iframe: PropTypes.string,
+  }).isRequired,
+  liveSettings: PropTypes.shape({
     configured: PropTypes.bool,
     iframe: PropTypes.string,
   }).isRequired,

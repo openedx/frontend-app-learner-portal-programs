@@ -15,7 +15,7 @@ import { ProgramMainContent } from './main-content';
 import { ProgramSidebar } from './sidebar';
 import { Hero } from './hero';
 import { fetchUserProgramEnrollments } from '../user-program-enrollments';
-import { fetchProgramDiscussions } from './data/actions';
+import { fetchProgramDiscussions, fetchProgramLiveSettings } from './data/actions';
 import TabularView from './TabularView';
 
 import './styles/ProgramPage.scss';
@@ -39,15 +39,22 @@ class ProgramPage extends Component {
     const { programUUID } = this.props.pageContext;
     this.props.fetchUserProgramEnrollments();
     this.props.fetchProgramDiscussions(programUUID);
+    this.props.fetchProgramLiveSettings(programUUID);
   }
 
   componentDidUpdate(prevProps) {
-    const { enrolledPrograms, tabViewEnabled, programDiscussions } = this.props;
+    const {
+      enrolledPrograms,
+      tabViewEnabled,
+      programDiscussions,
+      liveSettings,
+    } = this.props;
     if (enrolledPrograms && enrolledPrograms !== prevProps.enrolledPrograms) {
       this.validateProgramAccess(enrolledPrograms);
     }
     if (tabViewEnabled && tabViewEnabled !== prevProps.tabViewEnabled) {
-      const switchTabView = programDiscussions.configured && tabViewEnabled;
+      // eslint-disable-next-line max-len
+      const switchTabView = tabViewEnabled && (programDiscussions.configured || liveSettings.configured);
       this.switchView(switchTabView);
     }
   }
@@ -95,7 +102,9 @@ class ProgramPage extends Component {
 
   render() {
     const { hasProgramAccess, showLegacyView } = this.state;
-    const { pageContext, isLoading, programDiscussions } = this.props;
+    const {
+      pageContext, isLoading, programDiscussions, liveSettings,
+    } = this.props;
     const { programName } = pageContext;
 
     return (
@@ -128,7 +137,10 @@ class ProgramPage extends Component {
                         </MediaQuery>
                       </div>
                     </div> :
-                    <TabularView programDiscussions={programDiscussions} />
+                    <TabularView
+                      programDiscussions={programDiscussions}
+                      liveSettings={liveSettings}
+                    />
                   }
                 </>
               ) : (
@@ -178,8 +190,13 @@ ProgramPage.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   fetchUserProgramEnrollments: PropTypes.func.isRequired,
   fetchProgramDiscussions: PropTypes.func.isRequired,
+  fetchProgramLiveSettings: PropTypes.func.isRequired,
   tabViewEnabled: PropTypes.bool,
   programDiscussions: PropTypes.shape({
+    configured: PropTypes.bool,
+    iframe: PropTypes.string,
+  }),
+  liveSettings: PropTypes.shape({
     configured: PropTypes.bool,
     iframe: PropTypes.string,
   }),
@@ -193,19 +210,22 @@ ProgramPage.defaultProps = {
   tabViewEnabled: false,
   enrolledPrograms: null,
   programDiscussions: { },
+  liveSettings: { },
 };
 
 const mapStateToProps = state => ({
-  isLoading: state.enrolledPrograms.loading || state.programDiscussions.loading,
+  isLoading: state.enrolledPrograms.loading || state.programSettings.loading > 0,
   enrolledPrograms: state.enrolledPrograms.data,
-  programDiscussions: state.programDiscussions.data.discussion,
-  tabViewEnabled: state.programDiscussions.data.tabViewEnabled,
+  programDiscussions: state.programSettings.discussionData.discussion,
+  liveSettings: state.programSettings.liveData.live,
+  tabViewEnabled: state.programSettings.discussionData.tabViewEnabled,
   error: state.enrolledPrograms.error,
 });
 
 const mapDispatchToProps = dispatch => ({
   fetchUserProgramEnrollments: () => dispatch(fetchUserProgramEnrollments()),
   fetchProgramDiscussions: programUUID => dispatch(fetchProgramDiscussions(programUUID)),
+  fetchProgramLiveSettings: programUUID => dispatch(fetchProgramLiveSettings(programUUID)),
 });
 
 const ConnectedProgramPage = connect(
