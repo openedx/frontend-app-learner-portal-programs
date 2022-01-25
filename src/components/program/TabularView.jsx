@@ -33,14 +33,16 @@ function TabularView({ programDiscussions, liveSettings, intl }) {
   const [activeTab, setActiveTab] = useState(courseTabs[0].key);
 
   return (
-    <Tabs activeKey={activeTab.key} id="controlled-tab-example" onSelect={tab => setActiveTab(tab)}>
-      {courseTabs.map(tab =>
+    <div className="px-5">
+      <Tabs activeKey={activeTab.key} id="controlled-tab-example" onSelect={tab => setActiveTab(tab)}>
+        {courseTabs.map(tab =>
           !tab.isHidden &&
           <Tab eventKey={tab.key} title={tab.label} key={tab.key}>
             {tab.component}
           </Tab>)
-      }
-    </Tabs>
+        }
+      </Tabs>
+    </div>
   );
 }
 

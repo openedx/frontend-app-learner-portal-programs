@@ -9,7 +9,7 @@ import { ProgramSidebar } from '../sidebar';
 
 function JourneyTab() {
   return (
-    <div className="container py-5">
+    <div className="py-5">
       <div className="row">
         <MainContent>
           <ProgramMainContent />
