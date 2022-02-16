@@ -49,12 +49,15 @@ class ProgramPage extends Component {
       programDiscussions,
       liveSettings,
     } = this.props;
+
     if (enrolledPrograms && enrolledPrograms !== prevProps.enrolledPrograms) {
       this.validateProgramAccess(enrolledPrograms);
     }
-    if (tabViewEnabled && tabViewEnabled !== prevProps.tabViewEnabled) {
-      // eslint-disable-next-line max-len
-      const switchTabView = tabViewEnabled && (programDiscussions.configured || liveSettings.configured);
+    if ((tabViewEnabled && tabViewEnabled !== prevProps.tabViewEnabled)
+      || programDiscussions.configured !== prevProps.programDiscussions.configured
+      || liveSettings.configured !== prevProps.liveSettings.configured) {
+      const switchTabView = tabViewEnabled
+        && (programDiscussions.configured || liveSettings.configured);
       this.switchView(switchTabView);
     }
   }
