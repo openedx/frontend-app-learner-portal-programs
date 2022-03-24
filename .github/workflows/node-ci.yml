@@ -36,4 +36,4 @@ jobs:
       run: npm run test
 
     - name: Build
-      run: ACTIVE_ENV=development npm run build
+      run: ACTIVE_ENV=github npm run build
