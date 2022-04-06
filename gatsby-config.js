@@ -29,11 +29,9 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-sass',
       options: {
-        sassOptions: {
-          includePaths: [
-            `${__dirname}/node_modules`,
-          ],
-        },
+        includePaths: [
+          `${__dirname}/node_modules`,
+        ],
       },
     },
     {
