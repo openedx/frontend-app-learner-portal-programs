@@ -39,7 +39,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-env-variables',
       options: {
-        whitelist: [
+        allowList: [
           'BASE_URL',
           'ENTERPRISE_CATALOG_MFE_URL',
           'ORDERS_MFE_URL',
