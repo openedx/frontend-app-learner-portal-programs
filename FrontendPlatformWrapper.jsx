@@ -30,7 +30,7 @@ import {
 import store from './src/store';
 
 // eslint-disable-next-line react/display-name,react/prop-types
-export default ({ children }) => {
+export default function ({ children }) {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
@@ -79,4 +79,4 @@ export default ({ children }) => {
   return (
     <AppProvider store={store}>{children}</AppProvider>
   );
-};
+}

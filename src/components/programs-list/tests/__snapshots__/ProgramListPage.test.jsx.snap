@@ -185,13 +185,6 @@ exports[`ProgramListPage correctly renders the loading page 1`] = `
               Media Kit
             </a>
           </li>
-          <li>
-            <a
-              href="https://edx.org/donate"
-            >
-              Donate
-            </a>
-          </li>
         </ul>
       </div>
       <div
@@ -396,7 +389,7 @@ exports[`ProgramListPage correctly renders the loading page 1`] = `
         <p>
           © 
           2022
-           edX Inc. All rights reserved.
+           edX LLC. All rights reserved.
           <br />
           <span>
             深圳市恒宇博科技有限公司 
@@ -625,13 +618,6 @@ exports[`ProgramListPage renders fetching program error page when there are issu
               Media Kit
             </a>
           </li>
-          <li>
-            <a
-              href="https://edx.org/donate"
-            >
-              Donate
-            </a>
-          </li>
         </ul>
       </div>
       <div
@@ -836,7 +822,7 @@ exports[`ProgramListPage renders fetching program error page when there are issu
         <p>
           © 
           2022
-           edX Inc. All rights reserved.
+           edX LLC. All rights reserved.
           <br />
           <span>
             深圳市恒宇博科技有限公司 

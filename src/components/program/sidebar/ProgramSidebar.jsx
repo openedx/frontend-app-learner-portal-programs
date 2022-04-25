@@ -7,7 +7,7 @@ import { SidebarBlock } from '../../layout';
 
 import Links from './Links';
 
-const ProgramSidebar = () => {
+function ProgramSidebar() {
   const {
     pageContext: {
       programDocuments, externalProgramWebsite,
@@ -73,6 +73,6 @@ const ProgramSidebar = () => {
       </SidebarBlock>
     </>
   );
-};
+}
 
 export default ProgramSidebar;

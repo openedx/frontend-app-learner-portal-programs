@@ -11,14 +11,14 @@ import {
   updateCourseRunStatus,
 } from '../data/actions';
 
-const InProgressCourseCard = ({
+function InProgressCourseCard({
   linkToCourse,
   courseRunId,
   title,
   notifications,
   modifyCourseRunStatus,
   ...rest
-}) => {
+}) {
   const renderButtons = () => (
     <a
       className="btn btn-outline-primary btn-xs-block"
@@ -76,7 +76,7 @@ const InProgressCourseCard = ({
       {renderNotifications()}
     </BaseCourseCard>
   );
-};
+}
 
 InProgressCourseCard.propTypes = {
   linkToCourse: PropTypes.string.isRequired,

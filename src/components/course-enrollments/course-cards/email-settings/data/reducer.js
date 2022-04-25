@@ -10,6 +10,7 @@ const initialState = {
   data: null,
 };
 
+// eslint-disable-next-line default-param-last
 const emailSettings = (state = initialState, action) => {
   switch (action.type) {
     case UPDATE_EMAIL_SETTINGS_REQUEST:

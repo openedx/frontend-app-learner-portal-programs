@@ -35,12 +35,12 @@ function TabularView({ programDiscussions, liveSettings, intl }) {
   return (
     <div className="px-5">
       <Tabs activeKey={activeTab.key} id="controlled-tab-example" onSelect={tab => setActiveTab(tab)}>
-        {courseTabs.map(tab =>
-          !tab.isHidden &&
+        {courseTabs.map(tab => !tab.isHidden
+          && (
           <Tab eventKey={tab.key} title={tab.label} key={tab.key}>
             {tab.component}
-          </Tab>)
-        }
+          </Tab>
+          ))}
       </Tabs>
     </div>
   );
@@ -59,4 +59,3 @@ TabularView.propTypes = {
 };
 
 export default injectIntl(TabularView);
-

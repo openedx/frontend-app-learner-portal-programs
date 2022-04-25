@@ -14,6 +14,7 @@ const initialState = {
   isMarkCourseCompleteSuccess: false,
 };
 
+// eslint-disable-next-line default-param-last
 const courseEnrollmentsReducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_COURSE_ENROLLMENTS_REQUEST:

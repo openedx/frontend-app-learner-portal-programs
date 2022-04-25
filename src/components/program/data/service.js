@@ -12,6 +12,5 @@ const fetchProgramLiveSettings = (programUUID) => {
   return authenticatedHttpClient.get(url);
 };
 
-
 // eslint-disable-next-line import/prefer-default-export
 export { fetchProgramDiscussions, fetchProgramLiveSettings };
