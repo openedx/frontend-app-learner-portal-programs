@@ -10,9 +10,9 @@ import rootReducer from './rootReducer';
 const loggerMiddleware = createLogger();
 
 const isServer = !(
-  typeof window !== 'undefined' &&
-  window.document &&
-  window.document.createElement
+  typeof window !== 'undefined'
+  && window.document
+  && window.document.createElement
 );
 const history = isServer ? createMemoryHistory({}) : createBrowserHistory();
 const routerHistoryMiddleware = routerMiddleware(history);

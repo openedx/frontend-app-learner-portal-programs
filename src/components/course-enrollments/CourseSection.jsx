@@ -14,9 +14,12 @@ import CollapsibleIcon from './CollapsibleIcon';
 import './styles/CourseSection.scss';
 
 class CourseSection extends React.Component {
-  state = {
-    isOpen: true,
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      isOpen: true,
+    };
+  }
 
   getFormattedSectionTitle = () => {
     const { isOpen } = this.state;
@@ -62,7 +65,7 @@ class CourseSection extends React.Component {
 
   renderCourseCards = () => {
     const { component: Component, courseRuns } = this.props;
-    return courseRuns.map(courseRun => (
+    return courseRuns.map((courseRun) => (
       <Component
         {...this.getCourseRunProps(courseRun)}
         key={courseRun.courseRunId}
@@ -100,21 +103,25 @@ CourseSection.propTypes = {
     UpcomingCourseCard,
     CompletedCourseCard,
   ]).isRequired,
-  courseRuns: PropTypes.arrayOf(PropTypes.shape({
-    courseRunId: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    linkToCourse: PropTypes.string.isRequired,
-    notifications: PropTypes.arrayOf(PropTypes.shape({
-      url: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      date: PropTypes.string.isRequired,
-    })).isRequired,
-    microMastersTitle: PropTypes.string,
-    startDate: PropTypes.string,
-    endDate: PropTypes.string,
-    linkToCertificate: PropTypes.string,
-    hasEmailsEnabled: PropTypes.bool,
-  })).isRequired,
+  courseRuns: PropTypes.arrayOf(
+    PropTypes.shape({
+      courseRunId: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      linkToCourse: PropTypes.string.isRequired,
+      notifications: PropTypes.arrayOf(
+        PropTypes.shape({
+          url: PropTypes.string.isRequired,
+          name: PropTypes.string.isRequired,
+          date: PropTypes.string.isRequired,
+        }),
+      ).isRequired,
+      microMastersTitle: PropTypes.string,
+      startDate: PropTypes.string,
+      endDate: PropTypes.string,
+      linkToCertificate: PropTypes.string,
+      hasEmailsEnabled: PropTypes.bool,
+    }),
+  ).isRequired,
   title: PropTypes.string.isRequired,
 };
 

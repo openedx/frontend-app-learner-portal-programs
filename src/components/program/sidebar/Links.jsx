@@ -1,15 +1,22 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { sendTrackEvent } from '@edx/frontend-platform/analytics';
-import { faFile, faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
+import {
+  faFile,
+  faChevronDown,
+  faChevronUp,
+} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Button } from '@edx/paragon';
 
 class Links extends Component {
-  state = {
-    defaultNumLinksDisplayed: 5,
-    isExpanded: false,
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      defaultNumLinksDisplayed: 5,
+      isExpanded: false,
+    };
+  }
 
   getLinkItems = () => {
     const { defaultNumLinksDisplayed, isExpanded } = this.state;
@@ -18,7 +25,7 @@ class Links extends Component {
       links = links.slice(0, defaultNumLinksDisplayed);
     }
 
-    return links.map(link => (
+    return links.map((link) => (
       <li key={link.document || link.url} className="mb-1">
         <FontAwesomeIcon className="mr-2 text-info" icon={faFile} />
         <a
@@ -38,7 +45,7 @@ class Links extends Component {
   };
 
   handleToggleExpandedClick = () => {
-    this.setState(state => ({
+    this.setState((state) => ({
       isExpanded: !state.isExpanded,
     }));
   };
@@ -76,11 +83,13 @@ class Links extends Component {
 
 Links.propTypes = {
   id: PropTypes.string.isRequired,
-  links: PropTypes.arrayOf(PropTypes.shape({
-    display_text: PropTypes.string.isRequired,
-    document: PropTypes.string,
-    url: PropTypes.string,
-  })).isRequired,
+  links: PropTypes.arrayOf(
+    PropTypes.shape({
+      display_text: PropTypes.string.isRequired,
+      document: PropTypes.string,
+      url: PropTypes.string,
+    }),
+  ).isRequired,
   label: PropTypes.string.isRequired,
 };
 

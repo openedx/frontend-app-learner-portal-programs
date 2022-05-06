@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-constructed-context-values */
 import React from 'react';
 import { mount } from 'enzyme';
 import thunk from 'redux-thunk';
@@ -18,6 +19,7 @@ const store = mockStore({
 describe('<BaseCourseCard />', () => {
   describe('email settings modal', () => {
     let wrapper;
+    // eslint-disable-next-line no-import-assign
     analytics.sendTrackEvent = jest.fn();
 
     beforeEach(() => {

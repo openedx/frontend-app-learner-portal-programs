@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Input, Modal, StatusAlert, StatefulButton } from '@edx/paragon';
+import {
+  Input, Modal, StatusAlert, StatefulButton,
+} from '@edx/paragon';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -10,14 +12,17 @@ import { updateEmailSettings } from './data';
 import './styles/EmailSettingsModal.scss';
 
 class EmailSettingsModal extends Component {
-  state = {
-    hasEmailsEnabled: false,
-    isSubmitting: false,
-    isSuccessful: false,
-    isFormChanged: false,
-    hasSavedForm: false,
-    error: null,
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      hasEmailsEnabled: false,
+      isSubmitting: false,
+      isSuccessful: false,
+      isFormChanged: false,
+      hasSavedForm: false,
+      error: null,
+    };
+  }
 
   componentDidUpdate(prevProps) {
     const { hasEmailsEnabled } = this.props;
@@ -34,11 +39,12 @@ class EmailSettingsModal extends Component {
     const { isSubmitting, isSuccessful } = this.state;
     if (isSubmitting) {
       return 'pending';
-    } else if (isSuccessful) {
+    }
+    if (isSuccessful) {
       return 'complete';
     }
     return 'default';
-  }
+  };
 
   getDisabledStates = () => {
     const { isFormChanged } = this.state;
@@ -46,31 +52,34 @@ class EmailSettingsModal extends Component {
       return ['pending', 'complete'];
     }
     return ['pending', 'complete', 'default'];
-  }
+  };
 
   handleSaveButtonClick = () => {
     const { hasEmailsEnabled } = this.state;
     const { courseRunId, updateEmailSettings } = this.props; // eslint-disable-line no-shadow
-    this.setState({
-      isSubmitting: true,
-    }, async () => {
-      try {
-        await updateEmailSettings(courseRunId, hasEmailsEnabled);
-        this.setState({
-          isSuccessful: true,
-          isSubmitting: false,
-          isFormChanged: false,
-          hasSavedForm: true,
-          error: null,
-        });
-      } catch (error) {
-        this.setState({
-          isSubmitting: false,
-          isFormChanged: false,
-          error,
-        });
-      }
-    });
+    this.setState(
+      {
+        isSubmitting: true,
+      },
+      async () => {
+        try {
+          await updateEmailSettings(courseRunId, hasEmailsEnabled);
+          this.setState({
+            isSuccessful: true,
+            isSubmitting: false,
+            isFormChanged: false,
+            hasSavedForm: true,
+            error: null,
+          });
+        } catch (error) {
+          this.setState({
+            isSubmitting: false,
+            isFormChanged: false,
+            error,
+          });
+        }
+      },
+    );
   };
 
   handleOnClose = () => {
@@ -102,29 +111,31 @@ class EmailSettingsModal extends Component {
   };
 
   render() {
-    const {
-      error, hasEmailsEnabled, isSubmitting,
-    } = this.state;
+    const { error, hasEmailsEnabled, isSubmitting } = this.state;
     const { title, open, courseRunId } = this.props;
 
     return (
       <Modal
         title={`Email Settings for ${title}`}
-        body={
+        body={(
           <>
             {error && (
               <StatusAlert
                 alertType="danger"
-                dialog={
+                dialog={(
                   <div className="d-flex">
                     <div>
-                      <FontAwesomeIcon className="mr-3" icon={faExclamationTriangle} />
+                      <FontAwesomeIcon
+                        className="mr-3"
+                        icon={faExclamationTriangle}
+                      />
                     </div>
                     <div>
-                      An error occurred while saving your email settings. Please try again.
+                      An error occurred while saving your email settings. Please
+                      try again.
                     </div>
                   </div>
-                }
+                )}
                 dismissible={false}
                 open
               />
@@ -137,13 +148,16 @@ class EmailSettingsModal extends Component {
                 disabled={isSubmitting}
                 onChange={this.handleEmailSettingsChange}
               />
-              <label className="form-check-label ml-2 font-weight-normal" htmlFor={`email-settings-${courseRunId}`}>
+              <label
+                className="form-check-label ml-2 font-weight-normal"
+                htmlFor={`email-settings-${courseRunId}`}
+              >
                 Receive course emails such as reminders, schedule updates, and
                 other critical announcements.
               </label>
             </div>
           </>
-        }
+        )}
         onClose={this.handleOnClose}
         buttons={[
           <StatefulButton
@@ -181,17 +195,26 @@ EmailSettingsModal.defaultProps = {
   open: false,
 };
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   updateEmailSettings: (courseRunId, hasEmailsEnabled) => new Promise((resolve, reject) => {
-    dispatch(updateEmailSettings({
-      courseRunId,
-      hasEmailsEnabled,
-      onSuccess: (response) => { resolve(response); },
-      onError: (error) => { reject(error); },
-    }));
+    dispatch(
+      updateEmailSettings({
+        courseRunId,
+        hasEmailsEnabled,
+        onSuccess: (response) => {
+          resolve(response);
+        },
+        onError: (error) => {
+          reject(error);
+        },
+      }),
+    );
   }),
 });
 
 export { EmailSettingsModal };
 
-export default connect(null, mapDispatchToProps)(EmailSettingsModal);
+export default connect(
+  null,
+  mapDispatchToProps,
+)(EmailSettingsModal);

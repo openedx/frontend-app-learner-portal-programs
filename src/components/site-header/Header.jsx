@@ -12,7 +12,6 @@ import MobileHeader from './MobileHeader';
 
 import './Header.scss';
 
-
 ensureConfig([
   'LMS_BASE_URL',
   'LOGOUT_URL',

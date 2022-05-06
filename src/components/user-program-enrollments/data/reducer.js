@@ -10,6 +10,7 @@ const initialState = {
   error: null,
 };
 
+// eslint-disable-next-line default-param-last
 const programEnrollmentsReducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_USER_PROGRAM_ENROLLMENTS_REQUEST:

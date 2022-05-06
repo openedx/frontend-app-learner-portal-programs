@@ -3,8 +3,8 @@ import { CourseEnrollments } from '../../course-enrollments';
 
 import { ProgramSidebar } from '../sidebar';
 
-const ProgramMainContent = () => (
-  <CourseEnrollments sidebarComponent={<ProgramSidebar />} />
-);
+function ProgramMainContent() {
+  return <CourseEnrollments sidebarComponent={<ProgramSidebar />} />;
+}
 
 export default ProgramMainContent;

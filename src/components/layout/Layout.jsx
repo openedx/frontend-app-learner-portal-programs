@@ -16,11 +16,6 @@ class Layout extends Component {
     return userMenu || [];
   };
 
-  getMainMenuItems = () => {
-    const { header: { mainMenu } = {} } = this.context;
-    return mainMenu || [];
-  };
-
   render() {
     const {
       siteUrl, siteName, children, headerLogo,

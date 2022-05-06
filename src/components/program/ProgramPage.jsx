@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-useless-fragment */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -20,10 +21,8 @@ import TabularView from './TabularView';
 
 import './styles/ProgramPage.scss';
 
-
 const headerLogo = process.env.LOGO_URL;
 const footerLogo = process.env.LOGO_TRADEMARK_URL;
-
 
 class ProgramPage extends Component {
   constructor(props) {
@@ -81,7 +80,7 @@ class ProgramPage extends Component {
     <div className="container my-4">
       <StatusAlert
         alertType="danger"
-        dialog={
+        dialog={(
           <div className="d-flex">
             <div>
               <FontAwesomeIcon className="mr-2" icon={faExclamationTriangle} />
@@ -96,7 +95,7 @@ class ProgramPage extends Component {
               please contact your advisor at the university for further assistance.
             </div>
           </div>
-        }
+        )}
         dismissible={false}
         open
       />
@@ -125,26 +124,29 @@ class ProgramPage extends Component {
                 <>
                   <Helmet title={programName} />
                   <Hero title={programName} />
-                  {showLegacyView ?
-                    <div className="container py-5">
-                      <div className="row">
-                        <MainContent>
-                          <ProgramMainContent />
-                        </MainContent>
-                        <MediaQuery minWidth={breakpoints.large.minWidth}>
-                          {matches => matches && (
+                  {showLegacyView
+                    ? (
+                      <div className="container py-5">
+                        <div className="row">
+                          <MainContent>
+                            <ProgramMainContent />
+                          </MainContent>
+                          <MediaQuery minWidth={breakpoints.large.minWidth}>
+                            {matches => matches && (
                             <Sidebar>
                               <ProgramSidebar />
                             </Sidebar>
-                          )}
-                        </MediaQuery>
+                            )}
+                          </MediaQuery>
+                        </div>
                       </div>
-                    </div> :
-                    <TabularView
-                      programDiscussions={programDiscussions}
-                      liveSettings={liveSettings}
-                    />
-                  }
+                    )
+                    : (
+                      <TabularView
+                        programDiscussions={programDiscussions}
+                        liveSettings={liveSettings}
+                      />
+                    )}
                 </>
               ) : (
                 this.renderError()

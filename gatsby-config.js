@@ -2,8 +2,7 @@
 // different configurations instead of just 'production'
 // eg.
 // $ ACTIVE_ENV=<env_name> npm run build
-const activeEnv =
-  process.env.ACTIVE_ENV || process.env.NODE_ENV || 'development';
+const activeEnv = process.env.ACTIVE_ENV || process.env.NODE_ENV || 'development';
 
 require('dotenv').config({
   path: `.env.${activeEnv}`,

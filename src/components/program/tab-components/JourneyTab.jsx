@@ -6,7 +6,6 @@ import { MainContent, Sidebar } from '../../layout';
 import { ProgramMainContent } from '../main-content';
 import { ProgramSidebar } from '../sidebar';
 
-
 function JourneyTab() {
   return (
     <div className="py-5">
@@ -19,7 +18,7 @@ function JourneyTab() {
           <Sidebar>
             <ProgramSidebar />
           </Sidebar>
-            )}
+          )}
         </MediaQuery>
       </div>
     </div>

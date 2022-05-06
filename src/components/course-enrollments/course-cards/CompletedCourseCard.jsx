@@ -6,30 +6,32 @@ import BaseCourseCard from './BaseCourseCard';
 
 import CertificateImg from './images/edx-verified-mini-cert.png';
 
-const CompletedCourseCard = props => (
-  <BaseCourseCard type="completed" hasViewCertificateLink={false} {...props}>
-    {props.linkToCertificate ? (
-      <div className="d-flex mb-3">
-        <div className="mr-3">
-          <img src={CertificateImg} alt="verified certificate preview" />
+function CompletedCourseCard(props) {
+  return (
+    <BaseCourseCard type="completed" hasViewCertificateLink={false} {...props}>
+      {props.linkToCertificate ? (
+        <div className="d-flex mb-3">
+          <div className="mr-3">
+            <img src={CertificateImg} alt="verified certificate preview" />
+          </div>
+          <div className="d-flex align-items-center">
+            <p className="mb-0 lead">
+              View your certificate on
+              {' '}
+              <a className="text-underline" href={`${process.env.LMS_BASE_URL}/u/${getAuthenticatedUser().username}`}>your profile →</a>
+            </p>
+          </div>
         </div>
-        <div className="d-flex align-items-center">
-          <p className="mb-0 lead">
-            View your certificate on
-            {' '}
-            <a className="text-underline" href={`${process.env.LMS_BASE_URL}/u/${getAuthenticatedUser().username}`}>your profile →</a>
-          </p>
-        </div>
-      </div>
-    ) : (
-      <p className="lead mb-3">
-        To earn a certificate,
-        {' '}
-        <a className="text-underline" href={props.linkToCourse}>retake this course →</a>
-      </p>
-    )}
-  </BaseCourseCard>
-);
+      ) : (
+        <p className="lead mb-3">
+          To earn a certificate,
+          {' '}
+          <a className="text-underline" href={props.linkToCourse}>retake this course →</a>
+        </p>
+      )}
+    </BaseCourseCard>
+  );
+}
 
 CompletedCourseCard.propTypes = {
   linkToCourse: PropTypes.string.isRequired,

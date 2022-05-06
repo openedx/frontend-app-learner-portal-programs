@@ -5,7 +5,7 @@ import { AppContext } from '@edx/frontend-platform/react';
 
 import './styles/Hero.scss';
 
-const Hero = (props) => {
+function Hero(props) {
   const {
     pageContext: {
       pageBranding,
@@ -57,7 +57,7 @@ const Hero = (props) => {
       </div>
     </div>
   );
-};
+}
 
 Hero.propTypes = {
   title: PropTypes.string.isRequired,

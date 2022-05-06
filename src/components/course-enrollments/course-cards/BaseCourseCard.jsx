@@ -14,15 +14,18 @@ import { EmailSettingsModal } from './email-settings';
 import './styles/CourseCard.scss';
 
 class BaseCourseCard extends Component {
-  state = {
-    modals: {
-      emailSettings: {
-        open: false,
-        options: {},
+  constructor(props) {
+    super(props);
+    this.state = {
+      modals: {
+        emailSettings: {
+          open: false,
+          options: {},
+        },
       },
-    },
-    hasEmailsEnabled: this.props.hasEmailsEnabled,
-  };
+      hasEmailsEnabled: this.props.hasEmailsEnabled,
+    };
+  }
 
   getDropdownMenuItems = () => {
     const { hasEmailsEnabled, title, dropdownMenuItems } = this.props;
@@ -48,7 +51,9 @@ class BaseCourseCard extends Component {
 
   getDateMessage = () => {
     const { type, pacing, endDate } = this.props;
-    const formattedEndDate = endDate ? moment(endDate).format('MMMM D, YYYY') : null;
+    const formattedEndDate = endDate
+      ? moment(endDate).format('MMMM D, YYYY')
+      : null;
     let message = '';
     if (formattedEndDate) {
       switch (type) {
@@ -92,7 +97,7 @@ class BaseCourseCard extends Component {
   };
 
   setModalState = ({ key, open = false, options = {} }) => {
-    this.setState(state => ({
+    this.setState((state) => ({
       modals: {
         ...state.modals,
         [key]: {
@@ -109,14 +114,9 @@ class BaseCourseCard extends Component {
   };
 
   handleEmailSettingsButtonClick = () => {
-    const {
-      title,
-      courseRunId,
-    } = this.props;
+    const { title, courseRunId } = this.props;
 
-    const {
-      hasEmailsEnabled,
-    } = this.state;
+    const { hasEmailsEnabled } = this.state;
 
     this.setModalState({
       key: 'emailSettings',
@@ -126,7 +126,9 @@ class BaseCourseCard extends Component {
         hasEmailsEnabled,
       },
     });
-    sendTrackEvent('edx.learner_portal.email_settings_modal.opened', { course_run_id: courseRunId });
+    sendTrackEvent('edx.learner_portal.email_settings_modal.opened', {
+      course_run_id: courseRunId,
+    });
   };
 
   handleEmailSettingsModalOnClose = (hasEmailsEnabled) => {
@@ -150,12 +152,10 @@ class BaseCourseCard extends Component {
           <Dropdown.Deprecated>
             <Dropdown.Deprecated.Button className="btn-outline-secondary">
               <FontAwesomeIcon icon={faCog} />
-              <span className="sr-only">
-                course settings for {title}
-              </span>
+              <span className="sr-only">course settings for {title}</span>
             </Dropdown.Deprecated.Button>
             <Dropdown.Deprecated.Menu>
-              {menuItems.map(menuItem => (
+              {menuItems.map((menuItem) => (
                 <Dropdown.Deprecated.Item
                   key={menuItem.key}
                   type={menuItem.type}
@@ -164,7 +164,7 @@ class BaseCourseCard extends Component {
                 >
                   {menuItem.children}
                 </Dropdown.Deprecated.Item>
-            ))}
+              ))}
             </Dropdown.Deprecated.Menu>
           </Dropdown.Deprecated>
         </div>
@@ -192,11 +192,7 @@ class BaseCourseCard extends Component {
   renderMicroMastersTitle = () => {
     const { microMastersTitle } = this.props;
     if (microMastersTitle) {
-      return (
-        <h3 className="mb-2">
-          {microMastersTitle}
-        </h3>
-      );
+      return <h3 className="mb-2">{microMastersTitle}</h3>;
     }
     return null;
   };
@@ -214,9 +210,7 @@ class BaseCourseCard extends Component {
     if (children) {
       return (
         <div className="row">
-          <div className="col">
-            {children}
-          </div>
+          <div className="col">{children}</div>
         </div>
       );
     }
@@ -228,9 +222,7 @@ class BaseCourseCard extends Component {
     if (buttons) {
       return (
         <div className="row">
-          <div className="col mb-3">
-            {buttons}
-          </div>
+          <div className="col mb-3">{buttons}</div>
         </div>
       );
     }
@@ -242,9 +234,15 @@ class BaseCourseCard extends Component {
     if (linkToCertificate) {
       return (
         <small className="mb-0">
-          View your certificate on
-          {' '}
-          <a className="text-underline" href={`${process.env.LMS_BASE_URL}/u/${getAuthenticatedUser().username}`}>your profile →</a>
+          View your certificate on{' '}
+          <a
+            className="text-underline"
+            href={`${process.env.LMS_BASE_URL}/u/${
+              getAuthenticatedUser().username
+            }`}
+          >
+            your profile →
+          </a>
         </small>
       );
     }
@@ -261,10 +259,9 @@ class BaseCourseCard extends Component {
     const dropdownMenuItems = this.getDropdownMenuItems();
     return (
       <div
-        className={classNames(
-          'course py-4 border-bottom',
-          { 'is-micromasters': !!microMastersTitle },
-        )}
+        className={classNames('course py-4 border-bottom', {
+          'is-micromasters': !!microMastersTitle,
+        })}
       >
         <div className="d-flex">
           <div className="flex-grow-1 mr-4 mb-3">
@@ -280,9 +277,7 @@ class BaseCourseCard extends Component {
         {this.renderChildren()}
         <div className="course-misc-text row">
           <div className="col text-gray">
-            <small className="mb-0">
-              {this.getCourseMiscText()}
-            </small>
+            <small className="mb-0">{this.getCourseMiscText()}</small>
             {hasViewCertificateLink && this.renderViewCertificateText()}
           </div>
         </div>
@@ -295,9 +290,7 @@ class BaseCourseCard extends Component {
 BaseCourseCard.contextType = AppContext;
 
 BaseCourseCard.propTypes = {
-  type: PropTypes.oneOf([
-    'in_progress', 'upcoming', 'completed',
-  ]).isRequired,
+  type: PropTypes.oneOf(['in_progress', 'upcoming', 'completed']).isRequired,
   title: PropTypes.string.isRequired,
   linkToCourse: PropTypes.string.isRequired,
   courseRunId: PropTypes.string.isRequired,
@@ -311,12 +304,14 @@ BaseCourseCard.propTypes = {
   orgName: PropTypes.string,
   pacing: PropTypes.oneOf(['instructor', 'self']),
   linkToCertificate: PropTypes.string,
-  dropdownMenuItems: PropTypes.arrayOf(PropTypes.shape({
-    key: PropTypes.string,
-    type: PropTypes.string,
-    onClick: PropTypes.func,
-    children: PropTypes.element,
-  })),
+  dropdownMenuItems: PropTypes.arrayOf(
+    PropTypes.shape({
+      key: PropTypes.string,
+      type: PropTypes.string,
+      onClick: PropTypes.func,
+      children: PropTypes.element,
+    }),
+  ),
 };
 
 BaseCourseCard.defaultProps = {

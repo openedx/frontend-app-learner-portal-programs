@@ -7,7 +7,7 @@ import { getNotices } from './api';
  * programs dashboard and onto a full-screen notice page. If the plugin is not
  * installed, or there are no notices, we just passthrough this component.
  */
-const NoticesProvider = ({ children }) => {
+function NoticesProvider({ children }) {
   useEffect(() => {
     async function getData() {
       if (process.env.ENABLE_NOTICES) {
@@ -26,7 +26,7 @@ const NoticesProvider = ({ children }) => {
       {children}
     </div>
   );
-};
+}
 
 NoticesProvider.propTypes = {
   children: PropTypes.node.isRequired,
