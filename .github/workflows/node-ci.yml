@@ -35,5 +35,8 @@ jobs:
     - name: Test
       run: npm run test
 
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v3
+
     - name: Build
       run: ACTIVE_ENV=github npm run build
