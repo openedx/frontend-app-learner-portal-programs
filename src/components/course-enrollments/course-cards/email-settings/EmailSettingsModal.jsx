@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import {
-  Input, Modal, StatusAlert, StatefulButton,
+  Input, Modal, Alert, StatefulButton,
 } from '@edx/paragon';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -120,25 +120,19 @@ class EmailSettingsModal extends Component {
         body={(
           <>
             {error && (
-              <StatusAlert
-                alertType="danger"
-                dialog={(
+              <Alert
+                variant="danger"
+                dismissible={false}
+                icon={() => <FontAwesomeIcon className="mr-3" icon={faExclamationTriangle}/>}
+                show
+              >
+                {(
                   <div className="d-flex">
-                    <div>
-                      <FontAwesomeIcon
-                        className="mr-3"
-                        icon={faExclamationTriangle}
-                      />
-                    </div>
-                    <div>
-                      An error occurred while saving your email settings. Please
-                      try again.
-                    </div>
+                    An error occurred while saving your email settings. Please
+                    try again.
                   </div>
                 )}
-                dismissible={false}
-                open
-              />
+              </Alert>
             )}
             <div className="form-check">
               <Input
