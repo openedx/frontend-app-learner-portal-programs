@@ -113,6 +113,7 @@ class EmailSettingsModal extends Component {
   render() {
     const { error, hasEmailsEnabled, isSubmitting } = this.state;
     const { title, open, courseRunId } = this.props;
+    const errorIcon = () => <FontAwesomeIcon className="mr-3" icon={faExclamationTriangle} />;
 
     return (
       <Modal
@@ -123,15 +124,13 @@ class EmailSettingsModal extends Component {
               <Alert
                 variant="danger"
                 dismissible={false}
-                icon={() => <FontAwesomeIcon className="mr-3" icon={faExclamationTriangle}/>}
+                icon={errorIcon}
                 show
               >
-                {(
-                  <div className="d-flex">
-                    An error occurred while saving your email settings. Please
-                    try again.
-                  </div>
-                )}
+                <div className="d-flex">
+                  An error occurred while saving your email settings. Please
+                  try again.
+                </div>
               </Alert>
             )}
             <div className="form-check">
