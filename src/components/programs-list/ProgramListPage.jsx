@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { sendPageEvent } from '@edx/frontend-platform/analytics';
-import { StatusAlert } from '@edx/paragon';
+import { Alert } from '@edx/paragon';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Layout } from '../layout';
@@ -78,20 +78,19 @@ export class ProgramListPage extends Component {
     return enrolledProgramsList;
   };
 
+  errorIcon = () => <FontAwesomeIcon className="mr-2" icon={faExclamationTriangle} />;
+
   renderError = ({ message }) => (
-    <StatusAlert
-      alertType="danger"
-      dialog={(
-        <div className="d-flex">
-          <div>
-            <FontAwesomeIcon className="mr-2" icon={faExclamationTriangle} />
-          </div>
-          <div>{message}</div>
-        </div>
-      )}
+    <Alert
+      variant="danger"
+      icon={this.errorIcon}
       dismissible={false}
-      open
-    />
+      show
+    >
+      <div className="d-flex">
+        {message}
+      </div>
+    </Alert>
   );
 
   render() {
