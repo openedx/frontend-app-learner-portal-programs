@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { breakpoints, StatusAlert } from '@edx/paragon';
+import { breakpoints, Alert } from '@edx/paragon';
 import { AppContext } from '@edx/frontend-platform/react';
 import { faExclamationTriangle, faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -49,44 +49,39 @@ export class CourseEnrollments extends Component {
     || this.hasCourseRunsWithStatus('upcoming')
   )
 
+  errorIcon = () => <FontAwesomeIcon className="mr-2" icon={faExclamationTriangle} />
+
+  succeesIcon = () => <FontAwesomeIcon className="mr-2" icon={faCheckCircle} />
+
   renderError = () => (
-    <StatusAlert
-      alertType="danger"
-      dialog={(
-        <div className="d-flex">
-          <div>
-            <FontAwesomeIcon className="mr-2" icon={faExclamationTriangle} />
-          </div>
-          <div>
-            An error occurred while retrieving your course enrollments. Please try again.
-          </div>
-        </div>
-      )}
+    <Alert
+      variant="danger"
       dismissible={false}
-      open
-    />
+      icon={this.errorIcon}
+      show
+    >
+      <div className="d-flex">
+        An error occurred while retrieving your course enrollments. Please try again.
+      </div>
+    </Alert>
   );
 
   renderMarkCourseCompleteSuccessAlert = () => {
     const { modifyIsMarkCourseCompleteSuccess } = this.props;
     return (
-      <StatusAlert
-        alertType="success"
-        dialog={(
-          <div className="d-flex">
-            <div>
-              <FontAwesomeIcon className="mr-2" icon={faCheckCircle} />
-            </div>
-            <div>
-              Your course was marked as complete.
-            </div>
-          </div>
-        )}
+      <Alert
+        variant="success"
+        icon={this.succeesIcon}
         onClose={() => {
           modifyIsMarkCourseCompleteSuccess({ isSuccess: false });
         }}
-        open
-      />
+        show
+        dismissible
+      >
+        <div className="d-flex">
+          Your course was marked as complete.
+        </div>
+      </Alert>
     );
   };
 
