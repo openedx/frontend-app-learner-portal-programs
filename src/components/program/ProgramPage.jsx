@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import MediaQuery from 'react-responsive';
-import { breakpoints, StatusAlert } from '@edx/paragon';
+import { breakpoints, Alert } from '@edx/paragon';
 import { sendPageEvent } from '@edx/frontend-platform/analytics';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -76,29 +76,26 @@ class ProgramPage extends Component {
     });
   }
 
+  errorIcon = () => <FontAwesomeIcon className="mr-2" icon={faExclamationTriangle} />;
+
   renderError = () => (
     <div className="container my-4">
-      <StatusAlert
-        alertType="danger"
-        dialog={(
-          <div className="d-flex">
-            <div>
-              <FontAwesomeIcon className="mr-2" icon={faExclamationTriangle} />
-            </div>
-            <div>
-              You are not authorized to view this page.
-              This page is reserved for Masters students only.
-              You may access public edX courses on
-              {' '}
-              <a className="alert-link" href="https://edx.org">edX.org</a>.
-              If you are a Masters student and believe you should have access,
-              please contact your advisor at the university for further assistance.
-            </div>
-          </div>
-        )}
+      <Alert
+        variant="danger"
+        icon={this.errorIcon}
         dismissible={false}
-        open
-      />
+        show
+      >
+        <div className="d-flex">
+          You are not authorized to view this page.
+          This page is reserved for Masters students only.
+          You may access public edX courses on
+          {' '}
+          <Alert.Link href="https://edx.org">edX.org</Alert.Link>.
+          If you are a Masters student and believe you should have access,
+          please contact your advisor at the university for further assistance.
+        </div>
+      </Alert>
     </div>
   );
 
