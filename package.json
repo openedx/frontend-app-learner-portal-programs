@@ -28,7 +28,7 @@
     "gatsby-plugin-sass": "4.14.0",
     "history": "^4.7.2",
     "lodash.camelcase": "^4.3.0",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "postcss": "^8.4.12",
     "prop-types": "^15.7.2",
     "query-string": "^6.7.0",
