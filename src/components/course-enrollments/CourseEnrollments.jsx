@@ -41,13 +41,13 @@ export class CourseEnrollments extends Component {
   hasCourseRunsWithStatus = (status) => {
     const { courseRuns } = this.props;
     return courseRuns && courseRuns[status] && courseRuns[status].length > 0;
-  }
+  };
 
   hasCourseRuns = () => (
     this.hasCourseRunsWithStatus('completed')
     || this.hasCourseRunsWithStatus('in_progress')
     || this.hasCourseRunsWithStatus('upcoming')
-  )
+  );
 
   renderError = () => (
     <StatusAlert

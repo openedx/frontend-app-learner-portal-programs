@@ -68,13 +68,13 @@ class ProgramPage extends Component {
         hasProgramAccess: true,
       });
     }
-  }
+  };
 
   switchView = (tabViewEnabled) => {
     this.setState({
       showLegacyView: !tabViewEnabled,
     });
-  }
+  };
 
   renderError = () => (
     <div className="container my-4">
