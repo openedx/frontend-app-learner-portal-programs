@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { breakpoints, Alert } from '@edx/paragon';
+import { Warning, CheckCircle } from '@edx/paragon/icons';
 import { AppContext } from '@edx/frontend-platform/react';
-import { faExclamationTriangle, faCheckCircle } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import MediaQuery from 'react-responsive';
 import { LoadingSpinner } from '../loading-spinner';
 
@@ -49,15 +48,11 @@ export class CourseEnrollments extends Component {
     || this.hasCourseRunsWithStatus('upcoming')
   )
 
-  errorIcon = () => <FontAwesomeIcon className="mr-2" icon={faExclamationTriangle} />
-
-  succeesIcon = () => <FontAwesomeIcon className="mr-2" icon={faCheckCircle} />
-
   renderError = () => (
     <Alert
       variant="danger"
       dismissible={false}
-      icon={this.errorIcon}
+      icon={Warning}
       show
     >
       <div className="d-flex">
@@ -71,7 +66,7 @@ export class CourseEnrollments extends Component {
     return (
       <Alert
         variant="success"
-        icon={this.succeesIcon}
+        icon={CheckCircle}
         onClose={() => {
           modifyIsMarkCourseCompleteSuccess({ isSuccess: false });
         }}

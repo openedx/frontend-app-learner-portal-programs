@@ -5,9 +5,8 @@ import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import MediaQuery from 'react-responsive';
 import { breakpoints, Alert } from '@edx/paragon';
+import { Warning } from '@edx/paragon/icons';
 import { sendPageEvent } from '@edx/frontend-platform/analytics';
-import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { Layout, MainContent, Sidebar } from '../layout';
 import { LoadingSpinner } from '../loading-spinner';
@@ -76,13 +75,11 @@ class ProgramPage extends Component {
     });
   }
 
-  errorIcon = () => <FontAwesomeIcon className="mr-2" icon={faExclamationTriangle} />;
-
   renderError = () => (
     <div className="container my-4">
       <Alert
         variant="danger"
-        icon={this.errorIcon}
+        icon={Warning}
         dismissible={false}
         show
       >

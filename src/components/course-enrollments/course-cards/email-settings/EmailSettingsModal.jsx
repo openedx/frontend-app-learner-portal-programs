@@ -4,8 +4,7 @@ import PropTypes from 'prop-types';
 import {
   Input, Modal, Alert, StatefulButton,
 } from '@edx/paragon';
-import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Warning } from '@edx/paragon/icons';
 
 import { updateEmailSettings } from './data';
 
@@ -113,7 +112,6 @@ class EmailSettingsModal extends Component {
   render() {
     const { error, hasEmailsEnabled, isSubmitting } = this.state;
     const { title, open, courseRunId } = this.props;
-    const errorIcon = () => <FontAwesomeIcon className="mr-3" icon={faExclamationTriangle} />;
 
     return (
       <Modal
@@ -124,13 +122,10 @@ class EmailSettingsModal extends Component {
               <Alert
                 variant="danger"
                 dismissible={false}
-                icon={errorIcon}
+                icon={Warning}
                 show
               >
-                <div className="d-flex">
-                  An error occurred while saving your email settings. Please
-                  try again.
-                </div>
+                An error occurred while saving your email settings. Please try again.
               </Alert>
             )}
             <div className="form-check">
