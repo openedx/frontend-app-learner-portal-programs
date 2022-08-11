@@ -210,7 +210,7 @@ describe('<CourseEnrollments />', () => {
         />
       </AppContext.Provider>
     ));
-    wrapper.find('.alert .btn.close').simulate('click');
+    wrapper.find('.alert-success .btn').simulate('click');
     expect(mockModifyIsMarkCourseCompleteSuccess).toBeCalledTimes(1);
   });
 });

@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import { shallow } from 'enzyme';
-import { StatusAlert } from '@edx/paragon';
+import { Alert } from '@edx/paragon';
 import { IntlProvider } from 'react-intl';
 import { getAuthenticatedUser } from '@edx/frontend-platform/auth';
 import { ProgramListPage } from '../ProgramListPage';
@@ -114,6 +114,6 @@ describe('ProgramListPage', () => {
     wrapper.setProps({ enrolledPrograms: data });
 
     expect(wrapper.find('.table-responsive').exists()).toBeFalsy();
-    expect(wrapper.find(StatusAlert).exists()).toBeTruthy();
+    expect(wrapper.find(Alert).exists()).toBeTruthy();
   });
 });
