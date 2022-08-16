@@ -3,9 +3,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { sendPageEvent } from '@edx/frontend-platform/analytics';
-import { StatusAlert } from '@edx/paragon';
-import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Alert } from '@edx/paragon';
+import { Warning } from '@edx/paragon/icons';
 import { Layout } from '../layout';
 import { LoadingSpinner } from '../loading-spinner';
 
@@ -79,19 +78,14 @@ export class ProgramListPage extends Component {
   };
 
   renderError = ({ message }) => (
-    <StatusAlert
-      alertType="danger"
-      dialog={(
-        <div className="d-flex">
-          <div>
-            <FontAwesomeIcon className="mr-2" icon={faExclamationTriangle} />
-          </div>
-          <div>{message}</div>
-        </div>
-      )}
+    <Alert
+      variant="danger"
+      icon={Warning}
       dismissible={false}
-      open
-    />
+      show
+    >
+      {message}
+    </Alert>
   );
 
   render() {
