@@ -88,5 +88,5 @@
     "clean": "gatsby clean",
     "shell": "gatsby repl"
   },
-  "repository": "https://github.com/edx/frontend-app-learner-portal-programs"
+  "repository": "https://github.com/openedx/frontend-app-learner-portal-programs"
 }
