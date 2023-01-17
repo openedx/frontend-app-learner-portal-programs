@@ -388,7 +388,7 @@ exports[`ProgramListPage correctly renders the loading page 1`] = `
         </ul>
         <p>
           © 
-          2022
+          2023
            edX LLC. All rights reserved.
           <br />
           <span>
@@ -818,7 +818,7 @@ exports[`ProgramListPage renders fetching program error page when there are issu
         </ul>
         <p>
           © 
-          2022
+          2023
            edX LLC. All rights reserved.
           <br />
           <span>
