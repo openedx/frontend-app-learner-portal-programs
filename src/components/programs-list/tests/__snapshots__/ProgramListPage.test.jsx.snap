@@ -391,19 +391,17 @@ exports[`ProgramListPage correctly renders the loading page 1`] = `
           2023
            edX LLC. All rights reserved.
           <br />
-          <span>
-            深圳市恒宇博科技有限公司 
-            <a
-              href="https://beian.miit.gov.cn"
-              style={
-                Object {
-                  "textDecoration": "underline",
-                }
+          深圳市恒宇博科技有限公司 
+          <a
+            href="https://beian.miit.gov.cn"
+            style={
+              Object {
+                "textDecoration": "underline",
               }
-            >
-              粤ICP备17044299号-2
-            </a>
-          </span>
+            }
+          >
+            粤ICP备17044299号-2
+          </a>
         </p>
       </div>
     </div>
@@ -821,19 +819,17 @@ exports[`ProgramListPage renders fetching program error page when there are issu
           2023
            edX LLC. All rights reserved.
           <br />
-          <span>
-            深圳市恒宇博科技有限公司 
-            <a
-              href="https://beian.miit.gov.cn"
-              style={
-                Object {
-                  "textDecoration": "underline",
-                }
+          深圳市恒宇博科技有限公司 
+          <a
+            href="https://beian.miit.gov.cn"
+            style={
+              Object {
+                "textDecoration": "underline",
               }
-            >
-              粤ICP备17044299号-2
-            </a>
-          </span>
+            }
+          >
+            粤ICP备17044299号-2
+          </a>
         </p>
       </div>
     </div>
