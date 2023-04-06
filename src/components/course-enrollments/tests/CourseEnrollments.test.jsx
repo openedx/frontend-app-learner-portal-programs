@@ -8,6 +8,7 @@ import thunk from 'redux-thunk';
 import { breakpoints } from '@edx/paragon';
 import { AppContext } from '@edx/frontend-platform/react';
 import { Context as ResponsiveContext } from 'react-responsive';
+import { IntlProvider } from 'react-intl';
 
 import '../../../__mocks__/reactResponsive.mock';
 
@@ -136,12 +137,14 @@ describe('<CourseEnrollments />', () => {
       const pageContext = {};
       const tree = renderer
         .create((
-          <AppContext.Provider value={{ pageContext }}>
-            <CourseEnrollments
-              {...initialProps}
-              isMarkCourseCompleteSuccess
-            />
-          </AppContext.Provider>
+          <IntlProvider locale="en">
+            <AppContext.Provider value={{ pageContext }}>
+              <CourseEnrollments
+                {...initialProps}
+                isMarkCourseCompleteSuccess
+              />
+            </AppContext.Provider>
+          </IntlProvider>
         ))
         .toJSON();
       // TODO: why is this an array?
@@ -203,12 +206,14 @@ describe('<CourseEnrollments />', () => {
       enterpriseUUID: 'test-enterprise-uuid',
     };
     const wrapper = mount((
-      <AppContext.Provider value={{ pageContext }}>
-        <CourseEnrollments
-          {...initialProps}
-          isMarkCourseCompleteSuccess
-        />
-      </AppContext.Provider>
+      <IntlProvider locale="en">
+        <AppContext.Provider value={{ pageContext }}>
+          <CourseEnrollments
+            {...initialProps}
+            isMarkCourseCompleteSuccess
+          />
+        </AppContext.Provider>
+      </IntlProvider>
     ));
     wrapper.find('.alert-success .btn').simulate('click');
     expect(mockModifyIsMarkCourseCompleteSuccess).toBeCalledTimes(1);

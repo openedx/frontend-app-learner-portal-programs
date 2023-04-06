@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet';
 import PropTypes from 'prop-types';
 import { IntlProvider } from '@edx/frontend-platform/i18n';
 import { AppContext } from '@edx/frontend-platform/react';
-import SiteFooter from '@edx/frontend-component-footer-edx';
+import { Footer as SiteFooter } from '@edx/frontend-component-footer-edx';
 import NoticesProvider from '../notices-provider';
 
 import { SiteHeader } from '../site-header';
