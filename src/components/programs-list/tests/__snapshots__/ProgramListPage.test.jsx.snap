@@ -146,6 +146,24 @@ exports[`ProgramListPage correctly renders the loading page 1`] = `
               Sitemap
             </a>
           </li>
+          <li>
+            <a
+              href="https://edx.org/edx-privacy-policy/cookies"
+            >
+              Cookie Policy
+            </a>
+          </li>
+          <li>
+            <button
+              className="px-0 text-left text-decoration-none btn btn-link btn-inline"
+              disabled={false}
+              id="footer-dns-link"
+              onClick={[Function]}
+              type="button"
+            >
+              Do Not Sell My Personal Information
+            </button>
+          </li>
         </ul>
       </div>
       <div
@@ -180,6 +198,13 @@ exports[`ProgramListPage correctly renders the loading page 1`] = `
           </li>
           <li>
             <a
+              href="https://edx.org/policy/security"
+            >
+              Security
+            </a>
+          </li>
+          <li>
+            <a
               href="https://edx.org/media-kit"
             >
               Media Kit
@@ -203,8 +228,8 @@ exports[`ProgramListPage correctly renders the loading page 1`] = `
             >
               <svg
                 aria-hidden="true"
-                className="svg-inline--fa fa-facebook-square fa-w-14 fa-2x fa-rotate-null fa-pull-null social-icon"
-                data-icon="facebook-square"
+                className="svg-inline--fa fa-square-facebook fa-2x social-icon"
+                data-icon="square-facebook"
                 data-prefix="fab"
                 focusable="false"
                 role="img"
@@ -235,8 +260,8 @@ exports[`ProgramListPage correctly renders the loading page 1`] = `
             >
               <svg
                 aria-hidden="true"
-                className="svg-inline--fa fa-twitter-square fa-w-14 fa-2x fa-rotate-null fa-pull-null social-icon"
-                data-icon="twitter-square"
+                className="svg-inline--fa fa-square-twitter fa-2x social-icon"
+                data-icon="square-twitter"
                 data-prefix="fab"
                 focusable="false"
                 role="img"
@@ -267,7 +292,7 @@ exports[`ProgramListPage correctly renders the loading page 1`] = `
             >
               <svg
                 aria-hidden="true"
-                className="svg-inline--fa fa-linkedin fa-w-14 fa-2x fa-rotate-null fa-pull-null social-icon"
+                className="svg-inline--fa fa-linkedin fa-2x social-icon"
                 data-icon="linkedin"
                 data-prefix="fab"
                 focusable="false"
@@ -299,7 +324,7 @@ exports[`ProgramListPage correctly renders the loading page 1`] = `
             >
               <svg
                 aria-hidden="true"
-                className="svg-inline--fa fa-instagram fa-w-14 fa-2x fa-rotate-null fa-pull-null social-icon"
+                className="svg-inline--fa fa-instagram fa-2x social-icon"
                 data-icon="instagram"
                 data-prefix="fab"
                 focusable="false"
@@ -331,8 +356,8 @@ exports[`ProgramListPage correctly renders the loading page 1`] = `
             >
               <svg
                 aria-hidden="true"
-                className="svg-inline--fa fa-reddit-square fa-w-14 fa-2x fa-rotate-null fa-pull-null social-icon"
-                data-icon="reddit-square"
+                className="svg-inline--fa fa-square-reddit fa-2x social-icon"
+                data-icon="square-reddit"
                 data-prefix="fab"
                 focusable="false"
                 role="img"
@@ -574,6 +599,24 @@ exports[`ProgramListPage renders fetching program error page when there are issu
               Sitemap
             </a>
           </li>
+          <li>
+            <a
+              href="https://edx.org/edx-privacy-policy/cookies"
+            >
+              Cookie Policy
+            </a>
+          </li>
+          <li>
+            <button
+              className="px-0 text-left text-decoration-none btn btn-link btn-inline"
+              disabled={false}
+              id="footer-dns-link"
+              onClick={[Function]}
+              type="button"
+            >
+              Do Not Sell My Personal Information
+            </button>
+          </li>
         </ul>
       </div>
       <div
@@ -608,6 +651,13 @@ exports[`ProgramListPage renders fetching program error page when there are issu
           </li>
           <li>
             <a
+              href="https://edx.org/policy/security"
+            >
+              Security
+            </a>
+          </li>
+          <li>
+            <a
               href="https://edx.org/media-kit"
             >
               Media Kit
@@ -631,8 +681,8 @@ exports[`ProgramListPage renders fetching program error page when there are issu
             >
               <svg
                 aria-hidden="true"
-                className="svg-inline--fa fa-facebook-square fa-w-14 fa-2x fa-rotate-null fa-pull-null social-icon"
-                data-icon="facebook-square"
+                className="svg-inline--fa fa-square-facebook fa-2x social-icon"
+                data-icon="square-facebook"
                 data-prefix="fab"
                 focusable="false"
                 role="img"
@@ -663,8 +713,8 @@ exports[`ProgramListPage renders fetching program error page when there are issu
             >
               <svg
                 aria-hidden="true"
-                className="svg-inline--fa fa-twitter-square fa-w-14 fa-2x fa-rotate-null fa-pull-null social-icon"
-                data-icon="twitter-square"
+                className="svg-inline--fa fa-square-twitter fa-2x social-icon"
+                data-icon="square-twitter"
                 data-prefix="fab"
                 focusable="false"
                 role="img"
@@ -695,7 +745,7 @@ exports[`ProgramListPage renders fetching program error page when there are issu
             >
               <svg
                 aria-hidden="true"
-                className="svg-inline--fa fa-linkedin fa-w-14 fa-2x fa-rotate-null fa-pull-null social-icon"
+                className="svg-inline--fa fa-linkedin fa-2x social-icon"
                 data-icon="linkedin"
                 data-prefix="fab"
                 focusable="false"
@@ -727,7 +777,7 @@ exports[`ProgramListPage renders fetching program error page when there are issu
             >
               <svg
                 aria-hidden="true"
-                className="svg-inline--fa fa-instagram fa-w-14 fa-2x fa-rotate-null fa-pull-null social-icon"
+                className="svg-inline--fa fa-instagram fa-2x social-icon"
                 data-icon="instagram"
                 data-prefix="fab"
                 focusable="false"
@@ -759,8 +809,8 @@ exports[`ProgramListPage renders fetching program error page when there are issu
             >
               <svg
                 aria-hidden="true"
-                className="svg-inline--fa fa-reddit-square fa-w-14 fa-2x fa-rotate-null fa-pull-null social-icon"
-                data-icon="reddit-square"
+                className="svg-inline--fa fa-square-reddit fa-2x social-icon"
+                data-icon="square-reddit"
                 data-prefix="fab"
                 focusable="false"
                 role="img"

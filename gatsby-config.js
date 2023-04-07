@@ -33,6 +33,12 @@ module.exports = {
             `${__dirname}/node_modules`,
           ],
         },
+        cssLoaderOptions: {
+          esModule: false,
+          modules: {
+            namedExport: false,
+          },
+        },
       },
     },
     {
