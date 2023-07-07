@@ -6,8 +6,8 @@
   "author": "",
   "dependencies": {
     "@edx/brand": "npm:@edx/brand-openedx@^1.1.0",
-    "@edx/frontend-component-footer-edx": "^5.3.1",
-    "@edx/frontend-platform": "^3.3.1",
+    "@edx/frontend-component-footer-edx": "^6.0.0",
+    "@edx/frontend-platform": "^4.0.1",
     "@edx/gatsby-source-portal-designer": "^1.1.4",
     "@edx/paragon": "^20.28.4",
     "@fortawesome/fontawesome-svg-core": "^1.2.17",
