@@ -161,7 +161,7 @@ exports[`ProgramListPage correctly renders the loading page 1`] = `
               onClick={[Function]}
               type="button"
             >
-              Do Not Sell My Personal Information
+              Your Privacy Choices
             </button>
           </li>
         </ul>
@@ -614,7 +614,7 @@ exports[`ProgramListPage renders fetching program error page when there are issu
               onClick={[Function]}
               type="button"
             >
-              Do Not Sell My Personal Information
+              Your Privacy Choices
             </button>
           </li>
         </ul>
