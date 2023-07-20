@@ -1,12 +1,6 @@
 const path = require('path');
-const fs = require('fs');
 
-let envConfigPath = path.join(__dirname, 'fallback.env.config.js');
-const appEnvConfigPath = path.join(__dirname, 'env.config.js');
-
-if (fs.existsSync(appEnvConfigPath)) {
-  envConfigPath = appEnvConfigPath;
-}
+const envConfigPath = path.join(__dirname, 'env.config.js');
 module.exports = {
   transform: {
     '^.+\\.jsx?$': '<rootDir>/jest-preprocess.js',
