@@ -26,11 +26,7 @@ module.exports = {
         alias: {
           'env.config': path.join(__dirname, './env.config.js'),
         },
-        fallback: {
-          // This causes the system to return an empty object if it can't find an env.config.js file in
-          // the application being built.
-          'env.config': false,
-        },
+
         extensions: ['.js', '.jsx'],
       },
     },
