@@ -21,7 +21,7 @@
     "dotenv": "^7.0.0",
     "email-prop-type": "^1.1.5",
     "font-awesome": "^4.7.0",
-    "gatsby": "^3.14.6",
+    "gatsby": "^4.25.7",
     "gatsby-plugin-alias-imports": "^1.0.5",
     "gatsby-plugin-env-variables": "^2.1.0",
     "gatsby-plugin-google-fonts": "^1.0.1",
