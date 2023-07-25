@@ -3,6 +3,7 @@
 // eg.
 // $ ACTIVE_ENV=<env_name> npm run build
 const activeEnv = process.env.ACTIVE_ENV || process.env.NODE_ENV || 'development';
+const path = require('path');
 
 require('dotenv').config({
   path: `.env.${activeEnv}`,
@@ -19,6 +20,16 @@ if (process.env.UNBRANDED_LANDING_PAGE === 'True') {
 module.exports = {
   pathPrefix: `${process.env.ENABLE_PATH_PREFIX ? process.env.HOSTNAME : '/'}`,
   plugins: [
+    {
+      resolve: 'gatsby-plugin-alias-imports',
+      options: {
+        alias: {
+          'env.config': path.join(__dirname, './env.config.js'),
+        },
+
+        extensions: ['.js', '.jsx'],
+      },
+    },
     {
       resolve: '@edx/gatsby-source-portal-designer',
       options: {
