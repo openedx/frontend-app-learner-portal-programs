@@ -228,7 +228,7 @@ exports[`ProgramListPage correctly renders the loading page 1`] = `
             >
               <svg
                 aria-hidden="true"
-                className="svg-inline--fa fa-square-facebook fa-2x social-icon"
+                className="svg-inline--fa fa-square-facebook fa-w-14 fa-2x social-icon"
                 data-icon="square-facebook"
                 data-prefix="fab"
                 focusable="false"
@@ -260,7 +260,7 @@ exports[`ProgramListPage correctly renders the loading page 1`] = `
             >
               <svg
                 aria-hidden="true"
-                className="svg-inline--fa fa-square-twitter fa-2x social-icon"
+                className="svg-inline--fa fa-square-twitter fa-w-14 fa-2x social-icon"
                 data-icon="square-twitter"
                 data-prefix="fab"
                 focusable="false"
@@ -292,7 +292,7 @@ exports[`ProgramListPage correctly renders the loading page 1`] = `
             >
               <svg
                 aria-hidden="true"
-                className="svg-inline--fa fa-linkedin fa-2x social-icon"
+                className="svg-inline--fa fa-linkedin fa-w-14 fa-2x social-icon"
                 data-icon="linkedin"
                 data-prefix="fab"
                 focusable="false"
@@ -324,7 +324,7 @@ exports[`ProgramListPage correctly renders the loading page 1`] = `
             >
               <svg
                 aria-hidden="true"
-                className="svg-inline--fa fa-instagram fa-2x social-icon"
+                className="svg-inline--fa fa-instagram fa-w-14 fa-2x social-icon"
                 data-icon="instagram"
                 data-prefix="fab"
                 focusable="false"
@@ -356,7 +356,7 @@ exports[`ProgramListPage correctly renders the loading page 1`] = `
             >
               <svg
                 aria-hidden="true"
-                className="svg-inline--fa fa-square-reddit fa-2x social-icon"
+                className="svg-inline--fa fa-square-reddit fa-w-14 fa-2x social-icon"
                 data-icon="square-reddit"
                 data-prefix="fab"
                 focusable="false"
@@ -460,7 +460,7 @@ exports[`ProgramListPage renders fetching program error page when there are issu
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"
+              d="M1 21h22L12 2 1 21Zm12-3h-2v-2h2v2Zm0-4h-2v-4h2v4Z"
               fill="currentColor"
             />
           </svg>
@@ -681,7 +681,7 @@ exports[`ProgramListPage renders fetching program error page when there are issu
             >
               <svg
                 aria-hidden="true"
-                className="svg-inline--fa fa-square-facebook fa-2x social-icon"
+                className="svg-inline--fa fa-square-facebook fa-w-14 fa-2x social-icon"
                 data-icon="square-facebook"
                 data-prefix="fab"
                 focusable="false"
@@ -713,7 +713,7 @@ exports[`ProgramListPage renders fetching program error page when there are issu
             >
               <svg
                 aria-hidden="true"
-                className="svg-inline--fa fa-square-twitter fa-2x social-icon"
+                className="svg-inline--fa fa-square-twitter fa-w-14 fa-2x social-icon"
                 data-icon="square-twitter"
                 data-prefix="fab"
                 focusable="false"
@@ -745,7 +745,7 @@ exports[`ProgramListPage renders fetching program error page when there are issu
             >
               <svg
                 aria-hidden="true"
-                className="svg-inline--fa fa-linkedin fa-2x social-icon"
+                className="svg-inline--fa fa-linkedin fa-w-14 fa-2x social-icon"
                 data-icon="linkedin"
                 data-prefix="fab"
                 focusable="false"
@@ -777,7 +777,7 @@ exports[`ProgramListPage renders fetching program error page when there are issu
             >
               <svg
                 aria-hidden="true"
-                className="svg-inline--fa fa-instagram fa-2x social-icon"
+                className="svg-inline--fa fa-instagram fa-w-14 fa-2x social-icon"
                 data-icon="instagram"
                 data-prefix="fab"
                 focusable="false"
@@ -809,7 +809,7 @@ exports[`ProgramListPage renders fetching program error page when there are issu
             >
               <svg
                 aria-hidden="true"
-                className="svg-inline--fa fa-square-reddit fa-2x social-icon"
+                className="svg-inline--fa fa-square-reddit fa-w-14 fa-2x social-icon"
                 data-icon="square-reddit"
                 data-prefix="fab"
                 focusable="false"
