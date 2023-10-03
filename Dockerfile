@@ -1,6 +1,6 @@
 # Copied from https://github.com/BretFisher/node-docker-good-defaults/blob/master/Dockerfile
 
-FROM node:16
+FROM node:18
 
 # Create app directory
 RUN mkdir -p /edx/app
