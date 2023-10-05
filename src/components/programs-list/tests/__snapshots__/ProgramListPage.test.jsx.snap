@@ -177,9 +177,9 @@ exports[`ProgramListPage correctly renders the loading page 1`] = `
         >
           <li>
             <a
-              href="https://blog.edx.org"
+              href="https://www.edx.org/resources"
             >
-              Blog
+              Idea Hub
             </a>
           </li>
           <li>
@@ -630,9 +630,9 @@ exports[`ProgramListPage renders fetching program error page when there are issu
         >
           <li>
             <a
-              href="https://blog.edx.org"
+              href="https://www.edx.org/resources"
             >
-              Blog
+              Idea Hub
             </a>
           </li>
           <li>
