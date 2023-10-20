@@ -5,7 +5,7 @@
   "version": "0.1.0",
   "author": "",
   "dependencies": {
-    "@edx/brand": "npm:@edx/brand-openedx@^1.1.0",
+    "@edx/brand": "npm:@openedx/brand-openedx@^1.2.2",
     "@edx/frontend-component-footer-edx": "^6.5.0",
     "@edx/frontend-platform": "^5.5.4",
     "@edx/gatsby-source-portal-designer": "^1.1.4",
