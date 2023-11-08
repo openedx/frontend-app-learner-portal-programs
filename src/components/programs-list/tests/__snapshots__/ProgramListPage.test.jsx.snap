@@ -25,7 +25,6 @@ exports[`ProgramListPage correctly renders the loading page 1`] = `
     </div>
   </main>
   <footer
-    aria-label="edX Home"
     className="footer d-flex justify-content-center border-top py-3 px-4"
     role="contentinfo"
   >
@@ -478,7 +477,6 @@ exports[`ProgramListPage renders fetching program error page when there are issu
     </div>
   </main>
   <footer
-    aria-label="edX Home"
     className="footer d-flex justify-content-center border-top py-3 px-4"
     role="contentinfo"
   >
