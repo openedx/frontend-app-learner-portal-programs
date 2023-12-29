@@ -11,7 +11,7 @@ module.exports = {
     'env.config': envConfigPath,
   },
   testPathIgnorePatterns: ['node_modules', '.cache'],
-  transformIgnorePatterns: ['node_modules/(?!(gatsby|@edx/paragon|@edx/frontend-platform|@edx/frontend-component-footer-edx))'],
+  transformIgnorePatterns: ['node_modules/(?!(gatsby|@openedx/paragon|@edx/frontend-platform|@edx/frontend-component-footer-edx))'],
   globals: {
     __PATH_PREFIX__: '',
   },

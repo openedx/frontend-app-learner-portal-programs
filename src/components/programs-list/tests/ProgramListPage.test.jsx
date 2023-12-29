@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import { shallow } from 'enzyme';
-import { Alert } from '@edx/paragon';
+import { Alert } from '@openedx/paragon';
 import { IntlProvider } from 'react-intl';
 import { getAuthenticatedUser } from '@edx/frontend-platform/auth';
 import { ProgramListPage } from '../ProgramListPage';

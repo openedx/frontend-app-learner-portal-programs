@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import {
   Input, Modal, Alert, StatefulButton,
-} from '@edx/paragon';
-import { Warning } from '@edx/paragon/icons';
+} from '@openedx/paragon';
+import { Warning } from '@openedx/paragon/icons';
 
 import { updateEmailSettings } from './data';
 
