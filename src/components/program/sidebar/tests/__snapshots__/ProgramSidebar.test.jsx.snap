@@ -2,49 +2,48 @@
 
 exports[`<ProgramSidebar /> renders correctly 1`] = `
 <div>
-  <h4
-    className="mb-2"
-  >
-    Get Technical Support
-  </h4>
-  <p>
-    <a
-      href="https://support.edx.org/hc/en-us/sections/360007968853-Master-s-student-help"
-      onClick={[Function]}
-      rel="noopener noreferrer"
-      target="_blank"
+  <div>
+    <h4
+      class="mb-2"
     >
-      Go to edX help center
-      <svg
-        aria-hidden={false}
-        aria-label="opens in a new window"
-        className="svg-inline--fa fa-external-link-alt fa-w-16 fa-sm ml-2 text-info"
-        data-icon="external-link-alt"
-        data-prefix="fas"
-        focusable="false"
-        role="img"
-        style={Object {}}
-        viewBox="0 0 512 512"
-        xmlns="http://www.w3.org/2000/svg"
+      Get Technical Support
+    </h4>
+    <p>
+      <a
+        href="https://support.edx.org/hc/en-us/sections/360007968853-Master-s-student-help"
+        rel="noopener noreferrer"
+        target="_blank"
       >
-        <path
-          d="M432,320H400a16,16,0,0,0-16,16V448H64V128H208a16,16,0,0,0,16-16V80a16,16,0,0,0-16-16H48A48,48,0,0,0,0,112V464a48,48,0,0,0,48,48H400a48,48,0,0,0,48-48V336A16,16,0,0,0,432,320ZM488,0h-128c-21.37,0-32.05,25.91-17,41l35.73,35.73L135,320.37a24,24,0,0,0,0,34L157.67,377a24,24,0,0,0,34,0L435.28,133.32,471,169c15,15,41,4.5,41-17V24A24,24,0,0,0,488,0Z"
-          fill="currentColor"
-          style={Object {}}
-        />
-      </svg>
-    </a>
-  </p>
+        Go to edX help center
+        <svg
+          aria-hidden="false"
+          aria-label="opens in a new window"
+          class="svg-inline--fa fa-external-link-alt fa-w-16 fa-sm ml-2 text-info"
+          data-icon="external-link-alt"
+          data-prefix="fas"
+          focusable="false"
+          role="img"
+          viewBox="0 0 512 512"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M432,320H400a16,16,0,0,0-16,16V448H64V128H208a16,16,0,0,0,16-16V80a16,16,0,0,0-16-16H48A48,48,0,0,0,0,112V464a48,48,0,0,0,48,48H400a48,48,0,0,0,48-48V336A16,16,0,0,0,432,320ZM488,0h-128c-21.37,0-32.05,25.91-17,41l35.73,35.73L135,320.37a24,24,0,0,0,0,34L157.67,377a24,24,0,0,0,34,0L435.28,133.32,471,169c15,15,41,4.5,41-17V24A24,24,0,0,0,488,0Z"
+            fill="currentColor"
+          />
+        </svg>
+      </a>
+    </p>
+  </div>
 </div>
 `;
 
 exports[`<ProgramSidebar /> renders correctly with links 1`] = `
-Array [
+<div>
   <div
-    className="mb-5"
+    class="mb-5"
   >
     <h4
-      className="mb-2"
+      class="mb-2"
     >
       Program Documents
     </h4>
@@ -52,32 +51,29 @@ Array [
       aria-label="program documents"
     >
       <ul
-        className="list-unstyled mb-2"
+        class="list-unstyled mb-2"
         id="program-documents"
       >
         <li
-          className="mb-1"
+          class="mb-1"
         >
           <svg
             aria-hidden="true"
-            className="svg-inline--fa fa-file fa-w-12 mr-2 text-info"
+            class="svg-inline--fa fa-file fa-w-12 mr-2 text-info"
             data-icon="file"
             data-prefix="fas"
             focusable="false"
             role="img"
-            style={Object {}}
             viewBox="0 0 384 512"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
               d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm160-14.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"
               fill="currentColor"
-              style={Object {}}
             />
           </svg>
           <a
             href="/test/document"
-            onClick={[Function]}
             rel="noopener noreferrer"
             target="_blank"
           >
@@ -85,28 +81,25 @@ Array [
           </a>
         </li>
         <li
-          className="mb-1"
+          class="mb-1"
         >
           <svg
             aria-hidden="true"
-            className="svg-inline--fa fa-file fa-w-12 mr-2 text-info"
+            class="svg-inline--fa fa-file fa-w-12 mr-2 text-info"
             data-icon="file"
             data-prefix="fas"
             focusable="false"
             role="img"
-            style={Object {}}
             viewBox="0 0 384 512"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
               d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm160-14.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"
               fill="currentColor"
-              style={Object {}}
             />
           </svg>
           <a
             href="example.com/1"
-            onClick={[Function]}
             rel="noopener noreferrer"
             target="_blank"
           >
@@ -114,28 +107,25 @@ Array [
           </a>
         </li>
         <li
-          className="mb-1"
+          class="mb-1"
         >
           <svg
             aria-hidden="true"
-            className="svg-inline--fa fa-file fa-w-12 mr-2 text-info"
+            class="svg-inline--fa fa-file fa-w-12 mr-2 text-info"
             data-icon="file"
             data-prefix="fas"
             focusable="false"
             role="img"
-            style={Object {}}
             viewBox="0 0 384 512"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
               d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm160-14.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"
               fill="currentColor"
-              style={Object {}}
             />
           </svg>
           <a
             href="/test/document2"
-            onClick={[Function]}
             rel="noopener noreferrer"
             target="_blank"
           >
@@ -144,41 +134,38 @@ Array [
         </li>
       </ul>
     </nav>
-  </div>,
+  </div>
   <div>
     <h4
-      className="mb-2"
+      class="mb-2"
     >
       Get Technical Support
     </h4>
     <p>
       <a
         href="https://support.edx.org/hc/en-us/sections/360007968853-Master-s-student-help"
-        onClick={[Function]}
         rel="noopener noreferrer"
         target="_blank"
       >
         Go to edX help center
         <svg
-          aria-hidden={false}
+          aria-hidden="false"
           aria-label="opens in a new window"
-          className="svg-inline--fa fa-external-link-alt fa-w-16 fa-sm ml-2 text-info"
+          class="svg-inline--fa fa-external-link-alt fa-w-16 fa-sm ml-2 text-info"
           data-icon="external-link-alt"
           data-prefix="fas"
           focusable="false"
           role="img"
-          style={Object {}}
           viewBox="0 0 512 512"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
             d="M432,320H400a16,16,0,0,0-16,16V448H64V128H208a16,16,0,0,0,16-16V80a16,16,0,0,0-16-16H48A48,48,0,0,0,0,112V464a48,48,0,0,0,48,48H400a48,48,0,0,0,48-48V336A16,16,0,0,0,432,320ZM488,0h-128c-21.37,0-32.05,25.91-17,41l35.73,35.73L135,320.37a24,24,0,0,0,0,34L157.67,377a24,24,0,0,0,34,0L435.28,133.32,471,169c15,15,41,4.5,41-17V24A24,24,0,0,0,488,0Z"
             fill="currentColor"
-            style={Object {}}
           />
         </svg>
       </a>
     </p>
-  </div>,
-]
+  </div>
+</div>
 `;

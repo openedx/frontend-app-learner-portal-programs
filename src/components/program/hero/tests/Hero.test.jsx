@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-no-constructed-context-values */
 import React from 'react';
-import renderer from 'react-test-renderer';
+import { render } from '@testing-library/react';
 import { AppContext } from '@edx/frontend-platform/react';
 
 import Hero from '../Hero';
@@ -19,13 +19,11 @@ describe('<Hero />', () => {
       },
     };
 
-    const tree = renderer
-      .create((
-        <AppContext.Provider value={{ pageContext }}>
-          <Hero title="Example Title" />
-        </AppContext.Provider>
-      ))
-      .toJSON();
+    const { container: tree } = render(
+      <AppContext.Provider value={{ pageContext }}>
+        <Hero title="Example Title" />
+      </AppContext.Provider>,
+    );
     expect(tree).toMatchSnapshot();
   });
 });
