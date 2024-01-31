@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-no-constructed-context-values */
 import React from 'react';
-import { mount } from 'enzyme';
+import { fireEvent, render, screen } from '@testing-library/react';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import configureMockStore from 'redux-mock-store';
@@ -26,7 +26,7 @@ describe('<BaseCourseCard />', () => {
       const pageContext = {
         enterpriseName: 'test-enterprise-name',
       };
-      wrapper = mount((
+      wrapper = render((
         <Provider store={store}>
           <AppContext.Provider value={{ pageContext }}>
             <BaseCourseCard
@@ -40,14 +40,14 @@ describe('<BaseCourseCard />', () => {
         </Provider>
       ));
       // open email settings modal
-      wrapper.find('Dropdown').find('button.dropdown-toggle').simulate('click');
-      wrapper.find('Dropdown').find('button.dropdown-item').simulate('click');
-      expect(wrapper.find('BaseCourseCard').state('modals').emailSettings.open).toBeTruthy();
+      fireEvent.click(wrapper.container.querySelector('button.dropdown-toggle'));
+      fireEvent.click(wrapper.container.querySelector('button.dropdown-item'));
+      expect(screen.getByText('Email Settings for edX Demonstration Course')).toBeTruthy();
     });
 
     it('test modal close/cancel', () => {
-      wrapper.find('EmailSettingsModal').find('.modal-footer .btn-link').first().simulate('click');
-      expect(wrapper.find('BaseCourseCard').state('modals').emailSettings.open).toBeFalsy();
+      fireEvent.click(screen.getAllByText('Close')[1]);
+      expect(screen.queryByText('Email Settings for edX Demonstration Course')).toBeFalsy();
     });
   });
 });

@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-no-constructed-context-values */
 import React from 'react';
-import renderer from 'react-test-renderer';
+import { render } from '@testing-library/react';
 import { AppContext } from '@edx/frontend-platform/react';
 
 import ProgramSidebar from '../ProgramSidebar';
@@ -11,13 +11,11 @@ describe('<ProgramSidebar />', () => {
       programDocuments: null,
       externalProgramWebsite: 'https://edx.org',
     };
-    const tree = renderer
-      .create((
-        <AppContext.Provider value={{ pageContext }}>
-          <ProgramSidebar />
-        </AppContext.Provider>
-      ))
-      .toJSON();
+    const { container: tree } = render(
+      <AppContext.Provider value={{ pageContext }}>
+        <ProgramSidebar />
+      </AppContext.Provider>,
+    );
     expect(tree).toMatchSnapshot();
   });
 
@@ -43,11 +41,11 @@ describe('<ProgramSidebar />', () => {
       },
       externalProgramWebsite: 'https://edx.org',
     };
-    const tree = renderer.create((
+    const { container: tree } = render(
       <AppContext.Provider value={{ pageContext }}>
         <ProgramSidebar />
-      </AppContext.Provider>
-    )).toJSON();
+      </AppContext.Provider>,
+    );
     expect(tree).toMatchSnapshot();
   });
 });
