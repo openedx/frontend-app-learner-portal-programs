@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { fireEvent, render } from '@testing-library/react';
 
 import Links from '../Links';
 
@@ -17,7 +17,7 @@ describe('<Links />', () => {
   let wrapper;
 
   beforeEach(() => {
-    wrapper = shallow((
+    wrapper = render((
       <Links
         id={linksData.id}
         title={linksData.title}
@@ -28,26 +28,26 @@ describe('<Links />', () => {
   });
 
   it('renders at most 5 links by default', () => {
-    const listItems = wrapper.find('li');
+    const listItems = wrapper.container.querySelectorAll('li');
     expect(listItems).toHaveLength(5);
-    expect(wrapper.find('.toggle-show-all-btn').exists()).toBeTruthy();
-    expect(wrapper.find('.toggle-show-all-btn').find('span').text()).toEqual('show all 8');
+    expect(wrapper.container.querySelector('.toggle-show-all-btn')).toBeTruthy();
+    expect(wrapper.container.querySelector('.toggle-show-all-btn').querySelector('span').textContent).toEqual('show all 8');
   });
 
   it('renders all links when toggled', () => {
-    wrapper.find('.toggle-show-all-btn').simulate('click');
-    const listItems = wrapper.find('li');
+    fireEvent.click(wrapper.container.querySelector('.toggle-show-all-btn'));
+    const listItems = wrapper.container.querySelectorAll('li');
     expect(listItems).toHaveLength(8);
-    expect(wrapper.find('.toggle-show-all-btn').find('span').text()).toEqual('show less');
+    expect(wrapper.container.querySelector('.toggle-show-all-btn').querySelector('span').textContent).toEqual('show less');
   });
 
   it('renders less than 5 links correctly', () => {
     const links = linksData.links.slice(0, 3);
-    wrapper = shallow((
+    wrapper = render((
       <Links id={linksData.id} title={linksData.title} links={links} label={linksData.label} />
     ));
-    const listItems = wrapper.find('li');
+    const listItems = wrapper.container.querySelectorAll('li');
     expect(listItems).toHaveLength(3);
-    expect(wrapper.find('.toggle-show-all-btn').exists()).toBeFalsy();
+    expect(wrapper.container.querySelector('.toggle-show-all-btn')).toBeFalsy();
   });
 });

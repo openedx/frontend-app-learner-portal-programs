@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-no-constructed-context-values */
 import React from 'react';
 import { IntlProvider } from '@edx/frontend-platform/i18n';
-import renderer from 'react-test-renderer';
+import { render } from '@testing-library/react';
 import { Context as ResponsiveContext } from 'react-responsive';
 import { AppContext } from '@edx/frontend-platform/react';
 
@@ -53,9 +53,9 @@ describe('<Header />', () => {
       </ResponsiveContext.Provider>
     );
 
-    const wrapper = renderer.create(component);
+    const { container: wrapper } = render(component);
 
-    expect(wrapper.toJSON()).toMatchSnapshot();
+    expect(wrapper).toMatchSnapshot();
   });
 
   it('renders correctly for authenticated mobile', () => {
@@ -85,8 +85,8 @@ describe('<Header />', () => {
       </ResponsiveContext.Provider>
     );
 
-    const wrapper = renderer.create(component);
+    const { container: wrapper } = render(component);
 
-    expect(wrapper.toJSON()).toMatchSnapshot();
+    expect(wrapper).toMatchSnapshot();
   });
 });

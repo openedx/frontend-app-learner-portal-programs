@@ -1,7 +1,5 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
-import { shallow } from 'enzyme';
-import { Alert } from '@openedx/paragon';
+import { render, screen } from '@testing-library/react';
 import { IntlProvider } from 'react-intl';
 import { getAuthenticatedUser } from '@edx/frontend-platform/auth';
 import { ProgramListPage } from '../ProgramListPage';
@@ -31,33 +29,29 @@ describe('ProgramListPage', () => {
   };
 
   it('correctly renders the loading page', () => {
-    const tree = renderer
-      .create((
-        <IntlProvider locale="en">
-          <ProgramListPage
-            isLoading
-            pageContext={pageContext}
-            fetchUserProgramEnrollments={jest.fn()}
-          />
-        </IntlProvider>
-      ))
-      .toJSON();
+    const { container: tree } = render(
+      <IntlProvider locale="en">
+        <ProgramListPage
+          isLoading
+          pageContext={pageContext}
+          fetchUserProgramEnrollments={jest.fn()}
+        />
+      </IntlProvider>,
+    );
     expect(tree).toMatchSnapshot();
   });
 
   it('renders fetching program error page when there are issues fetching the user programs', () => {
-    const tree = renderer
-      .create((
-        <IntlProvider locale="en">
-          <ProgramListPage
-            isLoading={false}
-            error={new Error()}
-            pageContext={pageContext}
-            fetchUserProgramEnrollments={jest.fn()}
-          />
-        </IntlProvider>
-      ))
-      .toJSON();
+    const { container: tree } = render(
+      <IntlProvider locale="en">
+        <ProgramListPage
+          isLoading={false}
+          error={new Error()}
+          pageContext={pageContext}
+          fetchUserProgramEnrollments={jest.fn()}
+        />
+      </IntlProvider>,
+    );
     expect(tree).toMatchSnapshot();
   });
 
@@ -75,7 +69,7 @@ describe('ProgramListPage', () => {
       },
     ];
 
-    const wrapper = shallow((
+    const wrapper = render((
       <ProgramListPage
         pageContext={pageContext}
         isLoading={false}
@@ -83,10 +77,15 @@ describe('ProgramListPage', () => {
       />
     ));
 
-    wrapper.setProps({ enrolledPrograms: data });
+    wrapper.rerender(<ProgramListPage
+      pageContext={pageContext}
+      isLoading={false}
+      fetchUserProgramEnrollments={jest.fn()}
+      enrolledPrograms={data}
+    />);
 
-    expect(wrapper.find('.table-responsive').exists()).toBeTruthy();
-    expect(wrapper.find('tbody tr').length).toEqual(2);
+    expect(wrapper.container.querySelector('.table-responsive')).toBeTruthy();
+    expect(wrapper.container.querySelectorAll('tbody tr').length).toEqual(2);
   });
 
   it('renders error page when there are no valid programs', () => {
@@ -103,7 +102,7 @@ describe('ProgramListPage', () => {
       },
     ];
 
-    const wrapper = shallow((
+    const wrapper = render((
       <ProgramListPage
         pageContext={pageContext}
         isLoading={false}
@@ -111,9 +110,14 @@ describe('ProgramListPage', () => {
       />
     ));
 
-    wrapper.setProps({ enrolledPrograms: data });
+    wrapper.rerender(<ProgramListPage
+      pageContext={pageContext}
+      isLoading={false}
+      fetchUserProgramEnrollments={jest.fn()}
+      enrolledPrograms={data}
+    />);
 
-    expect(wrapper.find('.table-responsive').exists()).toBeFalsy();
-    expect(wrapper.find(Alert).exists()).toBeTruthy();
+    expect(wrapper.container.querySelector('.table-responsive')).toBeFalsy();
+    expect(screen.getByRole('alert')).toBeTruthy();
   });
 });

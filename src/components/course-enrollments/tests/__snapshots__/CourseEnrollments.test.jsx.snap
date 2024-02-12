@@ -1,39 +1,41 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<CourseEnrollments /> renders course enrollments correctly with error 1`] = `
-<div
-  className="fade alert-content alert alert-danger show"
-  role="alert"
->
-  <span
-    className="pgn__icon alert-icon"
-  >
-    <svg
-      aria-hidden={true}
-      fill="none"
-      focusable={false}
-      height={24}
-      role="img"
-      viewBox="0 0 24 24"
-      width={24}
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M1 21h22L12 2 1 21Zm12-3h-2v-2h2v2Zm0-4h-2v-4h2v4Z"
-        fill="currentColor"
-      />
-    </svg>
-  </span>
+<div>
   <div
-    className="pgn__alert-message-wrapper"
+    class="fade alert-content alert alert-danger show"
+    role="alert"
   >
+    <span
+      class="pgn__icon alert-icon"
+    >
+      <svg
+        aria-hidden="true"
+        fill="none"
+        focusable="false"
+        height="24"
+        role="img"
+        viewBox="0 0 24 24"
+        width="24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M1 21h22L12 2 1 21Zm12-3h-2v-2h2v2Zm0-4h-2v-4h2v4Z"
+          fill="currentColor"
+        />
+      </svg>
+    </span>
     <div
-      className="alert-message-content"
+      class="pgn__alert-message-wrapper"
     >
       <div
-        className="d-flex"
+        class="alert-message-content"
       >
-        An error occurred while retrieving your course enrollments. Please try again.
+        <div
+          class="d-flex"
+        >
+          An error occurred while retrieving your course enrollments. Please try again.
+        </div>
       </div>
     </div>
   </div>
@@ -41,73 +43,82 @@ exports[`<CourseEnrollments /> renders course enrollments correctly with error 1
 `;
 
 exports[`<CourseEnrollments /> renders course enrollments correctly with loading 1`] = `
-<div
-  className="loading-spinner d-flex justify-content-center align-items-center"
->
+<div>
   <div
-    className="spinner-border text-primary"
-    role="status"
+    class="loading-spinner d-flex justify-content-center align-items-center"
   >
-    <span
-      className="sr-only"
+    <div
+      class="spinner-border text-primary"
+      role="status"
     >
-      loading course enrollments
-    </span>
+      <span
+        class="sr-only"
+      >
+        loading course enrollments
+      </span>
+    </div>
   </div>
 </div>
 `;
 
 exports[`<CourseEnrollments /> renders course enrollments correctly with mark course as complete success status alert 1`] = `
-<div
-  className="fade alert-content alert alert-success show"
-  role="alert"
->
-  <span
-    className="pgn__icon alert-icon"
-  >
-    <svg
-      aria-hidden={true}
-      fill="none"
-      focusable={false}
-      height={24}
-      role="img"
-      viewBox="0 0 24 24"
-      width={24}
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2Zm-2 15-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9Z"
-        fill="currentColor"
-      />
-    </svg>
-  </span>
+<div>
   <div
-    className="pgn__alert-message-wrapper"
+    class="fade alert-content alert alert-success show"
+    role="alert"
   >
+    <span
+      class="pgn__icon alert-icon"
+    >
+      <svg
+        aria-hidden="true"
+        fill="none"
+        focusable="false"
+        height="24"
+        role="img"
+        viewBox="0 0 24 24"
+        width="24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2Zm-2 15-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9Z"
+          fill="currentColor"
+        />
+      </svg>
+    </span>
     <div
-      className="alert-message-content"
+      class="pgn__alert-message-wrapper"
     >
       <div
-        className="d-flex"
+        class="alert-message-content"
       >
-        Your course was marked as complete.
+        <div
+          class="d-flex"
+        >
+          Your course was marked as complete.
+        </div>
+      </div>
+      <div
+        class="pgn__alert-actions pgn__action-row"
+      >
+        <span
+          class="pgn__action-row-spacer"
+        />
+        <button
+          class="btn btn-tertiary btn-sm"
+          type="button"
+        >
+          Dismiss
+        </button>
       </div>
     </div>
+  </div>
+  <div
+    class="mb-5"
+  >
     <div
-      className="pgn__alert-actions pgn__action-row"
-    >
-      <span
-        className="pgn__action-row-spacer"
-      />
-      <button
-        className="btn btn-tertiary btn-sm"
-        disabled={false}
-        onClick={[Function]}
-        type="button"
-      >
-        Dismiss
-      </button>
-    </div>
+      class="sidebar-example"
+    />
   </div>
 </div>
 `;

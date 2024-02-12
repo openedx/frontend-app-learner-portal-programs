@@ -1,8 +1,7 @@
 /* eslint-disable react/jsx-no-constructed-context-values */
 import React from 'react';
 import { Provider } from 'react-redux';
-import { mount } from 'enzyme';
-import renderer from 'react-test-renderer';
+import { fireEvent, render } from '@testing-library/react';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import { breakpoints } from '@openedx/paragon';
@@ -38,12 +37,12 @@ describe('<CourseEnrollments />', () => {
   describe('renders course enrollments correctly', () => {
     it('with no course enrollments', () => {
       const pageContext = {};
-      const wrapper = mount((
+      const wrapper = render((
         <AppContext.Provider value={{ pageContext }}>
           <CourseEnrollments {...initialProps} />
         </AppContext.Provider>
       ));
-      expect(wrapper.exists('.course-section')).toBeFalsy();
+      expect(wrapper.container.querySelector('.course-section')).toBeFalsy();
     });
 
     it('with valid course enrollments', () => {
@@ -86,7 +85,7 @@ describe('<CourseEnrollments />', () => {
           data: null,
         },
       });
-      const wrapper = mount((
+      const wrapper = render((
         <Provider store={store}>
           <AppContext.Provider value={{ pageContext }}>
             <CourseEnrollments
@@ -97,58 +96,54 @@ describe('<CourseEnrollments />', () => {
         </Provider>
       ));
 
-      expect(wrapper.html()).not.toBeNull();
-      expect(wrapper.find('.course-section').length).toEqual(2);
-      expect(wrapper.find('.course-section').first().find('.course').length).toEqual(1);
-      expect(wrapper.find('.course-section').last().find('.course').length).toEqual(1);
+      const courseSection = wrapper.container.querySelectorAll('.course-section');
+
+      expect(wrapper.container.children).not.toBeNull();
+      expect(courseSection.length).toEqual(2);
+      expect(courseSection[0].querySelectorAll('.course').length).toEqual(1);
+      expect(courseSection[courseSection.length - 1].querySelectorAll('.course').length).toEqual(1);
     });
 
     it('with error', () => {
       const pageContext = {};
-      const tree = renderer
-        .create((
-          <AppContext.Provider value={{ pageContext }}>
-            <CourseEnrollments
-              {...initialProps}
-              error={new Error('Network Error')}
-            />
-          </AppContext.Provider>
-        ))
-        .toJSON();
+      const { container: tree } = render(
+        <AppContext.Provider value={{ pageContext }}>
+          <CourseEnrollments
+            {...initialProps}
+            error={new Error('Network Error')}
+          />
+        </AppContext.Provider>,
+      );
       expect(tree).toMatchSnapshot();
     });
 
     it('with loading', () => {
       const pageContext = {};
-      const tree = renderer
-        .create((
-          <AppContext.Provider value={{ pageContext }}>
-            <CourseEnrollments
-              {...initialProps}
-              isLoading
-            />
-          </AppContext.Provider>
-        ))
-        .toJSON();
+      const { container: tree } = render(
+        <AppContext.Provider value={{ pageContext }}>
+          <CourseEnrollments
+            {...initialProps}
+            isLoading
+          />
+        </AppContext.Provider>,
+      );
       expect(tree).toMatchSnapshot();
     });
 
     it('with mark course as complete success status alert', () => {
       const pageContext = {};
-      const tree = renderer
-        .create((
-          <IntlProvider locale="en">
-            <AppContext.Provider value={{ pageContext }}>
-              <CourseEnrollments
-                {...initialProps}
-                isMarkCourseCompleteSuccess
-              />
-            </AppContext.Provider>
-          </IntlProvider>
-        ))
-        .toJSON();
-      // TODO: why is this an array?
-      expect(tree[0]).toMatchSnapshot();
+      const { container: tree } = render(
+        <IntlProvider locale="en">
+          <AppContext.Provider value={{ pageContext }}>
+            <CourseEnrollments
+              {...initialProps}
+              isMarkCourseCompleteSuccess
+            />
+          </AppContext.Provider>
+        </IntlProvider>,
+      );
+
+      expect(tree).toMatchSnapshot();
     });
   });
 
@@ -157,26 +152,26 @@ describe('<CourseEnrollments />', () => {
 
     it('is not shown at screen widths greater than or equal to large breakpoint', () => {
       const pageContext = {};
-      wrapper = mount((
+      wrapper = render((
         <ResponsiveContext.Provider value={{ width: breakpoints.large.minWidth }}>
           <AppContext.Provider value={{ pageContext }}>
             <CourseEnrollments {...initialProps} />
           </AppContext.Provider>
         </ResponsiveContext.Provider>
       ));
-      expect(wrapper.find('.sidebar-example').exists()).toBeFalsy();
+      expect(wrapper.container.querySelector('.sidebar-example')).toBeFalsy();
     });
 
     it('is shown at screen widths less than large breakpoint', () => {
       const pageContext = {};
-      wrapper = mount((
+      wrapper = render((
         <ResponsiveContext.Provider value={{ width: breakpoints.small.minWidth }}>
           <AppContext.Provider value={{ pageContext }}>
             <CourseEnrollments {...initialProps} />
           </AppContext.Provider>
         </ResponsiveContext.Provider>
       ));
-      expect(wrapper.find('.sidebar-example').exists()).toBeTruthy();
+      expect(wrapper.container.querySelector('.sidebar-example')).toBeTruthy();
     });
   });
 
@@ -189,7 +184,7 @@ describe('<CourseEnrollments />', () => {
     it('for program page', () => {
       const programUUID = 'test-program-uuid';
       const pageContext = { programUUID };
-      mount((
+      render((
         <AppContext.Provider value={{ pageContext }}>
           <CourseEnrollments {...initialProps} />
         </AppContext.Provider>
@@ -205,7 +200,7 @@ describe('<CourseEnrollments />', () => {
     const pageContext = {
       enterpriseUUID: 'test-enterprise-uuid',
     };
-    const wrapper = mount((
+    const wrapper = render((
       <IntlProvider locale="en">
         <AppContext.Provider value={{ pageContext }}>
           <CourseEnrollments
@@ -215,7 +210,7 @@ describe('<CourseEnrollments />', () => {
         </AppContext.Provider>
       </IntlProvider>
     ));
-    wrapper.find('.alert-success .btn').simulate('click');
+    fireEvent.click(wrapper.container.querySelector('.alert-success .btn'));
     expect(mockModifyIsMarkCourseCompleteSuccess).toBeCalledTimes(1);
   });
 });
