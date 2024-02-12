@@ -29,9 +29,11 @@ function Header({
     logoDestination,
     loggedIn: authenticatedUser !== null,
     username: authenticatedUser ? authenticatedUser.username : null,
+    name: authenticatedUser ? authenticatedUser.name : null,
     avatar: authenticatedUser && authenticatedUser.profileImage
       ? authenticatedUser.profileImage.imageUrlMedium
       : null,
+    hideUsername: !!process.env.HIDE_USERNAME_FROM_HEADER,
     mainMenu,
     userMenu,
   };
