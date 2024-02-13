@@ -6,7 +6,7 @@
   "author": "",
   "dependencies": {
     "@edx/brand": "npm:@openedx/brand-openedx@^1.2.2",
-    "@edx/frontend-component-footer-edx": "6.9.0",
+    "@edx/frontend-component-footer-edx": "7.0.0",
     "@edx/frontend-platform": "7.1.0",
     "@edx/gatsby-source-portal-designer": "^1.1.4",
     "@openedx/paragon": "^21.11.3",
