@@ -1,6 +1,6 @@
 import React from 'react';
 import MediaQuery from 'react-responsive';
-import { breakpoints } from '@edx/paragon';
+import { breakpoints } from '@openedx/paragon';
 
 import { MainContent, Sidebar } from '../../layout';
 import { ProgramMainContent } from '../main-content';

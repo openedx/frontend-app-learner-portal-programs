@@ -7,7 +7,7 @@ import {
   faChevronUp,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Button } from '@edx/paragon';
+import { Button } from '@openedx/paragon';
 
 class Links extends Component {
   constructor(props) {

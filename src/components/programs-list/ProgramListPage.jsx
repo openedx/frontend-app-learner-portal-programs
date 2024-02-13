@@ -3,8 +3,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { sendPageEvent } from '@edx/frontend-platform/analytics';
-import { Alert } from '@edx/paragon';
-import { Warning } from '@edx/paragon/icons';
+import { Alert } from '@openedx/paragon';
+import { Warning } from '@openedx/paragon/icons';
 import { Layout } from '../layout';
 import { LoadingSpinner } from '../loading-spinner';
 

@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import MediaQuery from 'react-responsive';
-import { breakpoints, Alert } from '@edx/paragon';
-import { Warning } from '@edx/paragon/icons';
+import { breakpoints, Alert } from '@openedx/paragon';
+import { Warning } from '@openedx/paragon/icons';
 import { sendPageEvent } from '@edx/frontend-platform/analytics';
 
 import { Layout, MainContent, Sidebar } from '../layout';
