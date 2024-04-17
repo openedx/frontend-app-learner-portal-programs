@@ -2,6 +2,10 @@ const path = require('path');
 
 const envConfigPath = path.join(__dirname, 'env.config.js');
 module.exports = {
+  testEnvironment: 'jsdom',
+  // testEnvironmentOptions: {
+  //   url: 'http://localhost/',
+  // },
   transform: {
     '^.+\\.jsx?$': '<rootDir>/jest-preprocess.js',
   },
@@ -11,7 +15,7 @@ module.exports = {
     'env.config': envConfigPath,
   },
   testPathIgnorePatterns: ['node_modules', '.cache'],
-  transformIgnorePatterns: ['node_modules/(?!(gatsby|@edx/paragon|@edx/frontend-platform|@edx/frontend-component-footer-edx))'],
+  transformIgnorePatterns: ['node_modules/(?!(gatsby|@openedx/paragon|@edx/frontend-platform|@edx/frontend-component-footer-edx))'],
   globals: {
     __PATH_PREFIX__: '',
   },

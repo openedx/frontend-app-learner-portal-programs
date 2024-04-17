@@ -1,5 +1,7 @@
 import React from 'react';
-import { fireEvent, render, screen } from '@testing-library/react';
+import {
+  fireEvent, render, screen, waitFor,
+} from '@testing-library/react';
 import thunk from 'redux-thunk';
 import configureMockStore from 'redux-mock-store';
 
@@ -55,7 +57,6 @@ describe('<EmailSettingsModal />', () => {
   it('statefulbutton component state is set to complete after click event', async () => {
     // Note: The following line is needed to properly resolve the
     // `updateEmailSettings` promise.
-    const flushPromises = () => new Promise(setImmediate);
     const buttonElement = screen.getAllByRole('button');
 
     expect(screen.getByText('Save')).toBeTruthy();
@@ -63,10 +64,11 @@ describe('<EmailSettingsModal />', () => {
 
     fireEvent.click(screen.getByRole('checkbox'));
     fireEvent.click(buttonElement[buttonElement.length - 1]);
-    await flushPromises();
 
     expect(mockUpdateEmailSettings.mock.calls.length).toBe(1);
-    expect(screen.getByText('Saved')).toBeTruthy();
-    expect(screen.queryByText('Save')).toBeFalsy();
+    waitFor(() => {
+      expect(screen.getByText('Saved')).toBeTruthy();
+      expect(screen.queryByText('Save')).toBeFalsy();
+    });
   });
 });
