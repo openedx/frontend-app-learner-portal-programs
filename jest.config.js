@@ -2,6 +2,10 @@ const path = require('path');
 
 const envConfigPath = path.join(__dirname, 'env.config.js');
 module.exports = {
+  testEnvironment: 'jsdom',
+  testEnvironmentOptions: {
+    url: 'http://localhost/',
+  },
   transform: {
     '^.+\\.jsx?$': '<rootDir>/jest-preprocess.js',
   },
@@ -17,6 +21,5 @@ module.exports = {
   globals: {
     __PATH_PREFIX__: '',
   },
-  testURL: 'http://localhost',
   setupFiles: ['<rootDir>/setupTest.js'],
 };
