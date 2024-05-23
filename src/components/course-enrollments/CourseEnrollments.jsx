@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { breakpoints, Alert } from '@edx/paragon';
-import { Warning, CheckCircle } from '@edx/paragon/icons';
+import { breakpoints, Alert } from '@openedx/paragon';
+import { Warning, CheckCircle } from '@openedx/paragon/icons';
 import { AppContext } from '@edx/frontend-platform/react';
 import MediaQuery from 'react-responsive';
 import { LoadingSpinner } from '../loading-spinner';
