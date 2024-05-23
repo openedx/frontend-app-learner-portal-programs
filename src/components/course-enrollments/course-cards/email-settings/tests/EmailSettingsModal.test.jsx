@@ -55,7 +55,7 @@ describe('<EmailSettingsModal />', () => {
   it('statefulbutton component state is set to complete after click event', async () => {
     // Note: The following line is needed to properly resolve the
     // `updateEmailSettings` promise.
-    const flushPromises = () => new Promise(setImmediate);
+    const flushPromises = () => new Promise(process.nextTick);
     const buttonElement = screen.getAllByRole('button');
 
     expect(screen.getByText('Save')).toBeTruthy();

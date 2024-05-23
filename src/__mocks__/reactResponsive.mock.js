@@ -11,7 +11,7 @@ const mockMediaQueryProps = MediaQueryProps;
 // size using the `Responsive` components, we must mock the window size in our tests. To change
 // the window size for a specific test, include `global.innerWidth = <width>`.
 jest.mock('react-responsive', () => {
-  const MediaQuery = require.requireActual('react-responsive').default;
+  const MediaQuery = jest.requireActual('react-responsive').default;
 
   const MockMediaQuery = (props = mockMediaQueryProps) => {
     const defaultWidth = mockWindow.innerWidth;
