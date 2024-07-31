@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-import { Button } from '@edx/paragon';
+import { Button } from '@openedx/paragon';
 
 import BaseCourseCard from './BaseCourseCard';
 
