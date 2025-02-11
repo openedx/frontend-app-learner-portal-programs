@@ -28,12 +28,12 @@ function MastersPage({
             },
             {
               type: 'item',
-              href: `${process.env.LMS_BASE_URL}/u/${getAuthenticatedUser().username}`,
+              href: `${process.env.ACCOUNT_PROFILE_URL}/u/${getAuthenticatedUser().username}`,
               content: 'My Profile',
             },
             {
               type: 'item',
-              href: `${process.env.LMS_BASE_URL}/account/settings`,
+              href: process.env.ACCOUNT_SETTINGS_URL,
               content: 'Account Settings',
             },
             {

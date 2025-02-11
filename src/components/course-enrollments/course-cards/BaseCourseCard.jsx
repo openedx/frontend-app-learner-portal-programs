@@ -237,7 +237,7 @@ class BaseCourseCard extends Component {
           View your certificate on{' '}
           <a
             className="text-underline"
-            href={`${process.env.LMS_BASE_URL}/u/${
+            href={`${process.env.ACCOUNT_PROFILE_URL}/u/${
               getAuthenticatedUser().username
             }`}
           >
