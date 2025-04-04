@@ -29,7 +29,7 @@ import {
 
 import store from './src/store';
 
-// eslint-disable-next-line react/display-name,react/prop-types
+// eslint-disable-next-line react/display-name,react/prop-types,func-names
 export default function ({ children }) {
   const [ready, setReady] = useState(false);
 
