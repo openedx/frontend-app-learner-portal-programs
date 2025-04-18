@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import { IntlProvider } from 'react-intl';
 import { getAuthenticatedUser } from '@edx/frontend-platform/auth';
 import { ProgramListPage } from '../ProgramListPage';
@@ -28,7 +28,7 @@ describe('ProgramListPage', () => {
     ],
   };
 
-  it('correctly renders the loading page', () => {
+  it('correctly renders the loading page', async () => {
     const { container: tree } = render(
       <IntlProvider locale="en">
         <ProgramListPage
@@ -38,7 +38,7 @@ describe('ProgramListPage', () => {
         />
       </IntlProvider>,
     );
-    expect(tree).toMatchSnapshot();
+    await waitFor(() => expect(tree).toMatchSnapshot());
   });
 
   it('renders fetching program error page when there are issues fetching the user programs', () => {
