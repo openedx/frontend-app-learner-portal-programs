@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { injectIntl, intlShape } from '@edx/frontend-platform/i18n';
+import { useIntl } from '@edx/frontend-platform/i18n';
 import { getConfig } from '@edx/frontend-platform';
 
 // Local Components
@@ -14,14 +14,22 @@ import messages from './Header.messages';
 // Assets
 import { CaretIcon } from './Icons';
 
-class DesktopHeader extends React.Component {
-  constructor(props) { // eslint-disable-line no-useless-constructor
-    super(props);
-  }
+function DesktopHeader({
+  mainMenu = [],
+  userMenu = [],
+  loggedOutItems = [],
+  logo = null,
+  logoAltText = null,
+  logoDestination = null,
+  avatar = null,
+  username = null,
+  loggedIn = false,
+}) {
+  const intl = useIntl();
+  const logoProps = { src: logo, alt: logoAltText, href: logoDestination };
+  const logoClasses = getConfig().AUTHN_MINIMAL_HEADER ? 'mw-100' : null;
 
-  renderMainMenu() {
-    const { mainMenu } = this.props;
-
+  const renderMainMenu = () => {
     // Nodes are accepted as a prop
     if (!Array.isArray(mainMenu)) {
       return mainMenu;
@@ -52,83 +60,58 @@ class DesktopHeader extends React.Component {
         </Menu>
       );
     });
-  }
+  };
 
-  renderUserMenu() {
-    const {
-      userMenu,
-      avatar,
-      username,
-      intl,
-    } = this.props;
-
-    return (
-      <Menu transitionClassName="menu-dropdown" transitionTimeout={250}>
-        <MenuTrigger
-          tag="button"
-          aria-label={intl.formatMessage(messages['header.label.account.menu.for'], { username })}
-          className="btn btn-outline-primary d-inline-flex align-items-center pl-2 pr-3"
-        >
-          <Avatar size="1.5em" src={avatar} alt="" className="mr-2" />
-          {username} <CaretIcon role="img" aria-hidden focusable="false" />
-        </MenuTrigger>
-        <MenuContent className="mb-0 dropdown-menu show dropdown-menu-right pin-right shadow py-2">
-          {userMenu.map(({ type, href, content }) => (
-            <a className={`dropdown-${type}`} key={`${type}-${content}`} href={href}>{content}</a>
-          ))}
-        </MenuContent>
-      </Menu>
-    );
-  }
-
-  renderLoggedOutItems() {
-    const { loggedOutItems } = this.props;
-
-    return loggedOutItems.map((item, i, arr) => (
-      <a
-        key={`${item.type}-${item.content}`}
-        className={i < arr.length - 1 ? 'btn mr-2 btn-link' : 'btn mr-2 btn-outline-primary'}
-        href={item.href}
+  const renderUserMenu = () => (
+    <Menu transitionClassName="menu-dropdown" transitionTimeout={250}>
+      <MenuTrigger
+        tag="button"
+        aria-label={intl.formatMessage(messages['header.label.account.menu.for'], { username })}
+        className="btn btn-outline-primary d-inline-flex align-items-center pl-2 pr-3"
       >
-        {item.content}
-      </a>
-    ));
-  }
+        <Avatar size="1.5em" src={avatar} alt="" className="mr-2" />
+        {username} <CaretIcon role="img" aria-hidden focusable="false" />
+      </MenuTrigger>
+      <MenuContent className="mb-0 dropdown-menu show dropdown-menu-right pin-right shadow py-2">
+        {userMenu.map(({ type, href, content }) => (
+          <a className={`dropdown-${type}`} key={`${type}-${content}`} href={href}>{content}</a>
+        ))}
+      </MenuContent>
+    </Menu>
+  );
 
-  render() {
-    const {
-      logo,
-      logoAltText,
-      logoDestination,
-      loggedIn,
-      intl,
-    } = this.props;
-    const logoProps = { src: logo, alt: logoAltText, href: logoDestination };
-    const logoClasses = getConfig().AUTHN_MINIMAL_HEADER ? 'mw-100' : null;
+  const renderLoggedOutItems = () => (loggedOutItems.map((item, i, arr) => (
+    <a
+      key={`${item.type}-${item.content}`}
+      className={i < arr.length - 1 ? 'btn mr-2 btn-link' : 'btn mr-2 btn-outline-primary'}
+      href={item.href}
+    >
+      {item.content}
+    </a>
+  )));
 
-    return (
-      <header className="site-header-desktop">
-        <a className="nav-skip sr-only sr-only-focusable" href="#main">{intl.formatMessage(messages['header.label.skip.nav'])}</a>
-        <div className={`container-fluid ${logoClasses}`}>
-          <div className="nav-container position-relative d-flex align-items-center">
-            {logoDestination === null ? <Logo className="logo" src={logo} alt={logoAltText} /> : <LinkedLogo className="logo" {...logoProps} />}
-            <nav
-              aria-label={intl.formatMessage(messages['header.label.main.nav'])}
-              className="nav main-nav"
-            >
-              {this.renderMainMenu()}
-            </nav>
-            <nav
-              aria-label={intl.formatMessage(messages['header.label.secondary.nav'])}
-              className="nav secondary-menu-container align-items-center ml-auto"
-            >
-              {loggedIn ? this.renderUserMenu() : this.renderLoggedOutItems()}
-            </nav>
-          </div>
+  return (
+    <header className="site-header-desktop">
+      <a className="nav-skip sr-only sr-only-focusable" href="#main">{intl.formatMessage(messages['header.label.skip.nav'])}</a>
+      <div className={`container-fluid ${logoClasses}`}>
+        <div className="nav-container position-relative d-flex align-items-center">
+          {logoDestination === null ? <Logo className="logo" src={logo} alt={logoAltText} /> : <LinkedLogo className="logo" {...logoProps} />}
+          <nav
+            aria-label={intl.formatMessage(messages['header.label.main.nav'])}
+            className="nav main-nav"
+          >
+            {renderMainMenu()}
+          </nav>
+          <nav
+            aria-label={intl.formatMessage(messages['header.label.secondary.nav'])}
+            className="nav secondary-menu-container align-items-center ml-auto"
+          >
+            {loggedIn ? renderUserMenu() : renderLoggedOutItems()}
+          </nav>
         </div>
-      </header>
-    );
-  }
+      </div>
+    </header>
+  );
 }
 
 DesktopHeader.propTypes = {
@@ -152,21 +135,6 @@ DesktopHeader.propTypes = {
   avatar: PropTypes.string,
   username: PropTypes.string,
   loggedIn: PropTypes.bool,
-
-  // i18n
-  intl: intlShape.isRequired,
 };
 
-DesktopHeader.defaultProps = {
-  mainMenu: [],
-  userMenu: [],
-  loggedOutItems: [],
-  logo: null,
-  logoAltText: null,
-  logoDestination: null,
-  avatar: null,
-  username: null,
-  loggedIn: false,
-};
-
-export default injectIntl(DesktopHeader);
+export default DesktopHeader;
