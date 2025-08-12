@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import Responsive from 'react-responsive';
-import { injectIntl, intlShape } from '@edx/frontend-platform/i18n';
 import { AppContext } from '@edx/frontend-platform/react';
 import {
   ensureConfig,
@@ -49,7 +48,6 @@ function Header({
 }
 
 Header.propTypes = {
-  intl: intlShape.isRequired,
   headerLogo: PropTypes.string,
   logoAltText: PropTypes.string,
   logoDestination: PropTypes.string,
@@ -72,4 +70,4 @@ Header.defaultProps = {
   userMenu: [],
 };
 
-export default injectIntl(Header);
+export default Header;

@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
-import { injectIntl, intlShape } from '@edx/frontend-platform/i18n';
+import { useIntl } from '@edx/frontend-platform/i18n';
 import { Tabs, Tab } from '@openedx/paragon';
 import * as ProgramTabs from './tab-components';
 // i18n
 import messages from './TabularView.messages';
 
-function TabularView({ programDiscussions, liveSettings, intl }) {
+function TabularView({ programDiscussions, liveSettings }) {
+  const intl = useIntl();
   const { configured, iframe } = programDiscussions;
   const { configured: liveConfigured, iframe: liveIframe } = liveSettings;
   const courseTabs = [
@@ -47,7 +48,6 @@ function TabularView({ programDiscussions, liveSettings, intl }) {
 }
 
 TabularView.propTypes = {
-  intl: intlShape.isRequired,
   programDiscussions: PropTypes.shape({
     configured: PropTypes.bool,
     iframe: PropTypes.string,
@@ -58,4 +58,4 @@ TabularView.propTypes = {
   }).isRequired,
 };
 
-export default injectIntl(TabularView);
+export default TabularView;
