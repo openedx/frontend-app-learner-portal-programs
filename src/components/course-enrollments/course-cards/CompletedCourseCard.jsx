@@ -18,7 +18,7 @@ function CompletedCourseCard(props) {
             <p className="mb-0 lead">
               View your certificate on
               {' '}
-              <a className="text-underline" href={`${process.env.LMS_BASE_URL}/u/${getAuthenticatedUser().username}`}>your profile →</a>
+              <a className="text-underline" href={`${process.env.ACCOUNT_PROFILE_URL}/u/${getAuthenticatedUser().username}`}>your profile →</a>
             </p>
           </div>
         </div>
